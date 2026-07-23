@@ -1,0 +1,38 @@
+﻿variable,variable_label,variable_type,level,eligible_summary,skipped_summary,difference,standardized_difference_or_distance,ks_or_chi_square,permutation_p,eligible_n,skipped_n
+target_tokens,Target-step tokens,continuous,,"mean=36.9609; median=33.0000; IQR=[26.0000, 44.0000]; n=511","mean=44.9775; median=21.0000; IQR=[15.0000, 50.0000]; n=89",-8.016667,-0.242933,0.380373,0.044191,511,89
+prefix_tokens,Prefix tokens,continuous,,"mean=531.1840; median=498.0000; IQR=[405.5000, 631.0000]; n=511","mean=486.0449; median=463.0000; IQR=[386.0000, 581.0000]; n=89",45.139009,0.267621,0.127905,0.018196,511,89
+control_avg_correct,Control accuracy,continuous,,"mean=0.5528; median=0.7500; IQR=[0.0000, 1.0000]; n=511","mean=0.6264; median=1.0000; IQR=[0.0000, 1.0000]; n=89",-0.073567,-0.157277,0.100772,0.182364,511,89
+target_avg_correct,Target-deletion accuracy,continuous,,"mean=0.6326; median=1.0000; IQR=[0.0000, 1.0000]; n=511","mean=0.6545; median=1.0000; IQR=[0.0000, 1.0000]; n=89",-0.021911,-0.048808,0.056839,0.681464,511,89
+target_effect,Raw target effect,continuous,,"mean=0.0797; median=0.0000; IQR=[0.0000, 0.0000]; n=511","mean=0.0281; median=0.0000; IQR=[0.0000, 0.0000]; n=89",0.051656,0.121625,0.079487,0.295541,511,89
+danger_rate,Step-level danger rate (defined subset),continuous,,"mean=0.1880; median=0.0000; IQR=[0.0000, 0.0000]; n=316","mean=0.1569; median=0.0000; IQR=[0.0000, 0.0000]; n=60",0.031083,0.087537,0.044726,0.538492,316,60
+recovery_rate,Step-level recovery rate (defined subset),continuous,,"mean=0.4017; median=0.0000; IQR=[0.0000, 1.0000]; n=261","mean=0.3354; median=0.0000; IQR=[0.0000, 1.0000]; n=41",0.066294,0.145183,0.116905,0.396121,261,41
+mean_target_minus_control_tokens,Mean token change,continuous,,"mean=-22.1463; median=6.5000; IQR=[-53.0000, 57.1250]; n=511","mean=39.6376; median=1.7500; IQR=[-37.2500, 44.0000]; n=89",-61.783922,-0.150716,0.100948,0.183563,511,89
+completion_fraction,Control/target completed fraction,continuous,,"mean=0.9332; median=1.0000; IQR=[1.0000, 1.0000]; n=511","mean=0.9115; median=1.0000; IQR=[1.0000, 1.0000]; n=89",0.021702,0.114225,0.051122,0.328534,511,89
+prm_rating,PRM rating,categorical,-1,169/511 (0.3307),31/89 (0.3483),-0.017591,-0.037315,2.084479,0.351730,511,89
+prm_rating,PRM rating,categorical,0,176/511 (0.3444),24/89 (0.2697),0.074760,0.158589,2.084479,0.351730,511,89
+prm_rating,PRM rating,categorical,1,166/511 (0.3249),34/89 (0.3820),-0.057169,-0.121274,2.084479,0.351730,511,89
+step_type_analysis,Analysis Step Type,categorical,essential,144/511 (0.2818),21/89 (0.2360),0.045845,0.102674,1.736984,0.412917,511,89
+step_type_analysis,Analysis Step Type,categorical,harmful,201/511 (0.3933),33/89 (0.3708),0.022560,0.046253,1.736984,0.412917,511,89
+step_type_analysis,Analysis Step Type,categorical,redundant,166/511 (0.3249),35/89 (0.3933),-0.068405,-0.144929,1.736984,0.412917,511,89
+step_type_human_calibrated,Human-calibrated Step Type,categorical,essential,173/511 (0.3386),25/89 (0.2809),0.057653,0.122610,4.284234,0.130174,511,89
+step_type_human_calibrated,Human-calibrated Step Type,categorical,harmful,177/511 (0.3464),26/89 (0.2921),0.054245,0.114648,4.284234,0.130174,511,89
+step_type_human_calibrated,Human-calibrated Step Type,categorical,redundant,161/511 (0.3151),38/89 (0.4270),-0.111898,-0.237670,4.284234,0.130174,511,89
+rating_x_type,Rating × analysis Step Type,categorical,-1 x essential,13/511 (0.0254),1/89 (0.0112),0.014204,0.094094,8.499945,0.384523,511,89
+rating_x_type,Rating × analysis Step Type,categorical,-1 x harmful,151/511 (0.2955),27/89 (0.3034),-0.007872,-0.017233,8.499945,0.384523,511,89
+rating_x_type,Rating × analysis Step Type,categorical,-1 x redundant,5/511 (0.0098),3/89 (0.0337),-0.023923,-0.208576,8.499945,0.384523,511,89
+rating_x_type,Rating × analysis Step Type,categorical,0 x essential,38/511 (0.0744),3/89 (0.0337),0.040656,0.161131,8.499945,0.384523,511,89
+rating_x_type,Rating × analysis Step Type,categorical,0 x harmful,35/511 (0.0685),3/89 (0.0337),0.034785,0.142819,8.499945,0.384523,511,89
+rating_x_type,Rating × analysis Step Type,categorical,0 x redundant,103/511 (0.2016),18/89 (0.2022),-0.000682,-0.001699,8.499945,0.384523,511,89
+rating_x_type,Rating × analysis Step Type,categorical,1 x essential,93/511 (0.1820),17/89 (0.1910),-0.009015,-0.023299,8.499945,0.384523,511,89
+rating_x_type,Rating × analysis Step Type,categorical,1 x harmful,15/511 (0.0294),3/89 (0.0337),-0.004354,-0.025522,8.499945,0.384523,511,89
+rating_x_type,Rating × analysis Step Type,categorical,1 x redundant,58/511 (0.1135),14/89 (0.1573),-0.043800,-0.134787,8.499945,0.384523,511,89
+position_bin,Step position,categorical,early,173/511 (0.3386),28/89 (0.3146),0.023945,0.050732,7.707310,0.023795,511,89
+position_bin,Step position,categorical,late,158/511 (0.3092),40/89 (0.4494),-0.140241,-0.298249,7.707310,0.023795,511,89
+position_bin,Step position,categorical,middle,180/511 (0.3523),21/89 (0.2360),0.116295,0.246394,7.707310,0.023795,511,89
+control_stability,Control stability,categorical,correct_0_of_4,195/511 (0.3816),29/89 (0.3258),0.055762,0.115285,7.601227,0.106579,511,89
+control_stability,Control stability,categorical,correct_1_of_4,23/511 (0.0450),0/89 (0.0000),0.045010,0.234426,7.601227,0.106579,511,89
+control_stability,Control stability,categorical,correct_2_of_4,22/511 (0.0431),5/89 (0.0562),-0.013127,-0.063322,7.601227,0.106579,511,89
+control_stability,Control stability,categorical,correct_3_of_4,21/511 (0.0411),7/89 (0.0787),-0.037556,-0.178054,7.601227,0.106579,511,89
+control_stability,Control stability,categorical,correct_4_of_4,250/511 (0.4892),48/89 (0.5393),-0.050089,-0.100180,7.601227,0.106579,511,89
+has_abnormal_completion,Any abnormal completion,categorical,false,427/511 (0.8356),73/89 (0.8202),0.015392,0.041300,0.129290,0.757249,511,89
+has_abnormal_completion,Any abnormal completion,categorical,true,84/511 (0.1644),16/89 (0.1798),-0.015392,-0.041300,0.129290,0.757249,511,89
