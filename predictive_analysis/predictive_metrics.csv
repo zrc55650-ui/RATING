@@ -1,0 +1,79 @@
+﻿task,model,model_label,metric,estimate,ci_lower,ci_upper,n_runs,n_positive,base_rate,cv_unit,folds,bootstrap_replicates
+danger,A,Rating-only,auroc,0.422881,0.355245,0.490517,1353,204,0.150776,problem_id,5,5000
+danger,A,Rating-only,auprc,0.138927,0.096921,0.178429,1353,204,0.150776,problem_id,5,5000
+danger,A,Rating-only,brier,0.253523,0.248375,0.259337,1353,204,0.150776,problem_id,5,5000
+danger,A,Rating-only,ece_10bin,0.346037,0.293645,0.389864,1353,204,0.150776,problem_id,5,5000
+danger,A,Rating-only,specificity_at_0.5,0.516511,0.408417,0.596158,1353,204,0.150776,problem_id,5,5000
+danger,A,Rating-only,coverage_at_90pct_precision,0.001423,0.000000,0.004270,1353,204,0.150776,problem_id,5,5000
+danger,A,Rating-only,coverage_at_95pct_precision,0.001423,0.000000,0.004270,1353,204,0.150776,problem_id,5,5000
+danger,B,Type-only,auroc,0.550938,0.502002,0.603248,1353,204,0.150776,problem_id,5,5000
+danger,B,Type-only,auprc,0.207888,0.169955,0.244743,1353,204,0.150776,problem_id,5,5000
+danger,B,Type-only,brier,0.248573,0.240289,0.256458,1353,204,0.150776,problem_id,5,5000
+danger,B,Type-only,ece_10bin,0.344247,0.288933,0.393661,1353,204,0.150776,problem_id,5,5000
+danger,B,Type-only,specificity_at_0.5,0.450686,0.376173,0.527031,1353,204,0.150776,problem_id,5,5000
+danger,B,Type-only,coverage_at_90pct_precision,0.005400,0.000685,0.010799,1353,204,0.150776,problem_id,5,5000
+danger,B,Type-only,coverage_at_95pct_precision,0.005400,0.000685,0.010799,1353,204,0.150776,problem_id,5,5000
+danger,C,Rating + Type,auroc,0.431035,0.393638,0.468277,1353,204,0.150776,problem_id,5,5000
+danger,C,Rating + Type,auprc,0.140183,0.098821,0.188420,1353,204,0.150776,problem_id,5,5000
+danger,C,Rating + Type,brier,0.257411,0.244349,0.271527,1353,204,0.150776,problem_id,5,5000
+danger,C,Rating + Type,ece_10bin,0.345319,0.285401,0.399324,1353,204,0.150776,problem_id,5,5000
+danger,C,Rating + Type,specificity_at_0.5,0.672154,0.515284,0.829023,1353,204,0.150776,problem_id,5,5000
+danger,C,Rating + Type,coverage_at_90pct_precision,0.000000,0.000000,0.000000,1353,204,0.150776,problem_id,5,5000
+danger,C,Rating + Type,coverage_at_95pct_precision,0.000000,0.000000,0.000000,1353,204,0.150776,problem_id,5,5000
+danger,D,Static context,auroc,0.512090,0.486402,0.543414,1353,204,0.150776,problem_id,5,5000
+danger,D,Static context,auprc,0.159998,0.118648,0.207811,1353,204,0.150776,problem_id,5,5000
+danger,D,Static context,brier,0.248662,0.242310,0.256050,1353,204,0.150776,problem_id,5,5000
+danger,D,Static context,ece_10bin,0.333694,0.288331,0.376481,1353,204,0.150776,problem_id,5,5000
+danger,D,Static context,specificity_at_0.5,0.586852,0.537648,0.636825,1353,204,0.150776,problem_id,5,5000
+danger,D,Static context,coverage_at_90pct_precision,0.000000,0.000000,0.000000,1353,204,0.150776,problem_id,5,5000
+danger,D,Static context,coverage_at_95pct_precision,0.000000,0.000000,0.000000,1353,204,0.150776,problem_id,5,5000
+danger,E,Trajectory state (oracle/extra-compute),auroc,0.585130,0.527224,0.652986,1353,204,0.150776,problem_id,5,5000
+danger,E,Trajectory state (oracle/extra-compute),auprc,0.262906,0.184835,0.340978,1353,204,0.150776,problem_id,5,5000
+danger,E,Trajectory state (oracle/extra-compute),brier,0.227928,0.221156,0.237173,1353,204,0.150776,problem_id,5,5000
+danger,E,Trajectory state (oracle/extra-compute),ece_10bin,0.308282,0.256031,0.346575,1353,204,0.150776,problem_id,5,5000
+danger,E,Trajectory state (oracle/extra-compute),specificity_at_0.5,0.687249,0.652746,0.717429,1353,204,0.150776,problem_id,5,5000
+danger,E,Trajectory state (oracle/extra-compute),coverage_at_90pct_precision,0.001480,0.000000,0.003001,1353,204,0.150776,problem_id,5,5000
+danger,E,Trajectory state (oracle/extra-compute),coverage_at_95pct_precision,0.001480,0.000000,0.003001,1353,204,0.150776,problem_id,5,5000
+danger,C-A,AUPRC delta: C minus A,delta_auprc,0.001257,-0.028010,0.025863,1353,204,0.150776,problem_id,5,5000
+danger,D-C,AUPRC delta: D minus C,delta_auprc,0.019815,0.008573,0.033270,1353,204,0.150776,problem_id,5,5000
+danger,E-D,AUPRC delta: E minus D,delta_auprc,0.102908,0.048171,0.159704,1353,204,0.150776,problem_id,5,5000
+danger,E-A,AUPRC delta: E minus A,delta_auprc,0.123980,0.046813,0.187318,1353,204,0.150776,problem_id,5,5000
+benefit,A,Rating-only,auroc,0.520253,0.471605,0.568015,1047,377,0.360076,problem_id,5,5000
+benefit,A,Rating-only,auprc,0.431890,0.370620,0.487999,1047,377,0.360076,problem_id,5,5000
+benefit,A,Rating-only,brier,0.251487,0.249209,0.253793,1047,377,0.360076,problem_id,5,5000
+benefit,A,Rating-only,ece_10bin,0.136568,0.108031,0.181537,1047,377,0.360076,problem_id,5,5000
+benefit,A,Rating-only,specificity_at_0.5,0.364086,0.228949,0.488961,1047,377,0.360076,problem_id,5,5000
+benefit,A,Rating-only,coverage_at_90pct_precision,0.011360,0.000000,0.027440,1047,377,0.360076,problem_id,5,5000
+benefit,A,Rating-only,coverage_at_95pct_precision,0.011360,0.000000,0.027440,1047,377,0.360076,problem_id,5,5000
+benefit,B,Type-only,auroc,0.503400,0.461527,0.548703,1047,377,0.360076,problem_id,5,5000
+benefit,B,Type-only,auprc,0.406856,0.361603,0.452108,1047,377,0.360076,problem_id,5,5000
+benefit,B,Type-only,brier,0.251302,0.247246,0.255487,1047,377,0.360076,problem_id,5,5000
+benefit,B,Type-only,ece_10bin,0.135243,0.106162,0.176435,1047,377,0.360076,problem_id,5,5000
+benefit,B,Type-only,specificity_at_0.5,0.338314,0.246435,0.457480,1047,377,0.360076,problem_id,5,5000
+benefit,B,Type-only,coverage_at_90pct_precision,0.010590,0.003015,0.018165,1047,377,0.360076,problem_id,5,5000
+benefit,B,Type-only,coverage_at_95pct_precision,0.010590,0.003015,0.018165,1047,377,0.360076,problem_id,5,5000
+benefit,C,Rating + Type,auroc,0.484483,0.444153,0.535942,1047,377,0.360076,problem_id,5,5000
+benefit,C,Rating + Type,auprc,0.380317,0.324491,0.432521,1047,377,0.360076,problem_id,5,5000
+benefit,C,Rating + Type,brier,0.255174,0.248880,0.260355,1047,377,0.360076,problem_id,5,5000
+benefit,C,Rating + Type,ece_10bin,0.130130,0.101698,0.174628,1047,377,0.360076,problem_id,5,5000
+benefit,C,Rating + Type,specificity_at_0.5,0.396625,0.315363,0.467514,1047,377,0.360076,problem_id,5,5000
+benefit,C,Rating + Type,coverage_at_90pct_precision,0.006862,0.000000,0.018743,1047,377,0.360076,problem_id,5,5000
+benefit,C,Rating + Type,coverage_at_95pct_precision,0.006862,0.000000,0.018743,1047,377,0.360076,problem_id,5,5000
+benefit,D,Static context,auroc,0.566200,0.505179,0.609486,1047,377,0.360076,problem_id,5,5000
+benefit,D,Static context,auprc,0.412016,0.362103,0.461929,1047,377,0.360076,problem_id,5,5000
+benefit,D,Static context,brier,0.251851,0.242698,0.266481,1047,377,0.360076,problem_id,5,5000
+benefit,D,Static context,ece_10bin,0.169286,0.141029,0.201224,1047,377,0.360076,problem_id,5,5000
+benefit,D,Static context,specificity_at_0.5,0.586147,0.523024,0.669333,1047,377,0.360076,problem_id,5,5000
+benefit,D,Static context,coverage_at_90pct_precision,0.001927,0.000000,0.003937,1047,377,0.360076,problem_id,5,5000
+benefit,D,Static context,coverage_at_95pct_precision,0.001927,0.000000,0.003937,1047,377,0.360076,problem_id,5,5000
+benefit,E,Trajectory state (oracle/extra-compute),auroc,0.598865,0.574491,0.618109,1047,377,0.360076,problem_id,5,5000
+benefit,E,Trajectory state (oracle/extra-compute),auprc,0.477508,0.410010,0.546798,1047,377,0.360076,problem_id,5,5000
+benefit,E,Trajectory state (oracle/extra-compute),brier,0.245961,0.237549,0.257055,1047,377,0.360076,problem_id,5,5000
+benefit,E,Trajectory state (oracle/extra-compute),ece_10bin,0.175891,0.145971,0.205811,1047,377,0.360076,problem_id,5,5000
+benefit,E,Trajectory state (oracle/extra-compute),specificity_at_0.5,0.637307,0.540020,0.734594,1047,377,0.360076,problem_id,5,5000
+benefit,E,Trajectory state (oracle/extra-compute),coverage_at_90pct_precision,0.019148,0.004980,0.039920,1047,377,0.360076,problem_id,5,5000
+benefit,E,Trajectory state (oracle/extra-compute),coverage_at_95pct_precision,0.010853,0.004020,0.016727,1047,377,0.360076,problem_id,5,5000
+benefit,C-A,AUPRC delta: C minus A,delta_auprc,-0.051572,-0.115968,0.030316,1047,377,0.360076,problem_id,5,5000
+benefit,D-C,AUPRC delta: D minus C,delta_auprc,0.031698,-0.013914,0.067876,1047,377,0.360076,problem_id,5,5000
+benefit,E-D,AUPRC delta: E minus D,delta_auprc,0.065492,0.032631,0.091362,1047,377,0.360076,problem_id,5,5000
+benefit,E-A,AUPRC delta: E minus A,delta_auprc,0.045618,0.001181,0.082194,1047,377,0.360076,problem_id,5,5000

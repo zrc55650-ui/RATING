@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="470" viewBox="0 0 760 470">
+<style>text{font-family:Arial,'Microsoft YaHei',sans-serif;fill:#172033}.small{font-size:12px}.label{font-size:14px}.title{font-size:20px;font-weight:700}.axis{stroke:#8791a5;stroke-width:1}.grid{stroke:#dfe3eb;stroke-width:1}</style>
+<rect width="760" height="470" fill="white"/>
+<text x="80" y="32" class="title">Benefit precision–coverage (select highest predicted benefit)</text>
+<line x1="80" y1="400.0" x2="730" y2="400.0" class="grid"/>
+<text x="70" y="404.0" text-anchor="end" class="small">0.00</text>
+<line x1="80" y1="332.0" x2="730" y2="332.0" class="grid"/>
+<text x="70" y="336.0" text-anchor="end" class="small">0.12</text>
+<line x1="80" y1="264.0" x2="730" y2="264.0" class="grid"/>
+<text x="70" y="268.0" text-anchor="end" class="small">0.24</text>
+<line x1="80" y1="196.0" x2="730" y2="196.0" class="grid"/>
+<text x="70" y="200.0" text-anchor="end" class="small">0.36</text>
+<line x1="80" y1="128.0" x2="730" y2="128.0" class="grid"/>
+<text x="70" y="132.0" text-anchor="end" class="small">0.48</text>
+<line x1="80" y1="60.0" x2="730" y2="60.0" class="grid"/>
+<text x="70" y="64.0" text-anchor="end" class="small">0.60</text>
+<text x="80.0" y="424" text-anchor="middle" class="small">0.0</text>
+<text x="210.0" y="424" text-anchor="middle" class="small">0.2</text>
+<text x="340.0" y="424" text-anchor="middle" class="small">0.4</text>
+<text x="470.0" y="424" text-anchor="middle" class="small">0.6</text>
+<text x="600.0" y="424" text-anchor="middle" class="small">0.8</text>
+<text x="730.0" y="424" text-anchor="middle" class="small">1.0</text>
+<line x1="80" y1="60" x2="80" y2="400" class="axis"/>
+<line x1="80" y1="400" x2="730" y2="400" class="axis"/>
+<text x="405.0" y="450" text-anchor="middle" class="label">Coverage</text>
+<polyline points="112.5,258.3 145.0,265.1 177.5,223.1 210.0,212.9 242.5,227.0 275.0,219.5 307.5,191.0 340.0,199.8 372.5,196.7 405.0,189.1 437.5,188.5 470.0,190.7 502.5,194.5 535.0,196.7 567.5,197.2 600.0,195.8 632.5,194.3 665.0,196.7 697.5,197.3 730.0,196.0" fill="none" stroke="#78849a" stroke-width="3"/>
+<line x1="450" y1="31" x2="470" y2="31" stroke="#78849a" stroke-width="3"/>
+<text x="475" y="35" class="small">A</text>
+<polyline points="112.5,291.0 145.0,227.3 177.5,241.2 210.0,253.6 242.5,229.1 275.0,235.8 307.5,228.1 340.0,221.5 372.5,217.1 405.0,209.7 437.5,189.5 470.0,191.6 502.5,195.3 535.0,199.0 567.5,200.8 600.0,203.9 632.5,203.9 665.0,192.5 697.5,193.3 730.0,196.0" fill="none" stroke="#3569b8" stroke-width="3"/>
+<line x1="542" y1="31" x2="562" y2="31" stroke="#3569b8" stroke-width="3"/>
+<text x="567" y="35" class="small">C</text>
+<polyline points="112.5,94.9 145.0,130.2 177.5,129.3 210.0,131.6 242.5,131.8 275.0,132.9 307.5,129.1 340.0,125.5 372.5,143.7 405.0,151.3 437.5,160.9 470.0,172.6 502.5,177.0 535.0,185.1 567.5,192.1 600.0,189.7 632.5,191.2 665.0,190.1 697.5,192.7 730.0,196.0" fill="none" stroke="#d4663d" stroke-width="3"/>
+<line x1="634" y1="31" x2="654" y2="31" stroke="#d4663d" stroke-width="3"/>
+<text x="659" y="35" class="small">E</text>
+</svg>

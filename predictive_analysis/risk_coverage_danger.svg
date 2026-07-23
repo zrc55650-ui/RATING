@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="470" viewBox="0 0 760 470">
+<style>text{font-family:Arial,'Microsoft YaHei',sans-serif;fill:#172033}.small{font-size:12px}.label{font-size:14px}.title{font-size:20px;font-weight:700}.axis{stroke:#8791a5;stroke-width:1}.grid{stroke:#dfe3eb;stroke-width:1}</style>
+<rect width="760" height="470" fill="white"/>
+<text x="80" y="32" class="title">Danger risk–coverage (accept lowest predicted risk)</text>
+<line x1="80" y1="400.0" x2="730" y2="400.0" class="grid"/>
+<text x="70" y="404.0" text-anchor="end" class="small">0.00</text>
+<line x1="80" y1="332.0" x2="730" y2="332.0" class="grid"/>
+<text x="70" y="336.0" text-anchor="end" class="small">0.08</text>
+<line x1="80" y1="264.0" x2="730" y2="264.0" class="grid"/>
+<text x="70" y="268.0" text-anchor="end" class="small">0.16</text>
+<line x1="80" y1="196.0" x2="730" y2="196.0" class="grid"/>
+<text x="70" y="200.0" text-anchor="end" class="small">0.24</text>
+<line x1="80" y1="128.0" x2="730" y2="128.0" class="grid"/>
+<text x="70" y="132.0" text-anchor="end" class="small">0.32</text>
+<line x1="80" y1="60.0" x2="730" y2="60.0" class="grid"/>
+<text x="70" y="64.0" text-anchor="end" class="small">0.40</text>
+<text x="80.0" y="424" text-anchor="middle" class="small">0.0</text>
+<text x="210.0" y="424" text-anchor="middle" class="small">0.2</text>
+<text x="340.0" y="424" text-anchor="middle" class="small">0.4</text>
+<text x="470.0" y="424" text-anchor="middle" class="small">0.6</text>
+<text x="600.0" y="424" text-anchor="middle" class="small">0.8</text>
+<text x="730.0" y="424" text-anchor="middle" class="small">1.0</text>
+<line x1="80" y1="60" x2="80" y2="400" class="axis"/>
+<line x1="80" y1="400" x2="730" y2="400" class="axis"/>
+<text x="405.0" y="450" text-anchor="middle" class="label">Coverage</text>
+<polyline points="112.5,175.0 145.0,261.5 177.5,249.3 210.0,271.4 242.5,269.2 275.0,268.1 307.5,247.6 340.0,228.7 372.5,240.9 405.0,249.1 437.5,248.1 470.0,247.2 502.5,254.0 535.0,259.1 567.5,256.8 600.0,257.0 632.5,263.3 665.0,264.6 697.5,267.0 730.0,271.8" fill="none" stroke="#78849a" stroke-width="3"/>
+<line x1="450" y1="31" x2="470" y2="31" stroke="#78849a" stroke-width="3"/>
+<text x="475" y="35" class="small">A</text>
+<polyline points="112.5,137.5 145.0,116.7 177.5,207.4 210.0,227.5 242.5,231.5 275.0,226.2 307.5,215.3 340.0,227.2 372.5,236.7 405.0,240.3 437.5,238.9 470.0,245.1 502.5,251.1 535.0,256.4 567.5,264.3 600.0,262.5 632.5,264.0 665.0,264.6 697.5,269.0 730.0,271.8" fill="none" stroke="#3569b8" stroke-width="3"/>
+<line x1="542" y1="31" x2="562" y2="31" stroke="#3569b8" stroke-width="3"/>
+<text x="567" y="35" class="small">C</text>
+<polyline points="112.5,175.0 145.0,211.1 177.5,266.0 210.0,287.1 242.5,301.9 275.0,301.6 307.5,297.8 340.0,310.4 372.5,310.7 405.0,310.7 437.5,302.9 470.0,298.5 502.5,302.3 535.0,292.3 567.5,287.8 600.0,290.8 632.5,289.1 665.0,282.8 697.5,281.6 730.0,271.8" fill="none" stroke="#d4663d" stroke-width="3"/>
+<line x1="634" y1="31" x2="654" y2="31" stroke="#d4663d" stroke-width="3"/>
+<text x="659" y="35" class="small">E</text>
+</svg>
