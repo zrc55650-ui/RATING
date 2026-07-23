@@ -1,0 +1,7 @@
+lang: zh-CN
+papersize: a4
+mainfont: Microsoft YaHei
+fontsize: 9pt
+margin:
+  x: 1.2cm
+  y: 1.4cm

@@ -1,0 +1,37 @@
+# This workspace contains many local experiment shards and logs.
+# Keep the public repository as an explicit allowlist.
+/*
+
+!/.gitignore
+!/README.md
+
+!/PRM800K_Removability_Research_Proposal_CN_With_Cluster_Placebo_Results.md
+!/PRM800K_Removability_Research_Proposal_CN_With_Cluster_Placebo_Results.pdf
+!/pandoc_pdf_metadata.yaml
+!/cluster_bootstrap_results.css
+
+!/run_cluster_bootstrap.ps1
+!/run_cluster_bootstrap_stratified.ps1
+!/run_placebo_effect_bootstrap.ps1
+!/select_placebo_steps.py
+!/run_qwen_placebo_worker.ps1
+!/run_qwen_deletion_judge_worker.ps1
+
+!/qwen3-8b_deletion_pairs.csv
+!/qwen_deletion_generations.jsonl
+!/prm800k_ai_600_human_calibrated_flash.html
+
+!/qwen3-8b_cluster_bootstrap_metrics_5000.csv
+!/qwen3-8b_cluster_bootstrap_metrics_5000.md
+!/qwen3-8b_cluster_bootstrap_metrics_5000.html
+!/qwen3-8b_cluster_bootstrap_stratified_5000.csv
+!/qwen3-8b_cluster_bootstrap_stratified_5000.md
+!/qwen3-8b_cluster_bootstrap_stratified_5000.html
+
+!/qwen3-8b_placebo_selection.jsonl
+!/qwen3-8b_placebo_selection_summary.json
+!/qwen3-8b_placebo_effects_5000.csv
+!/qwen3-8b_placebo_effects_5000.md
+!/qwen3-8b_placebo_effects_5000.html
+!/qwen3-8b_placebo_effects_5000_placebo_runs.csv
+!/qwen3-8b_placebo_effects_5000_step_effects.csv
