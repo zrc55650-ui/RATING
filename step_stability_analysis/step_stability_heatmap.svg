@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="790" height="470" viewBox="0 0 790 470">
+<style>text{font-family:Arial,'Microsoft YaHei',sans-serif;fill:#172033}.small{font-size:12px}.label{font-size:14px}.title{font-size:20px;font-weight:700}.axis{stroke:#8791a5;stroke-width:1}.grid{stroke:#dfe3eb;stroke-width:1}</style>
+<rect width="790" height="470" fill="white"/>
+<text x="40" y="34" class="title">Step-level stability by PRM rating × analysis Step Type</text>
+<text x="40" y="56" class="small">Cell: strongly beneficial share; below: mean target effect (pp)</text>
+<text x="255.0" y="77" text-anchor="middle" class="label">Essential</text>
+<text x="445.0" y="77" text-anchor="middle" class="label">Redundant</text>
+<text x="635.0" y="77" text-anchor="middle" class="label">Harmful</text>
+<text x="142" y="150.0" text-anchor="end" class="label">rating -1</text>
+<rect x="160" y="95" width="185" height="95" fill="rgb(187,218,243)" stroke="#cbd2df"/>
+<text x="252.5" y="137" text-anchor="middle" style="font-size:22px;font-weight:700">21.4%</text>
+<text x="252.5" y="164" text-anchor="middle" class="small">+17.9 pp; n=14</text>
+<rect x="350" y="95" width="185" height="95" fill="rgb(210,230,247)" stroke="#cbd2df"/>
+<text x="442.5" y="137" text-anchor="middle" style="font-size:22px;font-weight:700">12.5%</text>
+<text x="442.5" y="164" text-anchor="middle" class="small">+0.0 pp; n=8</text>
+<rect x="540" y="95" width="185" height="95" fill="rgb(168,209,240)" stroke="#cbd2df"/>
+<text x="632.5" y="137" text-anchor="middle" style="font-size:22px;font-weight:700">28.7%</text>
+<text x="632.5" y="164" text-anchor="middle" class="small">+23.3 pp; n=178</text>
+<text x="142" y="250.0" text-anchor="end" class="label">rating 0</text>
+<rect x="160" y="195" width="185" height="95" fill="rgb(210,231,247)" stroke="#cbd2df"/>
+<text x="252.5" y="237" text-anchor="middle" style="font-size:22px;font-weight:700">12.2%</text>
+<text x="252.5" y="264" text-anchor="middle" class="small">-6.1 pp; n=41</text>
+<rect x="350" y="195" width="185" height="95" fill="rgb(212,232,247)" stroke="#cbd2df"/>
+<text x="442.5" y="237" text-anchor="middle" style="font-size:22px;font-weight:700">11.6%</text>
+<text x="442.5" y="264" text-anchor="middle" class="small">+1.7 pp; n=121</text>
+<rect x="540" y="195" width="185" height="95" fill="rgb(201,226,245)" stroke="#cbd2df"/>
+<text x="632.5" y="237" text-anchor="middle" style="font-size:22px;font-weight:700">15.8%</text>
+<text x="632.5" y="264" text-anchor="middle" class="small">+2.6 pp; n=38</text>
+<text x="142" y="350.0" text-anchor="end" class="label">rating 1</text>
+<rect x="160" y="295" width="185" height="95" fill="rgb(221,236,249)" stroke="#cbd2df"/>
+<text x="252.5" y="337" text-anchor="middle" style="font-size:22px;font-weight:700">8.2%</text>
+<text x="252.5" y="364" text-anchor="middle" class="small">-1.8 pp; n=110</text>
+<rect x="350" y="295" width="185" height="95" fill="rgb(220,236,249)" stroke="#cbd2df"/>
+<text x="442.5" y="337" text-anchor="middle" style="font-size:22px;font-weight:700">8.3%</text>
+<text x="442.5" y="364" text-anchor="middle" class="small">+0.3 pp; n=72</text>
+<rect x="540" y="295" width="185" height="95" fill="rgb(185,217,243)" stroke="#cbd2df"/>
+<text x="632.5" y="337" text-anchor="middle" style="font-size:22px;font-weight:700">22.2%</text>
+<text x="632.5" y="364" text-anchor="middle" class="small">+2.8 pp; n=18</text>
+</svg>

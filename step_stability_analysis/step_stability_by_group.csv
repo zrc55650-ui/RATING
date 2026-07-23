@@ -1,0 +1,145 @@
+﻿dimension,group,stability_category,steps,category_count,category_share,mean_target_effect,placebo_eligible_steps,mean_pure_semantic_effect,sign_conflict_steps
+overall,Overall,Strongly beneficial,600,99,0.165000,0.072083,511,0.085453,9
+overall,Overall,Weakly beneficial,600,33,0.055000,0.072083,511,0.085453,9
+overall,Overall,Strongly harmful,600,57,0.095000,0.072083,511,0.085453,9
+overall,Overall,Weakly harmful,600,25,0.041667,0.072083,511,0.085453,9
+overall,Overall,Mixed / unstable,600,9,0.015000,0.072083,511,0.085453,9
+overall,Overall,Stable no-change,600,377,0.628333,0.072083,511,0.085453,9
+prm_rating,-1,Strongly beneficial,200,55,0.275000,0.220000,169,0.133136,5
+prm_rating,-1,Weakly beneficial,200,9,0.045000,0.220000,169,0.133136,5
+prm_rating,-1,Strongly harmful,200,8,0.040000,0.220000,169,0.133136,5
+prm_rating,-1,Weakly harmful,200,7,0.035000,0.220000,169,0.133136,5
+prm_rating,-1,Mixed / unstable,200,5,0.025000,0.220000,169,0.133136,5
+prm_rating,-1,Stable no-change,200,116,0.580000,0.220000,169,0.133136,5
+prm_rating,0,Strongly beneficial,200,25,0.125000,0.002500,176,0.066288,2
+prm_rating,0,Weakly beneficial,200,10,0.050000,0.002500,176,0.066288,2
+prm_rating,0,Strongly harmful,200,26,0.130000,0.002500,176,0.066288,2
+prm_rating,0,Weakly harmful,200,8,0.040000,0.002500,176,0.066288,2
+prm_rating,0,Mixed / unstable,200,2,0.010000,0.002500,176,0.066288,2
+prm_rating,0,Stable no-change,200,129,0.645000,0.002500,176,0.066288,2
+prm_rating,1,Strongly beneficial,200,19,0.095000,-0.006250,166,0.057229,2
+prm_rating,1,Weakly beneficial,200,14,0.070000,-0.006250,166,0.057229,2
+prm_rating,1,Strongly harmful,200,23,0.115000,-0.006250,166,0.057229,2
+prm_rating,1,Weakly harmful,200,10,0.050000,-0.006250,166,0.057229,2
+prm_rating,1,Mixed / unstable,200,2,0.010000,-0.006250,166,0.057229,2
+prm_rating,1,Stable no-change,200,132,0.660000,-0.006250,166,0.057229,2
+step_type_analysis,essential,Strongly beneficial,165,17,0.103030,-0.012121,144,0.029514,4
+step_type_analysis,essential,Weakly beneficial,165,9,0.054545,-0.012121,144,0.029514,4
+step_type_analysis,essential,Strongly harmful,165,22,0.133333,-0.012121,144,0.029514,4
+step_type_analysis,essential,Weakly harmful,165,7,0.042424,-0.012121,144,0.029514,4
+step_type_analysis,essential,Mixed / unstable,165,4,0.024242,-0.012121,144,0.029514,4
+step_type_analysis,essential,Stable no-change,165,106,0.642424,-0.012121,144,0.029514,4
+step_type_analysis,redundant,Strongly beneficial,201,21,0.104478,0.011194,166,0.057731,2
+step_type_analysis,redundant,Weakly beneficial,201,12,0.059701,0.011194,166,0.057731,2
+step_type_analysis,redundant,Strongly harmful,201,20,0.099502,0.011194,166,0.057731,2
+step_type_analysis,redundant,Weakly harmful,201,8,0.039801,0.011194,166,0.057731,2
+step_type_analysis,redundant,Mixed / unstable,201,2,0.009950,0.011194,166,0.057731,2
+step_type_analysis,redundant,Stable no-change,201,138,0.686567,0.011194,166,0.057731,2
+step_type_analysis,harmful,Strongly beneficial,234,61,0.260684,0.183761,201,0.148425,3
+step_type_analysis,harmful,Weakly beneficial,234,12,0.051282,0.183761,201,0.148425,3
+step_type_analysis,harmful,Strongly harmful,234,15,0.064103,0.183761,201,0.148425,3
+step_type_analysis,harmful,Weakly harmful,234,10,0.042735,0.183761,201,0.148425,3
+step_type_analysis,harmful,Mixed / unstable,234,3,0.012821,0.183761,201,0.148425,3
+step_type_analysis,harmful,Stable no-change,234,133,0.568376,0.183761,201,0.148425,3
+step_type_human_calibrated,essential,Strongly beneficial,198,23,0.116162,0.020202,173,0.069846,4
+step_type_human_calibrated,essential,Weakly beneficial,198,11,0.055556,0.020202,173,0.069846,4
+step_type_human_calibrated,essential,Strongly harmful,198,23,0.116162,0.020202,173,0.069846,4
+step_type_human_calibrated,essential,Weakly harmful,198,11,0.055556,0.020202,173,0.069846,4
+step_type_human_calibrated,essential,Mixed / unstable,198,4,0.020202,0.020202,173,0.069846,4
+step_type_human_calibrated,essential,Stable no-change,198,126,0.636364,0.020202,173,0.069846,4
+step_type_human_calibrated,redundant,Strongly beneficial,199,25,0.125628,0.013819,161,0.046066,2
+step_type_human_calibrated,redundant,Weakly beneficial,199,14,0.070352,0.013819,161,0.046066,2
+step_type_human_calibrated,redundant,Strongly harmful,199,23,0.115578,0.013819,161,0.046066,2
+step_type_human_calibrated,redundant,Weakly harmful,199,6,0.030151,0.013819,161,0.046066,2
+step_type_human_calibrated,redundant,Mixed / unstable,199,2,0.010050,0.013819,161,0.046066,2
+step_type_human_calibrated,redundant,Stable no-change,199,129,0.648241,0.013819,161,0.046066,2
+step_type_human_calibrated,harmful,Strongly beneficial,203,51,0.251232,0.179803,177,0.136535,3
+step_type_human_calibrated,harmful,Weakly beneficial,203,8,0.039409,0.179803,177,0.136535,3
+step_type_human_calibrated,harmful,Strongly harmful,203,11,0.054187,0.179803,177,0.136535,3
+step_type_human_calibrated,harmful,Weakly harmful,203,8,0.039409,0.179803,177,0.136535,3
+step_type_human_calibrated,harmful,Mixed / unstable,203,3,0.014778,0.179803,177,0.136535,3
+step_type_human_calibrated,harmful,Stable no-change,203,122,0.600985,0.179803,177,0.136535,3
+rating_x_step_type_analysis,-1 x essential,Strongly beneficial,14,3,0.214286,0.178571,13,0.064103,2
+rating_x_step_type_analysis,-1 x essential,Weakly beneficial,14,0,0.000000,0.178571,13,0.064103,2
+rating_x_step_type_analysis,-1 x essential,Strongly harmful,14,1,0.071429,0.178571,13,0.064103,2
+rating_x_step_type_analysis,-1 x essential,Weakly harmful,14,0,0.000000,0.178571,13,0.064103,2
+rating_x_step_type_analysis,-1 x essential,Mixed / unstable,14,2,0.142857,0.178571,13,0.064103,2
+rating_x_step_type_analysis,-1 x essential,Stable no-change,14,8,0.571429,0.178571,13,0.064103,2
+rating_x_step_type_analysis,-1 x redundant,Strongly beneficial,8,1,0.125000,0.000000,5,0.150000,0
+rating_x_step_type_analysis,-1 x redundant,Weakly beneficial,8,1,0.125000,0.000000,5,0.150000,0
+rating_x_step_type_analysis,-1 x redundant,Strongly harmful,8,1,0.125000,0.000000,5,0.150000,0
+rating_x_step_type_analysis,-1 x redundant,Weakly harmful,8,1,0.125000,0.000000,5,0.150000,0
+rating_x_step_type_analysis,-1 x redundant,Mixed / unstable,8,0,0.000000,0.000000,5,0.150000,0
+rating_x_step_type_analysis,-1 x redundant,Stable no-change,8,4,0.500000,0.000000,5,0.150000,0
+rating_x_step_type_analysis,-1 x harmful,Strongly beneficial,178,51,0.286517,0.233146,151,0.138521,3
+rating_x_step_type_analysis,-1 x harmful,Weakly beneficial,178,8,0.044944,0.233146,151,0.138521,3
+rating_x_step_type_analysis,-1 x harmful,Strongly harmful,178,6,0.033708,0.233146,151,0.138521,3
+rating_x_step_type_analysis,-1 x harmful,Weakly harmful,178,6,0.033708,0.233146,151,0.138521,3
+rating_x_step_type_analysis,-1 x harmful,Mixed / unstable,178,3,0.016854,0.233146,151,0.138521,3
+rating_x_step_type_analysis,-1 x harmful,Stable no-change,178,104,0.584270,0.233146,151,0.138521,3
+rating_x_step_type_analysis,0 x essential,Strongly beneficial,41,5,0.121951,-0.060976,38,-0.004386,0
+rating_x_step_type_analysis,0 x essential,Weakly beneficial,41,2,0.048780,-0.060976,38,-0.004386,0
+rating_x_step_type_analysis,0 x essential,Strongly harmful,41,7,0.170732,-0.060976,38,-0.004386,0
+rating_x_step_type_analysis,0 x essential,Weakly harmful,41,2,0.048780,-0.060976,38,-0.004386,0
+rating_x_step_type_analysis,0 x essential,Mixed / unstable,41,0,0.000000,-0.060976,38,-0.004386,0
+rating_x_step_type_analysis,0 x essential,Stable no-change,41,25,0.609756,-0.060976,38,-0.004386,0
+rating_x_step_type_analysis,0 x redundant,Strongly beneficial,121,14,0.115702,0.016529,103,0.052589,2
+rating_x_step_type_analysis,0 x redundant,Weakly beneficial,121,5,0.041322,0.016529,103,0.052589,2
+rating_x_step_type_analysis,0 x redundant,Strongly harmful,121,13,0.107438,0.016529,103,0.052589,2
+rating_x_step_type_analysis,0 x redundant,Weakly harmful,121,3,0.024793,0.016529,103,0.052589,2
+rating_x_step_type_analysis,0 x redundant,Mixed / unstable,121,2,0.016529,0.016529,103,0.052589,2
+rating_x_step_type_analysis,0 x redundant,Stable no-change,121,84,0.694215,0.016529,103,0.052589,2
+rating_x_step_type_analysis,0 x harmful,Strongly beneficial,38,6,0.157895,0.026316,35,0.183333,0
+rating_x_step_type_analysis,0 x harmful,Weakly beneficial,38,3,0.078947,0.026316,35,0.183333,0
+rating_x_step_type_analysis,0 x harmful,Strongly harmful,38,6,0.157895,0.026316,35,0.183333,0
+rating_x_step_type_analysis,0 x harmful,Weakly harmful,38,3,0.078947,0.026316,35,0.183333,0
+rating_x_step_type_analysis,0 x harmful,Mixed / unstable,38,0,0.000000,0.026316,35,0.183333,0
+rating_x_step_type_analysis,0 x harmful,Stable no-change,38,20,0.526316,0.026316,35,0.183333,0
+rating_x_step_type_analysis,1 x essential,Strongly beneficial,110,9,0.081818,-0.018182,93,0.038530,2
+rating_x_step_type_analysis,1 x essential,Weakly beneficial,110,7,0.063636,-0.018182,93,0.038530,2
+rating_x_step_type_analysis,1 x essential,Strongly harmful,110,14,0.127273,-0.018182,93,0.038530,2
+rating_x_step_type_analysis,1 x essential,Weakly harmful,110,5,0.045455,-0.018182,93,0.038530,2
+rating_x_step_type_analysis,1 x essential,Mixed / unstable,110,2,0.018182,-0.018182,93,0.038530,2
+rating_x_step_type_analysis,1 x essential,Stable no-change,110,73,0.663636,-0.018182,93,0.038530,2
+rating_x_step_type_analysis,1 x redundant,Strongly beneficial,72,6,0.083333,0.003472,58,0.058908,0
+rating_x_step_type_analysis,1 x redundant,Weakly beneficial,72,6,0.083333,0.003472,58,0.058908,0
+rating_x_step_type_analysis,1 x redundant,Strongly harmful,72,6,0.083333,0.003472,58,0.058908,0
+rating_x_step_type_analysis,1 x redundant,Weakly harmful,72,4,0.055556,0.003472,58,0.058908,0
+rating_x_step_type_analysis,1 x redundant,Mixed / unstable,72,0,0.000000,0.003472,58,0.058908,0
+rating_x_step_type_analysis,1 x redundant,Stable no-change,72,50,0.694444,0.003472,58,0.058908,0
+rating_x_step_type_analysis,1 x harmful,Strongly beneficial,18,4,0.222222,0.027778,15,0.166667,0
+rating_x_step_type_analysis,1 x harmful,Weakly beneficial,18,1,0.055556,0.027778,15,0.166667,0
+rating_x_step_type_analysis,1 x harmful,Strongly harmful,18,3,0.166667,0.027778,15,0.166667,0
+rating_x_step_type_analysis,1 x harmful,Weakly harmful,18,1,0.055556,0.027778,15,0.166667,0
+rating_x_step_type_analysis,1 x harmful,Mixed / unstable,18,0,0.000000,0.027778,15,0.166667,0
+rating_x_step_type_analysis,1 x harmful,Stable no-change,18,9,0.500000,0.027778,15,0.166667,0
+control_correct_frequency,0/4,Strongly beneficial,224,78,0.348214,0.333705,195,0.050427,0
+control_correct_frequency,0/4,Weakly beneficial,224,14,0.062500,0.333705,195,0.050427,0
+control_correct_frequency,0/4,Strongly harmful,224,0,0.000000,0.333705,195,0.050427,0
+control_correct_frequency,0/4,Weakly harmful,224,0,0.000000,0.333705,195,0.050427,0
+control_correct_frequency,0/4,Mixed / unstable,224,0,0.000000,0.333705,195,0.050427,0
+control_correct_frequency,0/4,Stable no-change,224,132,0.589286,0.333705,195,0.050427,0
+control_correct_frequency,1/4,Strongly beneficial,23,7,0.304348,0.152174,23,0.054348,5
+control_correct_frequency,1/4,Weakly beneficial,23,2,0.086957,0.152174,23,0.054348,5
+control_correct_frequency,1/4,Strongly harmful,23,0,0.000000,0.152174,23,0.054348,5
+control_correct_frequency,1/4,Weakly harmful,23,9,0.391304,0.152174,23,0.054348,5
+control_correct_frequency,1/4,Mixed / unstable,23,5,0.217391,0.152174,23,0.054348,5
+control_correct_frequency,1/4,Stable no-change,23,0,0.000000,0.152174,23,0.054348,5
+control_correct_frequency,2/4,Strongly beneficial,27,14,0.518519,0.092593,22,0.121212,1
+control_correct_frequency,2/4,Weakly beneficial,27,1,0.037037,0.092593,22,0.121212,1
+control_correct_frequency,2/4,Strongly harmful,27,10,0.370370,0.092593,22,0.121212,1
+control_correct_frequency,2/4,Weakly harmful,27,0,0.000000,0.092593,22,0.121212,1
+control_correct_frequency,2/4,Mixed / unstable,27,1,0.037037,0.092593,22,0.121212,1
+control_correct_frequency,2/4,Stable no-change,27,1,0.037037,0.092593,22,0.121212,1
+control_correct_frequency,3/4,Strongly beneficial,28,0,0.000000,-0.053571,21,0.095238,3
+control_correct_frequency,3/4,Weakly beneficial,28,16,0.571429,-0.053571,21,0.095238,3
+control_correct_frequency,3/4,Strongly harmful,28,7,0.250000,-0.053571,21,0.095238,3
+control_correct_frequency,3/4,Weakly harmful,28,2,0.071429,-0.053571,21,0.095238,3
+control_correct_frequency,3/4,Mixed / unstable,28,3,0.107143,-0.053571,21,0.095238,3
+control_correct_frequency,3/4,Stable no-change,28,0,0.000000,-0.053571,21,0.095238,3
+control_correct_frequency,4/4,Strongly beneficial,298,0,0.000000,-0.120805,250,0.111667,0
+control_correct_frequency,4/4,Weakly beneficial,298,0,0.000000,-0.120805,250,0.111667,0
+control_correct_frequency,4/4,Strongly harmful,298,40,0.134228,-0.120805,250,0.111667,0
+control_correct_frequency,4/4,Weakly harmful,298,14,0.046980,-0.120805,250,0.111667,0
+control_correct_frequency,4/4,Mixed / unstable,298,0,0.000000,-0.120805,250,0.111667,0
+control_correct_frequency,4/4,Stable no-change,298,244,0.818792,-0.120805,250,0.111667,0
