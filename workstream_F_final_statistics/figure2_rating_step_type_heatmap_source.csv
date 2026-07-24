@@ -1,0 +1,10 @@
+﻿prm_rating,human_calibrated_step_type,count,share_of_600,expected_diagonal
+-1,essential,25,0.041667,0
+-1,redundant,15,0.025000,0
+-1,harmful,160,0.266667,1
+0,essential,55,0.091667,0
+0,redundant,115,0.191667,1
+0,harmful,30,0.050000,0
+1,essential,118,0.196667,1
+1,redundant,69,0.115000,0
+1,harmful,13,0.021667,0

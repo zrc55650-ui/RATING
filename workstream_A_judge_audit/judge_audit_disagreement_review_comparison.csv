@@ -1,0 +1,29 @@
+﻿audit_id,condition,judge_label,initial_human_label,review_human_label,exact_label_changed,binary_correctness_changed,judge_human_agree_after_review,initial_human_reason,review_human_reason
+JA017,control,1,No valid final answer,Correct,true,true,true,只给过程,没给出结论但已经算出来了
+JA020,control,1,No valid final answer,No valid final answer,false,false,false,截断,只列了式子没有最终订单
+JA026,control,1,No valid final answer,No valid final answer,false,false,false,输出截断,只给出了式子没有最终结果
+JA028,control,0,Correct,Correct,false,false,false,对,最终答案正确
+JA050,control,1,No valid final answer,No valid final answer,false,false,false,无最终结果,没有算出最终结果
+JA053,control,0,Correct,No valid final answer,true,true,true,对,只说了怎么样给结果，没有最后结果
+JA059,target_delete,1,No valid final answer,Correct,true,true,true,无最终结果,答案正确
+JA070,control,1,No valid final answer,No valid final answer,false,false,false,输出截断,没给出结果
+JA071,control,1,No valid final answer,No valid final answer,false,false,false,无结果,没有最终结果
+JA084,target_delete,1,Incorrect,No valid final answer,true,false,false,错,没有最终结果
+JA088,control,1,No valid final answer,No valid final answer,false,false,false,无结果,没有最终结果
+JA110,control,0,Correct,Correct,false,false,false,无穷号显示不出来啊,答案正确
+JA111,target_delete,1,No valid final answer,No valid final answer,false,false,false,无结果,没给出最终结果
+JA130,target_delete,0,Correct,Correct,false,false,false,与参考答案一致,虽然很啰嗦，但出来的意思应该是正确答案
+JA138,control,1,No valid final answer,No valid final answer,false,false,false,无结果,只说了方法，没给出最终结果，还需要加工
+JA140,control,1,No valid final answer,No valid final answer,false,false,false,无结果,没给出最终结果
+JA143,target_delete,1,No valid final answer,No valid final answer,false,false,false,无结果,没给出最终结果
+JA146,control,0,Correct,Correct,false,false,false,对,答案正确
+JA160,target_delete,1,No valid final answer,No valid final answer,false,false,false,这题应该出现至少第三次了。。。,没有给出最终结果
+JA161,target_delete,0,Correct,Correct,false,false,false,没给最后结果但式子是对的 算他对吧,需要计算，但结果正确
+JA166,control,0,Correct,Correct,false,false,false,对,结果正确
+JA173,target_delete,0,Correct,Correct,false,false,false,对,答案正确
+JA174,control,0,Correct,Correct,false,false,false,与参考答案一致,大概可以推出答案是对的
+JA175,target_delete,1,No valid final answer,No valid final answer,false,false,false,无结果,没给出最后答案
+JA185,target_delete,1,No valid final answer,No valid final answer,false,false,false,无结果,没给出最后答案
+JA188,control,1,No valid final answer,No valid final answer,false,false,false,没给最终结果,最后没有最终答案
+JA196,control,0,Correct,Correct,false,false,false,对,需要加工但答案正确
+JA199,placebo_delete,1,No valid final answer,Correct,true,true,true,无结果,虽然罗嗦但应该答案正确

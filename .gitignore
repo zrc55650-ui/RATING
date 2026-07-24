@@ -4,6 +4,7 @@
 
 !/.gitignore
 !/README.md
+!/REPRODUCIBILITY.md
 
 !/PRM800K_Removability_Research_Proposal_CN_With_Cluster_Placebo_Results.md
 !/PRM800K_Removability_Research_Proposal_CN_With_Cluster_Placebo_Results.pdf
@@ -16,6 +17,21 @@
 !/select_placebo_steps.py
 !/run_qwen_placebo_worker.ps1
 !/run_qwen_deletion_judge_worker.ps1
+!/build_master_tables.py
+!/sample_judge_audit.py
+!/build_judge_audit_html.py
+!/build_judge_audit_disagreement_review.py
+!/apply_judge_audit_disagreement_review.py
+!/analyze_judge_audit.py
+!/analysis_common.py
+!/run_predictive_analysis.py
+!/run_stability_analysis.py
+!/run_placebo_eligibility_audit.py
+!/build_qualitative_candidates.py
+!/make_all_results.py
+!/export_figures_pdf.py
+
+!/PRM_Removability_ARR_Aug2026_Final_Execution_Plan_CN.md
 
 !/qwen3-8b_deletion_pairs.csv
 !/qwen_deletion_generations.jsonl
@@ -35,3 +51,13 @@
 !/qwen3-8b_placebo_effects_5000.html
 !/qwen3-8b_placebo_effects_5000_placebo_runs.csv
 !/qwen3-8b_placebo_effects_5000_step_effects.csv
+
+!/master_step_table.csv
+!/master_run_table.csv
+
+!/workstream_A_judge_audit/
+!/workstream_A_judge_audit/**
+!/workstream_E_qualitative_case_study/
+!/workstream_E_qualitative_case_study/**
+!/workstream_F_final_statistics/
+!/workstream_F_final_statistics/**

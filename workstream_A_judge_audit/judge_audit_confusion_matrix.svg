@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="570" viewBox="0 0 820 570">
+<rect width="820" height="570" fill="white"/>
+<style>text{font-family:Arial,'Microsoft YaHei',sans-serif;fill:#172033}</style>
+<text x="410" y="48" text-anchor="middle" font-size="24" font-weight="700">Judge Audit Confusion Matrix</text>
+<text x="410" y="78" text-anchor="middle" font-size="14" fill="#667085">N = 200 adjudicated outputs</text>
+<text x="120" y="335" text-anchor="middle" font-size="17" font-weight="700" transform="rotate(-90 120 335)">Human adjudication</text>
+<text x="500" y="535" text-anchor="middle" font-size="17" font-weight="700">Automated judge</text>
+<rect x="260" y="180" width="240" height="150" rx="10" fill="#d9f2e6" stroke="#98a2b3"/><text x="380" y="248" text-anchor="middle" font-size="38" font-weight="700">96</text><text x="380" y="285" text-anchor="middle" font-size="14">Human wrong / Judge wrong</text><rect x="520" y="180" width="240" height="150" rx="10" fill="#fde2e0" stroke="#98a2b3"/><text x="640" y="248" text-anchor="middle" font-size="38" font-weight="700">15</text><text x="640" y="285" text-anchor="middle" font-size="14">Human wrong / Judge correct</text><rect x="260" y="360" width="240" height="150" rx="10" fill="#fff0cc" stroke="#98a2b3"/><text x="380" y="428" text-anchor="middle" font-size="38" font-weight="700">9</text><text x="380" y="465" text-anchor="middle" font-size="14">Human correct / Judge wrong</text><rect x="520" y="360" width="240" height="150" rx="10" fill="#d9e8ff" stroke="#98a2b3"/><text x="640" y="428" text-anchor="middle" font-size="38" font-weight="700">80</text><text x="640" y="465" text-anchor="middle" font-size="14">Human correct / Judge correct</text>
+</svg>

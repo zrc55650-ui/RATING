@@ -4,6 +4,7 @@ This folder contains the required qualitative-case deliverables:
 
 - `qualitative_case_candidates.csv`
 - `qualitative_cases_verified.csv`
+- `qualitative_cases_summary.json`
 - `qualitative_cases.md`
 - `qualitative_cases_appendix.tex`
 

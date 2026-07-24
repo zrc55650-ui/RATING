@@ -1,0 +1,4 @@
+﻿condition,operation,runs_per_target_step,effect_definition
+Control,Keep target step,4,reference
+Target deletion,Remove target step,4,Target - Control
+Placebo deletion,Remove ±20%-length matched step,1 per selected placebo,Placebo - Control

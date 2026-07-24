@@ -1,0 +1,16 @@
+{
+  "verified_cases": 8,
+  "families": {
+    "negative_anchor": 3,
+    "generic_restart": 2,
+    "stable_correct_harmed": 2,
+    "high_rated_redundant_ambiguity": 1
+  },
+  "audited_outputs": 78,
+  "all_fixed_rules_passed": true,
+  "outputs": [
+    "qualitative_cases_verified.csv",
+    "qualitative_cases.md",
+    "qualitative_cases_appendix.tex"
+  ]
+}

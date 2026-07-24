@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="500" viewBox="0 0 980 500">
+<style>text{font-family:Arial,'Microsoft YaHei',sans-serif;fill:#172033}.small{font-size:12px}.label{font-size:14px}.title{font-size:20px;font-weight:700}.axis{stroke:#8791a5;stroke-width:1}.grid{stroke:#dfe3eb;stroke-width:1}</style>
+<rect width="980" height="500" fill="white"/>
+<text x="40" y="35" class="title">Counterfactual deletion protocol</text>
+<text x="40" y="58" class="small">Accuracy is judged on the regenerated continuation, not on the deleted step in isolation.</text>
+<rect x="340" y="78" width="300" height="50" rx="10" fill="#f5f6f8" stroke="#8791a5" stroke-width="2"/>
+<text x="490" y="108" text-anchor="middle" class="label">Same sampled reasoning trajectory</text>
+<path d="M 490 128 L 490 145 L 170 145 L 170 165" fill="none" stroke="#8791a5" stroke-width="2"/>
+<path d="M 490 145 L 490 165" fill="none" stroke="#8791a5" stroke-width="2"/>
+<path d="M 490 145 L 810 145 L 810 165" fill="none" stroke="#8791a5" stroke-width="2"/>
+<rect x="45" y="165" width="250" height="230" rx="14" fill="#e9f1fb" stroke="#3569b8" stroke-width="2"/>
+<text x="170" y="205" text-anchor="middle" style="font-size:20px;font-weight:700">Control</text>
+<rect x="79" y="230" width="182" height="42" rx="8" fill="white" stroke="#cbd2df"/>
+<text x="170" y="256" text-anchor="middle" class="small">Keep the target step</text>
+<text x="170" y="304" text-anchor="middle" class="small">Generate continuation</text>
+<text x="170" y="350" text-anchor="middle" style="font-size:14px;font-weight:700">4 runs / target step</text>
+<rect x="365" y="165" width="250" height="230" rx="14" fill="#fff0e9" stroke="#d4663d" stroke-width="2"/>
+<text x="490" y="205" text-anchor="middle" style="font-size:20px;font-weight:700">Target deletion</text>
+<rect x="399" y="230" width="182" height="42" rx="8" fill="white" stroke="#cbd2df"/>
+<text x="490" y="256" text-anchor="middle" class="small">Remove the target step</text>
+<text x="490" y="304" text-anchor="middle" class="small">Regenerate from the same position</text>
+<text x="490" y="350" text-anchor="middle" style="font-size:14px;font-weight:700">4 runs / target step</text>
+<rect x="685" y="165" width="250" height="230" rx="14" fill="#edf7ed" stroke="#3b8952" stroke-width="2"/>
+<text x="810" y="205" text-anchor="middle" style="font-size:20px;font-weight:700">Placebo deletion</text>
+<rect x="719" y="230" width="182" height="42" rx="8" fill="white" stroke="#cbd2df"/>
+<text x="810" y="256" text-anchor="middle" class="small">Remove a ±20%-length matched step</text>
+<text x="810" y="304" text-anchor="middle" class="small">Regenerate from its position</text>
+<text x="810" y="350" text-anchor="middle" style="font-size:14px;font-weight:700">1 run / selected placebo</text>
+<text x="490" y="440" text-anchor="middle" class="label">Target effect = Target − Control   ·   Placebo effect = Placebo − Control</text>
+<text x="490" y="468" text-anchor="middle" class="label">Pure semantic effect = Target − Placebo</text>
+</svg>
