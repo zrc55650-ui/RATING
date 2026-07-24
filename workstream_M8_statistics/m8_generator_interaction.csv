@@ -1,0 +1,5 @@
+﻿group,steps,phi4_mean_pp,qwen_mean_pp,diff_pp,diff_ci
+all_300,300,12.44,10.58,1.86,"[-4.00, 7.56]"
+anchor,100,33.67,21.75,11.92,"[2.91, 20.75]"
+non_anchor,200,1.83,5.00,-3.17,"[-10.38, 3.88]"
+interaction_anchor_x_generator,300,,,15.08,"[3.58, 26.75]"

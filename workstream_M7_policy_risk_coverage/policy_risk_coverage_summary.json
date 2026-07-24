@@ -1,0 +1,22 @@
+{
+  "cohort_steps": 600,
+  "runs_per_step": 4,
+  "overall_run_danger_rate": 0.085,
+  "overall_run_benefit_rate": 0.15708333333333332,
+  "bootstrap_replicates": 5000,
+  "seed": 20260723,
+  "policies": {
+    "random": "Random deletion",
+    "rating_neg1": "Rating = -1 threshold",
+    "harmful_only": "Harmful-only (human-calibrated)",
+    "neg1_x_harmful": "Rating = -1 x Harmful",
+    "predictor_static": "Static predictor (model D)",
+    "predictor_state": "Trajectory-state predictor (model E)",
+    "oracle": "Oracle upper bound (observed effect)"
+  },
+  "natural_set_sizes": {
+    "rating_neg1": 200,
+    "harmful_only": 203,
+    "neg1_x_harmful": 160
+  }
+}

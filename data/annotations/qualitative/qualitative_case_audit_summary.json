@@ -1,0 +1,19 @@
+{
+  "selection_seed": 20260723,
+  "provisional_cases": 8,
+  "audit_outputs": 78,
+  "prefilled_from_prior_adjudication": 4,
+  "conditions": {
+    "target_delete": 32,
+    "control": 32,
+    "placebo_delete": 14
+  },
+  "families": {
+    "negative_anchor": 3,
+    "generic_restart": 2,
+    "stable_correct_harmed": 2,
+    "high_rated_redundant_ambiguity": 1
+  },
+  "manifest": "qualitative_case_audit_manifest.csv",
+  "blind_sheet": "qualitative_case_audit_sheet.csv"
+}

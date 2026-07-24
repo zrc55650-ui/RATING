@@ -1,0 +1,1214 @@
+{
+    "metadata":  {
+                     "model":  "deepseek/deepseek-v4-flash",
+                     "seed":  820026,
+                     "updatedAt":  "2026-07-20T09:55:27.9509409Z",
+                     "annotationCount":  150,
+                     "promptTokens":  125971,
+                     "completionTokens":  12106,
+                     "totalTokens":  138077,
+                     "apiCalls":  14
+                 },
+    "annotations":  {
+                        "prm-010e43e3a679e690":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤通过乘以x消去分母，是求解方程的必要代数变形，删除后无法得到后续方程。",
+                                                     "confidence":  0.99,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:02:22.6541014Z"
+                                                 },
+                        "prm-0219e874907d9144":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤继续枚举k=6的情况，是寻找满足7x为整数且x为正的完整枚举过程的一部分，删除后枚举序列不完整，影响后续找到正确解的逻辑链条。",
+                                                     "confidence":  0.9,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:54:07.0752905Z"
+                                                 },
+                        "prm-02dc733a400c8a44":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤错误地展开方程并引入错误的代数操作，导致后续得到错误的逆函数和答案，删除此步才能避免错误。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:45:13.7960801Z"
+                                                 },
+                        "prm-059a20c710a38a1d":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤是计算平方根的关键中间步骤，提供了分解64为16×4的思路，删除后后续平方根计算无法进行。",
+                                                     "confidence":  0.9,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:42:44.5699658Z"
+                                                 },
+                        "prm-05db80661c2eea87":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤错误地重复了之前的乘法结果（6×10=60），导致后续错误地认为需要除以2来避免重复计数；删除此步可消除误导，使推理回到正确路径。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:53:06.5848154Z"
+                                                 },
+                        "prm-0638bc02d0338441":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤提出了验证a=2是否满足条件的具体方法，是后续推理的关键起点，删除后推理无法继续。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:42:44.5699658Z"
+                                                 },
+                        "prm-0796ce8561574c8c":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤是求解硬币问题中代入已知值求未知数的关键推理步骤，正确且必要，删除后无法得出镍币数量。",
+                                                     "confidence":  0.99,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:51:28.8836846Z"
+                                                 },
+                        "prm-0835351a60d3a191":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤是对方程进行代数化简的关键步骤，删除后后续推理无法得到 sin A 的表达式。",
+                                                     "confidence":  0.9,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:04:03.5205085Z"
+                                                 },
+                        "prm-0d673acec3561559":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤推导出y = (650/520)x，但正确的比例关系应为650/x = 520/y，由此应得y = (520/650)x，此错误导致最终答案错误。删除此步骤会破坏后续代入和求解过程。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:54:31.2370890Z"
+                                                 },
+                        "prm-0ff002313a594db0":  {
+                                                     "removable":  "yes",
+                                                     "stepType":  "redundant",
+                                                     "reason":  "该步骤只是描述替换操作，没有具体计算或新信息，删除后不影响后续展开和求和。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:55:15.7256243Z"
+                                                 },
+                        "prm-12c0e402310b4521":  {
+                                                     "removable":  "yes",
+                                                     "stepType":  "redundant",
+                                                     "reason":  "该步骤是元评论，不包含数学内容，删除后不影响后续计算。",
+                                                     "confidence":  0.98,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:05:33.3038510Z"
+                                                 },
+                        "prm-14b4f8d6eb13ea00":  {
+                                                     "removable":  "yes",
+                                                     "stepType":  "redundant",
+                                                     "reason":  "该步骤仅为答案格式标记，不包含任何数学内容，删除后不影响推理的完整性和正确性。",
+                                                     "confidence":  1,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:42:44.5699658Z"
+                                                 },
+                        "prm-14c0129055d497b2":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤给出了最终答案，是推理的结论，删除后解答不完整。",
+                                                     "confidence":  0.99,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:04:41.9767020Z"
+                                                 },
+                        "prm-16428e60085cafa9":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤是区间测试的关键结论，删去后后续步骤无法判断该区间是否满足不等式。",
+                                                     "confidence":  1,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:43:21.4230568Z"
+                                                 },
+                        "prm-178620daeb1c879c":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤给出了代入t=2后的最终坐标，是问题的直接答案。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:44:54.7926712Z"
+                                                 },
+                        "prm-1984cb49b132bdb6":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤计算a=11时表达式为5.5，并判断其不是完全平方数，但5.5不是整数，而题目要求a为整数，该步骤本身正确且是必要的枚举验证，删除后会破坏枚举的完整性。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:54:44.4699874Z"
+                                                 },
+                        "prm-1b82baadae1514fc":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤错误地对和式取对数，违反了log(a+b)≠log a+log b的规则，导致整个推导无效，删除此步才能避免错误。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:45:13.7960801Z"
+                                                 },
+                        "prm-1d5a5cb08ca68e3d":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤错误地认为任何偶数N都能使数字被3整除，但正确条件是N本身必须被3整除，因为9+N要被3整除。此错误导致后续得出多个答案。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:54:31.2370890Z"
+                                                 },
+                        "prm-236816577f8edaf6":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤正确解释了60% off等于原价的40%，是建立方程的必要前提，删除后后续步骤缺少依据。",
+                                                     "confidence":  0.98,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:05:33.3038510Z"
+                                                 },
+                        "prm-23e4bf45fefddfca":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤计算1,000,000里拉对应的美元数，但计算错误（应为1250而非125），且该错误直接导致最终答案错误。删除此步骤后，后续步骤无法得出正确结果。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:51:28.8836846Z"
+                                                 },
+                        "prm-24135c674fb88634":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤错误地将方程乘以-1，导致后续得到错误的解x=-1，进而得到错误答案999，删除此步并修正推理才能得到正确结果。",
+                                                     "confidence":  0.9,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:45:13.7960801Z"
+                                                 },
+                        "prm-2413c903941648a5":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤提出了有理化分母的策略，是后续所有化简操作的基础，删除后整个推导失去依据。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:45:13.7960801Z"
+                                                 },
+                        "prm-24d79d07da1abeb8":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤正确完成了对y项配方所需加9的操作，是后续得到正确半径方程的必要计算步骤；删除后配方不完整，无法得到正确方程。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:53:06.5848154Z"
+                                                 },
+                        "prm-27543090e207be07":  {
+                                                     "removable":  "yes",
+                                                     "stepType":  "redundant",
+                                                     "reason":  "该步骤是二进制转八进制时补零的通用规则说明，属于正确且无害的元注释，删除后不影响后续具体分组和转换。",
+                                                     "confidence":  0.98,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:51:28.8836846Z"
+                                                 },
+                        "prm-2953ceb48c3d11eb":  {
+                                                     "removable":  "yes",
+                                                     "stepType":  "redundant",
+                                                     "reason":  "该步骤建议在12.6末尾补零以对齐小数位，但后续计算中并未实际使用补零后的形式，且对齐小数位本身已隐含在竖式写法中；删除不影响计算过程。",
+                                                     "confidence":  0.85,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:53:06.5848154Z"
+                                                 },
+                        "prm-295680b6ca231154":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤开始计算5的因子个数，是求解末尾零个数的核心步骤，删除后无法继续推理。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:45:13.7960801Z"
+                                                 },
+                        "prm-2d2be0a20e1f55eb":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤是代入猜测公式的关键步骤，删去后后续推导无法进行。",
+                                                     "confidence":  1,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:43:21.4230568Z"
+                                                 },
+                        "prm-2d520973414e1dcb":  {
+                                                     "removable":  "yes",
+                                                     "stepType":  "redundant",
+                                                     "reason":  "该步骤列举了n=6的情况，但后续步骤已明确3^3是最小解，删除此步不影响推理连贯性和结论。",
+                                                     "confidence":  0.9,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:45:13.7960801Z"
+                                                 },
+                        "prm-2d6ec7aa85de8014":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤指示需要计算f(16)，是完成嵌套函数求值的必要中间步骤；删除后后续计算失去目标，无法得到最终结果。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:53:06.5848154Z"
+                                                 },
+                        "prm-2d92ce0491f2f56a":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤是合成除法的初始设置，缺少它将无法进行后续的除法计算。",
+                                                     "confidence":  1,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:04:03.5205085Z"
+                                                 },
+                        "prm-36b1999ceae59aea":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤展示了方程两边乘以3/2的具体操作，是求解过程的必要中间步骤，删除后后续计算失去依据。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:54:44.4699874Z"
+                                                 },
+                        "prm-370bf73e2c4bd7d0":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤明确了需要求表达式最大值的目标，是后续使用三角恒等式和求极值方法的必要前提；删除后推理失去方向。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:53:06.5848154Z"
+                                                 },
+                        "prm-372a06491c3ab4c3":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤正确说明了将男生组合数与女生组合数相乘的原理，是得出最终答案的关键推理步骤，删除后无法得到答案。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:54:44.4699874Z"
+                                                 },
+                        "prm-3ef9d1189683f74d":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤给出了最终答案240，但实际正确答案应为480，因此该步骤是错误的结论；删除它会使推理不完整，但保留它会导致错误答案。",
+                                                     "confidence":  1,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:51:14.6905584Z"
+                                                 },
+                        "prm-42aa85293ce04d6c":  {
+                                                     "removable":  "yes",
+                                                     "stepType":  "redundant",
+                                                     "reason":  "该步骤是重复除法过程的通用说明，属于正确且无害的元注释，删除后不影响后续具体计算和结果。",
+                                                     "confidence":  0.98,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:51:28.8836846Z"
+                                                 },
+                        "prm-4397a2362fedc5a3":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤是验证候选值是否有效的必要检查，删去后无法确认答案正确性。",
+                                                     "confidence":  1,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:43:21.4230568Z"
+                                                 },
+                        "prm-49dfa9357a3a5686":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤验证了所得解满足原方程，是确保答案正确的必要检验步骤；删除后推理不完整。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:53:33.2185451Z"
+                                                 },
+                        "prm-4b2cde83a58c010f":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤的竖式结果3265错误地省略了小数点，且后续步骤将小数点错误地放在32.65位置，导致最终答案错误；删除此步可避免该错误结果。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:53:06.5848154Z"
+                                                 },
+                        "prm-4c7b0daf67f174f2":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤尝试简化方程但操作错误（应乘以64而非8），导致后续推导偏离正确路径，最终答案错误。删除此步骤后，后续计算失去基础。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:51:28.8836846Z"
+                                                 },
+                        "prm-4c8c15a6cba67d79":  {
+                                                     "removable":  "yes",
+                                                     "stepType":  "redundant",
+                                                     "reason":  "该步骤只是对奇函数图形性质的描述性说明，不参与后续奇偶性推理；删除后不影响后续基于定义的推导。",
+                                                     "confidence":  0.9,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:53:06.5848154Z"
+                                                 },
+                        "prm-4ed42d1c12397218":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤声称序列以8为周期重复，但实际周期为10，该结论错误且导致后续计算错误，删除此步骤后剩余推理仍不完整，但该步骤本身是错误结论。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:54:44.4699874Z"
+                                                 },
+                        "prm-4f8665f0a19739c3":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤错误地判断8^(2/3)大于4，实际上8^(2/3)=4，导致后续取整错误（应为4而非5），最终答案错误。删除此步骤后，后续推理失去依据。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:51:28.8836846Z"
+                                                 },
+                        "prm-51383cc20140c6d4":  {
+                                                     "removable":  "yes",
+                                                     "stepType":  "redundant",
+                                                     "reason":  "该步骤只是一个分隔线，没有实质内容，删除后加法过程仍然完整。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:44:54.7926712Z"
+                                                 },
+                        "prm-5163da324c8a2bc9":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤是展开立方的标准起始步骤，正确且必要，删除后后续展开无法进行。",
+                                                     "confidence":  0.98,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:51:28.8836846Z"
+                                                 },
+                        "prm-55db6c6b79c6e553":  {
+                                                     "removable":  "yes",
+                                                     "stepType":  "redundant",
+                                                     "reason":  "该步骤仅是对前面计算结果的汇总和给出最终答案，删除后前面的计算步骤已足够得出答案。",
+                                                     "confidence":  0.9,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:42:44.5699658Z"
+                                                 },
+                        "prm-5636d3dc1eb6633f":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤列出了用1组成9或9的倍数的最小可能形式，是后续生成候选答案11100、111100等的直接依据，删除后候选列表无法推导。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:54:07.0752905Z"
+                                                 },
+                        "prm-56f31f0da676983f":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤错误地将分子乘以ω^k，导致后续推导偏离正确解法，删除此步可保留正确思路。",
+                                                     "confidence":  0.9,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:44:54.7926712Z"
+                                                 },
+                        "prm-57f3dc0fcc359327":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤正确列出了立方根的角度，后续推导依赖于这些角度值，删除后无法继续。",
+                                                     "confidence":  0.9,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:00:20.3687248Z"
+                                                 },
+                        "prm-5b41ee9b9b0d17ba":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤提出使用部分分式分解，但后续推导错误（如得到A=0, B=-1），导致整个级数求和过程错误。删除该步骤可避免错误推理。",
+                                                     "confidence":  0.9,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:55:15.7256243Z"
+                                                 },
+                        "prm-5b638cc553a8f6cc":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤计算了700减500等于200，是得出最终答案的关键计算步骤，删除后无法得到答案。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:54:44.4699874Z"
+                                                 },
+                        "prm-5bd12286ca047ec0":  {
+                                                     "removable":  "yes",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤正确计算了中心坐标，但后续推理错误地使用顶点代入距离条件，导致a值错误；删除此步后剩余推理可重新正确计算。",
+                                                     "confidence":  0.85,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:53:33.2185451Z"
+                                                 },
+                        "prm-5c51e282ba7208e7":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤同时进行加和减操作，导致代数错误（正确操作应为加3x/2或移项），使后续得到错误方程x/2=15，删除此步骤可避免错误推导。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:54:07.0752905Z"
+                                                 },
+                        "prm-5f58d3f9cdbdd4cd":  {
+                                                     "removable":  "yes",
+                                                     "stepType":  "redundant",
+                                                     "reason":  "该步骤只是重复了之前已经说明的通分方法，没有提供新信息，删除后不影响后续推理。",
+                                                     "confidence":  0.9,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:55:15.7256243Z"
+                                                 },
+                        "prm-60717bf0ef4716f2":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤概括了其余颜色的情况，是后续计算条件概率的必要前提，删除后推理链不完整。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:42:44.5699658Z"
+                                                 },
+                        "prm-66bc41cfa62d57e2":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤计算了每个面的面积，是求总表面积的必要中间结果，删除后后续计算无法进行。",
+                                                     "confidence":  1,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:51:14.6905584Z"
+                                                 },
+                        "prm-67c15cd755da8374":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤给出了因式分解所需的具体数字-2和-3，是后续分解和确定定义域的关键前提。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:44:54.7926712Z"
+                                                 },
+                        "prm-685fe7b1359fce4f":  {
+                                                     "removable":  "yes",
+                                                     "stepType":  "redundant",
+                                                     "reason":  "该步骤只是重复了向上取整的定义，删除后不影响后续计算。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:43:47.8008528Z"
+                                                 },
+                        "prm-68f28d955828cf44":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤错误地描述了x系数的表达式，应为3A-8B而非-B+3A，导致后续配对错误，删除此错误步骤后剩余步骤无法得到正确答案。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:55:27.9473428Z"
+                                                 },
+                        "prm-6a5663499dcdfb6e":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤正确定义了有利结果的条件，是后续计数和概率计算的基础。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:44:54.7926712Z"
+                                                 },
+                        "prm-6a679885fe24ca4d":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤使用计算器近似求解，但推导过程本身有误（之前步骤的恒等式应用错误），且近似值导致最终答案错误。删除此步骤后，后续步骤无法得出正确结果。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:51:28.8836846Z"
+                                                 },
+                        "prm-6b1c6a29b6d1c9f7":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤错误地认为需要将每个金额向下取整到最近的美元，而问题要求将硬币兑换成纸币后剩余的美分，正确做法是取模100。删除此步骤后，后续推理失去基础，但整个轨迹本身方向错误。",
+                                                     "confidence":  0.9,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:54:31.2370890Z"
+                                                 },
+                        "prm-6c647c9d900edecf":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤使用近似值计算，导致结果不精确，与精确答案1/8不符，删除此步可避免错误结论。",
+                                                     "confidence":  0.9,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:44:54.7926712Z"
+                                                 },
+                        "prm-6ee8687119787677":  {
+                                                     "removable":  "yes",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤正确识别了常数项条件，但后续计算中系数错误（1000应为100），导致答案错误；删除此步可重新正确计算。",
+                                                     "confidence":  0.9,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:53:33.2185451Z"
+                                                 },
+                        "prm-6f55f9ad3924eda5":  {
+                                                     "removable":  "yes",
+                                                     "stepType":  "redundant",
+                                                     "reason":  "该步骤只是说“为了找到n英里后牛奶量的通用公式，我们可以用观察到的模式”，是过渡性描述，没有提供新信息，删除后下一步直接给出公式，不影响推理。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:54:31.2370890Z"
+                                                 },
+                        "prm-707a079b8cebba7e":  {
+                                                     "removable":  "yes",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤错误地选择A在顶部、B在顶部以最大化纵坐标差，实际应最小化A的纵坐标；删除此步可避免错误。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:53:33.2185451Z"
+                                                 },
+                        "prm-70a2e3a4f8362a3d":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤错误地认为P(A|TTH)等于原概率P(A)，但实际游戏重置条件应为连续两次失败（TT），而非TH，导致后续公比错误，删除此步骤可纠正推理。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:54:07.0752905Z"
+                                                 },
+                        "prm-729feeaa6d7fd49e":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤指出仅有的有理根是±1，并决定使用综合除法，是后续因式分解的必要前提。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:43:47.8008528Z"
+                                                 },
+                        "prm-73806d5bdc6ee15f":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤是枚举n=1时对应的x值，是推导最终答案的必要计算步骤，删除后会导致计数不完整。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:45:13.7960801Z"
+                                                 },
+                        "prm-762ceff54735d7f1":  {
+                                                     "removable":  "yes",
+                                                     "stepType":  "redundant",
+                                                     "reason":  "该步骤只是计算3600除以10等于360，但后续推理并未使用这个结果，而是直接跳到60×60，删除后不影响推理连贯性。",
+                                                     "confidence":  0.9,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:54:07.0752905Z"
+                                                 },
+                        "prm-77fc0b169d8585bc":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤错误地认为原点不在矩形内部，导致后续计数方法错误，删除此错误步骤后剩余推理不完整。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:42:44.5699658Z"
+                                                 },
+                        "prm-7a422bc7fddfdf54":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤错误地推导出4 daps = 12 baps，实际应为4 daps = 7 yaps，5 yaps = 3 baps，正确换算应为4 daps = (7/5)*3 baps = 21/5 baps；此错误导致后续所有计算错误。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:53:06.5848154Z"
+                                                 },
+                        "prm-7a821b119f49c100":  {
+                                                     "removable":  "yes",
+                                                     "stepType":  "redundant",
+                                                     "reason":  "该步骤是猜测b值的试探性思考，没有具体计算或结论，删除后不影响后续推理的连贯性。",
+                                                     "confidence":  1,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:51:14.6905584Z"
+                                                 },
+                        "prm-7b57deaaa0d16f28":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤列出了错误的可能配对，导致后续推理偏离正确方向，删除此错误步骤后剩余步骤无法得到正确答案。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:55:27.9473428Z"
+                                                 },
+                        "prm-7b6647a191e51a48":  {
+                                                     "removable":  "yes",
+                                                     "stepType":  "redundant",
+                                                     "reason":  "该步骤尝试代入a=5进行检验，是合理的试探性步骤，但后续检验未找到正确解a=4，该步骤本身正确但非必要，删除后不影响后续推理。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:55:27.9473428Z"
+                                                 },
+                        "prm-7e6bdad2d7a80ef9":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤错误地假设QM是角平分线并引入相似三角形，导致后续复杂且错误的计算，最终得到错误答案34。删除该步骤可避免错误推理。",
+                                                     "confidence":  0.9,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:55:15.7256243Z"
+                                                 },
+                        "prm-8b05d5d648e57f29":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤给出了错误的最终答案，删除后推导缺少结论，但结论本身错误。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:02:22.6541014Z"
+                                                 },
+                        "prm-8bd9e6649bc32eb5":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤是尝试下一个回文数191的关键计算，是迭代求解过程的一部分，删除后推理链断裂。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:42:44.5699658Z"
+                                                 },
+                        "prm-8bf0d8a37d2eb018":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤错误地声称三角形AGD等与ABC相似，比例因子为1/2，实际并不成立，导致后续面积计算错误。删除该步骤会使后续推理失去依据。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:03:22.9372957Z"
+                                                 },
+                        "prm-9156dcd21a3e42c0":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤正确计算了5^2·5^1=5^3，是后续化简的必要推理，删除后表达式无法正确化简。",
+                                                     "confidence":  1,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:51:14.6905584Z"
+                                                 },
+                        "prm-939dcfcb80f17717":  {
+                                                     "removable":  "yes",
+                                                     "stepType":  "redundant",
+                                                     "reason":  "该步骤只是说“现在可以用这个差来求x”，没有提供新的计算或推理，删除后后续步骤仍然完整。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:54:31.2370890Z"
+                                                 },
+                        "prm-951e8e518dae1077":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤给出了最终加法结果，是得出答案的关键计算步骤；删除后无法得到最终答案。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:53:33.2185451Z"
+                                                 },
+                        "prm-9689f5a49ddfdb3e":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤是计算表达式中的具体数值替换，是正确且必要的计算步骤，删除后后续计算无法进行。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:55:27.9473428Z"
+                                                 },
+                        "prm-99891d43a5e736a5":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤验证了因式分解的正确性，是确认A和B取值的关键步骤，删除后无法保证答案正确。",
+                                                     "confidence":  1,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:51:14.6905584Z"
+                                                 },
+                        "prm-9a6f73708a6d6a9f":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤给出了满足方程的一般解，后续步骤依赖于这些解来筛选范围，删除后推理无法进行。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:00:20.3687248Z"
+                                                 },
+                        "prm-9cdea0642dfb0680":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤比较2和2的积与和，但忽略了整数必须互异的要求，导致后续错误地认为2×2×21是最优解。删除该步骤可避免误导。",
+                                                     "confidence":  0.9,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:55:15.7256243Z"
+                                                 },
+                        "prm-9ceaed5b974155d1":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤将方程除以10以标准化常数项，是后续判断圆锥曲线类型的关键代数变换，删除后后续步骤无法进行。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:54:07.0752905Z"
+                                                 },
+                        "prm-9d4dfc92d2809bdb":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤计算了r=3时的体积值，是验证答案正确性的关键验证步骤，删除后验证不完整。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:45:13.7960801Z"
+                                                 },
+                        "prm-9def3665fa2dd260":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤给出的因子分组(49)(41)及其比值分析是错误的，因为2009=7×7×41，正确的分组应为(7)(7×41)或(7×7)(41)或(41)(7×7)等，而(49)(41)不是正确的因子对；此错误导致后续推理偏离正确方向。",
+                                                     "confidence":  0.9,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:53:06.5848154Z"
+                                                 },
+                        "prm-9f8de872e85deb1c":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤给出了最终答案，是解题的结论，删除后整个推理不完整。",
+                                                     "confidence":  0.99,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:43:47.8008528Z"
+                                                 },
+                        "prm-a081faca165fd59b":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤尝试提取公因式2x，但多项式并非可分解形式，导致后续推理完全错误，删除此错误步骤后剩余步骤无法得到正确答案。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:55:27.9473428Z"
+                                                 },
+                        "prm-a0bf5d5817e64ebf":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤确定了最大公因数的具体形式（2^2和3^1），是后续计算12的关键推理，删除后无法得到正确结果。",
+                                                     "confidence":  0.98,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:43:47.8008528Z"
+                                                 },
+                        "prm-a136374e0913b303":  {
+                                                     "removable":  "yes",
+                                                     "stepType":  "redundant",
+                                                     "reason":  "该步骤只是说“合并同类项”，是操作描述而非必要推理，删除后下一步直接执行合并，不影响逻辑。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:54:31.2370890Z"
+                                                 },
+                        "prm-a15fb929dff59e97":  {
+                                                     "removable":  "yes",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤错误地将两个条件视为独立方程，而正确解法应联立为一个方程；删除此步后剩余推理可重新导向正确方程。",
+                                                     "confidence":  0.9,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:53:33.2185451Z"
+                                                 },
+                        "prm-a540f461a25e3009":  {
+                                                     "removable":  "yes",
+                                                     "stepType":  "redundant",
+                                                     "reason":  "该步骤是对已合并结果的描述性总结，不包含新的计算或推理，删除后不影响最终答案。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:42:44.5699658Z"
+                                                 },
+                        "prm-a8f0f0d569ae9708":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤计算了k=29对应的n=104，是得出最终答案的关键计算，删除后后续步骤无法得出答案。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:55:15.7256243Z"
+                                                 },
+                        "prm-ae5ba6e191f09528":  {
+                                                     "removable":  "yes",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤错误地假设对称性并只计算第一象限，忽略了原点及坐标轴上的整点；删除此步可避免错误计数。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:53:33.2185451Z"
+                                                 },
+                        "prm-afb60f3ac0dd9a0b":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤错误地认为x可以是2、2^2或2^3，但x^3整除10!要求x的每个质因数的指数不超过10!中该质因数指数的三分之一，正确限制是2的指数最多为2（因为8/3≈2.66），所以x不能包含2^3。此错误导致后续计数严重偏离。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:54:31.2370890Z"
+                                                 },
+                        "prm-b02cba206762c771":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤正确计算了纸杯蛋糕的收入（20×2=40美元），是总收入计算中不可或缺的一环，删除后总收入将缺少这一部分。",
+                                                     "confidence":  0.99,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:51:28.8836846Z"
+                                                 },
+                        "prm-b09e1aa4bb87ee7c":  {
+                                                     "removable":  "yes",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤错误地假设切点与焦点到原点距离相等，导致方程错误；删除此步可重新正确推导。",
+                                                     "confidence":  0.9,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:53:33.2185451Z"
+                                                 },
+                        "prm-b1b1d1fed6ca6e88":  {
+                                                     "removable":  "yes",
+                                                     "stepType":  "redundant",
+                                                     "reason":  "该步骤只是提出一个想法（展开房间），并未提供具体信息或计算，删除后后续步骤仍可独立进行。",
+                                                     "confidence":  0.9,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:44:54.7926712Z"
+                                                 },
+                        "prm-b4b221e907450223":  {
+                                                     "removable":  "yes",
+                                                     "stepType":  "redundant",
+                                                     "reason":  "该步骤只是说忽略r=0的解，只考虑r=3，但前一步已经指出r=0无意义，删除后不影响结论。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:54:31.2370890Z"
+                                                 },
+                        "prm-b4ce181080c6935d":  {
+                                                     "removable":  "yes",
+                                                     "stepType":  "redundant",
+                                                     "reason":  "该步骤只是建议画图，没有提供具体条件或推理，删除后不影响后续分析。",
+                                                     "confidence":  0.85,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:44:54.7926712Z"
+                                                 },
+                        "prm-b51944c22596b644":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤是计算过程中的关键数值替换和化简，是正确且必要的，删除后后续计算失去依据。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:55:27.9473428Z"
+                                                 },
+                        "prm-b51dfeb3b8305067":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤正确推导了a×v的简化形式，是后续求解方程组的关键前提，删除后后续步骤无法进行。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:54:44.4699874Z"
+                                                 },
+                        "prm-b659045eab2bbc92":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤展示了加法竖式中个位相加和进位的过程，是正确计算的关键步骤，删除后后续加法无法正确进行。",
+                                                     "confidence":  0.97,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:43:47.8008528Z"
+                                                 },
+                        "prm-b78ab37efb3ac6fe":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤错误地认为需要通分到6，但实际分母是3和1，导致后续计算错误；删去此步可避免错误。",
+                                                     "confidence":  1,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:43:21.4230568Z"
+                                                 },
+                        "prm-b8a1339e40d14487":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤判断202020的数字和为6，是3的倍数，这是后续验证该数是否满足条件的关键前提，删除后推理链断裂。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:55:15.7256243Z"
+                                                 },
+                        "prm-bc4cdb54673acb6b":  {
+                                                     "removable":  "yes",
+                                                     "stepType":  "redundant",
+                                                     "reason":  "该步骤只是泛泛的假设性描述，没有具体数学内容，删去不影响后续推理。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:43:21.4230568Z"
+                                                 },
+                        "prm-bd5151d40527ffa0":  {
+                                                     "removable":  "yes",
+                                                     "stepType":  "redundant",
+                                                     "reason":  "该步骤只是近似过程中的中间结论，删去后后续近似步骤仍可继续。",
+                                                     "confidence":  0.9,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:43:21.4230568Z"
+                                                 },
+                        "prm-bfc1c5c3c815660c":  {
+                                                     "removable":  "yes",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤错误地将方程简化为 (C+D)x+(8C-3D) = -23，遗漏了右侧的4x项，但后续步骤却正确使用了系数相等，因此删除该步骤可以消除错误，且不影响后续推理的连贯性。",
+                                                     "confidence":  0.85,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:01:06.3889109Z"
+                                                 },
+                        "prm-c00e9d4b22a619cf":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤尝试通过变换关系简化表达式，但推导有误（x^3 = x^2 + x 正确，但后续代入和结论错误），导致最终答案错误。删除此步骤后，后续推理失去基础。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:51:28.8836846Z"
+                                                 },
+                        "prm-c01bc07ec8bcb448":  {
+                                                     "removable":  "yes",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤错误地假设相邻项配对和为-1，但实际递推关系并不支持此结论；删除此步可避免后续错误推导。",
+                                                     "confidence":  0.9,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:53:33.2185451Z"
+                                                 },
+                        "prm-c1d4d174440821f2":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤是计算AF^2、BF^2、CF^2并求和的关键操作，删除后无法得到最终表达式。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:54:07.0752905Z"
+                                                 },
+                        "prm-c3c805b2888f0c71":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤错误地认为129和96模11都同余-1，实际上129≡-3，96≡-3，导致后续所有计算错误，删除该步骤可避免误导。",
+                                                     "confidence":  0.98,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:43:47.8008528Z"
+                                                 },
+                        "prm-c796e9f10b13c8d1":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤将问题转化为星条旗模型，是正确且关键的推理步骤，删除后后续公式应用失去基础。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:55:27.9473428Z"
+                                                 },
+                        "prm-c93b572ed45d09e3":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤错误地将上界从12.25截断为12，导致遗漏了t=12这个整数解；删除此步后，正确的上界12.25可被保留，从而得到正确计数。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:53:06.5848154Z"
+                                                 },
+                        "prm-caf345262620d432":  {
+                                                     "removable":  "yes",
+                                                     "stepType":  "redundant",
+                                                     "reason":  "该步骤只是输出最终答案，答案已在步骤14中明确给出，删除此步不影响推理过程。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:45:13.7960801Z"
+                                                 },
+                        "prm-cb73032ead9c7309":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤错误地认为所有指数都必须为1，导致后续得出错误结论，删除此错误步骤后剩余推理无法得出正确答案。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:42:44.5699658Z"
+                                                 },
+                        "prm-cb956bad5ee66d16":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤是计算玛莎行走距离的关键求和步骤，正确且必要，删除后无法得到最终差值。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:55:27.9473428Z"
+                                                 },
+                        "prm-d10dadbf854a3250":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤错误地认为sinθ=1/2对应60度，而实际最小角为30度，该错误导致最终答案错误，删除此步骤后后续推理仍会得出错误结论。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:54:44.4699874Z"
+                                                 },
+                        "prm-d400c2ab50349260":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤的代数操作错误，导致后续得到错误答案；删去此步可避免错误。",
+                                                     "confidence":  1,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:43:21.4230568Z"
+                                                 },
+                        "prm-d7691ac94c48e3a4":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤正确描述了关于水平线反射的规则，是第二次反射计算的关键，删除后后续步骤无法进行。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:54:44.4699874Z"
+                                                 },
+                        "prm-d7cd2fc406477b13":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤继续枚举k=3的情况，是寻找满足7x为整数且x为正的完整枚举过程的一部分，删除后枚举序列不完整，影响后续找到正确解的逻辑链条。",
+                                                     "confidence":  0.9,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:54:07.0752905Z"
+                                                 },
+                        "prm-d828d740ba9cd096":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤给出了第一次除法的余数，是构建六进制数最右边数字的关键。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:44:54.7926712Z"
+                                                 },
+                        "prm-d86397c6b2e063ff":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤描述了求余数和的通用方法，但后续分组计算有误导致答案错误；删除该步骤会失去方法说明，但推理仍可进行。",
+                                                     "confidence":  1,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:51:14.6905584Z"
+                                                 },
+                        "prm-dba05e0cd479b592":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤错误地将问题简化为仅最大化f(1)=a+b+c，忽略了区间内其他点的约束，导致后续得出错误答案1，删除此步骤可打破错误推理链。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:54:07.0752905Z"
+                                                 },
+                        "prm-de41ade60ddfc393":  {
+                                                     "removable":  "yes",
+                                                     "stepType":  "redundant",
+                                                     "reason":  "该步骤只是元认知评论，没有数学内容，删去不影响后续推理。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:43:21.4230568Z"
+                                                 },
+                        "prm-df2ec95ccf5f161f":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤在去分母时错误地将3x+1=7，正确应为3x+1=7/x? 实际上正确方程是3x+1=7，但后续求解错误，该步骤本身是正确去分母的结果，但后续步骤错误导致最终答案错误。删除此步骤后后续步骤失去依据。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:55:27.9473428Z"
+                                                 },
+                        "prm-df9bfb129e27eea5":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤错误地认为3的最高幂次是3^3，但10!中3的指数为4，导致后续计数错误，删除此步可避免误导。",
+                                                     "confidence":  0.9,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:44:54.7926712Z"
+                                                 },
+                        "prm-e0c68e2f69c92ce1":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤描述了合成除法的具体操作，但后续计算有误导致最终答案错误；删除该步骤会破坏合成除法的执行过程，但整个推理方向本身错误。",
+                                                     "confidence":  1,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:51:14.6905584Z"
+                                                 },
+                        "prm-e164a92c13c4f1d6":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤正确描述了求水平渐近线的一般方法，是后续推理的必要基础，删除后后续步骤失去依据。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:54:44.4699874Z"
+                                                 },
+                        "prm-e319831ecda4ad73":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤试图通过约分10和5来简化26×25×10×9，但26×25×10×9=58500，而错误地化简为1170，计算错误。删除此步骤后，后续结果直接错误。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:54:31.2370890Z"
+                                                 },
+                        "prm-e4c8f952bd2bcb69":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤是推导中关键的代数变形，删去后后续求解m的步骤失去依据。",
+                                                     "confidence":  1,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:43:21.4230568Z"
+                                                 },
+                        "prm-e4f8aa072f5528f6":  {
+                                                     "removable":  "yes",
+                                                     "stepType":  "redundant",
+                                                     "reason":  "该步骤只是指出284是偶数，2是真因数，属于显而易见的观察，删除后不影响后续推理。",
+                                                     "confidence":  0.9,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:43:47.8008528Z"
+                                                 },
+                        "prm-e57bd8bedd80b00d":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤试图将极坐标方程化为标准形式，但推导过程错误，导致后续错误判断为抛物线，删除此步骤后剩余推理不完整，但该步骤本身是错误推导。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:54:44.4699874Z"
+                                                 },
+                        "prm-e5a3f23bd55fe87a":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤只检查了x=±1到±4的情况，但忽略了x=0时y=±5以及x=±5时y=0的情况，并且完全遗漏了圆内所有整数点（如(0,0)等），导致计数严重不足。删除此步骤会丢失部分枚举，但整个枚举方法本身就不完整。",
+                                                     "confidence":  0.9,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:54:31.2370890Z"
+                                                 },
+                        "prm-e5b42c42ddfdfe89":  {
+                                                     "removable":  "yes",
+                                                     "stepType":  "redundant",
+                                                     "reason":  "该步骤是对递归函数的一般性描述，没有具体计算或错误，删除后不影响后续推理的连贯性。",
+                                                     "confidence":  1,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:51:14.6905584Z"
+                                                 },
+                        "prm-edfe3301d75e7278":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤基于错误的上界推导得出最大值5，实际正确答案为13/4，因此该步骤是错误的结论；删除它会使推理不完整。",
+                                                     "confidence":  1,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:51:14.6905584Z"
+                                                 },
+                        "prm-ee1dd46f28f6c0e7":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤包含错误结论（认为只有一种选法），删除此错误步骤后，剩余步骤无法得出正确答案，但可避免误导。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:42:44.5699658Z"
+                                                 },
+                        "prm-f06f20e73957e088":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤利用z^5=1替换z^6和z^5，是推导出关键方程的必要计算，删除后后续步骤无法进行。",
+                                                     "confidence":  0.98,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:43:47.8008528Z"
+                                                 },
+                        "prm-f20b3a116ae0c86a":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤执行了关键乘法运算，是得出最终答案1250的必要计算步骤，删除后无法得到结果。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:55:15.7256243Z"
+                                                 },
+                        "prm-f254e3a090dbe70a":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤确定了n=2003，是代入公式求第2003项的必要前提；删除后后续计算失去依据。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:53:33.2185451Z"
+                                                 },
+                        "prm-f28e06b3ccb9dfd8":  {
+                                                     "removable":  "yes",
+                                                     "stepType":  "redundant",
+                                                     "reason":  "该步骤只是描述尝试写出前几项以观察模式，属于探索性元评论，删除后不影响后续具体推导。",
+                                                     "confidence":  0.9,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:43:47.8008528Z"
+                                                 },
+                        "prm-f3ade9b68838159b":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤错误地认为212是小于220的最大三位回文数，实际上应为212，但后续推理基于此错误假设，导致最终答案错误。删除该步骤可避免错误方向。",
+                                                     "confidence":  0.9,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:55:15.7256243Z"
+                                                 },
+                        "prm-f5ad90a250e816d4":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤是求解二次因式根的必要步骤，删去后无法得到最终答案。",
+                                                     "confidence":  1,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:43:21.4230568Z"
+                                                 },
+                        "prm-f66c436ea5314143":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "essential",
+                                                     "reason":  "该步骤将线性组合结果与模逆条件关联，是得出x=39的关键推理步骤，删除后无法得到答案。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:45:13.7960801Z"
+                                                 },
+                        "prm-f8d5e2b8c3ae4947":  {
+                                                     "removable":  "yes",
+                                                     "stepType":  "redundant",
+                                                     "reason":  "该步骤将1.25四舍五入到百分位，但1.25已经是百分位形式，无需额外舍入，删除后答案不变。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:54:07.0752905Z"
+                                                 },
+                        "prm-f928a55daeb136c0":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤建议通过使偏导为零来优化，但偏导计算错误（应为-4x-4y-3），且后续推理方向错误，导致答案-3/4不正确。删除该步骤可避免错误。",
+                                                     "confidence":  0.9,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:55:15.7256243Z"
+                                                 },
+                        "prm-fa87724dc0063e72":  {
+                                                     "removable":  "no",
+                                                     "stepType":  "harmful",
+                                                     "reason":  "该步骤错误地将5约简为1，导致最终答案错误；删除该步骤后，后续步骤无法得出正确结果。",
+                                                     "confidence":  1,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:51:14.6905584Z"
+                                                 },
+                        "prm-fe7cc1b1ef70d69f":  {
+                                                     "removable":  "yes",
+                                                     "stepType":  "redundant",
+                                                     "reason":  "该步骤只是说明选择使用快捷公式，属于元评论，删除后不影响后续推理的连贯性。",
+                                                     "confidence":  0.95,
+                                                     "model":  "deepseek/deepseek-v4-flash",
+                                                     "annotatedAt":  "2026-07-20T09:43:47.8008528Z"
+                                                 }
+                    }
+}

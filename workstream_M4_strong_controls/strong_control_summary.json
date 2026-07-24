@@ -1,0 +1,59 @@
+{
+  "group_sizes": {
+    "negative_anchor": 80,
+    "stable_correct": 80,
+    "neutral_comparison": 80
+  },
+  "pool_sizes": {
+    "negative_anchor": 160,
+    "stable_correct": 258,
+    "neutral_comparison": 155
+  },
+  "position_bin_counts": {
+    "negative_anchor": {
+      "early": 27,
+      "middle": 27,
+      "late": 26
+    },
+    "stable_correct": {
+      "early": 27,
+      "middle": 27,
+      "late": 26
+    },
+    "neutral_comparison": {
+      "early": 27,
+      "middle": 27,
+      "late": 26
+    }
+  },
+  "placebo_eligible_counts": {
+    "negative_anchor": 80,
+    "stable_correct": 80,
+    "neutral_comparison": 80
+  },
+  "rating_by_group": {
+    "negative_anchor": {
+      "-1": 80,
+      "0": 0,
+      "1": 0
+    },
+    "stable_correct": {
+      "-1": 4,
+      "0": 41,
+      "1": 35
+    },
+    "neutral_comparison": {
+      "-1": 0,
+      "0": 45,
+      "1": 35
+    }
+  },
+  "new_generation_budget": {
+    "c2_placebo_runs": 960,
+    "c3_paraphrase_runs": 960,
+    "total_new_runs": 1920,
+    "paraphrase_candidates": 240
+  },
+  "sanity_check_problems": [],
+  "sanity_check_passed": true
+}

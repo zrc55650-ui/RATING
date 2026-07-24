@@ -1,0 +1,228 @@
+{
+    "criterion":  "Mathematical equivalence of finalAnswer and groundTruthAnswer",
+    "overall":  {
+                    "pairs":  2400,
+                    "control":  {
+                                    "correct":  1353,
+                                    "accuracyPct":  56.38,
+                                    "tokenTotal":  783264,
+                                    "tokenMean":  326.36,
+                                    "completed":  2210,
+                                    "cannotContinue":  125,
+                                    "logicalBreak":  65
+                                },
+                    "deleted":  {
+                                    "correct":  1526,
+                                    "accuracyPct":  63.58,
+                                    "tokenTotal":  752108,
+                                    "tokenMean":  313.38,
+                                    "completed":  2254,
+                                    "cannotContinue":  120,
+                                    "logicalBreak":  26
+                                },
+                    "accuracyDeltaPctPoint":  7.2,
+                    "transitions":  {
+                                        "correctToWrong":  204,
+                                        "wrongToCorrect":  377,
+                                        "stillCorrect":  1149,
+                                        "stillWrong":  670
+                                    },
+                    "tokens":  {
+                                   "netSaved":  31156,
+                                   "savedPct":  3.98,
+                                   "meanSaved":  12.98,
+                                   "medianSaved":  -4.5,
+                                   "deletedUsedFewer":  1068,
+                                   "same":  61,
+                                   "deletedUsedMore":  1271
+                               },
+                    "deletionInduced":  {
+                                            "newCannotContinue":  74,
+                                            "newLogicalBreak":  12,
+                                            "recoveredToCompleted":  130
+                                        }
+                },
+    "runs":  [
+                 {
+                     "run":  1,
+                     "summary":  {
+                                     "pairs":  600,
+                                     "control":  {
+                                                     "correct":  337,
+                                                     "accuracyPct":  56.17,
+                                                     "tokenTotal":  188764,
+                                                     "tokenMean":  314.61,
+                                                     "completed":  558,
+                                                     "cannotContinue":  25,
+                                                     "logicalBreak":  17
+                                                 },
+                                     "deleted":  {
+                                                     "correct":  380,
+                                                     "accuracyPct":  63.33,
+                                                     "tokenTotal":  187887,
+                                                     "tokenMean":  313.14,
+                                                     "completed":  565,
+                                                     "cannotContinue":  30,
+                                                     "logicalBreak":  5
+                                                 },
+                                     "accuracyDeltaPctPoint":  7.16,
+                                     "transitions":  {
+                                                         "correctToWrong":  53,
+                                                         "wrongToCorrect":  96,
+                                                         "stillCorrect":  284,
+                                                         "stillWrong":  167
+                                                     },
+                                     "tokens":  {
+                                                    "netSaved":  877,
+                                                    "savedPct":  0.46,
+                                                    "meanSaved":  1.46,
+                                                    "medianSaved":  -6,
+                                                    "deletedUsedFewer":  260,
+                                                    "same":  19,
+                                                    "deletedUsedMore":  321
+                                                },
+                                     "deletionInduced":  {
+                                                             "newCannotContinue":  19,
+                                                             "newLogicalBreak":  3,
+                                                             "recoveredToCompleted":  29
+                                                         }
+                                 }
+                 },
+                 {
+                     "run":  2,
+                     "summary":  {
+                                     "pairs":  600,
+                                     "control":  {
+                                                     "correct":  338,
+                                                     "accuracyPct":  56.33,
+                                                     "tokenTotal":  195853,
+                                                     "tokenMean":  326.42,
+                                                     "completed":  550,
+                                                     "cannotContinue":  35,
+                                                     "logicalBreak":  15
+                                                 },
+                                     "deleted":  {
+                                                     "correct":  384,
+                                                     "accuracyPct":  64,
+                                                     "tokenTotal":  182830,
+                                                     "tokenMean":  304.72,
+                                                     "completed":  565,
+                                                     "cannotContinue":  28,
+                                                     "logicalBreak":  7
+                                                 },
+                                     "accuracyDeltaPctPoint":  7.67,
+                                     "transitions":  {
+                                                         "correctToWrong":  44,
+                                                         "wrongToCorrect":  90,
+                                                         "stillCorrect":  294,
+                                                         "stillWrong":  172
+                                                     },
+                                     "tokens":  {
+                                                    "netSaved":  13023,
+                                                    "savedPct":  6.65,
+                                                    "meanSaved":  21.7,
+                                                    "medianSaved":  -4,
+                                                    "deletedUsedFewer":  270,
+                                                    "same":  15,
+                                                    "deletedUsedMore":  315
+                                                },
+                                     "deletionInduced":  {
+                                                             "newCannotContinue":  16,
+                                                             "newLogicalBreak":  4,
+                                                             "recoveredToCompleted":  35
+                                                         }
+                                 }
+                 },
+                 {
+                     "run":  3,
+                     "summary":  {
+                                     "pairs":  600,
+                                     "control":  {
+                                                     "correct":  345,
+                                                     "accuracyPct":  57.5,
+                                                     "tokenTotal":  196444,
+                                                     "tokenMean":  327.41,
+                                                     "completed":  553,
+                                                     "cannotContinue":  31,
+                                                     "logicalBreak":  16
+                                                 },
+                                     "deleted":  {
+                                                     "correct":  375,
+                                                     "accuracyPct":  62.5,
+                                                     "tokenTotal":  189975,
+                                                     "tokenMean":  316.62,
+                                                     "completed":  562,
+                                                     "cannotContinue":  32,
+                                                     "logicalBreak":  6
+                                                 },
+                                     "accuracyDeltaPctPoint":  5,
+                                     "transitions":  {
+                                                         "correctToWrong":  57,
+                                                         "wrongToCorrect":  87,
+                                                         "stillCorrect":  288,
+                                                         "stillWrong":  168
+                                                     },
+                                     "tokens":  {
+                                                    "netSaved":  6469,
+                                                    "savedPct":  3.29,
+                                                    "meanSaved":  10.78,
+                                                    "medianSaved":  -4.5,
+                                                    "deletedUsedFewer":  269,
+                                                    "same":  13,
+                                                    "deletedUsedMore":  318
+                                                },
+                                     "deletionInduced":  {
+                                                             "newCannotContinue":  21,
+                                                             "newLogicalBreak":  3,
+                                                             "recoveredToCompleted":  33
+                                                         }
+                                 }
+                 },
+                 {
+                     "run":  4,
+                     "summary":  {
+                                     "pairs":  600,
+                                     "control":  {
+                                                     "correct":  333,
+                                                     "accuracyPct":  55.5,
+                                                     "tokenTotal":  202203,
+                                                     "tokenMean":  337,
+                                                     "completed":  549,
+                                                     "cannotContinue":  34,
+                                                     "logicalBreak":  17
+                                                 },
+                                     "deleted":  {
+                                                     "correct":  387,
+                                                     "accuracyPct":  64.5,
+                                                     "tokenTotal":  191416,
+                                                     "tokenMean":  319.03,
+                                                     "completed":  562,
+                                                     "cannotContinue":  30,
+                                                     "logicalBreak":  8
+                                                 },
+                                     "accuracyDeltaPctPoint":  9,
+                                     "transitions":  {
+                                                         "correctToWrong":  50,
+                                                         "wrongToCorrect":  104,
+                                                         "stillCorrect":  283,
+                                                         "stillWrong":  163
+                                                     },
+                                     "tokens":  {
+                                                    "netSaved":  10787,
+                                                    "savedPct":  5.33,
+                                                    "meanSaved":  17.98,
+                                                    "medianSaved":  -3.5,
+                                                    "deletedUsedFewer":  269,
+                                                    "same":  14,
+                                                    "deletedUsedMore":  317
+                                                },
+                                     "deletionInduced":  {
+                                                             "newCannotContinue":  18,
+                                                             "newLogicalBreak":  2,
+                                                             "recoveredToCompleted":  33
+                                                         }
+                                 }
+                 }
+             ],
+    "generatedAt":  "2026-07-20T13:16:41.6728386Z"
+}

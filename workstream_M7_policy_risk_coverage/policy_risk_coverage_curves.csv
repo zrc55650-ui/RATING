@@ -1,0 +1,422 @@
+﻿policy,policy_label,n_steps,coverage,net_accuracy_change_pp,avg_selected_effect_pp,run_danger_rate,danger_rate_among_correct,run_benefit_rate,step_danger_rate
+random,Random deletion,10,0.0167,0.1201,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,20,0.0333,0.2403,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,30,0.0500,0.3604,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,40,0.0667,0.4806,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,50,0.0833,0.6007,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,60,0.1000,0.7208,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,70,0.1167,0.8410,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,80,0.1333,0.9611,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,90,0.1500,1.0813,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,100,0.1667,1.2014,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,110,0.1833,1.3215,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,120,0.2000,1.4417,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,130,0.2167,1.5618,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,140,0.2333,1.6819,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,150,0.2500,1.8021,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,160,0.2667,1.9222,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,170,0.2833,2.0424,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,180,0.3000,2.1625,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,190,0.3167,2.2826,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,200,0.3333,2.4028,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,210,0.3500,2.5229,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,220,0.3667,2.6431,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,230,0.3833,2.7632,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,240,0.4000,2.8833,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,250,0.4167,3.0035,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,260,0.4333,3.1236,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,270,0.4500,3.2437,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,280,0.4667,3.3639,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,290,0.4833,3.4840,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,300,0.5000,3.6042,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,310,0.5167,3.7243,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,320,0.5333,3.8444,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,330,0.5500,3.9646,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,340,0.5667,4.0847,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,350,0.5833,4.2049,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,360,0.6000,4.3250,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,370,0.6167,4.4451,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,380,0.6333,4.5653,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,390,0.6500,4.6854,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,400,0.6667,4.8056,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,410,0.6833,4.9257,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,420,0.7000,5.0458,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,430,0.7167,5.1660,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,440,0.7333,5.2861,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,450,0.7500,5.4062,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,460,0.7667,5.5264,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,470,0.7833,5.6465,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,480,0.8000,5.7667,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,490,0.8167,5.8868,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,500,0.8333,6.0069,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,510,0.8500,6.1271,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,520,0.8667,6.2472,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,530,0.8833,6.3674,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,540,0.9000,6.4875,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,550,0.9167,6.6076,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,560,0.9333,6.7278,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,570,0.9500,6.8479,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,580,0.9667,6.9681,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,590,0.9833,7.0882,7.2083,0.0850,0.1508,0.1571,0.1517
+random,Random deletion,600,1.0000,7.2083,7.2083,0.0850,0.1508,0.1571,0.1517
+rating_neg1,Rating = -1 threshold,10,0.0167,0.6667,40.0000,0.0250,0.0833,0.4250,0.1000
+rating_neg1,Rating = -1 threshold,20,0.0333,0.9583,28.7500,0.0125,0.0370,0.3000,0.0500
+rating_neg1,Rating = -1 threshold,30,0.0500,1.3750,27.5000,0.0417,0.1351,0.3167,0.0667
+rating_neg1,Rating = -1 threshold,40,0.0667,1.7083,25.6250,0.0312,0.0820,0.2875,0.0500
+rating_neg1,Rating = -1 threshold,50,0.0833,2.0833,25.0000,0.0250,0.0633,0.2750,0.0400
+rating_neg1,Rating = -1 threshold,60,0.1000,2.1250,21.2500,0.0375,0.0918,0.2500,0.0667
+rating_neg1,Rating = -1 threshold,70,0.1167,2.4167,20.7143,0.0429,0.1132,0.2500,0.1000
+rating_neg1,Rating = -1 threshold,80,0.1333,2.5417,19.0625,0.0500,0.1311,0.2406,0.1000
+rating_neg1,Rating = -1 threshold,90,0.1500,3.5000,23.3333,0.0444,0.1270,0.2778,0.0889
+rating_neg1,Rating = -1 threshold,100,0.1667,3.8333,23.0000,0.0400,0.1159,0.2700,0.0800
+rating_neg1,Rating = -1 threshold,110,0.1833,4.0833,22.2727,0.0364,0.1081,0.2591,0.0727
+rating_neg1,Rating = -1 threshold,120,0.2000,4.4167,22.0833,0.0333,0.1046,0.2542,0.0667
+rating_neg1,Rating = -1 threshold,130,0.2167,4.3333,20.0000,0.0346,0.1098,0.2346,0.0692
+rating_neg1,Rating = -1 threshold,140,0.2333,4.7500,20.3571,0.0339,0.1118,0.2375,0.0714
+rating_neg1,Rating = -1 threshold,150,0.2500,5.3750,21.5000,0.0317,0.1044,0.2467,0.0667
+rating_neg1,Rating = -1 threshold,160,0.2667,5.4167,20.3125,0.0375,0.1218,0.2406,0.0875
+rating_neg1,Rating = -1 threshold,170,0.2833,5.5833,19.7059,0.0353,0.1106,0.2324,0.0824
+rating_neg1,Rating = -1 threshold,180,0.3000,6.0833,20.2778,0.0431,0.1342,0.2458,0.1000
+rating_neg1,Rating = -1 threshold,190,0.3167,6.7500,21.3158,0.0461,0.1440,0.2592,0.1000
+rating_neg1,Rating = -1 threshold,200,0.3333,7.3333,22.0000,0.0462,0.1486,0.2662,0.1000
+rating_neg1,Rating = -1 threshold,210,0.3500,7.5833,21.6667,0.0464,0.1393,0.2631,0.1000
+rating_neg1,Rating = -1 threshold,220,0.3667,7.5000,20.4545,0.0523,0.1484,0.2568,0.1091
+rating_neg1,Rating = -1 threshold,230,0.3833,7.3333,19.1304,0.0576,0.1592,0.2489,0.1174
+rating_neg1,Rating = -1 threshold,240,0.4000,7.6250,19.0625,0.0552,0.1497,0.2458,0.1125
+rating_neg1,Rating = -1 threshold,250,0.4167,8.0833,19.4000,0.0550,0.1478,0.2490,0.1120
+rating_neg1,Rating = -1 threshold,260,0.4333,8.2083,18.9423,0.0558,0.1503,0.2452,0.1115
+rating_neg1,Rating = -1 threshold,270,0.4500,8.0000,17.7778,0.0630,0.1646,0.2407,0.1222
+rating_neg1,Rating = -1 threshold,280,0.4667,8.0000,17.1429,0.0652,0.1648,0.2366,0.1250
+rating_neg1,Rating = -1 threshold,290,0.4833,8.0417,16.6379,0.0655,0.1645,0.2319,0.1241
+rating_neg1,Rating = -1 threshold,300,0.5000,7.7500,15.5000,0.0692,0.1680,0.2242,0.1267
+rating_neg1,Rating = -1 threshold,310,0.5167,7.8750,15.2419,0.0677,0.1597,0.2202,0.1258
+rating_neg1,Rating = -1 threshold,320,0.5333,7.8750,14.7656,0.0688,0.1597,0.2164,0.1313
+rating_neg1,Rating = -1 threshold,330,0.5500,7.5417,13.7121,0.0758,0.1727,0.2129,0.1364
+rating_neg1,Rating = -1 threshold,340,0.5667,7.5417,13.3088,0.0750,0.1686,0.2081,0.1382
+rating_neg1,Rating = -1 threshold,350,0.5833,7.4583,12.7857,0.0750,0.1646,0.2029,0.1371
+rating_neg1,Rating = -1 threshold,360,0.6000,7.3750,12.2917,0.0757,0.1642,0.1986,0.1389
+rating_neg1,Rating = -1 threshold,370,0.6167,7.5417,12.2297,0.0736,0.1566,0.1959,0.1351
+rating_neg1,Rating = -1 threshold,380,0.6333,7.7083,12.1711,0.0737,0.1553,0.1954,0.1368
+rating_neg1,Rating = -1 threshold,390,0.6500,7.3750,11.3462,0.0782,0.1625,0.1917,0.1410
+rating_neg1,Rating = -1 threshold,400,0.6667,7.4167,11.1250,0.0788,0.1634,0.1900,0.1400
+rating_neg1,Rating = -1 threshold,410,0.6833,7.4583,10.9146,0.0768,0.1563,0.1860,0.1366
+rating_neg1,Rating = -1 threshold,420,0.7000,7.2500,10.3571,0.0780,0.1561,0.1815,0.1381
+rating_neg1,Rating = -1 threshold,430,0.7167,7.4167,10.3488,0.0767,0.1517,0.1802,0.1372
+rating_neg1,Rating = -1 threshold,440,0.7333,7.4167,10.1136,0.0767,0.1502,0.1778,0.1364
+rating_neg1,Rating = -1 threshold,450,0.7500,7.4167,9.8889,0.0783,0.1513,0.1772,0.1422
+rating_neg1,Rating = -1 threshold,460,0.7667,7.3750,9.6196,0.0810,0.1557,0.1772,0.1435
+rating_neg1,Rating = -1 threshold,470,0.7833,7.2917,9.3085,0.0830,0.1585,0.1761,0.1447
+rating_neg1,Rating = -1 threshold,480,0.8000,7.3333,9.1667,0.0844,0.1610,0.1760,0.1458
+rating_neg1,Rating = -1 threshold,490,0.8167,7.4167,9.0816,0.0852,0.1628,0.1760,0.1469
+rating_neg1,Rating = -1 threshold,500,0.8333,7.5000,9.0000,0.0840,0.1617,0.1740,0.1460
+rating_neg1,Rating = -1 threshold,510,0.8500,7.2083,8.4804,0.0863,0.1634,0.1711,0.1490
+rating_neg1,Rating = -1 threshold,520,0.8667,7.2917,8.4135,0.0870,0.1639,0.1712,0.1500
+rating_neg1,Rating = -1 threshold,530,0.8833,7.4167,8.3962,0.0854,0.1596,0.1693,0.1472
+rating_neg1,Rating = -1 threshold,540,0.9000,7.5000,8.3333,0.0856,0.1585,0.1690,0.1481
+rating_neg1,Rating = -1 threshold,550,0.9167,7.5417,8.2273,0.0855,0.1569,0.1677,0.1491
+rating_neg1,Rating = -1 threshold,560,0.9333,7.4167,7.9464,0.0862,0.1564,0.1656,0.1500
+rating_neg1,Rating = -1 threshold,570,0.9500,7.5833,7.9825,0.0851,0.1542,0.1649,0.1491
+rating_neg1,Rating = -1 threshold,580,0.9667,7.3750,7.6293,0.0862,0.1550,0.1625,0.1517
+rating_neg1,Rating = -1 threshold,590,0.9833,7.3750,7.5000,0.0847,0.1517,0.1597,0.1492
+rating_neg1,Rating = -1 threshold,600,1.0000,7.2083,7.2083,0.0850,0.1508,0.1571,0.1517
+harmful_only,Harmful-only (human-calibrated),10,0.0167,0.2917,17.5000,0.0250,0.0769,0.2000,0.1000
+harmful_only,Harmful-only (human-calibrated),20,0.0333,0.7083,21.2500,0.0375,0.1111,0.2500,0.1000
+harmful_only,Harmful-only (human-calibrated),30,0.0500,0.7917,15.8333,0.0583,0.1429,0.2167,0.1000
+harmful_only,Harmful-only (human-calibrated),40,0.0667,1.0833,16.2500,0.0500,0.1159,0.2125,0.1000
+harmful_only,Harmful-only (human-calibrated),50,0.0833,1.2917,15.5000,0.0400,0.0920,0.1950,0.0800
+harmful_only,Harmful-only (human-calibrated),60,0.1000,1.3333,13.3333,0.0500,0.1224,0.1833,0.1000
+harmful_only,Harmful-only (human-calibrated),70,0.1167,1.6250,13.9286,0.0500,0.1261,0.1893,0.1143
+harmful_only,Harmful-only (human-calibrated),80,0.1333,1.8750,14.0625,0.0563,0.1463,0.1969,0.1125
+harmful_only,Harmful-only (human-calibrated),90,0.1500,2.7083,18.0556,0.0500,0.1417,0.2306,0.1000
+harmful_only,Harmful-only (human-calibrated),100,0.1667,3.1250,18.7500,0.0450,0.1314,0.2325,0.0900
+harmful_only,Harmful-only (human-calibrated),110,0.1833,3.2500,17.7273,0.0432,0.1267,0.2205,0.0909
+harmful_only,Harmful-only (human-calibrated),120,0.2000,3.5000,17.5000,0.0437,0.1329,0.2188,0.0917
+harmful_only,Harmful-only (human-calibrated),130,0.2167,3.5000,16.1538,0.0423,0.1294,0.2038,0.0923
+harmful_only,Harmful-only (human-calibrated),140,0.2333,4.0417,17.3214,0.0393,0.1222,0.2125,0.0857
+harmful_only,Harmful-only (human-calibrated),150,0.2500,4.7500,19.0000,0.0367,0.1146,0.2267,0.0800
+harmful_only,Harmful-only (human-calibrated),160,0.2667,4.6250,17.3438,0.0437,0.1290,0.2172,0.1000
+harmful_only,Harmful-only (human-calibrated),170,0.2833,4.8333,17.0588,0.0426,0.1239,0.2132,0.1000
+harmful_only,Harmful-only (human-calibrated),180,0.3000,5.2917,17.6389,0.0458,0.1336,0.2222,0.1000
+harmful_only,Harmful-only (human-calibrated),190,0.3167,5.7500,18.1579,0.0539,0.1583,0.2355,0.1053
+harmful_only,Harmful-only (human-calibrated),200,0.3333,6.2500,18.7500,0.0537,0.1623,0.2412,0.1050
+harmful_only,Harmful-only (human-calibrated),203,0.3383,6.0833,17.9803,0.0579,0.1722,0.2377,0.1084
+harmful_only,Harmful-only (human-calibrated),210,0.3500,6.1250,17.5000,0.0583,0.1667,0.2333,0.1095
+harmful_only,Harmful-only (human-calibrated),220,0.3667,6.7083,18.2955,0.0557,0.1531,0.2386,0.1045
+harmful_only,Harmful-only (human-calibrated),230,0.3833,6.6667,17.3913,0.0565,0.1473,0.2304,0.1043
+harmful_only,Harmful-only (human-calibrated),240,0.4000,6.7083,16.7708,0.0563,0.1403,0.2240,0.1042
+harmful_only,Harmful-only (human-calibrated),250,0.4167,6.7917,16.3000,0.0600,0.1463,0.2230,0.1120
+harmful_only,Harmful-only (human-calibrated),260,0.4333,6.9583,16.0577,0.0615,0.1475,0.2221,0.1115
+harmful_only,Harmful-only (human-calibrated),270,0.4500,6.8750,15.2778,0.0639,0.1497,0.2167,0.1148
+harmful_only,Harmful-only (human-calibrated),280,0.4667,7.0000,15.0000,0.0616,0.1408,0.2116,0.1107
+harmful_only,Harmful-only (human-calibrated),290,0.4833,7.6667,15.8621,0.0595,0.1342,0.2181,0.1069
+harmful_only,Harmful-only (human-calibrated),300,0.5000,7.8333,15.6667,0.0617,0.1383,0.2183,0.1133
+harmful_only,Harmful-only (human-calibrated),310,0.5167,7.8333,15.1613,0.0621,0.1368,0.2137,0.1161
+harmful_only,Harmful-only (human-calibrated),320,0.5333,7.9167,14.8438,0.0641,0.1395,0.2125,0.1219
+harmful_only,Harmful-only (human-calibrated),330,0.5500,7.3750,13.4091,0.0727,0.1569,0.2068,0.1303
+harmful_only,Harmful-only (human-calibrated),340,0.5667,7.5000,13.2353,0.0757,0.1625,0.2081,0.1324
+harmful_only,Harmful-only (human-calibrated),350,0.5833,7.2083,12.3571,0.0793,0.1672,0.2029,0.1371
+harmful_only,Harmful-only (human-calibrated),360,0.6000,7.5417,12.5694,0.0771,0.1606,0.2028,0.1333
+harmful_only,Harmful-only (human-calibrated),370,0.6167,7.6250,12.3649,0.0770,0.1597,0.2007,0.1324
+harmful_only,Harmful-only (human-calibrated),380,0.6333,7.3750,11.6447,0.0809,0.1662,0.1974,0.1368
+harmful_only,Harmful-only (human-calibrated),390,0.6500,7.2083,11.0897,0.0840,0.1733,0.1949,0.1385
+harmful_only,Harmful-only (human-calibrated),400,0.6667,7.3333,11.0000,0.0819,0.1671,0.1919,0.1350
+harmful_only,Harmful-only (human-calibrated),410,0.6833,7.3333,10.7317,0.0817,0.1656,0.1890,0.1390
+harmful_only,Harmful-only (human-calibrated),420,0.7000,7.5417,10.7738,0.0815,0.1661,0.1893,0.1405
+harmful_only,Harmful-only (human-calibrated),430,0.7167,7.4167,10.3488,0.0820,0.1649,0.1855,0.1419
+harmful_only,Harmful-only (human-calibrated),440,0.7333,6.9167,9.4318,0.0869,0.1725,0.1812,0.1455
+harmful_only,Harmful-only (human-calibrated),450,0.7500,6.9167,9.2222,0.0889,0.1739,0.1811,0.1467
+harmful_only,Harmful-only (human-calibrated),460,0.7667,7.0417,9.1848,0.0886,0.1727,0.1804,0.1478
+harmful_only,Harmful-only (human-calibrated),470,0.7833,7.1250,9.0957,0.0867,0.1687,0.1777,0.1447
+harmful_only,Harmful-only (human-calibrated),480,0.8000,7.0833,8.8542,0.0859,0.1647,0.1745,0.1458
+harmful_only,Harmful-only (human-calibrated),490,0.8167,7.2083,8.8265,0.0857,0.1636,0.1740,0.1449
+harmful_only,Harmful-only (human-calibrated),500,0.8333,7.0833,8.5000,0.0855,0.1612,0.1705,0.1460
+harmful_only,Harmful-only (human-calibrated),510,0.8500,7.1667,8.4314,0.0848,0.1587,0.1691,0.1451
+harmful_only,Harmful-only (human-calibrated),520,0.8667,7.0833,8.1731,0.0856,0.1588,0.1673,0.1481
+harmful_only,Harmful-only (human-calibrated),530,0.8833,7.0000,7.9245,0.0858,0.1578,0.1651,0.1472
+harmful_only,Harmful-only (human-calibrated),540,0.9000,7.2917,8.1019,0.0847,0.1552,0.1657,0.1463
+harmful_only,Harmful-only (human-calibrated),550,0.9167,7.0833,7.7273,0.0859,0.1556,0.1632,0.1509
+harmful_only,Harmful-only (human-calibrated),560,0.9333,7.2917,7.8125,0.0862,0.1558,0.1643,0.1518
+harmful_only,Harmful-only (human-calibrated),570,0.9500,7.0833,7.4561,0.0868,0.1557,0.1614,0.1526
+harmful_only,Harmful-only (human-calibrated),580,0.9667,7.1667,7.4138,0.0862,0.1546,0.1603,0.1517
+harmful_only,Harmful-only (human-calibrated),590,0.9833,7.2500,7.3729,0.0860,0.1537,0.1597,0.1525
+harmful_only,Harmful-only (human-calibrated),600,1.0000,7.2083,7.2083,0.0850,0.1508,0.1571,0.1517
+neg1_x_harmful,Rating = -1 x Harmful,10,0.0167,0.3750,22.5000,0.0250,0.0769,0.2500,0.1000
+neg1_x_harmful,Rating = -1 x Harmful,20,0.0333,0.6250,18.7500,0.0625,0.1852,0.2500,0.1000
+neg1_x_harmful,Rating = -1 x Harmful,30,0.0500,0.7917,15.8333,0.0417,0.0980,0.2000,0.0667
+neg1_x_harmful,Rating = -1 x Harmful,40,0.0667,1.0000,15.0000,0.0312,0.0725,0.1812,0.0500
+neg1_x_harmful,Rating = -1 x Harmful,50,0.0833,1.1667,14.0000,0.0550,0.1294,0.1950,0.1200
+neg1_x_harmful,Rating = -1 x Harmful,60,0.1000,1.1667,11.6667,0.0625,0.1546,0.1792,0.1167
+neg1_x_harmful,Rating = -1 x Harmful,70,0.1167,2.2500,19.2857,0.0536,0.1546,0.2464,0.1000
+neg1_x_harmful,Rating = -1 x Harmful,80,0.1333,2.6667,20.0000,0.0469,0.1456,0.2469,0.0875
+neg1_x_harmful,Rating = -1 x Harmful,90,0.1500,2.8750,19.1667,0.0417,0.1402,0.2333,0.0778
+neg1_x_harmful,Rating = -1 x Harmful,100,0.1667,2.9167,17.5000,0.0425,0.1429,0.2175,0.0800
+neg1_x_harmful,Rating = -1 x Harmful,110,0.1833,3.1667,17.2727,0.0409,0.1395,0.2136,0.0818
+neg1_x_harmful,Rating = -1 x Harmful,120,0.2000,3.9167,19.5833,0.0375,0.1314,0.2333,0.0750
+neg1_x_harmful,Rating = -1 x Harmful,130,0.2167,3.9167,18.0769,0.0404,0.1346,0.2212,0.0923
+neg1_x_harmful,Rating = -1 x Harmful,140,0.2333,4.2917,18.3929,0.0464,0.1576,0.2304,0.1000
+neg1_x_harmful,Rating = -1 x Harmful,150,0.2500,4.9167,19.6667,0.0500,0.1685,0.2467,0.1000
+neg1_x_harmful,Rating = -1 x Harmful,160,0.2667,5.5833,20.9375,0.0500,0.1739,0.2594,0.1000
+neg1_x_harmful,Rating = -1 x Harmful,170,0.2833,6.2500,22.0588,0.0471,0.1608,0.2676,0.0941
+neg1_x_harmful,Rating = -1 x Harmful,180,0.3000,6.7917,22.6389,0.0486,0.1651,0.2750,0.1000
+neg1_x_harmful,Rating = -1 x Harmful,190,0.3167,7.0833,22.3684,0.0474,0.1586,0.2711,0.1000
+neg1_x_harmful,Rating = -1 x Harmful,200,0.3333,7.2917,21.8750,0.0450,0.1481,0.2637,0.0950
+neg1_x_harmful,Rating = -1 x Harmful,210,0.3500,7.4167,21.1905,0.0440,0.1381,0.2560,0.0952
+neg1_x_harmful,Rating = -1 x Harmful,220,0.3667,7.9167,21.5909,0.0420,0.1303,0.2580,0.0909
+neg1_x_harmful,Rating = -1 x Harmful,230,0.3833,7.7917,20.3261,0.0457,0.1321,0.2489,0.0957
+neg1_x_harmful,Rating = -1 x Harmful,240,0.4000,8.0000,20.0000,0.0500,0.1455,0.2500,0.1042
+neg1_x_harmful,Rating = -1 x Harmful,250,0.4167,7.8750,18.9000,0.0540,0.1488,0.2430,0.1080
+neg1_x_harmful,Rating = -1 x Harmful,260,0.4333,7.9167,18.2692,0.0519,0.1357,0.2346,0.1038
+neg1_x_harmful,Rating = -1 x Harmful,270,0.4500,7.8750,17.5000,0.0528,0.1310,0.2278,0.1037
+neg1_x_harmful,Rating = -1 x Harmful,280,0.4667,7.9167,16.9643,0.0554,0.1342,0.2250,0.1107
+neg1_x_harmful,Rating = -1 x Harmful,290,0.4833,7.7917,16.1207,0.0595,0.1411,0.2207,0.1138
+neg1_x_harmful,Rating = -1 x Harmful,300,0.5000,7.7083,15.4167,0.0617,0.1434,0.2158,0.1167
+neg1_x_harmful,Rating = -1 x Harmful,310,0.5167,7.8333,15.1613,0.0597,0.1358,0.2113,0.1129
+neg1_x_harmful,Rating = -1 x Harmful,320,0.5333,8.5000,15.9375,0.0578,0.1301,0.2172,0.1094
+neg1_x_harmful,Rating = -1 x Harmful,330,0.5500,8.5833,15.6061,0.0606,0.1356,0.2167,0.1182
+neg1_x_harmful,Rating = -1 x Harmful,340,0.5667,8.3750,14.7794,0.0632,0.1392,0.2110,0.1235
+neg1_x_harmful,Rating = -1 x Harmful,350,0.5833,8.1250,13.9286,0.0671,0.1451,0.2064,0.1257
+neg1_x_harmful,Rating = -1 x Harmful,360,0.6000,7.8333,13.0556,0.0743,0.1588,0.2049,0.1333
+neg1_x_harmful,Rating = -1 x Harmful,370,0.6167,7.7083,12.5000,0.0777,0.1643,0.2027,0.1378
+neg1_x_harmful,Rating = -1 x Harmful,380,0.6333,8.0417,12.6974,0.0757,0.1582,0.2026,0.1342
+neg1_x_harmful,Rating = -1 x Harmful,390,0.6500,8.1250,12.5000,0.0756,0.1573,0.2006,0.1333
+neg1_x_harmful,Rating = -1 x Harmful,400,0.6667,7.8750,11.8125,0.0794,0.1637,0.1975,0.1375
+neg1_x_harmful,Rating = -1 x Harmful,410,0.6833,7.7083,11.2805,0.0823,0.1696,0.1951,0.1390
+neg1_x_harmful,Rating = -1 x Harmful,420,0.7000,7.7917,11.1310,0.0810,0.1643,0.1923,0.1381
+neg1_x_harmful,Rating = -1 x Harmful,430,0.7167,7.7917,10.8721,0.0814,0.1663,0.1901,0.1419
+neg1_x_harmful,Rating = -1 x Harmful,440,0.7333,7.7917,10.6250,0.0813,0.1640,0.1875,0.1432
+neg1_x_harmful,Rating = -1 x Harmful,450,0.7500,7.4167,9.8889,0.0850,0.1694,0.1839,0.1467
+neg1_x_harmful,Rating = -1 x Harmful,460,0.7667,7.0000,9.1304,0.0891,0.1741,0.1804,0.1500
+neg1_x_harmful,Rating = -1 x Harmful,470,0.7833,7.2083,9.2021,0.0888,0.1732,0.1809,0.1511
+neg1_x_harmful,Rating = -1 x Harmful,480,0.8000,7.2917,9.1146,0.0870,0.1687,0.1781,0.1479
+neg1_x_harmful,Rating = -1 x Harmful,490,0.8167,7.2500,8.8776,0.0862,0.1647,0.1750,0.1490
+neg1_x_harmful,Rating = -1 x Harmful,500,0.8333,7.3333,8.8000,0.0865,0.1640,0.1745,0.1500
+neg1_x_harmful,Rating = -1 x Harmful,510,0.8500,7.2500,8.5294,0.0858,0.1607,0.1711,0.1490
+neg1_x_harmful,Rating = -1 x Harmful,520,0.8667,7.2917,8.4135,0.0861,0.1611,0.1702,0.1500
+neg1_x_harmful,Rating = -1 x Harmful,530,0.8833,7.1667,8.1132,0.0868,0.1607,0.1679,0.1509
+neg1_x_harmful,Rating = -1 x Harmful,540,0.9000,7.5000,8.3333,0.0852,0.1566,0.1685,0.1481
+neg1_x_harmful,Rating = -1 x Harmful,550,0.9167,7.5000,8.1818,0.0841,0.1533,0.1659,0.1473
+neg1_x_harmful,Rating = -1 x Harmful,560,0.9333,7.3333,7.8571,0.0862,0.1561,0.1647,0.1518
+neg1_x_harmful,Rating = -1 x Harmful,570,0.9500,7.3333,7.7193,0.0851,0.1530,0.1623,0.1509
+neg1_x_harmful,Rating = -1 x Harmful,580,0.9667,7.1667,7.4138,0.0862,0.1546,0.1603,0.1517
+neg1_x_harmful,Rating = -1 x Harmful,590,0.9833,7.2500,7.3729,0.0860,0.1537,0.1597,0.1525
+neg1_x_harmful,Rating = -1 x Harmful,600,1.0000,7.2083,7.2083,0.0850,0.1508,0.1571,0.1517
+predictor_static,Static predictor (model D),10,0.0167,0.0833,5.0000,0.0000,0.0000,0.0500,0.0000
+predictor_static,Static predictor (model D),20,0.0333,1.0417,31.2500,0.0000,0.0000,0.3125,0.0000
+predictor_static,Static predictor (model D),30,0.0500,1.4167,28.3333,0.0000,0.0000,0.2833,0.0000
+predictor_static,Static predictor (model D),40,0.0667,2.2500,33.7500,0.0063,0.1429,0.3438,0.0250
+predictor_static,Static predictor (model D),50,0.0833,3.2917,39.5000,0.0050,0.1429,0.4000,0.0200
+predictor_static,Static predictor (model D),60,0.1000,4.2083,42.0833,0.0042,0.1429,0.4250,0.0167
+predictor_static,Static predictor (model D),70,0.1167,5.0833,43.5714,0.0036,0.1111,0.4393,0.0143
+predictor_static,Static predictor (model D),80,0.1333,5.5833,41.8750,0.0031,0.1111,0.4219,0.0125
+predictor_static,Static predictor (model D),90,0.1500,6.1667,41.1111,0.0028,0.1111,0.4139,0.0111
+predictor_static,Static predictor (model D),100,0.1667,6.3333,38.0000,0.0075,0.2727,0.3875,0.0200
+predictor_static,Static predictor (model D),110,0.1833,6.5000,35.4545,0.0136,0.4286,0.3682,0.0273
+predictor_static,Static predictor (model D),120,0.2000,7.0417,35.2083,0.0125,0.3529,0.3646,0.0250
+predictor_static,Static predictor (model D),130,0.2167,7.3750,34.0385,0.0115,0.3529,0.3519,0.0231
+predictor_static,Static predictor (model D),140,0.2333,8.0417,34.4643,0.0107,0.3529,0.3554,0.0214
+predictor_static,Static predictor (model D),150,0.2500,8.2500,33.0000,0.0100,0.2400,0.3400,0.0200
+predictor_static,Static predictor (model D),160,0.2667,8.8750,33.2812,0.0094,0.2400,0.3422,0.0187
+predictor_static,Static predictor (model D),170,0.2833,9.0417,31.9118,0.0103,0.2500,0.3294,0.0235
+predictor_static,Static predictor (model D),180,0.3000,9.9167,33.0556,0.0097,0.2414,0.3403,0.0222
+predictor_static,Static predictor (model D),190,0.3167,10.5000,33.1579,0.0105,0.2353,0.3421,0.0263
+predictor_static,Static predictor (model D),200,0.3333,11.1250,33.3750,0.0100,0.2286,0.3438,0.0250
+predictor_static,Static predictor (model D),210,0.3500,11.1667,31.9048,0.0190,0.3556,0.3381,0.0333
+predictor_static,Static predictor (model D),220,0.3667,11.6667,31.8182,0.0182,0.3333,0.3364,0.0318
+predictor_static,Static predictor (model D),230,0.3833,11.9583,31.1957,0.0174,0.2807,0.3293,0.0304
+predictor_static,Static predictor (model D),240,0.4000,12.0000,30.0000,0.0229,0.2750,0.3229,0.0417
+predictor_static,Static predictor (model D),250,0.4167,11.6250,27.9000,0.0340,0.3091,0.3130,0.0600
+predictor_static,Static predictor (model D),260,0.4333,11.7500,27.1154,0.0327,0.2519,0.3038,0.0577
+predictor_static,Static predictor (model D),270,0.4500,11.5417,25.6481,0.0407,0.2750,0.2972,0.0704
+predictor_static,Static predictor (model D),280,0.4667,11.5417,24.7321,0.0429,0.2449,0.2902,0.0714
+predictor_static,Static predictor (model D),290,0.4833,11.5417,23.8793,0.0422,0.2149,0.2810,0.0724
+predictor_static,Static predictor (model D),300,0.5000,11.6250,23.2500,0.0408,0.1877,0.2733,0.0700
+predictor_static,Static predictor (model D),310,0.5167,11.4583,22.1774,0.0444,0.1871,0.2661,0.0774
+predictor_static,Static predictor (model D),320,0.5333,11.5833,21.7188,0.0437,0.1723,0.2609,0.0781
+predictor_static,Static predictor (model D),330,0.5500,11.5833,21.0606,0.0424,0.1534,0.2530,0.0758
+predictor_static,Static predictor (model D),340,0.5667,11.5833,20.4412,0.0412,0.1383,0.2456,0.0735
+predictor_static,Static predictor (model D),350,0.5833,11.6667,20.0000,0.0407,0.1290,0.2407,0.0743
+predictor_static,Static predictor (model D),360,0.6000,11.5417,19.2361,0.0424,0.1268,0.2347,0.0778
+predictor_static,Static predictor (model D),370,0.6167,11.2917,18.3108,0.0453,0.1291,0.2284,0.0811
+predictor_static,Static predictor (model D),380,0.6333,11.1250,17.5658,0.0474,0.1297,0.2230,0.0842
+predictor_static,Static predictor (model D),390,0.6500,10.5417,16.2179,0.0551,0.1448,0.2173,0.0923
+predictor_static,Static predictor (model D),400,0.6667,10.2917,15.4375,0.0587,0.1497,0.2131,0.0975
+predictor_static,Static predictor (model D),410,0.6833,10.0000,14.6341,0.0616,0.1517,0.2079,0.1024
+predictor_static,Static predictor (model D),420,0.7000,9.8333,14.0476,0.0631,0.1508,0.2036,0.1048
+predictor_static,Static predictor (model D),430,0.7167,9.5000,13.2558,0.0663,0.1538,0.1988,0.1093
+predictor_static,Static predictor (model D),440,0.7333,9.5417,13.0114,0.0648,0.1463,0.1949,0.1068
+predictor_static,Static predictor (model D),450,0.7500,9.5417,12.7222,0.0639,0.1411,0.1911,0.1067
+predictor_static,Static predictor (model D),460,0.7667,9.5417,12.4457,0.0630,0.1358,0.1875,0.1065
+predictor_static,Static predictor (model D),470,0.7833,9.2083,11.7553,0.0665,0.1404,0.1840,0.1128
+predictor_static,Static predictor (model D),480,0.8000,9.0833,11.3542,0.0677,0.1404,0.1812,0.1146
+predictor_static,Static predictor (model D),490,0.8167,8.8750,10.8673,0.0699,0.1432,0.1786,0.1204
+predictor_static,Static predictor (model D),500,0.8333,8.7917,10.5500,0.0705,0.1423,0.1760,0.1240
+predictor_static,Static predictor (model D),510,0.8500,8.2917,9.7549,0.0755,0.1495,0.1730,0.1314
+predictor_static,Static predictor (model D),520,0.8667,8.2083,9.4712,0.0764,0.1490,0.1712,0.1327
+predictor_static,Static predictor (model D),530,0.8833,7.8750,8.9151,0.0797,0.1529,0.1689,0.1377
+predictor_static,Static predictor (model D),540,0.9000,7.7083,8.5648,0.0810,0.1531,0.1667,0.1389
+predictor_static,Static predictor (model D),550,0.9167,7.6250,8.3182,0.0805,0.1499,0.1636,0.1382
+predictor_static,Static predictor (model D),560,0.9333,7.5000,8.0357,0.0817,0.1505,0.1621,0.1429
+predictor_static,Static predictor (model D),570,0.9500,7.4167,7.8070,0.0820,0.1492,0.1601,0.1439
+predictor_static,Static predictor (model D),580,0.9667,7.2083,7.4569,0.0836,0.1506,0.1582,0.1483
+predictor_static,Static predictor (model D),590,0.9833,7.0000,7.1186,0.0860,0.1536,0.1572,0.1525
+predictor_static,Static predictor (model D),600,1.0000,7.2083,7.2083,0.0850,0.1508,0.1571,0.1517
+predictor_state,Trajectory-state predictor (model E),10,0.0167,0.2500,15.0000,0.0000,0.0000,0.1500,0.0000
+predictor_state,Trajectory-state predictor (model E),20,0.0333,1.1250,33.7500,0.0000,0.0000,0.3375,0.0000
+predictor_state,Trajectory-state predictor (model E),30,0.0500,1.9583,39.1667,0.0000,0.0000,0.3917,0.0000
+predictor_state,Trajectory-state predictor (model E),40,0.0667,2.7917,41.8750,0.0000,0.0000,0.4188,0.0000
+predictor_state,Trajectory-state predictor (model E),50,0.0833,3.4583,41.5000,0.0000,0.0000,0.4150,0.0000
+predictor_state,Trajectory-state predictor (model E),60,0.1000,4.5417,45.4167,0.0000,0.0000,0.4542,0.0000
+predictor_state,Trajectory-state predictor (model E),70,0.1167,5.2500,45.0000,0.0000,0.0000,0.4500,0.0000
+predictor_state,Trajectory-state predictor (model E),80,0.1333,5.9167,44.3750,0.0000,0.0000,0.4437,0.0000
+predictor_state,Trajectory-state predictor (model E),90,0.1500,6.2083,41.3889,0.0000,0.0000,0.4139,0.0000
+predictor_state,Trajectory-state predictor (model E),100,0.1667,6.7083,40.2500,0.0000,0.0000,0.4025,0.0000
+predictor_state,Trajectory-state predictor (model E),110,0.1833,7.2083,39.3182,0.0000,0.0000,0.3932,0.0000
+predictor_state,Trajectory-state predictor (model E),120,0.2000,7.3750,36.8750,0.0063,1.0000,0.3750,0.0083
+predictor_state,Trajectory-state predictor (model E),130,0.2167,7.7917,35.9615,0.0058,0.3333,0.3654,0.0077
+predictor_state,Trajectory-state predictor (model E),140,0.2333,8.2083,35.1786,0.0054,0.2000,0.3571,0.0071
+predictor_state,Trajectory-state predictor (model E),150,0.2500,8.2083,32.8333,0.0050,0.2000,0.3333,0.0067
+predictor_state,Trajectory-state predictor (model E),160,0.2667,8.6667,32.5000,0.0047,0.2000,0.3297,0.0063
+predictor_state,Trajectory-state predictor (model E),170,0.2833,9.2083,32.5000,0.0044,0.2000,0.3294,0.0059
+predictor_state,Trajectory-state predictor (model E),180,0.3000,9.7500,32.5000,0.0083,0.3333,0.3333,0.0111
+predictor_state,Trajectory-state predictor (model E),190,0.3167,10.2083,32.2368,0.0079,0.2857,0.3303,0.0105
+predictor_state,Trajectory-state predictor (model E),200,0.3333,10.6250,31.8750,0.0088,0.2593,0.3275,0.0150
+predictor_state,Trajectory-state predictor (model E),210,0.3500,11.5000,32.8571,0.0083,0.2188,0.3369,0.0143
+predictor_state,Trajectory-state predictor (model E),220,0.3667,11.8333,32.2727,0.0102,0.2368,0.3330,0.0182
+predictor_state,Trajectory-state predictor (model E),230,0.3833,11.9583,31.1957,0.0141,0.2600,0.3261,0.0261
+predictor_state,Trajectory-state predictor (model E),240,0.4000,12.2083,30.5208,0.0187,0.3273,0.3240,0.0333
+predictor_state,Trajectory-state predictor (model E),250,0.4167,12.0000,28.8000,0.0280,0.3784,0.3160,0.0520
+predictor_state,Trajectory-state predictor (model E),260,0.4333,12.3333,28.4615,0.0308,0.3232,0.3154,0.0577
+predictor_state,Trajectory-state predictor (model E),270,0.4500,11.8750,26.3889,0.0435,0.3821,0.3074,0.0815
+predictor_state,Trajectory-state predictor (model E),280,0.4667,12.2500,26.2500,0.0437,0.3267,0.3063,0.0821
+predictor_state,Trajectory-state predictor (model E),290,0.4833,12.0000,24.8276,0.0509,0.3278,0.2991,0.0931
+predictor_state,Trajectory-state predictor (model E),300,0.5000,11.5833,23.1667,0.0575,0.3136,0.2892,0.1000
+predictor_state,Trajectory-state predictor (model E),310,0.5167,11.5000,22.2581,0.0589,0.2852,0.2815,0.1032
+predictor_state,Trajectory-state predictor (model E),320,0.5333,11.4583,21.4844,0.0594,0.2585,0.2742,0.1031
+predictor_state,Trajectory-state predictor (model E),330,0.5500,11.3750,20.6818,0.0591,0.2335,0.2659,0.1061
+predictor_state,Trajectory-state predictor (model E),340,0.5667,11.3750,20.0735,0.0581,0.2129,0.2588,0.1059
+predictor_state,Trajectory-state predictor (model E),350,0.5833,11.1250,19.0714,0.0607,0.2078,0.2514,0.1086
+predictor_state,Trajectory-state predictor (model E),360,0.6000,10.9583,18.2639,0.0618,0.1996,0.2444,0.1111
+predictor_state,Trajectory-state predictor (model E),370,0.6167,10.7500,17.4324,0.0635,0.1946,0.2378,0.1135
+predictor_state,Trajectory-state predictor (model E),380,0.6333,10.7083,16.9079,0.0645,0.1885,0.2336,0.1132
+predictor_state,Trajectory-state predictor (model E),390,0.6500,10.5000,16.1538,0.0660,0.1849,0.2276,0.1154
+predictor_state,Trajectory-state predictor (model E),400,0.6667,10.2917,15.4375,0.0681,0.1835,0.2225,0.1200
+predictor_state,Trajectory-state predictor (model E),410,0.6833,10.3333,15.1220,0.0671,0.1741,0.2183,0.1195
+predictor_state,Trajectory-state predictor (model E),420,0.7000,10.2917,14.7024,0.0661,0.1659,0.2131,0.1190
+predictor_state,Trajectory-state predictor (model E),430,0.7167,10.2917,14.3605,0.0645,0.1566,0.2081,0.1163
+predictor_state,Trajectory-state predictor (model E),440,0.7333,10.3333,14.0909,0.0659,0.1565,0.2068,0.1205
+predictor_state,Trajectory-state predictor (model E),450,0.7500,10.3333,13.7778,0.0656,0.1515,0.2033,0.1222
+predictor_state,Trajectory-state predictor (model E),460,0.7667,10.0833,13.1522,0.0674,0.1514,0.1989,0.1239
+predictor_state,Trajectory-state predictor (model E),470,0.7833,10.1250,12.9255,0.0665,0.1460,0.1957,0.1234
+predictor_state,Trajectory-state predictor (model E),480,0.8000,9.5833,11.9792,0.0719,0.1540,0.1917,0.1292
+predictor_state,Trajectory-state predictor (model E),490,0.8167,9.4167,11.5306,0.0724,0.1517,0.1878,0.1286
+predictor_state,Trajectory-state predictor (model E),500,0.8333,9.1250,10.9500,0.0750,0.1551,0.1845,0.1340
+predictor_state,Trajectory-state predictor (model E),510,0.8500,9.1250,10.7353,0.0735,0.1490,0.1809,0.1314
+predictor_state,Trajectory-state predictor (model E),520,0.8667,8.6667,10.0000,0.0774,0.1538,0.1774,0.1346
+predictor_state,Trajectory-state predictor (model E),530,0.8833,8.4167,9.5283,0.0797,0.1558,0.1750,0.1377
+predictor_state,Trajectory-state predictor (model E),540,0.9000,8.1667,9.0741,0.0819,0.1578,0.1727,0.1426
+predictor_state,Trajectory-state predictor (model E),550,0.9167,7.7917,8.5000,0.0845,0.1601,0.1695,0.1509
+predictor_state,Trajectory-state predictor (model E),560,0.9333,7.7500,8.3036,0.0835,0.1556,0.1665,0.1500
+predictor_state,Trajectory-state predictor (model E),570,0.9500,7.7917,8.2018,0.0820,0.1509,0.1640,0.1474
+predictor_state,Trajectory-state predictor (model E),580,0.9667,7.4583,7.7155,0.0841,0.1528,0.1612,0.1500
+predictor_state,Trajectory-state predictor (model E),590,0.9833,7.1667,7.2881,0.0856,0.1535,0.1585,0.1525
+predictor_state,Trajectory-state predictor (model E),600,1.0000,7.2083,7.2083,0.0850,0.1508,0.1571,0.1517
+oracle,Oracle upper bound (observed effect),10,0.0167,1.6667,100.0000,0.0000,0.0000,1.0000,0.0000
+oracle,Oracle upper bound (observed effect),20,0.0333,3.3333,100.0000,0.0000,0.0000,1.0000,0.0000
+oracle,Oracle upper bound (observed effect),30,0.0500,5.0000,100.0000,0.0000,0.0000,1.0000,0.0000
+oracle,Oracle upper bound (observed effect),40,0.0667,6.6667,100.0000,0.0000,0.0000,1.0000,0.0000
+oracle,Oracle upper bound (observed effect),50,0.0833,8.3333,100.0000,0.0000,0.0000,1.0000,0.0000
+oracle,Oracle upper bound (observed effect),60,0.1000,9.8333,98.3333,0.0000,0.0000,0.9833,0.0000
+oracle,Oracle upper bound (observed effect),70,0.1167,11.0833,95.0000,0.0000,0.0000,0.9500,0.0000
+oracle,Oracle upper bound (observed effect),80,0.1333,12.2500,91.8750,0.0000,0.0000,0.9187,0.0000
+oracle,Oracle upper bound (observed effect),90,0.1500,13.0833,87.2222,0.0000,0.0000,0.8722,0.0000
+oracle,Oracle upper bound (observed effect),100,0.1667,13.8750,83.2500,0.0000,0.0000,0.8325,0.0000
+oracle,Oracle upper bound (observed effect),110,0.1833,14.2917,77.9545,0.0023,0.0189,0.7818,0.0091
+oracle,Oracle upper bound (observed effect),120,0.2000,14.7083,73.5417,0.0021,0.0152,0.7375,0.0083
+oracle,Oracle upper bound (observed effect),130,0.2167,15.1250,69.8077,0.0038,0.0241,0.7019,0.0154
+oracle,Oracle upper bound (observed effect),140,0.2333,15.3333,65.7143,0.0054,0.0291,0.6625,0.0214
+oracle,Oracle upper bound (observed effect),150,0.2500,15.3333,61.3333,0.0050,0.0210,0.6183,0.0200
+oracle,Oracle upper bound (observed effect),160,0.2667,15.3333,57.5000,0.0047,0.0175,0.5797,0.0187
+oracle,Oracle upper bound (observed effect),170,0.2833,15.3333,54.1176,0.0044,0.0145,0.5456,0.0176
+oracle,Oracle upper bound (observed effect),180,0.3000,15.3333,51.1111,0.0042,0.0132,0.5153,0.0167
+oracle,Oracle upper bound (observed effect),190,0.3167,15.3333,48.4211,0.0039,0.0120,0.4882,0.0158
+oracle,Oracle upper bound (observed effect),200,0.3333,15.3333,46.0000,0.0037,0.0106,0.4637,0.0150
+oracle,Oracle upper bound (observed effect),210,0.3500,15.3333,43.8095,0.0036,0.0096,0.4417,0.0143
+oracle,Oracle upper bound (observed effect),220,0.3667,15.3333,41.8182,0.0034,0.0088,0.4216,0.0136
+oracle,Oracle upper bound (observed effect),230,0.3833,15.3333,40.0000,0.0033,0.0083,0.4033,0.0130
+oracle,Oracle upper bound (observed effect),240,0.4000,15.3333,38.3333,0.0031,0.0078,0.3865,0.0125
+oracle,Oracle upper bound (observed effect),250,0.4167,15.3333,36.8000,0.0040,0.0099,0.3720,0.0160
+oracle,Oracle upper bound (observed effect),260,0.4333,15.3333,35.3846,0.0038,0.0094,0.3577,0.0154
+oracle,Oracle upper bound (observed effect),270,0.4500,15.3333,34.0741,0.0037,0.0089,0.3444,0.0148
+oracle,Oracle upper bound (observed effect),280,0.4667,15.3333,32.8571,0.0036,0.0084,0.3321,0.0143
+oracle,Oracle upper bound (observed effect),290,0.4833,15.3333,31.7241,0.0034,0.0080,0.3207,0.0138
+oracle,Oracle upper bound (observed effect),300,0.5000,15.3333,30.6667,0.0033,0.0078,0.3100,0.0133
+oracle,Oracle upper bound (observed effect),310,0.5167,15.3333,29.6774,0.0032,0.0074,0.3000,0.0129
+oracle,Oracle upper bound (observed effect),320,0.5333,15.3333,28.7500,0.0031,0.0070,0.2906,0.0125
+oracle,Oracle upper bound (observed effect),330,0.5500,15.3333,27.8788,0.0030,0.0068,0.2818,0.0121
+oracle,Oracle upper bound (observed effect),340,0.5667,15.3333,27.0588,0.0029,0.0067,0.2735,0.0118
+oracle,Oracle upper bound (observed effect),350,0.5833,15.3333,26.2857,0.0029,0.0065,0.2657,0.0114
+oracle,Oracle upper bound (observed effect),360,0.6000,15.3333,25.5556,0.0028,0.0063,0.2583,0.0111
+oracle,Oracle upper bound (observed effect),370,0.6167,15.3333,24.8649,0.0027,0.0060,0.2514,0.0108
+oracle,Oracle upper bound (observed effect),380,0.6333,15.3333,24.2105,0.0026,0.0058,0.2447,0.0105
+oracle,Oracle upper bound (observed effect),390,0.6500,15.3333,23.5897,0.0026,0.0056,0.2385,0.0103
+oracle,Oracle upper bound (observed effect),400,0.6667,15.3333,23.0000,0.0025,0.0054,0.2325,0.0100
+oracle,Oracle upper bound (observed effect),410,0.6833,15.3333,22.4390,0.0024,0.0052,0.2268,0.0098
+oracle,Oracle upper bound (observed effect),420,0.7000,15.3333,21.9048,0.0030,0.0062,0.2220,0.0119
+oracle,Oracle upper bound (observed effect),430,0.7167,15.3333,21.3953,0.0029,0.0060,0.2169,0.0116
+oracle,Oracle upper bound (observed effect),440,0.7333,15.3333,20.9091,0.0028,0.0058,0.2119,0.0114
+oracle,Oracle upper bound (observed effect),450,0.7500,15.3333,20.4444,0.0028,0.0056,0.2072,0.0111
+oracle,Oracle upper bound (observed effect),460,0.7667,15.3333,20.0000,0.0033,0.0065,0.2033,0.0130
+oracle,Oracle upper bound (observed effect),470,0.7833,15.3333,19.5745,0.0037,0.0074,0.1995,0.0149
+oracle,Oracle upper bound (observed effect),480,0.8000,15.3333,19.1667,0.0036,0.0071,0.1953,0.0146
+oracle,Oracle upper bound (observed effect),490,0.8167,15.3333,18.7755,0.0036,0.0069,0.1913,0.0143
+oracle,Oracle upper bound (observed effect),500,0.8333,15.3333,18.4000,0.0035,0.0068,0.1875,0.0140
+oracle,Oracle upper bound (observed effect),510,0.8500,15.3333,18.0392,0.0034,0.0066,0.1838,0.0137
+oracle,Oracle upper bound (observed effect),520,0.8667,15.1667,17.5000,0.0053,0.0101,0.1803,0.0212
+oracle,Oracle upper bound (observed effect),530,0.8833,14.7500,16.6981,0.0099,0.0188,0.1769,0.0396
+oracle,Oracle upper bound (observed effect),540,0.9000,14.3333,15.9259,0.0153,0.0288,0.1745,0.0574
+oracle,Oracle upper bound (observed effect),550,0.9167,13.6250,14.8636,0.0227,0.0427,0.1714,0.0745
+oracle,Oracle upper bound (observed effect),560,0.9333,12.7917,13.7054,0.0312,0.0582,0.1683,0.0911
+oracle,Oracle upper bound (observed effect),570,0.9500,11.7917,12.4123,0.0412,0.0762,0.1654,0.1070
+oracle,Oracle upper bound (observed effect),580,0.9667,10.5417,10.9052,0.0534,0.0974,0.1625,0.1224
+oracle,Oracle upper bound (observed effect),590,0.9833,8.8750,9.0254,0.0695,0.1249,0.1597,0.1373
+oracle,Oracle upper bound (observed effect),600,1.0000,7.2083,7.2083,0.0850,0.1508,0.1571,0.1517

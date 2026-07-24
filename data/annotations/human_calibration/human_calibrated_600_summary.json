@@ -1,0 +1,299 @@
+{
+    "n":  600,
+    "model":  "deepseek/deepseek-v4-flash",
+    "humanExamples":  75,
+    "oldRemovable":  {
+                         "yes":  261,
+                         "no":  339
+                     },
+    "newRemovable":  {
+                         "yes":  392,
+                         "no":  208
+                     },
+    "removableAgreement":  357,
+    "removableAgreementPct":  59.5,
+    "removableFlips":  243,
+    "removableFlipPct":  40.5,
+    "oldNoToNewYes":  187,
+    "oldYesToNewNo":  56,
+    "stepTypeAgreement":  436,
+    "stepTypeAgreementPct":  72.67,
+    "stepTypeFlips":  164,
+    "oldType":  [
+                    {
+                        "type":  "essential",
+                        "count":  165
+                    },
+                    {
+                        "type":  "harmful",
+                        "count":  234
+                    },
+                    {
+                        "type":  "redundant",
+                        "count":  201
+                    }
+                ],
+    "newType":  [
+                    {
+                        "type":  "essential",
+                        "count":  198
+                    },
+                    {
+                        "type":  "harmful",
+                        "count":  203
+                    },
+                    {
+                        "type":  "redundant",
+                        "count":  199
+                    }
+                ],
+    "removableConfusion":  [
+                               {
+                                   "old":  "no",
+                                   "new":  "yes",
+                                   "count":  187
+                               },
+                               {
+                                   "old":  "yes",
+                                   "new":  "yes",
+                                   "count":  205
+                               },
+                               {
+                                   "old":  "no",
+                                   "new":  "no",
+                                   "count":  152
+                               },
+                               {
+                                   "old":  "yes",
+                                   "new":  "no",
+                                   "count":  56
+                               }
+                           ],
+    "typeConfusion":  [
+                          {
+                              "old":  "essential",
+                              "new":  "essential",
+                              "count":  115
+                          },
+                          {
+                              "old":  "essential",
+                              "new":  "harmful",
+                              "count":  10
+                          },
+                          {
+                              "old":  "essential",
+                              "new":  "redundant",
+                              "count":  40
+                          },
+                          {
+                              "old":  "harmful",
+                              "new":  "essential",
+                              "count":  34
+                          },
+                          {
+                              "old":  "harmful",
+                              "new":  "harmful",
+                              "count":  181
+                          },
+                          {
+                              "old":  "harmful",
+                              "new":  "redundant",
+                              "count":  19
+                          },
+                          {
+                              "old":  "redundant",
+                              "new":  "essential",
+                              "count":  49
+                          },
+                          {
+                              "old":  "redundant",
+                              "new":  "harmful",
+                              "count":  12
+                          },
+                          {
+                              "old":  "redundant",
+                              "new":  "redundant",
+                              "count":  140
+                          }
+                      ],
+    "byRating":  [
+                     {
+                         "group":  "0",
+                         "n":  200,
+                         "oldYes":  131,
+                         "newYes":  144,
+                         "removableFlips":  57,
+                         "flipPct":  28.5,
+                         "typeFlips":  58,
+                         "typeFlipPct":  29
+                     },
+                     {
+                         "group":  "1",
+                         "n":  200,
+                         "oldYes":  74,
+                         "newYes":  81,
+                         "removableFlips":  67,
+                         "flipPct":  33.5,
+                         "typeFlips":  72,
+                         "typeFlipPct":  36
+                     },
+                     {
+                         "group":  "-1",
+                         "n":  200,
+                         "oldYes":  56,
+                         "newYes":  167,
+                         "removableFlips":  119,
+                         "flipPct":  59.5,
+                         "typeFlips":  34,
+                         "typeFlipPct":  17
+                     }
+                 ],
+    "byPosition":  [
+                       {
+                           "group":  "early",
+                           "n":  201,
+                           "oldYes":  95,
+                           "newYes":  149,
+                           "removableFlips":  76,
+                           "flipPct":  37.81,
+                           "typeFlips":  56,
+                           "typeFlipPct":  27.86
+                       },
+                       {
+                           "group":  "late",
+                           "n":  198,
+                           "oldYes":  91,
+                           "newYes":  117,
+                           "removableFlips":  76,
+                           "flipPct":  38.38,
+                           "typeFlips":  56,
+                           "typeFlipPct":  28.28
+                       },
+                       {
+                           "group":  "middle",
+                           "n":  201,
+                           "oldYes":  75,
+                           "newYes":  126,
+                           "removableFlips":  91,
+                           "flipPct":  45.27,
+                           "typeFlips":  52,
+                           "typeFlipPct":  25.87
+                       }
+                   ],
+    "byOldModel":  [
+                       {
+                           "group":  "deepseek/deepseek-v4-flash",
+                           "n":  415,
+                           "oldYes":  196,
+                           "newYes":  279,
+                           "removableFlips":  167,
+                           "flipPct":  40.24,
+                           "typeFlips":  88,
+                           "typeFlipPct":  21.2
+                       },
+                       {
+                           "group":  "deepseek/deepseek-v4-pro",
+                           "n":  185,
+                           "oldYes":  65,
+                           "newYes":  113,
+                           "removableFlips":  76,
+                           "flipPct":  41.08,
+                           "typeFlips":  76,
+                           "typeFlipPct":  41.08
+                       }
+                   ],
+    "meanConfidence":  0.975,
+    "experimentalActual2400":  {
+                                   "old":  {
+                                               "tp":  965,
+                                               "tn":  125,
+                                               "fp":  79,
+                                               "fn":  1231,
+                                               "accuracyPct":  45.42,
+                                               "precisionPct":  92.43,
+                                               "recallPct":  43.94,
+                                               "specificityPct":  61.27
+                                           },
+                                   "new":  {
+                                               "tp":  1448,
+                                               "tn":  84,
+                                               "fp":  120,
+                                               "fn":  748,
+                                               "accuracyPct":  63.83,
+                                               "precisionPct":  92.35,
+                                               "recallPct":  65.94,
+                                               "specificityPct":  41.18
+                                           },
+                                   "byRating":  [
+                                                    {
+                                                        "rating":  -1,
+                                                        "old":  {
+                                                                    "tp":  216,
+                                                                    "tn":  29,
+                                                                    "fp":  8,
+                                                                    "fn":  547,
+                                                                    "accuracyPct":  30.62,
+                                                                    "precisionPct":  96.43,
+                                                                    "recallPct":  28.31,
+                                                                    "specificityPct":  78.38
+                                                                },
+                                                        "new":  {
+                                                                    "tp":  638,
+                                                                    "tn":  7,
+                                                                    "fp":  30,
+                                                                    "fn":  125,
+                                                                    "accuracyPct":  80.62,
+                                                                    "precisionPct":  95.51,
+                                                                    "recallPct":  83.62,
+                                                                    "specificityPct":  18.92
+                                                                }
+                                                    },
+                                                    {
+                                                        "rating":  0,
+                                                        "old":  {
+                                                                    "tp":  475,
+                                                                    "tn":  40,
+                                                                    "fp":  49,
+                                                                    "fn":  236,
+                                                                    "accuracyPct":  64.38,
+                                                                    "precisionPct":  90.65,
+                                                                    "recallPct":  66.81,
+                                                                    "specificityPct":  44.94
+                                                                },
+                                                        "new":  {
+                                                                    "tp":  516,
+                                                                    "tn":  29,
+                                                                    "fp":  60,
+                                                                    "fn":  195,
+                                                                    "accuracyPct":  68.12,
+                                                                    "precisionPct":  89.58,
+                                                                    "recallPct":  72.57,
+                                                                    "specificityPct":  32.58
+                                                                }
+                                                    },
+                                                    {
+                                                        "rating":  1,
+                                                        "old":  {
+                                                                    "tp":  274,
+                                                                    "tn":  56,
+                                                                    "fp":  22,
+                                                                    "fn":  448,
+                                                                    "accuracyPct":  41.25,
+                                                                    "precisionPct":  92.57,
+                                                                    "recallPct":  37.95,
+                                                                    "specificityPct":  71.79
+                                                                },
+                                                        "new":  {
+                                                                    "tp":  294,
+                                                                    "tn":  48,
+                                                                    "fp":  30,
+                                                                    "fn":  428,
+                                                                    "accuracyPct":  42.75,
+                                                                    "precisionPct":  90.74,
+                                                                    "recallPct":  40.72,
+                                                                    "specificityPct":  61.54
+                                                                }
+                                                    }
+                                                ]
+                               }
+}

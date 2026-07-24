@@ -1,0 +1,223 @@
+{
+    "n":  100,
+    "oldRemovable":  {
+                         "yes":  43,
+                         "no":  57
+                     },
+    "newRemovable":  {
+                         "yes":  71,
+                         "no":  29
+                     },
+    "removableAgreement":  54,
+    "removableAgreementPct":  54,
+    "removableFlips":  46,
+    "oldNoToNewYes":  37,
+    "oldYesToNewNo":  9,
+    "stepTypeAgreement":  67,
+    "stepTypeAgreementPct":  67,
+    "stepTypeFlips":  33,
+    "oldType":  [
+                    {
+                        "type":  "essential",
+                        "count":  27
+                    },
+                    {
+                        "type":  "harmful",
+                        "count":  40
+                    },
+                    {
+                        "type":  "redundant",
+                        "count":  33
+                    }
+                ],
+    "newType":  [
+                    {
+                        "type":  "essential",
+                        "count":  28
+                    },
+                    {
+                        "type":  "harmful",
+                        "count":  33
+                    },
+                    {
+                        "type":  "redundant",
+                        "count":  39
+                    }
+                ],
+    "removableConfusion":  [
+                               {
+                                   "old":  "no",
+                                   "new":  "yes",
+                                   "count":  37
+                               },
+                               {
+                                   "old":  "yes",
+                                   "new":  "yes",
+                                   "count":  34
+                               },
+                               {
+                                   "old":  "no",
+                                   "new":  "no",
+                                   "count":  20
+                               },
+                               {
+                                   "old":  "yes",
+                                   "new":  "no",
+                                   "count":  9
+                               }
+                           ],
+    "typeConfusion":  [
+                          {
+                              "old":  "essential",
+                              "new":  "essential",
+                              "count":  15
+                          },
+                          {
+                              "old":  "essential",
+                              "new":  "harmful",
+                              "count":  5
+                          },
+                          {
+                              "old":  "essential",
+                              "new":  "redundant",
+                              "count":  7
+                          },
+                          {
+                              "old":  "harmful",
+                              "new":  "essential",
+                              "count":  6
+                          },
+                          {
+                              "old":  "harmful",
+                              "new":  "harmful",
+                              "count":  27
+                          },
+                          {
+                              "old":  "harmful",
+                              "new":  "redundant",
+                              "count":  7
+                          },
+                          {
+                              "old":  "redundant",
+                              "new":  "essential",
+                              "count":  7
+                          },
+                          {
+                              "old":  "redundant",
+                              "new":  "harmful",
+                              "count":  1
+                          },
+                          {
+                              "old":  "redundant",
+                              "new":  "redundant",
+                              "count":  25
+                          }
+                      ],
+    "byRating":  [
+                     {
+                         "group":  "0",
+                         "n":  34,
+                         "oldYes":  23,
+                         "newYes":  25,
+                         "removableFlips":  12,
+                         "flipPct":  35.29,
+                         "typeFlips":  14,
+                         "typeFlipPct":  41.18
+                     },
+                     {
+                         "group":  "1",
+                         "n":  35,
+                         "oldYes":  12,
+                         "newYes":  18,
+                         "removableFlips":  12,
+                         "flipPct":  34.29,
+                         "typeFlips":  12,
+                         "typeFlipPct":  34.29
+                     },
+                     {
+                         "group":  "-1",
+                         "n":  31,
+                         "oldYes":  8,
+                         "newYes":  28,
+                         "removableFlips":  22,
+                         "flipPct":  70.97,
+                         "typeFlips":  7,
+                         "typeFlipPct":  22.58
+                     }
+                 ],
+    "byPosition":  [
+                       {
+                           "group":  "early",
+                           "n":  34,
+                           "oldYes":  16,
+                           "newYes":  28,
+                           "removableFlips":  16,
+                           "flipPct":  47.06,
+                           "typeFlips":  9,
+                           "typeFlipPct":  26.47
+                       },
+                       {
+                           "group":  "late",
+                           "n":  32,
+                           "oldYes":  14,
+                           "newYes":  18,
+                           "removableFlips":  16,
+                           "flipPct":  50,
+                           "typeFlips":  12,
+                           "typeFlipPct":  37.5
+                       },
+                       {
+                           "group":  "middle",
+                           "n":  34,
+                           "oldYes":  13,
+                           "newYes":  25,
+                           "removableFlips":  14,
+                           "flipPct":  41.18,
+                           "typeFlips":  12,
+                           "typeFlipPct":  35.29
+                       }
+                   ],
+    "byOldModel":  [
+                       {
+                           "group":  "deepseek/deepseek-v4-flash",
+                           "n":  69,
+                           "oldYes":  32,
+                           "newYes":  49,
+                           "removableFlips":  29,
+                           "flipPct":  42.03,
+                           "typeFlips":  17,
+                           "typeFlipPct":  24.64
+                       },
+                       {
+                           "group":  "deepseek/deepseek-v4-pro",
+                           "n":  31,
+                           "oldYes":  11,
+                           "newYes":  22,
+                           "removableFlips":  17,
+                           "flipPct":  54.84,
+                           "typeFlips":  16,
+                           "typeFlipPct":  51.61
+                       }
+                   ],
+    "meanConfidence":  0.96,
+    "experimentalActual400":  {
+                                  "old":  {
+                                              "tp":  161,
+                                              "tn":  13,
+                                              "fp":  11,
+                                              "fn":  215,
+                                              "accuracyPct":  43.5,
+                                              "precisionPct":  93.6,
+                                              "recallPct":  42.82
+                                          },
+                                  "new":  {
+                                              "tp":  262,
+                                              "tn":  2,
+                                              "fp":  22,
+                                              "fn":  114,
+                                              "accuracyPct":  66,
+                                              "precisionPct":  92.25,
+                                              "recallPct":  69.68
+                                          }
+                              }
+}

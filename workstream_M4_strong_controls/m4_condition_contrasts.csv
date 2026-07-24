@@ -1,0 +1,17 @@
+﻿group,contrast,steps,estimate_pp,ci_lower_pp,ci_upper_pp
+negative_anchor,c1_vs_c0_raw,80,20.31,11.55,29.38
+negative_anchor,c1_vs_c2_target_specific,80,15.62,5.94,25.00
+negative_anchor,c3_vs_c0_surface_form,73,1.71,-6.16,9.93
+negative_anchor,c1_vs_c3_semantic_removal,73,19.18,8.22,30.14
+stable_correct,c1_vs_c0_raw,80,-11.88,-18.13,-6.25
+stable_correct,c1_vs_c2_target_specific,80,16.77,7.60,25.73
+stable_correct,c3_vs_c0_surface_form,75,-8.33,-14.67,-3.00
+stable_correct,c1_vs_c3_semantic_removal,75,-2.67,-10.67,5.33
+neutral_comparison,c1_vs_c0_raw,80,24.06,14.37,34.38
+neutral_comparison,c1_vs_c2_target_specific,80,0.00,-10.00,10.31
+neutral_comparison,c3_vs_c0_surface_form,73,20.89,11.99,30.14
+neutral_comparison,c1_vs_c3_semantic_removal,73,4.11,-7.53,16.10
+ALL,c1_vs_c0_raw,240,10.83,5.62,16.25
+ALL,c1_vs_c2_target_specific,240,10.80,5.31,16.60
+ALL,c3_vs_c0_surface_form,221,4.64,0.11,9.28
+ALL,c1_vs_c3_semantic_removal,221,6.79,0.57,12.67

@@ -1,0 +1,16 @@
+﻿design,estimand,effect_size,power
+"M2 overall target, 300 steps x 3 runs",target,observed,0.818
+"M2 overall target, 300 steps x 3 runs",target,60% of observed,0.647
+"M2 overall target, 300 steps x 3 runs",target,35% of observed,0.463
+"M2 anchor semantic, 100 anchors x 3 runs",semantic,observed,0.882
+"M2 anchor semantic, 100 anchors x 3 runs",semantic,60% of observed,0.735
+"M2 anchor semantic, 100 anchors x 3 runs",semantic,35% of observed,0.475
+"M6 overall target, 300 steps x 3 runs",target,observed,0.780
+"M6 overall target, 300 steps x 3 runs",target,60% of observed,0.705
+"M6 overall target, 300 steps x 3 runs",target,35% of observed,0.455
+"M2 anchor semantic, 80 anchors x 3 runs",semantic,observed,0.805
+"M2 anchor semantic, 80 anchors x 3 runs",semantic,60% of observed,0.645
+"M2 anchor semantic, 80 anchors x 3 runs",semantic,35% of observed,0.405
+"M4 anchor contrast, 80 anchors x 4 runs",semantic,observed,0.858
+"M4 anchor contrast, 80 anchors x 4 runs",semantic,60% of observed,0.685
+"M4 anchor contrast, 80 anchors x 4 runs",semantic,35% of observed,0.435

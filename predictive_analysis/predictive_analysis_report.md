@@ -51,4 +51,4 @@ Pre-specified inclusion threshold: **met**.
 
 ## Interpretation boundary
 
-These are predictive, not causal, comparisons. Model E is not a zero-cost pruning policy because it uses four Control runs. Audit-corrected labels remain pending.
+These are predictive, not causal, comparisons. Model E is not a zero-cost pruning policy because it uses four Control runs. The final Judge Audit passed the hard-stop gate with sensitivity qualification; the direct audited-label substitution check is reported separately and is not a population correction.

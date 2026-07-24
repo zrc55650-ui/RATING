@@ -1,0 +1,15 @@
+{
+  "pilot_steps": 120,
+  "strata": {
+    "diagonal": 40,
+    "off_diagonal": 40,
+    "random": 40
+  },
+  "expected_diagonal_mapping": {
+    "1": "essential",
+    "0": "redundant",
+    "-1": "harmful"
+  },
+  "blinding": "sheets contain no step_id, rating, outcome, or prior label",
+  "orders_differ_between_annotators": true
+}

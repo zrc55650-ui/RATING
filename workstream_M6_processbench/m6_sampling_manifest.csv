@@ -1,0 +1,301 @@
+﻿sample_key,subset,step_class,target_index,total_steps,position_bin,source_generator,gold_source,final_answer_correct,placebo_eligible,placebo_indices
+gsm8k|gsm8k-41,gsm8k,first_error,1,6,early,Meta-Llama-3-8B-Instruct,dataset,0,1,"[0, 2, 4]"
+gsm8k|gsm8k-293,gsm8k,first_error,0,4,early,Qwen2.5-Math-7B-Instruct,dataset,1,0,[]
+gsm8k|gsm8k-399,gsm8k,first_error,0,6,early,Qwen2.5-Math-72B-Instruct,dataset,1,1,[2]
+gsm8k|gsm8k-183,gsm8k,first_error,1,5,early,Meta-Llama-3-8B-Instruct,dataset,0,1,[0]
+gsm8k|gsm8k-180,gsm8k,first_error,1,5,early,Qwen2.5-Math-7B-Instruct,dataset,0,1,"[2, 3]"
+gsm8k|gsm8k-1,gsm8k,first_error,1,7,early,Qwen2.5-Math-7B-Instruct,dataset,0,0,[]
+gsm8k|gsm8k-73,gsm8k,first_error,1,6,early,Llama-3.1-8B-Instruct,dataset,0,1,[2]
+gsm8k|gsm8k-49,gsm8k,first_error,2,16,early,Meta-Llama-3-70B-Instruct,dataset,0,1,"[1, 3, 4]"
+gsm8k|gsm8k-179,gsm8k,first_error,1,5,early,Meta-Llama-3-70B-Instruct,dataset,0,0,[]
+gsm8k|gsm8k-167,gsm8k,first_error,0,5,early,Llama-3.1-8B-Instruct,dataset,0,1,"[2, 3]"
+gsm8k|gsm8k-157,gsm8k,first_error,0,3,early,Llama-3.1-8B-Instruct,dataset,0,0,[]
+gsm8k|gsm8k-145,gsm8k,first_error,0,4,early,Meta-Llama-3-70B-Instruct,dataset,0,1,[2]
+gsm8k|gsm8k-60,gsm8k,first_error,1,6,early,Llama-3.1-8B-Instruct,dataset,0,1,[3]
+gsm8k|gsm8k-141,gsm8k,first_error,2,7,middle,Qwen2.5-Math-72B-Instruct,dataset,0,1,"[1, 3, 0]"
+gsm8k|gsm8k-264,gsm8k,first_error,1,4,middle,Llama-3.1-70B-Instruct,dataset,1,1,[2]
+gsm8k|gsm8k-130,gsm8k,first_error,2,5,middle,Meta-Llama-3-8B-Instruct,dataset,0,1,[1]
+gsm8k|gsm8k-86,gsm8k,first_error,1,3,middle,Meta-Llama-3-8B-Instruct,dataset,0,0,[]
+gsm8k|gsm8k-65,gsm8k,first_error,4,10,middle,Llama-3.1-70B-Instruct,dataset,0,1,"[2, 0]"
+gsm8k|gsm8k-187,gsm8k,first_error,2,6,middle,Meta-Llama-3-8B-Instruct,dataset,0,1,[4]
+gsm8k|gsm8k-128,gsm8k,first_error,1,4,middle,Llama-3.1-70B-Instruct,dataset,0,1,[2]
+gsm8k|gsm8k-7,gsm8k,first_error,1,4,middle,Meta-Llama-3-8B-Instruct,dataset,0,0,[]
+gsm8k|gsm8k-197,gsm8k,first_error,2,7,middle,Llama-3.1-70B-Instruct,dataset,0,0,[]
+gsm8k|gsm8k-307,gsm8k,first_error,1,4,middle,Qwen2.5-Math-7B-Instruct,dataset,1,0,[]
+gsm8k|gsm8k-160,gsm8k,first_error,2,5,middle,Qwen2.5-Math-72B-Instruct,dataset,0,0,[]
+gsm8k|gsm8k-8,gsm8k,first_error,2,6,middle,Qwen2.5-Math-7B-Instruct,dataset,0,0,[]
+gsm8k|gsm8k-29,gsm8k,first_error,1,4,middle,Meta-Llama-3-8B-Instruct,dataset,0,1,[2]
+gsm8k|gsm8k-194,gsm8k,first_error,2,4,late,Meta-Llama-3-8B-Instruct,dataset,0,1,"[3, 0]"
+gsm8k|gsm8k-138,gsm8k,first_error,2,4,late,Qwen2.5-Math-72B-Instruct,dataset,0,1,[1]
+gsm8k|gsm8k-34,gsm8k,first_error,3,4,late,Meta-Llama-3-8B-Instruct,dataset,0,1,[1]
+gsm8k|gsm8k-6,gsm8k,first_error,2,3,late,Llama-3.1-70B-Instruct,dataset,0,0,[]
+gsm8k|gsm8k-196,gsm8k,first_error,2,4,late,Llama-3.1-70B-Instruct,dataset,0,0,[]
+gsm8k|gsm8k-36,gsm8k,first_error,3,5,late,Qwen2.5-Math-7B-Instruct,dataset,0,1,[0]
+gsm8k|gsm8k-74,gsm8k,first_error,4,7,late,Meta-Llama-3-8B-Instruct,dataset,0,1,"[3, 2, 1]"
+gsm8k|gsm8k-18,gsm8k,first_error,3,4,late,Meta-Llama-3-8B-Instruct,dataset,0,0,[]
+gsm8k|gsm8k-25,gsm8k,first_error,3,4,late,Llama-3.1-70B-Instruct,dataset,0,0,[]
+gsm8k|gsm8k-72,gsm8k,first_error,3,4,late,Qwen2.5-Math-7B-Instruct,dataset,0,1,[2]
+gsm8k|gsm8k-121,gsm8k,first_error,5,7,late,Qwen2.5-Math-7B-Instruct,dataset,0,0,[]
+gsm8k|gsm8k-82,gsm8k,first_error,7,8,late,Llama-3.1-8B-Instruct,dataset,0,1,"[3, 2, 1]"
+gsm8k|gsm8k-235,gsm8k,locally_correct,0,6,early,Qwen2.5-Math-72B-Instruct,dataset,1,0,[]
+gsm8k|gsm8k-224,gsm8k,locally_correct,1,6,early,Qwen2.5-Math-7B-Instruct,dataset,1,1,"[3, 5]"
+gsm8k|gsm8k-287,gsm8k,locally_correct,0,6,early,Qwen2.5-Math-72B-Instruct,dataset,1,1,"[1, 2, 4]"
+gsm8k|gsm8k-308,gsm8k,locally_correct,1,9,early,Qwen2.5-Math-72B-Instruct,dataset,1,0,[]
+gsm8k|gsm8k-141|s1,gsm8k,locally_correct_pre_error,1,7,early,Qwen2.5-Math-72B-Instruct,dataset,0,1,"[0, 2, 3]"
+gsm8k|gsm8k-304,gsm8k,locally_correct,0,5,early,Llama-3.1-70B-Instruct,dataset,1,1,[3]
+gsm8k|gsm8k-370,gsm8k,locally_correct,0,4,early,Meta-Llama-3-8B-Instruct,dataset,1,1,"[1, 3]"
+gsm8k|gsm8k-314,gsm8k,locally_correct,1,6,early,Meta-Llama-3-8B-Instruct,dataset,1,1,"[2, 3]"
+gsm8k|gsm8k-223,gsm8k,locally_correct,0,4,early,Qwen2.5-Math-72B-Instruct,dataset,1,1,[3]
+gsm8k|gsm8k-371,gsm8k,locally_correct,0,6,early,Meta-Llama-3-8B-Instruct,dataset,1,1,[4]
+gsm8k|gsm8k-258,gsm8k,locally_correct,0,3,early,Llama-3.1-70B-Instruct,dataset,1,1,[1]
+gsm8k|gsm8k-130|s0,gsm8k,locally_correct_pre_error,0,5,early,Meta-Llama-3-8B-Instruct,dataset,0,0,[]
+gsm8k|gsm8k-386,gsm8k,locally_correct,0,5,early,Meta-Llama-3-8B-Instruct,dataset,1,1,"[1, 3]"
+gsm8k|gsm8k-318,gsm8k,locally_correct,2,6,middle,Qwen2.5-Math-72B-Instruct,dataset,1,1,"[1, 3]"
+gsm8k|gsm8k-396,gsm8k,locally_correct,2,5,middle,Qwen2.5-Math-72B-Instruct,dataset,1,1,[4]
+gsm8k|gsm8k-194|s1,gsm8k,locally_correct_pre_error,1,4,middle,Meta-Llama-3-8B-Instruct,dataset,0,0,[]
+gsm8k|gsm8k-376,gsm8k,locally_correct,2,6,middle,Qwen2.5-Math-72B-Instruct,dataset,1,1,"[3, 4]"
+gsm8k|gsm8k-275,gsm8k,locally_correct,1,4,middle,Llama-3.1-70B-Instruct,dataset,1,1,"[0, 3]"
+gsm8k|gsm8k-309,gsm8k,locally_correct,3,6,middle,Llama-3.1-70B-Instruct,dataset,1,0,[]
+gsm8k|gsm8k-291,gsm8k,locally_correct,1,4,middle,Llama-3.1-70B-Instruct,dataset,1,1,[2]
+gsm8k|gsm8k-203,gsm8k,locally_correct,1,4,middle,Llama-3.1-70B-Instruct,dataset,1,0,[]
+gsm8k|gsm8k-138|s1,gsm8k,locally_correct_pre_error,1,4,middle,Qwen2.5-Math-72B-Instruct,dataset,0,1,[2]
+gsm8k|gsm8k-301,gsm8k,locally_correct,3,6,middle,Meta-Llama-3-8B-Instruct,dataset,1,1,[4]
+gsm8k|gsm8k-388,gsm8k,locally_correct,1,4,middle,Qwen2.5-Math-72B-Instruct,dataset,1,0,[]
+gsm8k|gsm8k-281,gsm8k,locally_correct,3,6,middle,Meta-Llama-3-8B-Instruct,dataset,1,0,[]
+gsm8k|gsm8k-226,gsm8k,locally_correct,5,6,late,Meta-Llama-3-8B-Instruct,dataset,1,0,[]
+gsm8k|gsm8k-206,gsm8k,locally_correct,3,4,late,Qwen2.5-Math-7B-Instruct,dataset,1,0,[]
+gsm8k|gsm8k-351,gsm8k,locally_correct,4,5,late,Llama-3.1-70B-Instruct,dataset,1,0,[]
+gsm8k|gsm8k-303,gsm8k,locally_correct,3,5,late,Qwen2.5-Math-72B-Instruct,dataset,1,1,"[2, 1, 0]"
+gsm8k|gsm8k-345,gsm8k,locally_correct,5,6,late,Qwen2.5-Math-7B-Instruct,dataset,1,0,[]
+gsm8k|gsm8k-272,gsm8k,locally_correct,3,4,late,Meta-Llama-3-8B-Instruct,dataset,1,0,[]
+gsm8k|gsm8k-395,gsm8k,locally_correct,3,4,late,Llama-3.1-70B-Instruct,dataset,1,0,[]
+gsm8k|gsm8k-335,gsm8k,locally_correct,3,4,late,Llama-3.1-70B-Instruct,dataset,1,0,[]
+gsm8k|gsm8k-350,gsm8k,locally_correct,5,6,late,Llama-3.1-70B-Instruct,dataset,1,0,[]
+gsm8k|gsm8k-247,gsm8k,locally_correct,3,5,late,Qwen2.5-Math-72B-Instruct,dataset,1,0,[]
+gsm8k|gsm8k-261,gsm8k,locally_correct,3,4,late,Meta-Llama-3-8B-Instruct,dataset,1,0,[]
+gsm8k|gsm8k-384,gsm8k,locally_correct,3,4,late,Llama-3.1-70B-Instruct,dataset,1,1,[0]
+math|math-348,math,first_error,0,11,early,Meta-Llama-3-8B-Instruct,dataset,0,1,[9]
+math|math-477,math,first_error,0,6,early,Meta-Llama-3-8B-Instruct,dataset,0,0,[]
+math|math-165,math,first_error,1,8,early,Qwen2.5-Math-72B-Instruct,dataset,0,1,"[3, 7]"
+math|math-425,math,first_error,0,8,early,Qwen2.5-Math-72B-Instruct,dataset,0,0,[]
+math|math-148,math,first_error,2,13,early,Qwen2.5-Math-72B-Instruct,dataset,0,1,"[9, 11]"
+math|math-275,math,first_error,4,18,early,Qwen2.5-Math-7B-Instruct,dataset,0,1,"[3, 5, 2]"
+math|math-327,math,first_error,1,11,early,Qwen2.5-Math-72B-Instruct,dataset,0,1,"[0, 5, 6]"
+math|math-279,math,first_error,0,8,early,Qwen2.5-Math-7B-Instruct,dataset,0,1,"[1, 2, 5]"
+math|math-682,math,first_error,1,11,early,Qwen2.5-Math-72B-Instruct,dataset,1,1,"[0, 2, 6]"
+math|math-307,math,first_error,1,5,early,Qwen2.5-Math-7B-Instruct,dataset,0,1,[3]
+math|math-221,math,first_error,0,7,early,Qwen2.5-Math-72B-Instruct,dataset,0,1,[3]
+math|math-900,math,first_error,0,4,early,Meta-Llama-3-8B-Instruct,dataset,1,1,[1]
+math|math-282,math,first_error,1,9,early,Meta-Llama-3-8B-Instruct,dataset,0,1,"[0, 3]"
+math|math-15,math,first_error,1,4,middle,Meta-Llama-3-8B-Instruct,dataset,0,1,[2]
+math|math-363,math,first_error,2,6,middle,Meta-Llama-3-8B-Instruct,dataset,0,0,[]
+math|math-429,math,first_error,1,4,middle,Meta-Llama-3-8B-Instruct,dataset,0,1,[0]
+math|math-178,math,first_error,2,6,middle,Qwen2.5-Math-7B-Instruct,dataset,0,1,"[1, 0, 4]"
+math|math-469,math,first_error,4,9,middle,Qwen2.5-Math-7B-Instruct,dataset,0,1,"[6, 7, 0]"
+math|math-216,math,first_error,3,8,middle,Qwen2.5-Math-7B-Instruct,dataset,0,0,[]
+math|math-161,math,first_error,3,10,middle,Qwen2.5-Math-7B-Instruct,dataset,0,0,[]
+math|math-203,math,first_error,1,3,middle,Meta-Llama-3-8B-Instruct,dataset,0,1,[2]
+math|math-68,math,first_error,1,4,middle,Meta-Llama-3-8B-Instruct,dataset,0,1,[2]
+math|math-23,math,first_error,3,8,middle,Meta-Llama-3-8B-Instruct,dataset,0,0,[]
+math|math-276,math,first_error,2,7,middle,Qwen2.5-Math-7B-Instruct,dataset,0,1,[0]
+math|math-74,math,first_error,1,4,middle,Meta-Llama-3-8B-Instruct,dataset,0,0,[]
+math|math-274,math,first_error,2,5,middle,Qwen2.5-Math-72B-Instruct,dataset,0,1,[3]
+math|math-377,math,first_error,10,13,late,Qwen2.5-Math-7B-Instruct,dataset,0,1,"[12, 6, 5]"
+math|math-71,math,first_error,3,5,late,Qwen2.5-Math-72B-Instruct,dataset,0,1,[4]
+math|math-355,math,first_error,4,6,late,Qwen2.5-Math-72B-Instruct,dataset,0,1,[0]
+math|math-272,math,first_error,4,7,late,Qwen2.5-Math-7B-Instruct,dataset,0,1,"[2, 6]"
+math|math-109,math,first_error,5,8,late,Meta-Llama-3-8B-Instruct,dataset,0,1,"[4, 6]"
+math|math-8,math,first_error,2,4,late,Meta-Llama-3-8B-Instruct,dataset,0,0,[]
+math|math-233,math,first_error,5,7,late,Qwen2.5-Math-7B-Instruct,dataset,0,1,[6]
+math|math-187,math,first_error,7,8,late,Qwen2.5-Math-7B-Instruct,dataset,0,1,[0]
+math|math-550,math,first_error,3,5,late,Qwen2.5-Math-7B-Instruct,dataset,1,1,"[2, 0]"
+math|math-247,math,first_error,5,7,late,Qwen2.5-Math-7B-Instruct,dataset,0,1,[3]
+math|math-116,math,first_error,2,4,late,Qwen2.5-Math-72B-Instruct,dataset,0,0,[]
+math|math-62,math,first_error,2,3,late,Qwen2.5-Math-72B-Instruct,dataset,0,0,[]
+math|math-935,math,locally_correct,0,4,early,Meta-Llama-3-8B-Instruct,dataset,1,0,[]
+math|math-363|s1,math,locally_correct_pre_error,1,6,early,Meta-Llama-3-8B-Instruct,dataset,0,1,[0]
+math|math-771,math,locally_correct,0,12,early,Qwen2.5-Math-7B-Instruct,dataset,1,0,[]
+math|math-732,math,locally_correct,0,8,early,Qwen2.5-Math-72B-Instruct,dataset,1,1,[1]
+math|math-178|s1,math,locally_correct_pre_error,1,6,early,Qwen2.5-Math-7B-Instruct,dataset,0,1,"[0, 2, 4]"
+math|math-866,math,locally_correct,0,6,early,Qwen2.5-Math-7B-Instruct,dataset,1,1,"[2, 3]"
+math|math-596,math,locally_correct,1,8,early,Qwen2.5-Math-72B-Instruct,dataset,1,1,"[4, 5]"
+math|math-773,math,locally_correct,1,5,early,Qwen2.5-Math-72B-Instruct,dataset,1,1,"[2, 4]"
+math|math-469|s0,math,locally_correct_pre_error,0,9,early,Qwen2.5-Math-7B-Instruct,dataset,0,1,"[4, 6, 7]"
+math|math-148|s1,math,locally_correct_pre_error,1,13,early,Qwen2.5-Math-72B-Instruct,dataset,0,1,[7]
+math|math-275|s1,math,locally_correct_pre_error,1,18,early,Qwen2.5-Math-7B-Instruct,dataset,0,0,[]
+math|math-603,math,locally_correct,1,7,early,Qwen2.5-Math-72B-Instruct,dataset,1,1,"[2, 5]"
+math|math-216|s2,math,locally_correct_pre_error,2,8,early,Qwen2.5-Math-7B-Instruct,dataset,0,1,[0]
+math|math-822,math,locally_correct,3,6,middle,Qwen2.5-Math-7B-Instruct,dataset,1,1,[4]
+math|math-857,math,locally_correct,2,5,middle,Qwen2.5-Math-72B-Instruct,dataset,1,1,"[1, 4]"
+math|math-593,math,locally_correct,2,5,middle,Qwen2.5-Math-72B-Instruct,dataset,1,0,[]
+math|math-768,math,locally_correct,3,6,middle,Qwen2.5-Math-7B-Instruct,dataset,1,1,[1]
+math|math-570,math,locally_correct,1,3,middle,Qwen2.5-Math-72B-Instruct,dataset,1,1,[0]
+math|math-979,math,locally_correct,1,3,middle,Qwen2.5-Math-7B-Instruct,dataset,1,1,[0]
+math|math-586,math,locally_correct,2,7,middle,Qwen2.5-Math-72B-Instruct,dataset,1,1,[1]
+math|math-962,math,locally_correct,2,7,middle,Meta-Llama-3-8B-Instruct,dataset,1,1,"[1, 3, 4]"
+math|math-728,math,locally_correct,3,9,middle,Qwen2.5-Math-72B-Instruct,dataset,1,1,"[4, 5, 6]"
+math|math-707,math,locally_correct,1,3,middle,Qwen2.5-Math-7B-Instruct,dataset,1,1,[0]
+math|math-377|s6,math,locally_correct_pre_error,6,13,middle,Qwen2.5-Math-7B-Instruct,dataset,0,1,"[5, 4, 10]"
+math|math-71|s2,math,locally_correct_pre_error,2,5,middle,Qwen2.5-Math-72B-Instruct,dataset,0,0,[]
+math|math-600,math,locally_correct,5,6,late,Qwen2.5-Math-72B-Instruct,dataset,1,0,[]
+math|math-996,math,locally_correct,5,7,late,Qwen2.5-Math-7B-Instruct,dataset,1,1,"[6, 2, 1]"
+math|math-524,math,locally_correct,4,6,late,Meta-Llama-3-8B-Instruct,dataset,1,1,"[3, 5]"
+math|math-992,math,locally_correct,10,13,late,Qwen2.5-Math-72B-Instruct,dataset,1,1,"[7, 4]"
+math|math-903,math,locally_correct,5,8,late,Qwen2.5-Math-7B-Instruct,dataset,1,1,"[4, 3]"
+math|math-811,math,locally_correct,8,9,late,Qwen2.5-Math-72B-Instruct,dataset,1,1,[4]
+math|math-585,math,locally_correct,4,5,late,Qwen2.5-Math-72B-Instruct,dataset,1,1,[2]
+math|math-870,math,locally_correct,3,5,late,Qwen2.5-Math-7B-Instruct,dataset,1,0,[]
+math|math-615,math,locally_correct,3,5,late,Qwen2.5-Math-72B-Instruct,dataset,1,0,[]
+math|math-500,math,locally_correct,3,4,late,Qwen2.5-Math-72B-Instruct,dataset,1,0,[]
+math|math-598,math,locally_correct,10,13,late,Qwen2.5-Math-72B-Instruct,dataset,1,1,"[9, 8, 5]"
+math|math-562,math,locally_correct,3,4,late,Qwen2.5-Math-72B-Instruct,dataset,1,0,[]
+olympiadbench|olympiadbench-899,olympiadbench,first_error,0,3,early,Llama-3.1-70B-Instruct,dataset,1,0,[]
+olympiadbench|olympiadbench-426,olympiadbench,first_error,2,11,early,Qwen2.5-Math-7B-Instruct,dataset,0,1,"[1, 3, 4]"
+olympiadbench|olympiadbench-473,olympiadbench,first_error,1,10,early,Qwen2.5-Math-7B-Instruct,dataset,0,1,[8]
+olympiadbench|olympiadbench-295,olympiadbench,first_error,1,5,early,Qwen2.5-Math-7B-Instruct,dataset,0,0,[]
+olympiadbench|olympiadbench-488,olympiadbench,first_error,1,12,early,Qwen2.5-Math-72B-Instruct,dataset,0,0,[]
+olympiadbench|olympiadbench-308,olympiadbench,first_error,0,12,early,Qwen2.5-Math-7B-Instruct,dataset,0,1,[7]
+olympiadbench|olympiadbench-384,olympiadbench,first_error,2,8,early,Llama-3.1-70B-Instruct,dataset,0,1,"[0, 5]"
+olympiadbench|olympiadbench-329,olympiadbench,first_error,1,5,early,Qwen2.5-Math-72B-Instruct,dataset,0,0,[]
+olympiadbench|olympiadbench-339,olympiadbench,first_error,1,9,early,Qwen2.5-Math-72B-Instruct,dataset,0,1,"[6, 7]"
+olympiadbench|olympiadbench-63,olympiadbench,first_error,2,8,early,Llama-3.1-70B-Instruct,dataset,0,1,"[1, 0, 6]"
+olympiadbench|olympiadbench-42,olympiadbench,first_error,1,25,early,Qwen2.5-Math-7B-Instruct,dataset,0,1,"[0, 6, 24]"
+olympiadbench|olympiadbench-390,olympiadbench,first_error,3,14,early,Qwen2.5-Math-7B-Instruct,dataset,0,0,[]
+olympiadbench|olympiadbench-150,olympiadbench,first_error,1,10,early,Qwen2.5-Math-72B-Instruct,dataset,0,1,[5]
+olympiadbench|olympiadbench-178,olympiadbench,first_error,3,10,middle,Llama-3.1-70B-Instruct,sibling_trajectory,0,1,"[2, 1, 5]"
+olympiadbench|olympiadbench-25,olympiadbench,first_error,2,6,middle,Qwen2.5-Math-7B-Instruct,dataset,0,0,[]
+olympiadbench|olympiadbench-314,olympiadbench,first_error,3,8,middle,Llama-3.1-70B-Instruct,dataset,0,1,"[4, 5, 0]"
+olympiadbench|olympiadbench-186,olympiadbench,first_error,5,9,middle,Qwen2.5-Math-72B-Instruct,dataset,0,1,"[6, 8, 1]"
+olympiadbench|olympiadbench-492,olympiadbench,first_error,3,9,middle,Llama-3.1-70B-Instruct,dataset,0,1,"[4, 5]"
+olympiadbench|olympiadbench-518,olympiadbench,first_error,4,8,middle,Llama-3.1-70B-Instruct,dataset,1,1,[3]
+olympiadbench|olympiadbench-142,olympiadbench,first_error,2,5,middle,Qwen2.5-Math-7B-Instruct,dataset,0,1,"[1, 3, 4]"
+olympiadbench|olympiadbench-406,olympiadbench,first_error,2,5,middle,Llama-3.1-70B-Instruct,dataset,0,0,[]
+olympiadbench|olympiadbench-138,olympiadbench,first_error,7,16,middle,Llama-3.1-70B-Instruct,dataset,0,1,[2]
+olympiadbench|olympiadbench-276,olympiadbench,first_error,4,9,middle,Qwen2.5-Math-72B-Instruct,dataset,0,1,"[3, 6]"
+olympiadbench|olympiadbench-78,olympiadbench,first_error,3,8,middle,Qwen2.5-Math-72B-Instruct,dataset,0,1,[1]
+olympiadbench|olympiadbench-5,olympiadbench,first_error,2,7,middle,Qwen2.5-Math-7B-Instruct,dataset,0,0,[]
+olympiadbench|olympiadbench-213,olympiadbench,first_error,2,6,middle,Qwen2.5-Math-7B-Instruct,dataset,0,1,"[3, 4]"
+olympiadbench|olympiadbench-854,olympiadbench,first_error,4,6,late,Qwen2.5-Math-7B-Instruct,dataset,1,1,[0]
+olympiadbench|olympiadbench-129,olympiadbench,first_error,2,4,late,Llama-3.1-70B-Instruct,dataset,0,1,[1]
+olympiadbench|olympiadbench-801,olympiadbench,first_error,9,12,late,Qwen2.5-Math-7B-Instruct,dataset,1,1,"[10, 7, 5]"
+olympiadbench|olympiadbench-109,olympiadbench,first_error,10,11,late,Llama-3.1-70B-Instruct,dataset,0,0,[]
+olympiadbench|olympiadbench-107,olympiadbench,first_error,7,11,late,Qwen2.5-Math-7B-Instruct,dataset,0,1,"[6, 8, 4]"
+olympiadbench|olympiadbench-79,olympiadbench,first_error,11,13,late,Llama-3.1-70B-Instruct,dataset,0,1,"[10, 9, 8]"
+olympiadbench|olympiadbench-292,olympiadbench,first_error,25,27,late,Llama-3.1-70B-Instruct,dataset,0,1,[4]
+olympiadbench|olympiadbench-210,olympiadbench,first_error,4,7,late,Qwen2.5-Math-7B-Instruct,dataset,0,0,[]
+olympiadbench|olympiadbench-163,olympiadbench,first_error,3,5,late,Qwen2.5-Math-72B-Instruct,dataset,0,1,"[2, 1, 0]"
+olympiadbench|olympiadbench-398,olympiadbench,first_error,3,5,late,Llama-3.1-70B-Instruct,dataset,0,0,[]
+olympiadbench|olympiadbench-245,olympiadbench,first_error,4,6,late,Qwen2.5-Math-7B-Instruct,dataset,0,1,"[3, 1, 0]"
+olympiadbench|olympiadbench-225,olympiadbench,first_error,4,7,late,Qwen2.5-Math-72B-Instruct,dataset,0,1,"[3, 5, 2]"
+olympiadbench|olympiadbench-854|s1,olympiadbench,locally_correct_pre_error,1,6,early,Qwen2.5-Math-7B-Instruct,dataset,1,0,[]
+olympiadbench|olympiadbench-819,olympiadbench,locally_correct,1,12,early,Llama-3.1-70B-Instruct,dataset,1,1,"[0, 2, 3]"
+olympiadbench|olympiadbench-178|s0,olympiadbench,locally_correct_pre_error,0,10,early,Llama-3.1-70B-Instruct,sibling_trajectory,0,1,"[2, 3, 7]"
+olympiadbench|olympiadbench-25|s0,olympiadbench,locally_correct_pre_error,0,6,early,Qwen2.5-Math-7B-Instruct,dataset,0,1,"[3, 4, 5]"
+olympiadbench|olympiadbench-314|s2,olympiadbench,locally_correct_pre_error,2,8,early,Llama-3.1-70B-Instruct,dataset,0,1,[1]
+olympiadbench|olympiadbench-999,olympiadbench,locally_correct,1,11,early,Qwen2.5-Math-7B-Instruct,dataset,1,1,"[0, 2]"
+olympiadbench|olympiadbench-492|s0,olympiadbench,locally_correct_pre_error,0,9,early,Llama-3.1-70B-Instruct,dataset,0,0,[]
+olympiadbench|olympiadbench-426|s1,olympiadbench,locally_correct_pre_error,1,11,early,Qwen2.5-Math-7B-Instruct,dataset,0,1,"[2, 3, 4]"
+olympiadbench|olympiadbench-801|s2,olympiadbench,locally_correct_pre_error,2,12,early,Qwen2.5-Math-7B-Instruct,dataset,1,0,[]
+olympiadbench|olympiadbench-518|s2,olympiadbench,locally_correct_pre_error,2,8,early,Llama-3.1-70B-Instruct,dataset,1,0,[]
+olympiadbench|olympiadbench-142|s1,olympiadbench,locally_correct_pre_error,1,5,early,Qwen2.5-Math-7B-Instruct,dataset,0,1,"[2, 3]"
+olympiadbench|olympiadbench-406|s1,olympiadbench,locally_correct_pre_error,1,5,early,Llama-3.1-70B-Instruct,dataset,0,1,"[3, 4]"
+olympiadbench|olympiadbench-138|s0,olympiadbench,locally_correct_pre_error,0,16,early,Llama-3.1-70B-Instruct,dataset,0,0,[]
+olympiadbench|olympiadbench-186|s3,olympiadbench,locally_correct_pre_error,3,9,middle,Qwen2.5-Math-72B-Instruct,dataset,0,0,[]
+olympiadbench|olympiadbench-129|s1,olympiadbench,locally_correct_pre_error,1,4,middle,Llama-3.1-70B-Instruct,dataset,0,1,[2]
+olympiadbench|olympiadbench-885,olympiadbench,locally_correct,1,4,middle,Llama-3.1-70B-Instruct,dataset,1,1,[2]
+olympiadbench|olympiadbench-276|s3,olympiadbench,locally_correct_pre_error,3,9,middle,Qwen2.5-Math-72B-Instruct,dataset,0,1,[6]
+olympiadbench|olympiadbench-889,olympiadbench,locally_correct,2,5,middle,Qwen2.5-Math-7B-Instruct,dataset,1,1,"[1, 3]"
+olympiadbench|olympiadbench-109|s4,olympiadbench,locally_correct_pre_error,4,11,middle,Llama-3.1-70B-Instruct,dataset,0,1,"[3, 2, 0]"
+olympiadbench|olympiadbench-107|s6,olympiadbench,locally_correct_pre_error,6,11,middle,Qwen2.5-Math-7B-Instruct,dataset,0,1,"[7, 4, 8]"
+olympiadbench|olympiadbench-292|s10,olympiadbench,locally_correct_pre_error,10,27,middle,Llama-3.1-70B-Instruct,dataset,0,1,"[8, 12, 6]"
+olympiadbench|olympiadbench-776,olympiadbench,locally_correct,2,5,middle,Llama-3.1-70B-Instruct,dataset,1,1,[1]
+olympiadbench|olympiadbench-567,olympiadbench,locally_correct,8,14,middle,Qwen2.5-Math-7B-Instruct,dataset,1,1,"[10, 5, 12]"
+olympiadbench|olympiadbench-563,olympiadbench,locally_correct,1,4,middle,Llama-3.1-70B-Instruct,dataset,1,0,[]
+olympiadbench|olympiadbench-77,olympiadbench,locally_correct_pre_error,3,10,middle,Llama-3.1-70B-Instruct,dataset,0,1,"[2, 4, 1]"
+olympiadbench|olympiadbench-648,olympiadbench,locally_correct,2,3,late,Llama-3.1-70B-Instruct,dataset,1,1,[0]
+olympiadbench|olympiadbench-596,olympiadbench,locally_correct,10,16,late,Qwen2.5-Math-7B-Instruct,dataset,1,1,"[7, 6, 5]"
+olympiadbench|olympiadbench-989,olympiadbench,locally_correct,10,13,late,Qwen2.5-Math-7B-Instruct,dataset,1,1,[11]
+olympiadbench|olympiadbench-933,olympiadbench,locally_correct,6,7,late,Qwen2.5-Math-72B-Instruct,dataset,1,1,[3]
+olympiadbench|olympiadbench-750,olympiadbench,locally_correct,7,8,late,Qwen2.5-Math-72B-Instruct,dataset,1,0,[]
+olympiadbench|olympiadbench-637,olympiadbench,locally_correct,5,8,late,Qwen2.5-Math-72B-Instruct,dataset,1,1,[2]
+olympiadbench|olympiadbench-553,olympiadbench,locally_correct,5,6,late,Llama-3.1-70B-Instruct,dataset,1,0,[]
+olympiadbench|olympiadbench-766,olympiadbench,locally_correct,4,6,late,Qwen2.5-Math-7B-Instruct,dataset,1,1,[5]
+olympiadbench|olympiadbench-573,olympiadbench,locally_correct,6,10,late,Llama-3.1-70B-Instruct,dataset,1,1,"[7, 4, 8]"
+olympiadbench|olympiadbench-980,olympiadbench,locally_correct,4,7,late,Qwen2.5-Math-7B-Instruct,dataset,1,1,[3]
+olympiadbench|olympiadbench-757,olympiadbench,locally_correct,6,7,late,Qwen2.5-Math-72B-Instruct,dataset,1,0,[]
+olympiadbench|olympiadbench-902,olympiadbench,locally_correct,6,8,late,Llama-3.1-70B-Instruct,dataset,1,1,[7]
+omnimath|omnimath-469,omnimath,first_error,4,23,early,Llama-3.1-70B-Instruct,dataset,0,0,[]
+omnimath|omnimath-209,omnimath,first_error,1,7,early,Llama-3.1-70B-Instruct,dataset,0,1,"[3, 5]"
+omnimath|omnimath-533,omnimath,first_error,1,8,early,Llama-3.1-70B-Instruct,dataset,1,1,[0]
+omnimath|omnimath-821,omnimath,first_error,1,5,early,Qwen2.5-Math-7B-Instruct,dataset,1,1,[3]
+omnimath|omnimath-314,omnimath,first_error,2,14,early,Llama-3.1-70B-Instruct,dataset,0,1,"[1, 3, 6]"
+omnimath|omnimath-129,omnimath,first_error,2,11,early,Llama-3.1-70B-Instruct,dataset,0,1,"[0, 4]"
+omnimath|omnimath-245,omnimath,first_error,2,9,early,Qwen2.5-Math-72B-Instruct,dataset,0,1,[4]
+omnimath|omnimath-124,omnimath,first_error,1,6,early,Qwen2.5-Math-7B-Instruct,dataset,0,0,[]
+omnimath|omnimath-460,omnimath,first_error,2,9,early,Llama-3.1-70B-Instruct,dataset,0,1,"[1, 0, 6]"
+omnimath|omnimath-62,omnimath,first_error,1,6,early,Llama-3.1-70B-Instruct,dataset,0,1,"[2, 3, 5]"
+omnimath|omnimath-631,omnimath,first_error,1,9,early,Qwen2.5-Math-7B-Instruct,dataset,1,0,[]
+omnimath|omnimath-895,omnimath,first_error,1,9,early,Llama-3.1-70B-Instruct,dataset,1,1,"[2, 6]"
+omnimath|omnimath-144,omnimath,first_error,2,10,early,Llama-3.1-70B-Instruct,dataset,0,1,[6]
+omnimath|omnimath-163,omnimath,first_error,4,9,middle,Qwen2.5-Math-7B-Instruct,dataset,0,0,[]
+omnimath|omnimath-27,omnimath,first_error,3,7,middle,Qwen2.5-Math-7B-Instruct,dataset,0,1,"[4, 1]"
+omnimath|omnimath-258,omnimath,first_error,2,5,middle,Qwen2.5-Math-72B-Instruct,dataset,0,1,[0]
+omnimath|omnimath-535,omnimath,first_error,2,6,middle,Llama-3.1-70B-Instruct,dataset,1,1,"[3, 0, 5]"
+omnimath|omnimath-854,omnimath,first_error,3,6,middle,Llama-3.1-70B-Instruct,dataset,1,1,"[4, 1]"
+omnimath|omnimath-709,omnimath,first_error,1,4,middle,Qwen2.5-Math-72B-Instruct,dataset,1,1,[2]
+omnimath|omnimath-37,omnimath,first_error,1,4,middle,Qwen2.5-Math-7B-Instruct,dataset,0,0,[]
+omnimath|omnimath-961,omnimath,first_error,2,6,middle,Qwen2.5-Math-7B-Instruct,dataset,1,1,"[1, 3, 4]"
+omnimath|omnimath-891,omnimath,first_error,2,5,middle,Qwen2.5-Math-72B-Instruct,dataset,1,1,[3]
+omnimath|omnimath-25,omnimath,first_error,5,10,middle,Qwen2.5-Math-72B-Instruct,dataset,0,1,[6]
+omnimath|omnimath-385,omnimath,first_error,4,8,middle,Qwen2.5-Math-7B-Instruct,dataset,0,1,"[3, 6]"
+omnimath|omnimath-665,omnimath,first_error,2,5,middle,Qwen2.5-Math-7B-Instruct,dataset,1,0,[]
+omnimath|omnimath-299,omnimath,first_error,3,6,middle,Llama-3.1-70B-Instruct,dataset,0,1,"[2, 4, 1]"
+omnimath|omnimath-33,omnimath,first_error,4,6,late,Qwen2.5-Math-72B-Instruct,dataset,0,0,[]
+omnimath|omnimath-729,omnimath,first_error,3,5,late,Qwen2.5-Math-72B-Instruct,dataset,1,1,"[2, 1, 0]"
+omnimath|omnimath-175,omnimath,first_error,2,4,late,Qwen2.5-Math-7B-Instruct,dataset,0,0,[]
+omnimath|omnimath-598,omnimath,first_error,5,8,late,Qwen2.5-Math-72B-Instruct,dataset,1,1,[6]
+omnimath|omnimath-57,omnimath,first_error,4,6,late,Qwen2.5-Math-7B-Instruct,dataset,0,1,[1]
+omnimath|omnimath-312,omnimath,first_error,3,4,late,Llama-3.1-70B-Instruct,dataset,0,1,[0]
+omnimath|omnimath-770,omnimath,first_error,4,6,late,Qwen2.5-Math-7B-Instruct,dataset,1,0,[]
+omnimath|omnimath-934,omnimath,first_error,5,8,late,Llama-3.1-70B-Instruct,dataset,1,1,[6]
+omnimath|omnimath-479,omnimath,first_error,7,11,late,Qwen2.5-Math-7B-Instruct,dataset,0,0,[]
+omnimath|omnimath-261,omnimath,first_error,18,19,late,Qwen2.5-Math-72B-Instruct,dataset,0,0,[]
+omnimath|omnimath-621,omnimath,first_error,4,7,late,Qwen2.5-Math-72B-Instruct,dataset,1,1,[0]
+omnimath|omnimath-160,omnimath,first_error,10,13,late,Qwen2.5-Math-72B-Instruct,dataset,0,1,[2]
+omnimath|omnimath-729|s0,omnimath,locally_correct_pre_error,0,5,early,Qwen2.5-Math-72B-Instruct,dataset,1,1,"[1, 2, 3]"
+omnimath|omnimath-469|s1,omnimath,locally_correct_pre_error,1,23,early,Llama-3.1-70B-Instruct,dataset,0,1,"[7, 9, 14]"
+omnimath|omnimath-163|s1,omnimath,locally_correct_pre_error,1,9,early,Qwen2.5-Math-7B-Instruct,dataset,0,1,[8]
+omnimath|omnimath-27|s0,omnimath,locally_correct_pre_error,0,7,early,Qwen2.5-Math-7B-Instruct,dataset,0,0,[]
+omnimath|omnimath-314|s0,omnimath,locally_correct_pre_error,0,14,early,Llama-3.1-70B-Instruct,dataset,0,1,[13]
+omnimath|omnimath-129|s0,omnimath,locally_correct_pre_error,0,11,early,Llama-3.1-70B-Instruct,dataset,0,1,"[2, 4, 6]"
+omnimath|omnimath-258|s1,omnimath,locally_correct_pre_error,1,5,early,Qwen2.5-Math-72B-Instruct,dataset,0,1,[3]
+omnimath|omnimath-535|s0,omnimath,locally_correct_pre_error,0,6,early,Llama-3.1-70B-Instruct,dataset,1,1,"[2, 3]"
+omnimath|omnimath-175|s0,omnimath,locally_correct_pre_error,0,4,early,Qwen2.5-Math-7B-Instruct,dataset,0,0,[]
+omnimath|omnimath-245|s0,omnimath,locally_correct_pre_error,0,9,early,Qwen2.5-Math-72B-Instruct,dataset,0,1,"[1, 3, 5]"
+omnimath|omnimath-854|s0,omnimath,locally_correct_pre_error,0,6,early,Llama-3.1-70B-Instruct,dataset,1,0,[]
+omnimath|omnimath-460|s1,omnimath,locally_correct_pre_error,1,9,early,Llama-3.1-70B-Instruct,dataset,0,1,"[2, 6]"
+omnimath|omnimath-598|s1,omnimath,locally_correct_pre_error,1,8,early,Qwen2.5-Math-72B-Instruct,dataset,1,1,[0]
+omnimath|omnimath-33|s2,omnimath,locally_correct_pre_error,2,6,middle,Qwen2.5-Math-72B-Instruct,dataset,0,0,[]
+omnimath|omnimath-748,omnimath,locally_correct,1,4,middle,Llama-3.1-70B-Instruct,dataset,1,0,[]
+omnimath|omnimath-616,omnimath,locally_correct,1,4,middle,Qwen2.5-Math-72B-Instruct,dataset,1,1,"[0, 2]"
+omnimath|omnimath-768,omnimath,locally_correct,3,7,middle,Qwen2.5-Math-7B-Instruct,dataset,1,1,"[4, 5]"
+omnimath|omnimath-818,omnimath,locally_correct,6,11,middle,Qwen2.5-Math-7B-Instruct,dataset,1,1,"[7, 3, 2]"
+omnimath|omnimath-940,omnimath,locally_correct,4,9,middle,Llama-3.1-70B-Instruct,dataset,1,1,[5]
+omnimath|omnimath-716,omnimath,locally_correct,1,4,middle,Llama-3.1-70B-Instruct,dataset,1,1,"[0, 2, 3]"
+omnimath|omnimath-25|s4,omnimath,locally_correct_pre_error,4,10,middle,Qwen2.5-Math-72B-Instruct,dataset,0,0,[]
+omnimath|omnimath-424,omnimath,locally_correct_pre_error,2,7,middle,Qwen2.5-Math-72B-Instruct,dataset,0,1,[0]
+omnimath|omnimath-506,omnimath,locally_correct_pre_error,3,9,middle,Qwen2.5-Math-72B-Instruct,dataset,1,1,"[2, 5]"
+omnimath|omnimath-929,omnimath,locally_correct,4,10,middle,Qwen2.5-Math-72B-Instruct,dataset,1,1,"[8, 9]"
+omnimath|omnimath-914,omnimath,locally_correct,2,6,middle,Qwen2.5-Math-72B-Instruct,dataset,1,1,"[1, 0]"
+omnimath|omnimath-935,omnimath,locally_correct,7,11,late,Qwen2.5-Math-72B-Instruct,dataset,1,1,[6]
+omnimath|omnimath-762,omnimath,locally_correct,3,5,late,Llama-3.1-70B-Instruct,dataset,1,1,"[2, 1, 0]"
+omnimath|omnimath-312|s2,omnimath,locally_correct_pre_error,2,4,late,Llama-3.1-70B-Instruct,dataset,0,0,[]
+omnimath|omnimath-564,omnimath,locally_correct,8,10,late,Qwen2.5-Math-72B-Instruct,dataset,1,1,"[9, 6, 4]"
+omnimath|omnimath-565,omnimath,locally_correct,6,8,late,Qwen2.5-Math-72B-Instruct,dataset,1,1,[4]
+omnimath|omnimath-261|s14,omnimath,locally_correct_pre_error,14,19,late,Qwen2.5-Math-72B-Instruct,dataset,0,1,"[13, 15, 12]"
+omnimath|omnimath-978,omnimath,locally_correct,5,8,late,Qwen2.5-Math-7B-Instruct,dataset,1,1,"[4, 3]"
+omnimath|omnimath-795,omnimath,locally_correct,2,4,late,Qwen2.5-Math-72B-Instruct,dataset,1,0,[]
+omnimath|omnimath-949,omnimath,locally_correct,6,7,late,Qwen2.5-Math-7B-Instruct,dataset,1,0,[]
+omnimath|omnimath-328,omnimath,locally_correct_pre_error,4,7,late,Qwen2.5-Math-7B-Instruct,dataset,0,1,"[2, 1]"
+omnimath|omnimath-809,omnimath,locally_correct,2,3,late,Qwen2.5-Math-72B-Instruct,dataset,1,0,[]
+omnimath|omnimath-831,omnimath,locally_correct,7,8,late,Qwen2.5-Math-7B-Instruct,dataset,1,0,[]

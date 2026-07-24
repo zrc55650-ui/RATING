@@ -22,4 +22,4 @@
 
 平均正效应不意味着每个 low-rated harmful step 都稳定获益。部署型 pruning 规则仍需要 trajectory-state validation 与 rollback。Placebo pure-semantic 分组仅限 eligible steps。
 
-Audit-corrected stability labels 尚待人工 Judge Audit 完成后进行 sensitivity analysis。
+最终 Judge Audit 已通过 hard-stop gate，并完成 audited-label substitution sensitivity。由于 200-output audit 为目的性分层抽样，该检查不作为 600 个 step 的总体标签校正；完整结果见 `judge_audit_report.md`。

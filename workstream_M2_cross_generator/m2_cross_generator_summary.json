@@ -1,0 +1,6 @@
+{
+  "generator": "microsoft/phi-4",
+  "steps_analyzed": 300,
+  "sign_agreement_nonzero_effects": 0.65,
+  "nonzero_pairs": 80
+}
