@@ -1,6 +1,6 @@
 # Workstream F Final Tables
 
-> **Submission gate: FAIL.** These tables are reproducible candidate estimates, but automated outcome labels are not frozen because Judge-human agreement is 88.0%.
+> **Submission gate: PASS.** The Judge Audit cleared its pre-specified agreement and condition-bias thresholds.
 
 ## Table 1. Full-cohort target deletion effects
 
@@ -32,6 +32,6 @@ Denominator: 511 matched target steps / 1,514 placebo runs. All effects are perc
 
 | Outputs | Agreement | Precision | Recall | F1 | TP | TN | FP | FN | Max condition bias | Pair-transition agreement | Gate |
 |---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
-| 200 | 88.0% | 84.2% | 89.9% | 87.0% | 80 | 96 | 15 | 9 | 3.4 pp | 71.7% | **FAIL** |
+| 200 | 93.5% | 92.6% | 93.6% | 93.1% | 88 | 99 | 7 | 6 | 2.3 pp | 91.7% | **PASS** |
 
-The preregistered hard stop is triggered by agreement below 90%. Do not present Tables 1–2 as audit-cleared estimates until remediation is complete.
+The preregistered hard-stop gate passed. Because agreement remains below the stricter 95% retain-without-remediation threshold, Tables 1–2 should be accompanied by the audit diagnostics and described as passing with sensitivity qualification.

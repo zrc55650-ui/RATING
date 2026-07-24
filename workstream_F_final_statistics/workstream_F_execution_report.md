@@ -1,6 +1,6 @@
 # Workstream F Execution Report
 
-The full statistics/tables/figures pipeline completed and passed all technical consistency checks. The paper-level freeze remains blocked by the failed Judge Audit.
+The full statistics/tables/figures pipeline completed and passed all technical consistency checks. The Judge Audit hard-stop gate passed; the audit tier is PASS_WITH_SENSITIVITY.
 
 ## Candidate headline numbers
 
@@ -10,10 +10,10 @@ The full statistics/tables/figures pipeline completed and passed all technical c
 
 ## Completed supporting work
 
-- Judge Audit: completed on 200 outputs; gate **FAIL**.
+- Judge Audit: completed on 200 outputs; gate **PASS**.
 - Qualitative cases: 8/8 verified from 78 human-reviewed outputs.
 - Main tables, appendix tables, four main figures, figure-source CSVs, and `numbers_for_paper.json` regenerated from one script.
 
-## Required before paper freeze
+## Audit qualification
 
-Remediate the Judge gate with an independent judge, symbolic evaluator, or expanded human review of each conclusion-critical subset, then rerun this script.
+No hard-stop remediation is required. Report the 93.5% agreement, condition diagnostics, and pair-transition agreement alongside outcome-dependent claims because the stricter 95% threshold was not met.

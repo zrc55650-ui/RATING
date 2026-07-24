@@ -39,30 +39,13 @@ REQUIRED_INPUTS = [
     "qualitative_cases_summary.json",
 ]
 
-PACKAGED_INPUTS = {
-    "judge_audit_sampling_manifest.csv": (
-        ROOT / "workstream_A_judge_audit" / "judge_audit_sampling_manifest.csv"
-    ),
-    "judge_audit_adjudicated.csv": (
-        ROOT / "workstream_A_judge_audit" / "judge_audit_adjudicated.csv"
-    ),
-    "qualitative_cases_verified.csv": (
-        ROOT
-        / "workstream_E_qualitative_case_study"
-        / "qualitative_cases_verified.csv"
-    ),
-    "qualitative_cases_summary.json": (
-        ROOT
-        / "workstream_E_qualitative_case_study"
-        / "qualitative_cases_summary.json"
-    ),
-}
-
 ANALYSIS_SCRIPTS = [
+    "analyze_judge_audit.py",
     "run_predictive_analysis.py",
     "run_stability_analysis.py",
     "run_placebo_eligibility_audit.py",
     "build_qualitative_candidates.py",
+    "finalize_qualitative_cases.py",
 ]
 
 WORKSTREAM_F_OUTPUTS = [
@@ -86,7 +69,8 @@ WORKSTREAM_F_OUTPUTS = [
 
 
 def input_path(name: str) -> Path:
-    return PACKAGED_INPUTS.get(name, ROOT / name)
+    """Resolve analytical inputs from the workspace-root single source."""
+    return ROOT / name
 
 
 def verify_inputs() -> None:
@@ -453,6 +437,12 @@ def compute_judge_audit() -> dict:
         pair_agreements.append(auto_transition == human_transition)
     pair_agreement = mean(pair_agreements)
     gate_pass = agreement >= 0.90 and max_bias <= 5.0
+    strict_pass = agreement >= 0.95 and max_bias < 3.0
+    review_tier = (
+        "UNCONDITIONAL_PASS"
+        if strict_pass
+        else ("PASS_WITH_SENSITIVITY" if gate_pass else "HARD_STOP")
+    )
     return {
         "completed": True,
         "n_outputs": len(rows),
@@ -474,11 +464,15 @@ def compute_judge_audit() -> dict:
         "pair_transition_agreement": round(pair_agreement, 6),
         "hard_stop_rule": "PASS iff agreement >= 90% and max absolute condition bias <= 5 pp",
         "gate": "PASS" if gate_pass else "FAIL",
+        "review_tier": review_tier,
         "labels_frozen": gate_pass,
         "remediation_required": not gate_pass,
         "sensitivity_note": (
             "No population correction is estimated from this purposive, "
             "stratified 200-output audit sample."
+        ),
+        "label_substitution_sensitivity": read_csv(
+            ROOT / "judge_audit_label_substitution_sensitivity.csv"
         ),
     }
 
@@ -888,8 +882,16 @@ def write_final_tables(numbers: dict) -> None:
         f"{audit['max_absolute_condition_bias_pp']:.1f} pp | "
         f"{audit['pair_transition_agreement']:.1%} | **{audit['gate']}** |",
         "",
-        "The preregistered hard stop is triggered by agreement below 90%. "
-        "Do not present Tables 1–2 as audit-cleared estimates until remediation is complete.",
+        (
+            "The preregistered hard-stop gate passed. Because agreement remains "
+            "below the stricter 95% retain-without-remediation threshold, Tables "
+            "1–2 should be accompanied by the audit diagnostics and described as "
+            "passing with sensitivity qualification."
+            if audit["gate"] == "PASS"
+            else
+            "The preregistered hard stop was triggered. Do not present Tables "
+            "1–2 as audit-cleared estimates until remediation is complete."
+        ),
         "",
     ]
     (ROOT / "final_tables.md").write_text("\n".join(lines), encoding="utf-8")
@@ -944,8 +946,11 @@ def write_appendix_tables(numbers: dict) -> None:
             )
     lines += [
         "",
-        "Predictive outcomes inherit the failed Judge gate. Model E is an "
-        "extra-compute/oracle analysis.",
+        (
+            "Predictive outcomes use the frozen automated labels under a "
+            f"{numbers['judge_audit']['review_tier']} Judge Audit decision. "
+            "Model E is an extra-compute/oracle analysis."
+        ),
         "",
         "## A4. Qualitative verification",
         "",
@@ -985,14 +990,23 @@ def write_consistency_report(numbers: dict, checks: list[dict]) -> None:
         "- Figure 2 uses `step_type_human_calibrated`: Essential 198, Redundant 199, "
         "Harmful 203. A total of 164/600 labels differ between these fields.",
         "",
-        "## Blocking decision",
+        "## Freeze decision",
         "",
-        "Judge Audit is complete, but its hard-stop gate failed: binary agreement was "
-        f"{audit['binary_agreement']:.1%}, below 90%; maximum condition bias was "
-        f"{audit['max_absolute_condition_bias_pp']:.1f} pp. Therefore the current "
-        "automated outcome labels and all outcome-dependent headline estimates remain "
-        "candidate values pending an independent judge, symbolic evaluator, or expanded "
-        "human review of conclusion-critical subsets.",
+        (
+            "Judge Audit passed the hard-stop gate: binary agreement was "
+            f"{audit['binary_agreement']:.1%} and maximum condition bias was "
+            f"{audit['max_absolute_condition_bias_pp']:.1f} pp. The project-designated "
+            "adjudicated file is frozen as the single audit truth source. Because "
+            "agreement is below 95%, the result is classified as "
+            f"`{audit['review_tier']}` and the audit diagnostics remain a required "
+            "sensitivity qualification."
+            if audit["gate"] == "PASS"
+            else
+            "Judge Audit failed the hard-stop gate: binary agreement was "
+            f"{audit['binary_agreement']:.1%} and maximum condition bias was "
+            f"{audit['max_absolute_condition_bias_pp']:.1f} pp. Outcome-dependent "
+            "headline estimates remain candidate values pending remediation."
+        ),
         "",
     ]
     (ROOT / "workstream_F_consistency_audit.md").write_text(
@@ -1015,8 +1029,16 @@ def write_results_report(numbers: dict) -> None:
     lines = [
         "# Workstream F Execution Report",
         "",
-        "The full statistics/tables/figures pipeline completed and passed all technical "
-        "consistency checks. The paper-level freeze remains blocked by the failed Judge Audit.",
+        (
+            "The full statistics/tables/figures pipeline completed and passed all "
+            "technical consistency checks. The Judge Audit hard-stop gate passed; "
+            f"the audit tier is {audit['review_tier']}."
+            if audit["gate"] == "PASS"
+            else
+            "The full statistics/tables/figures pipeline completed and passed all "
+            "technical consistency checks. The paper-level freeze remains blocked "
+            "by the failed Judge Audit."
+        ),
         "",
         "## Candidate headline numbers",
         "",
@@ -1042,10 +1064,19 @@ def write_results_report(numbers: dict) -> None:
         "- Main tables, appendix tables, four main figures, figure-source CSVs, and "
         "`numbers_for_paper.json` regenerated from one script.",
         "",
-        "## Required before paper freeze",
+        "## Audit qualification",
         "",
-        "Remediate the Judge gate with an independent judge, symbolic evaluator, or "
-        "expanded human review of each conclusion-critical subset, then rerun this script.",
+        (
+            "No hard-stop remediation is required. Report the "
+            f"{audit['binary_agreement']:.1%} agreement, condition diagnostics, "
+            "and pair-transition agreement alongside "
+            "outcome-dependent claims because the stricter 95% threshold was not met."
+            if audit["gate"] == "PASS"
+            else
+            "Remediate the Judge gate with an independent judge, symbolic evaluator, "
+            "or expanded human review of each conclusion-critical subset, then rerun "
+            "this script."
+        ),
         "",
     ]
     (ROOT / "workstream_F_execution_report.md").write_text(

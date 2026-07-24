@@ -1,8 +1,8 @@
 {
-  "analysis_status": "GENERATED_BUT_BLOCKED_BY_JUDGE_AUDIT",
-  "submission_ready": false,
-  "automated_outcome_labels_frozen": false,
-  "blocking_reason": "Judge Audit hard-stop gate failed (88.0% agreement; 3.4 pp maximum absolute condition bias).",
+  "analysis_status": "READY_TO_FREEZE",
+  "submission_ready": true,
+  "automated_outcome_labels_frozen": true,
+  "blocking_reason": null,
   "bootstrap_replicates": 5000,
   "seeds": {
     "core_cluster_bootstrap": 20260722,
@@ -1845,27 +1845,27 @@
     "completed": true,
     "n_outputs": 200,
     "confusion_matrix": {
-      "tp": 80,
-      "tn": 96,
-      "fp": 15,
-      "fn": 9
+      "tp": 88,
+      "tn": 99,
+      "fp": 7,
+      "fn": 6
     },
-    "binary_agreement": 0.88,
-    "correct_class_precision": 0.842105,
-    "correct_class_recall": 0.898876,
-    "correct_class_f1": 0.869565,
+    "binary_agreement": 0.935,
+    "correct_class_precision": 0.926316,
+    "correct_class_recall": 0.93617,
+    "correct_class_f1": 0.931217,
     "cohens_kappa": null,
     "cohens_kappa_note": "Not applicable to inter-human reliability because the completed sheet contains one human adjudicator rather than double annotation.",
-    "false_positive_rate_among_human_wrong": 0.135135,
-    "false_negative_rate_among_human_correct": 0.101124,
+    "false_positive_rate_among_human_wrong": 0.066038,
+    "false_negative_rate_among_human_correct": 0.06383,
     "condition_diagnostics": [
       {
         "condition": "control",
         "n": 90,
-        "agreement": 0.8333333333333334,
+        "agreement": 0.9222222222222223,
         "judge_correct_rate": 0.4666666666666667,
-        "human_correct_rate": 0.43333333333333335,
-        "bias_pp": 3.3333333333333326
+        "human_correct_rate": 0.4777777777777778,
+        "bias_pp": -1.1111111111111127
       },
       {
         "condition": "placebo_delete",
@@ -1878,20 +1878,86 @@
       {
         "condition": "target_delete",
         "n": 87,
-        "agreement": 0.896551724137931,
+        "agreement": 0.9310344827586207,
         "judge_correct_rate": 0.5172413793103449,
-        "human_correct_rate": 0.4827586206896552,
-        "bias_pp": 3.448275862068967
+        "human_correct_rate": 0.4942528735632184,
+        "bias_pp": 2.298850574712646
       }
     ],
-    "max_absolute_condition_bias_pp": 3.448276,
+    "max_absolute_condition_bias_pp": 2.298851,
     "pair_transition_pairs": 60,
-    "pair_transition_agreement": 0.716667,
+    "pair_transition_agreement": 0.916667,
     "hard_stop_rule": "PASS iff agreement >= 90% and max absolute condition bias <= 5 pp",
-    "gate": "FAIL",
-    "labels_frozen": false,
-    "remediation_required": true,
-    "sensitivity_note": "No population correction is estimated from this purposive, stratified 200-output audit sample."
+    "gate": "PASS",
+    "review_tier": "PASS_WITH_SENSITIVITY",
+    "labels_frozen": true,
+    "remediation_required": false,
+    "sensitivity_note": "No population correction is estimated from this purposive, stratified 200-output audit sample.",
+    "label_substitution_sensitivity": [
+      {
+        "scope": "full run table",
+        "estimand": "control_correct_rate",
+        "n": "2400",
+        "original_estimate": "0.563750000",
+        "adjudicated_substitution_estimate": "0.564166667",
+        "change_pp": "+0.041667",
+        "interpretation": "Direct replacement of audited outputs only."
+      },
+      {
+        "scope": "full run table",
+        "estimand": "target_delete_correct_rate",
+        "n": "2400",
+        "original_estimate": "0.635833333",
+        "adjudicated_substitution_estimate": "0.635000000",
+        "change_pp": "-0.083333",
+        "interpretation": "Direct replacement of audited outputs only."
+      },
+      {
+        "scope": "full run table",
+        "estimand": "placebo_delete_correct_rate",
+        "n": "1514",
+        "original_estimate": "0.555482166",
+        "adjudicated_substitution_estimate": "0.555482166",
+        "change_pp": "+0.000000",
+        "interpretation": "Direct replacement of audited outputs only."
+      },
+      {
+        "scope": "full cohort",
+        "estimand": "target_minus_control",
+        "n": "2400",
+        "original_estimate": "0.072083333",
+        "adjudicated_substitution_estimate": "0.070833333",
+        "change_pp": "-0.125000",
+        "interpretation": "Paired design aggregate after replacing the 200 audited outputs."
+      },
+      {
+        "scope": "placebo-matched cohort",
+        "estimand": "target_effect",
+        "n": "511",
+        "original_estimate": "0.079745597",
+        "adjudicated_substitution_estimate": "0.079256360",
+        "change_pp": "-0.048924",
+        "interpretation": "Equal-weighted step-level effect; audited outputs replaced only."
+      },
+      {
+        "scope": "placebo-matched cohort",
+        "estimand": "placebo_effect",
+        "n": "511",
+        "original_estimate": "-0.005707763",
+        "adjudicated_substitution_estimate": "-0.005707763",
+        "change_pp": "+0.000000",
+        "interpretation": "Equal-weighted step-level effect; audited outputs replaced only."
+      },
+      {
+        "scope": "placebo-matched cohort",
+        "estimand": "pure_semantic_effect",
+        "n": "511",
+        "original_estimate": "0.085453359",
+        "adjudicated_substitution_estimate": "0.084964123",
+        "change_pp": "-0.048924",
+        "interpretation": "Equal-weighted step-level effect; audited outputs replaced only."
+      }
+    ]
   },
   "qualitative_cases": {
     "verified_cases": 8,
@@ -1987,7 +2053,7 @@
       {
         "check": "judge_audit_complete",
         "status": "PASS",
-        "detail": "gate=FAIL; n=200"
+        "detail": "gate=PASS; n=200"
       },
       {
         "check": "single_numeric_source",

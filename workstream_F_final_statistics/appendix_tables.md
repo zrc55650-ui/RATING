@@ -40,7 +40,7 @@ Retained means at least one condition is correct. This is diagnostic only.
 | benefit | D: Static context | 0.412 | [0.362, 0.462] |
 | benefit | E: Trajectory state (oracle/extra-compute) | 0.478 | [0.410, 0.547] |
 
-Predictive outcomes inherit the failed Judge gate. Model E is an extra-compute/oracle analysis.
+Predictive outcomes use the frozen automated labels under a PASS_WITH_SENSITIVITY Judge Audit decision. Model E is an extra-compute/oracle analysis.
 
 ## A4. Qualitative verification
 

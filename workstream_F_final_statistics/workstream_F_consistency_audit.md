@@ -1,8 +1,8 @@
 # Workstream F Consistency Audit
 
 - Technical consistency: **PASS**.
-- Judge Audit submission gate: **FAIL**.
-- Final freeze status: **GENERATED_BUT_BLOCKED_BY_JUDGE_AUDIT**.
+- Judge Audit submission gate: **PASS**.
+- Final freeze status: **READY_TO_FREEZE**.
 - Formal second-human numerical signoff: **NOT RECORDED** (independent computational recalculation and figure inspection completed).
 
 A technical PASS means denominators, signs, cohorts, label scopes, CIs, and output provenance agree. It does not override the Judge Audit gate.
@@ -21,7 +21,7 @@ A technical PASS means denominators, signs, cohorts, label scopes, CIs, and outp
 | confidence_interval_order | PASS | All displayed point estimates lie within their 95% CIs. |
 | bootstrap_replicates | PASS | expected=5000 |
 | qualitative_cases | PASS | status=VERIFIED; cases=8; outputs=78 |
-| judge_audit_complete | PASS | gate=FAIL; n=200 |
+| judge_audit_complete | PASS | gate=PASS; n=200 |
 | single_numeric_source | PASS | Main/appendix tables and figure-source CSVs are generated from the same in-memory rows written to numbers_for_paper.json. |
 
 ## Label-scope decision
@@ -29,6 +29,6 @@ A technical PASS means denominators, signs, cohorts, label scopes, CIs, and outp
 - Table 1 step-type effects use `step_type_analysis` (the original analysis label): Essential 165, Redundant 201, Harmful 234.
 - Figure 2 uses `step_type_human_calibrated`: Essential 198, Redundant 199, Harmful 203. A total of 164/600 labels differ between these fields.
 
-## Blocking decision
+## Freeze decision
 
-Judge Audit is complete, but its hard-stop gate failed: binary agreement was 88.0%, below 90%; maximum condition bias was 3.4 pp. Therefore the current automated outcome labels and all outcome-dependent headline estimates remain candidate values pending an independent judge, symbolic evaluator, or expanded human review of conclusion-critical subsets.
+Judge Audit passed the hard-stop gate: binary agreement was 93.5% and maximum condition bias was 2.3 pp. The project-designated adjudicated file is frozen as the single audit truth source. Because agreement is below 95%, the result is classified as `PASS_WITH_SENSITIVITY` and the audit diagnostics remain a required sensitivity qualification.

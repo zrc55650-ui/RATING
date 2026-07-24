@@ -7,16 +7,18 @@ import csv
 import html
 import itertools
 import json
+import shutil
 from pathlib import Path
 
-from analysis_common import ROOT, read_csv
+from analysis_common import ROOT, as_bool, read_csv, write_csv
 
 
 AUDIT_DIR = ROOT / "workstream_A_judge_audit"
-SOURCE = AUDIT_DIR / "judge_audit_adjudicated.csv"
-MANIFEST = AUDIT_DIR / "judge_audit_sampling_manifest.csv"
-REPORT = AUDIT_DIR / "judge_audit_report.md"
-SVG = AUDIT_DIR / "judge_audit_confusion_matrix.svg"
+SOURCE = ROOT / "judge_audit_adjudicated.csv"
+MANIFEST = ROOT / "judge_audit_sampling_manifest.csv"
+REPORT = ROOT / "judge_audit_report.md"
+SVG = ROOT / "judge_audit_confusion_matrix.svg"
+SENSITIVITY = ROOT / "judge_audit_label_substitution_sensitivity.csv"
 
 
 def human_correct(label: str) -> bool:
@@ -99,6 +101,136 @@ def write_confusion_svg(tp: int, tn: int, fp: int, fn: int) -> None:
     SVG.write_text(svg, encoding="utf-8")
 
 
+def compute_substitution_sensitivity(
+    manifest: list[dict[str, str]],
+    by_audit: dict[str, dict[str, str]],
+) -> list[dict[str, object]]:
+    """Replace only audited labels; this is a perturbation, not population correction."""
+    replacements = {
+        row["output_id"]: int(
+            by_audit[row["audit_id"]]["human_label"].strip() == "Correct"
+        )
+        for row in manifest
+    }
+    runs = read_csv(ROOT / "master_run_table.csv")
+    steps = read_csv(ROOT / "master_step_table.csv")
+    eligible = {
+        row["step_id"] for row in steps if as_bool(row["placebo_eligible"])
+    }
+    by_step_condition: dict[tuple[str, str], list[dict[str, object]]] = {}
+    for row in runs:
+        original = int(float(row["judge_label"]))
+        materialized: dict[str, object] = {
+            **row,
+            "original": original,
+            "substituted": replacements.get(row["output_id"], original),
+        }
+        by_step_condition.setdefault(
+            (row["step_id"], row["condition"]), []
+        ).append(materialized)
+
+    def rate(members: list[dict[str, object]], field: str) -> float:
+        return sum(int(row[field]) for row in members) / len(members)
+
+    def result_row(
+        scope: str,
+        estimand: str,
+        original: float,
+        substituted: float,
+        n: int,
+        note: str,
+    ) -> dict[str, object]:
+        return {
+            "scope": scope,
+            "estimand": estimand,
+            "n": n,
+            "original_estimate": f"{original:.9f}",
+            "adjudicated_substitution_estimate": f"{substituted:.9f}",
+            "change_pp": f"{100 * (substituted - original):+.6f}",
+            "interpretation": note,
+        }
+
+    output: list[dict[str, object]] = []
+    for condition in ("control", "target_delete", "placebo_delete"):
+        members = [row for row in runs if row["condition"] == condition]
+        original = sum(int(float(row["judge_label"])) for row in members) / len(members)
+        substituted = sum(
+            replacements.get(row["output_id"], int(float(row["judge_label"])))
+            for row in members
+        ) / len(members)
+        output.append(
+            result_row(
+                "full run table",
+                f"{condition}_correct_rate",
+                original,
+                substituted,
+                len(members),
+                "Direct replacement of audited outputs only.",
+            )
+        )
+
+    control = [row for row in runs if row["condition"] == "control"]
+    target = [row for row in runs if row["condition"] == "target_delete"]
+    full_original = (
+        sum(int(float(row["judge_label"])) for row in target) / len(target)
+        - sum(int(float(row["judge_label"])) for row in control) / len(control)
+    )
+    full_substituted = (
+        sum(
+            replacements.get(row["output_id"], int(float(row["judge_label"])))
+            for row in target
+        )
+        / len(target)
+        - sum(
+            replacements.get(row["output_id"], int(float(row["judge_label"])))
+            for row in control
+        )
+        / len(control)
+    )
+    output.append(
+        result_row(
+            "full cohort",
+            "target_minus_control",
+            full_original,
+            full_substituted,
+            len(target),
+            "Paired design aggregate after replacing the 200 audited outputs.",
+        )
+    )
+
+    def matched_effects(field: str, step_ids: set[str]) -> tuple[float, float, float]:
+        target_effects: list[float] = []
+        placebo_effects: list[float] = []
+        for step_id in step_ids:
+            groups = {
+                condition: by_step_condition[(step_id, condition)]
+                for condition in ("control", "target_delete", "placebo_delete")
+            }
+            control_rate = rate(groups["control"], field)
+            target_effects.append(rate(groups["target_delete"], field) - control_rate)
+            placebo_effects.append(rate(groups["placebo_delete"], field) - control_rate)
+        target_effect = sum(target_effects) / len(target_effects)
+        placebo_effect = sum(placebo_effects) / len(placebo_effects)
+        return target_effect, placebo_effect, target_effect - placebo_effect
+
+    original_effects = matched_effects("original", eligible)
+    substituted_effects = matched_effects("substituted", eligible)
+    for index, estimand in enumerate(
+        ("target_effect", "placebo_effect", "pure_semantic_effect")
+    ):
+        output.append(
+            result_row(
+                "placebo-matched cohort",
+                estimand,
+                original_effects[index],
+                substituted_effects[index],
+                len(eligible),
+                "Equal-weighted step-level effect; audited outputs replaced only.",
+            )
+        )
+    return output
+
+
 def main() -> None:
     manifest = read_csv(MANIFEST)
     adjudicated = read_csv(SOURCE)
@@ -169,15 +301,22 @@ def main() -> None:
 
     gate_pass = agreement >= 0.90 and max_condition_bias <= 5.0
     decision = "PASS" if gate_pass else "FAIL"
-    action = (
-        "Freeze the current judge labels."
-        if gate_pass
-        else (
+    if not gate_pass:
+        action = (
             "Do not freeze the current automated labels. Per the execution plan, "
             "use an independent judge, symbolic evaluator, or expanded human "
             "review of every conclusion-critical subset."
         )
-    )
+    elif agreement >= 0.95 and max_condition_bias < 3.0:
+        action = "Freeze the current labels; the strict retain-without-remediation threshold passed."
+    else:
+        action = (
+            "The hard-stop gate passed and the project-designated adjudicated file "
+            "is frozen. Because agreement is below 95%, report the audit diagnostics "
+            "as a sensitivity boundary and do not claim evaluator equivalence."
+        )
+    sensitivity = compute_substitution_sensitivity(manifest, by_audit)
+    write_csv(SENSITIVITY, sensitivity)
 
     lines = [
         "# Judge Audit Report",
@@ -239,17 +378,40 @@ def main() -> None:
             )
     lines += [
         "",
+        "## Direct label-substitution sensitivity",
+        "",
+        "This diagnostic replaces the automated label only for the 200 audited "
+        "outputs and leaves the other 6,114 outputs unchanged. It is a local "
+        "perturbation check, not a population-level bias correction, because the "
+        "audit sample was purposively stratified.",
+        "",
+        "| Scope | Estimand | N | Original | Substituted | Change (pp) |",
+        "|---|---|---:|---:|---:|---:|",
+    ]
+    for row in sensitivity:
+        lines.append(
+            f"| {row['scope']} | {row['estimand']} | {row['n']} | "
+            f"{100 * float(row['original_estimate']):+.2f} | "
+            f"{100 * float(row['adjudicated_substitution_estimate']):+.2f} | "
+            f"{float(row['change_pp']):+.2f} |"
+        )
+    lines += [
+        "",
         "## Consequence for qualitative cases",
         "",
         "Only 4 of the 78 outputs belonging to the provisional eight qualitative "
-        "cases occur in the 200-output audit. Because the overall gate failed, "
-        "the remaining 74 outputs require direct human review before any case is "
-        "marked verified. `qualitative_case_audit.html` is the blinded review "
-        "instrument; the four prior adjudications are prefilled.",
+        "cases occurred in the 200-output audit. Because the overall gate failed, "
+        "Workstream E subsequently obtained direct human labels for all 78 case "
+        "outputs. The final 8/8 cases passed their fixed family-specific rules. "
+        "This separate verification supports the qualitative case narratives, "
+        "but it does not clear the aggregate automated-outcome gate.",
         "",
     ]
     REPORT.write_text("\n".join(lines), encoding="utf-8")
     write_confusion_svg(tp, tn, fp, fn)
+    AUDIT_DIR.mkdir(exist_ok=True)
+    for path in (SOURCE, MANIFEST, REPORT, SVG, SENSITIVITY):
+        shutil.copyfile(path, AUDIT_DIR / path.name)
 
     summary = {
         "n": len(rows),
@@ -260,6 +422,7 @@ def main() -> None:
         "agreement": agreement,
         "max_absolute_condition_bias_pp": max_condition_bias,
         "pair_transition_agreement": pair_agreement,
+        "label_substitution_sensitivity": sensitivity,
         "gate": decision,
     }
     print(json.dumps(summary, indent=2))
