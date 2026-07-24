@@ -50,7 +50,7 @@ __pycache__/
 *.pyc
 .DS_Store
 *.contaminated.bak
-/workstream_M3_human_annotation/m3_pilot_key_DO_NOT_SHARE.csv
+*DO_NOT_SHARE*
 /paper/acl_latex.aux
 /paper/acl_latex.log
 /paper/acl_latex.out

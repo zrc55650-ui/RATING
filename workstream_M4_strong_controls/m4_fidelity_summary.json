@@ -1,0 +1,10 @@
+{
+  "items": 140,
+  "seed": 20260723,
+  "per_group": {
+    "negative_anchor": 46,
+    "neutral_comparison": 46,
+    "stable_correct": 48
+  },
+  "source_paraphrases": 221
+}
