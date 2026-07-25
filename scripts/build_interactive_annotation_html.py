@@ -39,7 +39,7 @@ body{font-family:Georgia,'Songti SC',serif;max-width:920px;margin:0 auto;
 .card.done{border:2px solid #2e8b57;background:#f6fdf8}
 .target{background:#fff7e0;border:2px solid #d9a400;border-radius:6px;padding:8px;margin:10px 0}
 .paraphrase{background:#e8f6ec;border:2px solid #2e8b57;border-radius:6px;padding:8px;margin:10px 0}
-pre{white-space:pre-wrap;font-family:inherit;margin:6px 0}
+pre,.txt{white-space:pre-wrap;font-family:inherit;margin:6px 0}
 .problem{background:#eef3fb;padding:8px;border-radius:6px}
 #bar{position:fixed;top:0;left:0;right:0;background:#20232a;color:#fff;
   padding:10px 16px;display:flex;gap:16px;align-items:center;z-index:9;
@@ -189,10 +189,10 @@ def build_person(person: str, index: int, m3_guide: str, m4_guide: str) -> None:
         cards_m3.append(
             f"<div class='card' id='card_{item_id}'>"
             f"<h3>任务一 #{row['annotation_order']} / {len(m3_rows)} &middot; {item_id}</h3>"
-            f"<div class='problem'><b>Problem</b><pre>{xml_escape(row['problem'])}</pre></div>"
-            f"<b>之前的推理(prefix)</b><pre>{xml_escape(row['prefix_steps'])}</pre>"
-            f"<div class='target'><b>TARGET STEP(只判断这一步)</b><pre>{xml_escape(row['target_step'])}</pre></div>"
-            f"<b>之后的推理(downstream)</b><pre>{xml_escape(row['downstream_steps'])}</pre>"
+            f"<div class='problem'><b>Problem</b><div class='txt'>{xml_escape(row['problem'])}</div></div>"
+            f"<b>之前的推理(prefix)</b><div class='txt'>{xml_escape(row['prefix_steps'])}</div>"
+            f"<div class='target'><b>TARGET STEP(只判断这一步)</b><div class='txt'>{xml_escape(row['target_step'])}</div></div>"
+            f"<b>之后的推理(downstream)</b><div class='txt'>{xml_escape(row['downstream_steps'])}</div>"
             + choices_block(item_id, M3_LABELS, "选填备注")
             + "</div>"
         )
@@ -202,22 +202,32 @@ def build_person(person: str, index: int, m3_guide: str, m4_guide: str) -> None:
         cards_m4.append(
             f"<div class='card' id='card_{item_id}'>"
             f"<h3>任务二 #{row['annotation_order']} / {len(m4_rows)} &middot; {item_id}</h3>"
-            f"<div class='problem'><b>Problem</b><pre>{xml_escape(row['problem'])}</pre></div>"
-            f"<div class='target'><b>ORIGINAL STEP(原句)</b><pre>{xml_escape(row['original_step'])}</pre></div>"
-            f"<div class='paraphrase'><b>PARAPHRASE(改写句)</b><pre>{xml_escape(row['paraphrase_step'])}</pre></div>"
+            f"<div class='problem'><b>Problem</b><div class='txt'>{xml_escape(row['problem'])}</div></div>"
+            f"<div class='target'><b>ORIGINAL STEP(原句)</b><div class='txt'>{xml_escape(row['original_step'])}</div></div>"
+            f"<div class='paraphrase'><b>PARAPHRASE(改写句)</b><div class='txt'>{xml_escape(row['paraphrase_step'])}</div></div>"
             + choices_block(item_id, M4_LABELS, "选填;判 meaning_changed 请写哪里变了")
             + "</div>"
         )
 
+    mathjax = (
+        "<script>window.MathJax={tex:{inlineMath:[['$','$'],['\\\\(','\\\\)']],"
+        "displayMath:[['$$','$$'],['\\\\[','\\\\]']],processEscapes:true,"
+        "processEnvironments:true},options:{skipHtmlTags:"
+        "['script','noscript','style','textarea','code']}};</script>"
+        "<script async src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'></script>"
+    )
     doc = (
         "<!DOCTYPE html><html lang='zh'><head><meta charset='utf-8'>"
-        f"<title>标注者{index} · 标注任务(95 条)</title><style>{STYLE}</style></head><body>"
+        f"<title>标注者{index} · 标注任务(95 条)</title>{mathjax}"
+        f"<style>{STYLE}</style></head><body>"
         "<div id='bar'><span id='progress'>已完成 0 / 95</span>"
         "<button onclick='firstOpen()'>跳到下一条未完成</button>"
         "<button id='export' onclick='exportCsv()'>完成后点我导出 CSV</button></div>"
         f"<h1>标注者{index}:两项小任务,共 {len(items)} 条(约 75 分钟)</h1>"
         "<div class='warn'><b>使用须知</b>:直接在本页面点选,答案自动保存在这台电脑的浏览器里"
         "(请全程用同一台电脑、同一浏览器打开本文件,不要用无痕/隐私模式)。"
+        "数学公式渲染需要联网,打开后等几秒即可;若无网络,公式会显示为原始 LaTeX 代码"
+        "(如 <code>$\\frac{1}{2}$</code>),不影响作答。"
         "全部完成后点右上角<b>导出 CSV</b>,把下载的 <code>annotations_"
         f"{person}.csv</code> 文件发回即可。请独立完成,不要与任何人讨论题目,"
         "不要查询数据集标签或论文。</div>"
@@ -233,7 +243,7 @@ def build_person(person: str, index: int, m3_guide: str, m4_guide: str) -> None:
         "</body></html>"
     )
     out_path = OUT_DIR / f"interactive_annotator{index}_{person}.html"
-    out_path.write_text(doc, encoding="utf-8")
+    out_path.write_text(doc, encoding="utf-8-sig")
     print(out_path, f"({len(items)} items)")
 
 
