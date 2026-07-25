@@ -16,6 +16,16 @@
   mean/disagreement),自动发现本目录全部 `prm_scores_*.jsonl`;
 - ⬜ 实际打分:本机(M1 Pro 16GB、无 torch)无法运行 7B PRM;等 GPU 或 API 凭证。
 
+## 追加(2026-07-25):两个额外 trained PRM
+
+- `score_with_math_shepherd.py`:peiyi9979/math-shepherd-mistral-7b-prm
+  (`ки` step-tag + `+`/`-` logits 协议);
+- `score_with_rlhflow_prm.py`:RLHFlow/Llama3.1-8B-PRM-Deepseek-Data
+  (逐步 chat 模板 + P(`+`) 协议);
+- 两者输出与既有 `prm_scores_*.jsonl` 同 schema,`analyze_prm_scores.py`
+  与 M7 扩展自动纳入(M7 的 two-PRM ensemble 已钉死为 gemini+phi-4 以保持
+  论文数字稳定)。
+
 ## 执行顺序(拿到算力后)
 
 ```bash

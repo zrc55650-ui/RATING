@@ -2,6 +2,12 @@
 prm_threshold:google_gemini_2_5_flash,0.01,0,,
 prm_threshold:google_gemini_2_5_flash,0.03,0,,
 prm_threshold:google_gemini_2_5_flash,0.05,120,2.583,0.0479
+prm_threshold:llama31_8b_prm_deepseek,0.01,0,,
+prm_threshold:llama31_8b_prm_deepseek,0.03,0,,
+prm_threshold:llama31_8b_prm_deepseek,0.05,20,0.333,0.0500
+prm_threshold:math_shepherd_mistral_7b,0.01,0,,
+prm_threshold:math_shepherd_mistral_7b,0.03,20,0.833,0.0125
+prm_threshold:math_shepherd_mistral_7b,0.05,80,1.875,0.0500
 prm_threshold:microsoft_phi_4,0.01,0,,
 prm_threshold:microsoft_phi_4,0.03,0,,
 prm_threshold:microsoft_phi_4,0.05,0,,

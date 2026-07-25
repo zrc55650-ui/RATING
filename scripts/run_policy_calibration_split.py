@@ -46,13 +46,23 @@ def load_steps() -> list[dict]:
     predictions: dict[str, dict[str, float]] = defaultdict(dict)
     for (sid, key), values in sums.items():
         predictions[sid][key] = sum(values) / len(values)
-    prm_scores = {}
-    path = ROOT / "workstream_M1_actual_prm_audit" / "prm_scores_qwen25_math_prm_7b.jsonl"
-    with path.open(encoding="utf-8") as handle:
-        for line in handle:
-            record = json.loads(line)
-            if record.get("target_score") is not None:
-                prm_scores[record["step_id"]] = float(record["target_score"])
+    prm_scores: dict[str, dict[str, float]] = {}
+    m1_dir = ROOT / "workstream_M1_actual_prm_audit"
+    for stem in (
+        "prm_scores_qwen25_math_prm_7b",
+        "prm_scores_math_shepherd_mistral_7b",
+        "prm_scores_llama31_8b_prm_deepseek",
+    ):
+        path = m1_dir / f"{stem}.jsonl"
+        if not path.exists():
+            continue
+        column: dict[str, float] = {}
+        with path.open(encoding="utf-8") as handle:
+            for line in handle:
+                record = json.loads(line)
+                if record.get("target_score") is not None:
+                    column[record["step_id"]] = float(record["target_score"])
+        prm_scores[stem.replace("prm_scores_", "")] = column
 
     steps = []
     for row in read_csv(ROOT / "data" / "master_step_table.csv"):
@@ -67,7 +77,7 @@ def load_steps() -> list[dict]:
                 "c2w": as_int(row["correct_to_wrong_count"]),
                 "d_score": pred.get("D|benefit", 0.36) - pred.get("D|danger", 0.151),
                 "e_score": pred.get("E|benefit", 0.36) - pred.get("E|danger", 0.151),
-                "prm": prm_scores.get(sid),
+                "prm": {name: column.get(sid) for name, column in prm_scores.items()},
                 "split": "cal" if stable_hash("calsplit|" + row["problem_id"]) % 2 == 0 else "test",
             }
         )
@@ -75,15 +85,18 @@ def load_steps() -> list[dict]:
 
 
 def rankers(steps):
-    return {
+    ranker_map = {
         "rating_first": lambda s: (s["rating"], stable_hash(s["step_id"])),
         "predictor_D": lambda s: (-s["d_score"], stable_hash(s["step_id"])),
         "predictor_E": lambda s: (-s["e_score"], stable_hash(s["step_id"])),
-        "trained_prm_score": lambda s: (
-            s["prm"] if s["prm"] is not None else 1.0,
-            stable_hash(s["step_id"]),
-        ),
     }
+    prm_names = sorted(steps[0]["prm"]) if steps else []
+    for name in prm_names:
+        ranker_map[f"prm:{name}"] = lambda s, _n=name: (
+            s["prm"][_n] if s["prm"].get(_n) is not None else 1.0,
+            stable_hash(s["step_id"]),
+        )
+    return ranker_map
 
 
 def main() -> None:

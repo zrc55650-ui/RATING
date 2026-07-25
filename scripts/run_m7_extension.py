@@ -94,7 +94,10 @@ def prm_policies() -> None:
                 }
             )
     if len(columns) >= 2:
-        names = sorted(columns)[:2]
+        # Pinned to the ensemble the paper reports (frozen before the extra
+        # trained PRMs were added); analyze_prm_scores.py covers the full set.
+        pinned = ("google_gemini_2_5_flash", "microsoft_phi_4")
+        names = [n for n in pinned if n in columns] or sorted(columns)[:2]
         shared = [
             s
             for s in steps

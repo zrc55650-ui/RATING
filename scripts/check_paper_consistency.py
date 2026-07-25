@@ -99,9 +99,28 @@ def main() -> None:
     calib = read_csv(ROOT / "workstream_M7_policy_risk_coverage" / "policy_calibration_test_split.csv")
     zero_at_all = all(
         as_float(r["calibration_coverage"]) == 0.0
-        for r in calib if r["policy"] in ("rating_first", "trained_prm_score")
+        for r in calib
+        if r["policy"] == "rating_first" or r["policy"].startswith("prm:")
     )
-    check("calibrated: rating & PRM certify zero everywhere", zero_at_all, True)
+    check("calibrated: rating & all trained PRMs certify zero everywhere", zero_at_all, True)
+    for stem, label in (
+        ("prm_scores_math_shepherd_mistral_7b", "Math-Shepherd 600 ok"),
+        ("prm_scores_llama31_8b_prm_deepseek", "RLHFlow 600 ok"),
+    ):
+        path = ROOT / "workstream_M1_actual_prm_audit" / f"{stem}.jsonl"
+        n_ok = sum(
+            1 for line in path.open(encoding="utf-8")
+            if json.loads(line).get("status") == "ok"
+        )
+        check(label, n_ok, 600)
+    audit = {r["signal"]: r for r in read_csv(
+        ROOT / "workstream_M1_actual_prm_audit" / "prm_score_audit_metrics.csv")}
+    approx("Math-Shepherd danger AUROC 0.47",
+           as_float(audit["actual_prm:math_shepherd_mistral_7b"]["danger_auroc_highscore_warns"]), 0.4673, 0.001)
+    approx("RLHFlow danger AUROC 0.51",
+           as_float(audit["actual_prm:llama31_8b_prm_deepseek"]["danger_auroc_highscore_warns"]), 0.5057, 0.001)
+    approx("5-PRM disagreement benefit AUPRC 0.34",
+           as_float(audit["actual_prm_disagreement_negated"]["benefit_auprc"]), 0.3441, 0.001)
     e3 = next(r for r in calib if r["policy"] == "predictor_E" and as_float(r["budget"]) == 0.03)
     approx("calibrated: predictor E coverage 28.8% @3%",
            as_float(e3["calibration_coverage"]), 0.2881, 0.001)
