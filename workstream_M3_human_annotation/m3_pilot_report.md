@@ -57,3 +57,5 @@ P1×P2 标注前 60 步,P3×P4 标注后 60 步;交互式 HTML 盲标
 3. P1 重新校准或更换后,抽 40–60 步复测;复测达标再扩 300–600 步;
 4. 论文中 §18 第 3 条(人工标注)仍记为未满足;当前版本按
    "pilot + 效度信号 + 已识别的边界问题"如实披露。
+
+> **2026-07-25 追记**:第三人已完成 46 条分歧的手写裁决,论文 Limitations 暂以「reported adjudication accuracy 93%(records to be digitized)」引用;**投稿前必须**用 `m3_adjudication_sheet.html` 转录出 `m3_adjudication_final.csv`,由 `analyze_human_annotations.py` 复算后把该句替换为精确口径(注意:120 条终标 vs 数据集标签的一致率数学上限为 82.5%,93% 只能是其他口径,转录后核实)。
