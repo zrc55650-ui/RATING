@@ -1,0 +1,31 @@
+{
+  "seed": 20260723,
+  "m3_items_per_annotator": {
+    "P1": 60,
+    "P2": 60,
+    "P3": 60,
+    "P4": 60
+  },
+  "m4_items_per_annotator_by_group": {
+    "P1": {
+      "neutral_comparison": 12,
+      "stable_correct": 11,
+      "negative_anchor": 12
+    },
+    "P2": {
+      "negative_anchor": 12,
+      "neutral_comparison": 11,
+      "stable_correct": 12
+    },
+    "P3": {
+      "stable_correct": 12,
+      "negative_anchor": 11,
+      "neutral_comparison": 12
+    },
+    "P4": {
+      "stable_correct": 13,
+      "neutral_comparison": 11,
+      "negative_anchor": 11
+    }
+  }
+}
