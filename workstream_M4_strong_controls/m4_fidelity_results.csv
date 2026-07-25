@@ -1,0 +1,9 @@
+﻿scope,n_items,faithful,minor_deviation,meaning_changed,uncertain,strict_faithful_rate,fidelity_rate_faithful_plus_minor,meaning_changed_rate
+overall,140,100,36,3,1,0.7143,0.9714,0.0214
+group:negative_anchor,46,34,12,0,0,0.7391,1.0000,0.0000
+group:neutral_comparison,46,30,13,2,1,0.6522,0.9348,0.0435
+group:stable_correct,48,36,11,1,0,0.7500,0.9792,0.0208
+annotator:P1,35,7,26,2,0,0.2000,0.9429,0.0571
+annotator:P2,35,32,2,1,0,0.9143,0.9714,0.0286
+annotator:P3,35,32,3,0,0,0.9143,1.0000,0.0000
+annotator:P4,35,29,5,0,1,0.8286,0.9714,0.0000

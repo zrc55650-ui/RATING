@@ -1,0 +1,5 @@
+﻿annotation_id,step_id,group,annotator,label,confidence,notes
+m4f-49073125,prm-dbc1373a79928aa0,stable_correct,P1,meaning_changed,2,
+m4f-04812616,prm-27543090e207be07,neutral_comparison,P1,meaning_changed,5,
+m4f-42725168,prm-42aa85293ce04d6c,neutral_comparison,P2,meaning_changed,4,repeated和continue有点不一样吧，如果咬文嚼字的话
+m4f-22455250,prm-2d92ce0491f2f56a,neutral_comparison,P4,uncertain,4,这句子不全是不是

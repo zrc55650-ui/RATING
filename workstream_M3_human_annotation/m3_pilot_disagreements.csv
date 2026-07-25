@@ -1,0 +1,84 @@
+﻿annotation_id,step_id,rater_pair,label_a,label_b,conf_a,conf_b,notes_a,notes_b,dataset_type,prm_rating,target_step
+m3-00557386,prm-14c0129055d497b2,P1xP2,uncertain,essential,2,5,,,redundant,1,"# Answer
+
+cot x"
+m3-01446607,prm-809326ad29e9fe7f,P1xP2,redundant,essential,5,5,,,harmful,0,"The denominator is negative when x - 5 < 0, which is equivalent to x < 5."
+m3-08152415,prm-9ceaed5b974155d1,P1xP2,redundant,essential,2,5,,,harmful,-1,Then I can divide everything by 10 to make the constant term 1: $\frac{x^2}{40} - \frac{3x}{10} + \frac{9}{10} + \frac{y^2}{10} = 1$.
+m3-12077710,prm-768b381d1efb643a,P1xP2,redundant,harmful,5,3,,题目里已经给出base是1了，没看懂这题问什么,harmful,-1,So the only thing I need to check is whether 2^235423523 is even or odd.
+m3-25159817,prm-c1d4d174440821f2,P1xP2,redundant,essential,5,4,,,essential,0,"I use the distance formula to find $AF^2,$ $BF^2,$ and $CF^2$ in terms of the coordinates of $F$ and the vertices $A,$ $B,$ and $C.$"
+m3-27038192,prm-7b57deaaa0d16f28,P1xP2,essential,harmful,3,4,,,harmful,-1,"So I have four possible pairs for $(\triangle, \diamond)$: (1, 2), (2, 1), (2, 4), or (4, 2)."
+m3-28602798,prm-5f58d3f9cdbdd4cd,P1xP2,essential,redundant,5,4,,,essential,1,"To change Jack's fraction to have a denominator of 15, I need to multiply both the numerator and the denominator by 5, since 5 times 3 is 15."
+m3-29698707,prm-0ea143eb25e18743,P1xP2,uncertain,essential,2,5,,,essential,0,"For example, the first equation becomes
+\[1 + a + b + c = m + n\]
+and the second equation becomes
+\[64 + 16a + 4b + c = 4m + n\]"
+m3-30891057,prm-bf052d7ceb54371a,P1xP2,essential,uncertain,5,1,,,harmful,-1,"So, I can write $\sin \angle AHB = \frac{AD}{AB}$ and $\sin \angle CHB = \frac{BE}{BC}$."
+m3-31209586,prm-fb4120427f491cb1,P1xP2,essential,redundant,3,5,,,essential,1,"So I have found all the factors of the original polynomial, and they are: $p_1(x) = x^4 + 4$, $p_2(x) = x^2 + 1$, $p_3(x) = x - 1$, and $p_4(x) = x + 1$."
+m3-32156460,prm-d43403303ce7ca47,P1xP2,redundant,essential,4,4,,,essential,0,I use the slope formula and the point-slope form of a line to write the equations of the altitudes of triangle $ABC.$
+m3-32671818,prm-b8457436293d4e60,P1xP2,essential,harmful,4,5,,,harmful,-1,"Therefore, the least positive integer multiple of 30 that can be written with only the digits 0 and 2 is 202020."
+m3-38706704,prm-d4c3a3c1d1cb0d1f,P1xP2,redundant,essential,4,5,,,harmful,-1,"I see that they are evenly spaced around the circle, and that they form the vertices of a regular octagon."
+m3-42889200,prm-4f8665f0a19739c3,P1xP2,uncertain,essential,1,5,,,harmful,0,"Since $8^{2/3}$ is also greater than $4$, I use the first rule again and take the floor of the input."
+m3-44398391,prm-9689f5a49ddfdb3e,P1xP2,uncertain,essential,1,5,,,essential,0,"I can simplify this expression by using the fact that n choose k = n choose (n-k), and by using a calculator or some mental arithmetic:
+
+(70)(6) + (56)(15) + (28)(20) + (8)(15)"
+m3-45220068,prm-d7fbf32a29279602,P1xP2,redundant,essential,5,5,,,harmful,-1,\[(x - z)^2 + (x - 2y + z)^2 + 2(x + y + z)^2 = 72.\]
+m3-45923074,prm-76b2b2177dea50be,P1xP2,redundant,essential,5,5,,,essential,1,"Squaring both sides and simplifying, I get $s^2 = s^2/4 + s^4/1024.$"
+m3-50378383,prm-0ade6393f937db17,P1xP2,essential,redundant,4,5,,,essential,1,So I need an integer that is greater than $1.75$ and less than $2.33$.
+m3-51603512,prm-ab761a525cce7441,P1xP2,essential,redundant,5,5,,,essential,1,"Therefore, the domain of $\log x^2$ is $x < 0$ or $x > 0$, which means that $a = 0$ and $b = 0$."
+m3-58743763,prm-22008191f0fcf07c,P1xP2,essential,redundant,5,3,,,essential,0,"3562
+  57.0
+_______
+160 ) 480
+      900
+      800
+     1000
+      960
+      400
+      320
+       80"
+m3-61260220,prm-c5d23e135f1567c3,P1xP2,redundant,essential,2,5,,,harmful,-1,"For example, to find the GCD of $3339$ and $2961$, I can do the following:
+
+\begin{align*}
+3339 &= 2961 \times 1 + 378 \\
+2961 &= 378 \times 7 + 279 \\
+378 &= 279 \times 1 + 99 \\
+279 &= 99 \times 2 + 81 \\
+99 &= 81 \times 1 + 18 \\
+81 &= 18 \times 4 + 9 \\
+18 &= 9 \times 2 + 0
+\end{align*}"
+m3-74270818,prm-933bbb6ef939eb1f,P1xP2,redundant,essential,5,5,,,harmful,-1,"I see that $\triangle ACD$ and $\triangle ABC$ are similar by AA similarity, because they share two pairs of congruent angles."
+m3-84974964,prm-236816577f8edaf6,P1xP2,redundant,essential,5,5,,,essential,1,"The sale price is $60\%$ off the original price, which means it is $40\%$ of the original price."
+m3-86396553,prm-b659045eab2bbc92,P1xP2,redundant,essential,4,5,,,redundant,0,"313.9
++  12.6
+------
+     5
+    1"
+m3-88017882,prm-eadb47af80561526,P1xP2,redundant,harmful,5,5,,,harmful,-1,"I can use the third equation to eliminate B by multiplying it by 5 and subtracting it from the second equation:
+
+\[5(2A + B) - (B + 4) = 5(14) - \frac{3}{5}(A + 4)\]"
+m3-92743853,prm-f17b27e710e8f147,P1xP2,uncertain,harmful,1,3,,,harmful,-1,"One obvious way to get a two-cycle is to have $\lambda = 0$ or $\lambda = 4,$ since then $f(x) = 0$ or $f(x) = x(1 - x),$ and both of these functions have fixed points at $x = 0$ and $x = 1,$ which form a two-cycle."
+m3-99078163,prm-2dfd8218ce19b305,P1xP2,uncertain,essential,2,5,,,redundant,0,"# Answer
+
+(-infinity, 2) U (3, infinity)"
+m3-99375912,prm-fa4778df65d9a289,P1xP2,essential,harmful,5,5,,,harmful,-1,"This gives me $4x-1=x+3$, or $3x=4$, or $x=\frac{4}{3}$."
+m3-00434638,prm-a15fb929dff59e97,P3xP4,harmful,essential,4,4,上一步出错 这一步沿错误方向发展,,harmful,-1,"The problem says that this ratio should be the same as the original ratio, so I can set them equal and get an equation: $\frac{4+4x}{3}=\frac{4}{3}$."
+m3-05783843,prm-e8138a79d9f11b5f,P3xP4,redundant,essential,4,4,,,essential,1,"Now, I can take the square root of each pair of factors, which are just the factors themselves: $\sqrt{10 \times 15 \times 24} = 2 \times 2 \times 3 \times 5$."
+m3-16812358,prm-0c1ebea011e80ccd,P3xP4,essential,harmful,4,5,,,harmful,-1,"This is one possible answer, but there is another one."
+m3-20051685,prm-c7bf20109ee3402e,P3xP4,harmful,essential,5,5,103,,essential,-1,"Therefore, the smallest possible value of $k$ is $29$, which implies that the smallest possible value of $n$ is $\frac{7(29) + 3}{2} = 104$."
+m3-26808855,prm-14c85f1b92bf8cfb,P3xP4,harmful,essential,4,5,,,harmful,-1,That gives me $\frac{70}{10}\left(\frac{7}{10}\right) = \frac{7}{1}\left(\frac{7}{10}\right) = \frac{49}{10}$.
+m3-27712787,prm-f80db588fbe79fa9,P3xP4,essential,harmful,4,4,,,redundant,1,"But we can also try swapping the order of the factors, since the ratio of $a$ and $b$ is the same as the ratio of $b$ and $2009$."
+m3-31897902,prm-e457a6097bf292ad,P3xP4,redundant,essential,3,5,,,essential,1,"Therefore, the ordered pair is $(\frac{3}{2}, -13).$"
+m3-37934856,prm-fe9bce2e8059e597,P3xP4,redundant,harmful,1,4,"感觉这个思路好混乱(晕
+偶数项之和是偶数项之和的相反数感觉很废话...
+如果最后一项是偶数项就是偶数项项数的相反数（?是想表达这个吗）",方向正确但结论错误,harmful,-1,"I see that the sum after adding each odd term is equal to the odd term itself, and the sum after adding each even term is the negative of the even term."
+m3-51147449,prm-02ed1bb8af1a120d,P3xP4,essential,harmful,4,5,,,harmful,1,"So the difference in their areas must be due to the difference in their heights, which are the distances between the lines $y=ax+d$ and $y=ax+c$ and between the lines $y=ax-d$ and $y=ax+c$ respectively."
+m3-55926286,prm-64828b0b15ca157c,P3xP4,redundant,essential,3,5,,,essential,1,"Therefore, the number of different combinations of meals is 10 times 9, which is 90."
+m3-61008088,prm-f43ad1cb6c3aa6ba,P3xP4,redundant,essential,3,5,纠结essential,,essential,0,The smallest integer that is greater than 25 is 26.
+m3-63162453,prm-a9976436ac395dce,P3xP4,redundant,essential,4,5,,,essential,0,"I know that $\sqrt{4} = 2$, so I can simplify the fraction further and write $\frac{\sqrt{5}}{2}$."
+m3-68739303,prm-80def83e2346512b,P3xP4,harmful,essential,5,5,,,harmful,-1,The vertex occurs when $y = -\frac{b}{2a} = -\frac{-4x}{2(-1)} = 2x.$
+m3-78454026,prm-94b3b2909358d23e,P3xP4,redundant,essential,3,5,,,redundant,1,So I need to compare each argument to 4 and see which case applies.
+m3-78502885,prm-0e94635dc190f6f1,P3xP4,redundant,essential,4,5,,,harmful,0,"If k = 0, then 7x = -53, which is impossible, because x has to be positive."
+m3-78863581,prm-31f315049adee361,P3xP4,harmful,essential,5,4,,,essential,0,"But that also means that I'm done with the problem, because the sum of the proper divisors of the sum of the proper divisors of 284 is just 284."
+m3-79583483,prm-695b2bd8829139af,P3xP4,uncertain,essential,1,5,没看懂不好意思...,,harmful,-1,"For example, I could take the point $(1, 3)$, which is $(2, -1) + (1, -3)$, and the point $(-1, -1)$, which is $-2(1, -3)$."
+m3-83304000,prm-cbc588184fc6053c,P3xP4,redundant,essential,2,4,,,essential,1,"Using the given information, I can plug in x = 1 and x = 2 into the equation C(x) = P(x) + V(x) and get two equations with two unknowns, k and j."

@@ -1,0 +1,5 @@
+﻿rater_a\rater_b,essential,redundant,harmful,uncertain
+essential,42,5,6,1
+redundant,19,17,3,0
+harmful,5,0,15,0
+uncertain,6,0,1,0

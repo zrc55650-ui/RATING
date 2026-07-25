@@ -1,0 +1,4 @@
+﻿human_consensus_label,n_steps,share_rating_neg1,mean_target_effect_pp,mean_pure_semantic_effect_pp,danger_step_share,benefit_step_share
+essential,42,0.214,4.17,2.55,0.214,0.238
+redundant,17,0.118,-22.06,-5.77,0.353,0.059
+harmful,15,0.933,25.00,22.92,0.000,0.333

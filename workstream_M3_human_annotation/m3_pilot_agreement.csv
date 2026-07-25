@@ -1,0 +1,5 @@
+﻿scope,n_items,raw_agreement,cohen_kappa,gwet_ac1
+pair_P1xP2,60,0.5333,0.2301,0.4181
+pair_P3xP4,60,0.7000,0.5148,0.6243
+pooled_120,120,0.6167,0.3965,0.5161
+pooled_excl_uncertain,112,0.6607,0.4478,0.5136
