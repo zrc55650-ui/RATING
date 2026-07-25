@@ -1,0 +1,11 @@
+﻿group,metric,cluster_unit,n_steps,n_clusters,effect_pp,ci_lower_pp,ci_upper_pp
+anchor_initial_labels,target_effect,step_id,178,178,23.31,16.57,29.92
+anchor_initial_labels_matched,semantic,step_id,151,151,13.85,6.95,20.75
+anchor_initial_labels,target_effect,problem_id,178,150,23.31,16.19,30.49
+anchor_initial_labels_matched,semantic,problem_id,151,131,13.85,6.85,20.75
+anchor_human_calibrated,target_effect,step_id,160,160,20.94,13.75,28.12
+anchor_human_calibrated_matched,semantic,step_id,137,137,14.84,7.54,22.08
+anchor_human_calibrated,target_effect,problem_id,160,138,20.94,13.46,28.42
+anchor_human_calibrated_matched,semantic,problem_id,137,121,14.84,7.35,22.20
+overall_600,target_effect,step_id,600,600,7.21,3.88,10.54
+overall_600,target_effect,problem_id,600,303,7.21,3.73,10.66

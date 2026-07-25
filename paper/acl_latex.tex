@@ -24,20 +24,20 @@
 \maketitle
 
 \begin{abstract}
-Process reward models (PRMs) score the local correctness of reasoning steps, and reasoning systems increasingly reuse those scores to prune ``bad'' steps for efficiency or accuracy. We ask whether step-level correctness signals actually identify \emph{removable} steps. We introduce a counterfactual intervention protocol---control, deletion, position-and-length-matched \emph{placebo} deletion, and semantic-preserving \emph{paraphrase}---and apply it to 600 rating-balanced PRM800K steps (over 10{,}000 regenerated continuations), with replications on a second generator and on 300 ProcessBench steps from twelve source models. Deletion raises accuracy by $+7.2$ points on average, but the gain concentrates almost entirely in steps that are both low-rated and semantically harmful ($+23.3$\,pp; phi-4: $+33.7$\,pp; external first-error steps: $+24.8$\,pp). Controls decompose the mechanism: placebo deletion accounts for two fifths of the anchor-group gain (generic restart), while paraphrasing the erroneous step---preserving its wrong meaning---performs like keeping it, so the residual $+14$--$19$\,pp is attributable to the step's \emph{content}: a negative anchor. Crucially, no correctness signal identifies safe deletions: the dataset rating ranks deletion danger below chance (AUROC $0.42$), a deployed PRM checkpoint and prompted PRM judges do no better, step entropy is uninformative, and under a 1\% harm budget no score-threshold policy can delete a single step---while a five-feature predictor deletes a third of the cohort, and a single probe-and-rollback generation cuts harmed steps from 12\% to 3\%. PRM scores are evidence for \emph{ranking} pruning candidates, not licenses to delete; safe pruning needs counterfactual validation. We release the audited dataset, pipeline, and benchmark.
+Process reward models (PRMs) score the local correctness of reasoning steps; as chain-of-thought compression matures, correctness scores are natural candidates for deciding which steps of a generated trajectory can be pruned. We ask whether step-level correctness signals actually identify \emph{removable} steps. We introduce a counterfactual intervention protocol---control, deletion, position-and-length-matched \emph{placebo} deletion, and semantic-preserving \emph{paraphrase}---and apply it to 600 rating-balanced PRM800K steps (over 13{,}000 regenerated continuations), with replications on a second generator and on 300 ProcessBench steps from twelve source models. Deletion raises accuracy by $+7.2$ points on average on the rating-balanced cohort ($-0.5$\,pp when reweighted to the natural step distribution), but the gain concentrates almost entirely in steps that are both low-rated and semantically harmful ($+23.3$\,pp; phi-4: $+33.7$\,pp; external first-error steps: $+24.8$\,pp). Controls decompose the mechanism: placebo deletion accounts for two fifths of the anchor-group gain (generic restart), while paraphrasing the erroneous step---preserving its wrong meaning---performs like keeping it, so the residual $+14$--$19$\,pp is attributable to the step's \emph{content}: a negative anchor. Crucially, no correctness signal identifies safe deletions: the dataset rating ranks deletion danger below chance (AUROC $0.42$), a deployed PRM checkpoint and prompted PRM judges do no better, step entropy is uninformative, and under an honest calibration/test protocol with a one-sided harm bound, rating-, type-, and PRM-score rankings certify \emph{zero} deletions at every budget we test---while a trajectory-state logistic predictor certifies 29\% coverage at a 3\% budget, and a single probe-and-rollback generation cuts harmed steps from 12\% to 3\%. PRM scores are evidence for \emph{ranking} pruning candidates, not licenses to delete; safe pruning needs counterfactual validation. We release the audited dataset, pipeline, and benchmark.
 \end{abstract}
 
 \section{Introduction}
 
-Process reward models assign scores to individual steps of a reasoning trajectory and have become a standard tool for verifying and steering large language model (LLM) reasoning \citep{lightman2024lets,uesato2022solving,wang2024mathshepherd}. As long chains of thought grow expensive, a tempting reuse of these scores has emerged: treat low-scoring steps as disposable, and prune them to shorten context, save tokens, or even repair a derailed trajectory \citep{choi2025think,li2025compressing}. This reuse embeds a silent assumption: that a step's \emph{correctness score} tells us what happens to downstream reasoning if the step is \emph{removed}.
+Process reward models assign scores to individual steps of a reasoning trajectory and have become a standard tool for verifying and steering large language model (LLM) reasoning \citep{lightman2024lets,uesato2022solving,wang2024mathshepherd}. As long chains of thought grow expensive, systems have begun pruning generated reasoning with attention-based redundancy scores \citep{choi2025think}, step entropy \citep{li2025compressing}, and likelihood-preserving token deletion \citep{singh2026llms}. Step-level \emph{correctness} scores are the obvious next candidate---PRMs are exactly the models trained to say which steps are bad---but reusing them as deletion signals embeds a silent assumption: that a step's correctness score tells us what happens to downstream reasoning if the step is \emph{removed}. Before that reuse hardens into practice, we test the assumption directly.
 
 This assumption conflates several distinct properties of a reasoning step. A step can be locally correct yet contribute nothing that later steps use; it can be locally incorrect yet occur after the trajectory is already doomed, so removing it changes nothing; and it can be incorrect in a way that actively \emph{anchors} the continuation to a bad path, so removing it rescues the run. Whether deletion helps is a \emph{counterfactual} property of the step--generator pair, not a syntactic property of the step in isolation.
 
-We study this gap directly. Starting from PRM800K \citep{lightman2024lets}, we sample 600 target steps balanced across human ratings ($-1/0/{+}1$), annotate each step's semantic contribution (Essential / Redundant / Harmful), and measure what actually happens when a fixed generator (Qwen3-8B; \citealp{qwen3_2025}) continues the trajectory with and without the step, four runs per condition, 2{,}400 paired outcomes. Because deleting \emph{any} step also forces the generator to re-plan---which can itself change outcomes---we additionally run a position-and-length-matched \emph{placebo} deletion for 511 of the 600 steps (1{,}514 runs), letting us decompose raw deletion effects into a target-specific semantic component and a generic restart component. An LLM judge scores final answers; a 200-output human audit bounds judge error and a full label-substitution analysis bounds its effect on every headline number ($\le 0.13$\,pp).
+We study this gap directly. Starting from PRM800K \citep{lightman2024lets}, we sample 600 target steps balanced across human ratings ($-1/0/{+}1$), annotate each step's semantic contribution (Essential / Redundant / Harmful), and measure what actually happens when a fixed generator (Qwen3-8B; \citealp{qwen3_2025}) continues the trajectory with and without the step, four runs per condition, 2{,}400 paired outcomes. Because deleting \emph{any} step also forces the generator to re-plan---which can itself change outcomes---we additionally run a position-and-length-matched \emph{placebo} deletion for 511 of the 600 steps (1{,}514 runs), letting us decompose raw deletion effects into a target-specific component and a generic restart component. An LLM judge scores final answers; a 200-output human audit measures judge accuracy, and a full label-substitution analysis quantifies the observed effect of judge noise on every headline number ($\le 0.13$\,pp on the audited subset).
 
-Three findings emerge. \textbf{First, correctness and contribution are correlated but far from interchangeable} (Cram\'er's $V = 0.53$; 34.5\% of steps off the expected diagonal), and deletion outcomes track the \emph{interaction}: only steps that are both low-rated and Harmful yield large reliable gains ($+23.3$\,pp), while every other rating or type group is statistically indistinguishable from zero. The pattern replicates on a second generator from a different pretraining pipeline (phi-4: anchor effect $+33.7$\,pp) and on external ProcessBench trajectories from twelve source models. \textbf{Second, deletion gains are not all semantic---but the anchor component is.} The matched placebo reveals a $+10.0$\,pp generic ``restart'' component inside the low-rated Harmful group, and a semantic-preserving paraphrase control pins down the remainder: rewording the erroneous step leaves accuracy at control level while deleting it gains $+19.2$\,pp over the paraphrase---erroneous \emph{content}, not surface form or token count, drags continuations toward failure (a \emph{negative anchor}). \textbf{Third, scores are not policies.} Under a 1\% harm budget, \emph{no} threshold on the PRM800K rating, the semantic type, or the continuous score of a deployed PRM checkpoint can delete a single step, while a five-feature logistic predictor deletes 200 of 600 steps at the same budget and an oracle deletes 530. The information gap, not the intervention, is the bottleneck---and a single probe-and-rollback generation recovers most of the missing safety (harmed steps 12.2\% $\to$ 3.0\%).
+Three findings emerge. \textbf{First, correctness and contribution are correlated but far from interchangeable} (Cram\'er's $V = 0.53$; 34.5\% of steps off the expected diagonal), and deletion outcomes track the \emph{interaction}: only steps that are both low-rated and Harmful yield large reliable gains ($+23.3$\,pp), while every other rating or type group is statistically indistinguishable from zero. The pattern replicates on a second generator from a different pretraining pipeline (phi-4: anchor effect $+33.7$\,pp) and on external ProcessBench trajectories from twelve source models. \textbf{Second, deletion gains are not all semantic---but the anchor component is.} The matched placebo reveals a $+10.0$\,pp generic ``restart'' component inside the low-rated Harmful group, and a semantic-preserving paraphrase control pins down the remainder: rewording the erroneous step leaves accuracy at control level while deleting it gains $+19.2$\,pp over the paraphrase---erroneous \emph{content}, not surface form or token count, drags continuations toward failure (a \emph{negative anchor}). \textbf{Third, scores are not policies.} Under an honest calibration/test protocol that requires a one-sided 95\% harm bound to clear the budget, rankings by the PRM800K rating, the semantic type, or the continuous score of a deployed PRM checkpoint certify \emph{zero} deletions at every budget from 1\% to 5\%, while a trajectory-state logistic predictor certifies 29\% coverage at 3\% (realized held-out harm 1.2\%) and an in-sample oracle shows 530 of 600 steps could in principle be deleted safely. The information gap, not the intervention, is the bottleneck---and a single probe-and-rollback generation recovers most of the missing safety (harmed steps 12.2\% $\to$ 3.0\%).
 
-Our contributions: (i) a conceptual separation of step correctness, semantic contribution, and retrospective removability, with pre-registered estimands; (ii) a reusable counterfactual protocol---control / target deletion / matched placebo / semantic-preserving paraphrase---with an audited automatic evaluator; (iii) an empirical characterization of \emph{negative reasoning anchors}, replicated across two generators and an external multi-model benchmark; (iv) a signal audit spanning dataset ratings, deployed PRM scores, uncertainty, and counterfactual importance; and (v) a risk--coverage and rollback benchmark showing correctness thresholds are unusable as deletion policies under realistic harm budgets, while cheap counterfactual validation is not. We release all data, code, and audits.
+Our contributions: (i) a conceptual separation of step correctness, semantic contribution, and retrospective removability, with pre-registered estimands; (ii) a reusable counterfactual protocol---control / target deletion / matched placebo / semantic-preserving paraphrase---with an audited automatic evaluator; (iii) an empirical characterization of \emph{negative reasoning anchors}, replicated across two generators and an external multi-model benchmark; (iv) a signal audit spanning dataset ratings, deployed PRM scores, uncertainty, and counterfactual importance; and (v) a risk--coverage and rollback benchmark showing correctness rankings are unusable as deletion policies under tight harm budgets, while cheap counterfactual validation is not. We release all data, code, and audits.
 
 \section{Related Work}
 
@@ -45,7 +45,7 @@ Our contributions: (i) a conceptual separation of step correctness, semantic con
 Step-level supervision improves credit assignment over outcome-only rewards \citep{uesato2022solving,lightman2024lets,cobbe2021training}. Math-Shepherd derives step labels from rollout success probabilities \citep{wang2024mathshepherd}; \citet{setlur2025rewarding} argue for rewarding \emph{progress} (prospective advantage) rather than local correctness; generative PRMs verify steps with explicit reasoning \citep{khalifa2025process}. Benchmarks probe what PRMs detect: ProcessBench locates first errors \citep{zheng2025processbench}, and PRMBench separates fine-grained error dimensions including redundancy \citep{song2025prmbench}. None of these measure what happens when a step is \emph{removed}; our protocol supplies exactly that counterfactual layer, and our results show that correctness-oriented signals transfer poorly to it.
 
 \paragraph{Reasoning compression and pruning.}
-Token- and step-pruning methods compress chains of thought using redundancy heuristics, entropy, or self-evaluation \citep{choi2025think,li2025compressing}, and probing studies ask whether models internally encode token importance \citep{singh2025llms}. These works optimize for preserving the answer of an already-correct trajectory; our study additionally quantifies the \emph{repair} regime (deleting misleading content from failing trajectories) and shows the two regimes respond to different signals.
+Token- and step-pruning methods compress chains of thought using attention-based redundancy \citep{choi2025think}, step entropy \citep{li2025compressing}, or likelihood-preserving greedy deletion \citep{singh2026llms}; none uses PRM correctness scores as its deletion signal, which is precisely the reuse whose safety we quantify before it becomes practice. These works optimize for preserving the answer of an already-correct trajectory; our study additionally quantifies the \emph{repair} regime (deleting misleading content from failing trajectories) and shows the two regimes respond to different signals.
 
 \paragraph{Deletion as intervention.}
 Ablation-style causal analyses of reasoning typically mask content at the token level or measure answer-probability shifts. Our design differs in running full \emph{regenerated} continuations---the deployment-relevant intervention---and in controlling the regeneration itself with a matched placebo, which we show is essential: without it, restart effects of up to $+10$\,pp inside key subgroups would be misattributed to step semantics.
@@ -60,26 +60,26 @@ We distinguish four properties of a step $s_t$ in trajectory $h$:
 (4) \emph{retrospective removability}, the change in success probability from \emph{deleting} the step after the fact and regenerating.
 This paper measures (4) and its relation to (1) and (2).
 
-For step $i$ with paired runs $j = 1{:}K$ ($K{=}4$), let $Y^{c}_{ij}, Y^{t}_{ij}, Y^{p}_{ij} \in \{0,1\}$ be final-answer correctness under \textbf{C}ontrol (step kept), \textbf{T}arget deletion, and \textbf{P}lacebo deletion (a different step of matched position and length deleted). Pre-registered estimands:
+For step $i$, let $Y^{c}_{ij}, Y^{t}_{ij} \in \{0,1\}$ be final-answer correctness under \textbf{C}ontrol (step kept) and \textbf{T}arget deletion, with $K{=}4$ independent runs per condition; matched steps (511/600) additionally receive one to four \textbf{P}lacebo runs $Y^{p}_{ij}$ (1{,}514 in total), applying the same truncation operator at a different, length-matched step. Pre-registered estimands:
 \begin{align}
 \Delta^{\mathrm{tgt}}_i &= \bar{Y}^{t}_{i} - \bar{Y}^{c}_{i}, \qquad
 \Delta^{\mathrm{plc}}_i = \bar{Y}^{p}_{i} - \bar{Y}^{c}_{i}, \nonumber\\
 \Delta^{\mathrm{sem}}_i &= \Delta^{\mathrm{tgt}}_i - \Delta^{\mathrm{plc}}_i,
 \label{eq:estimands}
 \end{align}
-plus run-level transition events \emph{danger} ($Y^{c}{=}1 \to Y^{t}{=}0$) and \emph{benefit} ($Y^{c}{=}0 \to Y^{t}{=}1$). All confidence intervals are 95\% percentile intervals from a 5{,}000-replicate cluster bootstrap resampling \emph{target steps} (the unit at which interventions are randomized); fixed seeds are released.
+plus run-level transition events \emph{danger} ($Y^{c}{=}1 \to Y^{t}{=}0$) and \emph{benefit} ($Y^{c}{=}0 \to Y^{t}{=}1$). Runs are independent fresh-session samples with no shared randomness across conditions; pairing control run $j$ with deletion run $j$ is a fixed bookkeeping convention whose expected transition rate equals $p^{c}_i(1-p^{t}_i)$ under any pairing, so we read danger/benefit rates as estimates of those products, not as within-seed counterfactual flips. $\Delta^{\mathrm{sem}}$ is a \emph{placebo-corrected, target-specific} contrast---the superscript records the hypothesis it tests, which the paraphrase control probes directly (Section~\ref{sec:mechanism}). All confidence intervals are 95\% percentile intervals from a 5{,}000-replicate cluster bootstrap resampling \emph{target steps} (the unit at which interventions are applied); re-clustering by problem leaves headline intervals essentially unchanged (overall $\ci{+3.7}{+10.7}$ vs.\ $\ci{+3.9}{+10.6}$; Table~\ref{tab:labelrobust}). Fixed seeds are released.
 
 \section{Data and Intervention Protocol}
 \label{sec:protocol}
 
 \paragraph{Step cohort.}
-From PRM800K phase-2 test trajectories \citep{lightman2024lets} over MATH problems \citep{hendrycks2021measuring} we sample 600 target steps, 200 per rating, balanced over early/middle/late positions ($201/201/198$). Semantic contribution was annotated twice: an initial AI-assisted pass, and a human-calibrated pass in which the authors re-labeled with a few-shot calibrated rubric; the two label sets disagree on 164/600 steps (27.3\%), which we treat as an explicit reliability bound and revisit in the Limitations. Under the calibrated labels the cohort contains 198 Essential, 199 Redundant, and 203 Harmful steps. Rating and type are associated (Cram\'er's $V = 0.528$) with 65.5\% of steps on the expected diagonal (\,${+}1{\leftrightarrow}$Essential, $0{\leftrightarrow}$Redundant, ${-}1{\leftrightarrow}$Harmful\,)---correlated, but with a third of the cohort off-diagonal (Figure~\ref{fig:heatmap}).
+From PRM800K phase-2 test trajectories \citep{lightman2024lets} over MATH problems \citep{hendrycks2021measuring} we sample 600 target steps, 200 per rating, balanced over early/middle/late positions ($201/201/198$). Semantic contribution was annotated twice, with both passes completed before any deletion outcome existed: an initial AI-assisted pass (165 Essential / 201 Redundant / 234 Harmful) and a human-calibrated re-labeling pass (198 / 199 / 203); the passes disagree on 164/600 steps (27.3\%), which we treat as an explicit reliability bound and revisit in the Limitations. The frozen statistical pipeline behind Tables~\ref{tab:main}--\ref{tab:placebo} uses the \emph{initial} pass as its primary label set ($-1\times$Harmful anchor: 178 steps); the calibrated pass (anchor: 160 steps, 154 shared) drives the correctness-vs-contribution crosstab below, extension-cohort sampling, and a robustness re-estimation of the anchor effects (Table~\ref{tab:labelrobust}: $+20.9$\,pp vs.\ $+23.3$\,pp---the headline survives either pass). Under the calibrated labels, rating and type are associated (Cram\'er's $V = 0.528$) with 65.5\% of steps on the expected diagonal (\,${+}1{\leftrightarrow}$Essential, $0{\leftrightarrow}$Redundant, ${-}1{\leftrightarrow}$Harmful\,)---correlated, but with a third of the cohort off-diagonal (Figure~\ref{fig:heatmap}).
 
 \paragraph{Interventions.}
-For each step we construct prompts containing the problem plus the trajectory prefix through step $t$ (Control) or through step $t$ with $s_t$ excised (Target deletion), and let Qwen3-8B (temperature $0.7$, top-$p$ $0.8$) regenerate the continuation; four runs per condition. For the placebo condition we delete instead a different step from the same prefix whose token length is within $\pm 20\%$ of the target's, choosing the closest available position; 511/600 steps admit such a match (1{,}514 placebo runs), and the 89 unmatched steps differ from matched ones on no outcome-relevant covariate (accuracy, harm, and recovery differences all cross zero; maximum position SMD $0.298$), differing only in continuation-length change.
+Both interventions are prefix truncations of the same trajectory: the Control prompt contains the problem plus steps $1{:}t$, the Target-deletion prompt contains steps $1{:}t{-}1$---operationally a \emph{rollback} of the most recent visible step, not an interior splice---and Qwen3-8B (temperature $0.7$, top-$p$ $0.8$) regenerates the continuation, four fresh runs per condition. The Placebo condition applies the identical truncation at a different step $p$ of the same trajectory (before or after $t$; 51\%/49\% in practice) whose token length is within $\pm 20\%$ of the target's, choosing the closest available position; 511/600 steps admit such a match (1{,}514 placebo runs), and the 89 unmatched steps differ from matched ones on no outcome-relevant covariate (accuracy, harm, and recovery differences all cross zero; maximum position SMD $0.298$), differing only in continuation-length change. The steps at the placebo cutoffs are benign: none carries rating $-1$; 59\% carry rating $+1$, 11\% rating $0$, and 30\% are unrated (Table~\ref{tab:placebocomp}).
 
 \paragraph{Outcome evaluation and audit.}
-An LLM judge marks final-answer correctness against ground truth. We audited 200 stratified outputs with human adjudication: agreement 93.5\% (F1 $0.931$), pair-transition agreement 91.7\%, and a maximum per-condition bias of $2.3$\,pp---below the pre-set gates (90\% / 5\,pp). Substituting all 200 adjudicated labels into the frozen tables moves the overall target effect by $-0.13$\,pp and the pure semantic effect by $-0.05$\,pp; no conclusion in this paper is sensitive to judge noise at this scale (Table~\ref{tab:judge}).
+An LLM judge (Qwen3-8B, temperature 0; prompts released) marks final-answer correctness against ground truth. We audited 200 stratified outputs with human adjudication: agreement 93.5\% (F1 $0.931$), pair-transition agreement 91.7\%, and a maximum per-condition bias of $2.3$\,pp---below the pre-set gates (90\% / 5\,pp). Substituting all 200 adjudicated labels into the frozen tables moves the overall target effect by $-0.13$\,pp and the placebo-corrected effect by $-0.05$\,pp; this is observed sensitivity on the audited subset, not a bound on the remaining outputs, but no conclusion in this paper moves under substitution (Table~\ref{tab:judge}).
 
 \paragraph{Replication and mechanism cohorts.}
 Four extensions reuse the identical prompt protocol. (i)~\emph{Cross-generator}: 300 steps (all 100 available rating$\,-1\times$Harmful anchors, 100 rating-0, 100 rating-$1$; 103 stably-correct; positions balanced) rerun with \textbf{phi-4} (14B; a different pretraining pipeline from Qwen), 3 runs per condition, reusing the frozen matched-placebo indices.\footnote{The plan's nominal second generator (DeepSeek-R1-Distill) was unavailable or exhausted its token budget in reasoning without emitting parseable output; phi-4 matched the 7--14B budget and the no-thinking protocol. All 2{,}691 continuations parsed.} (ii)~\emph{Semantic-preserving paraphrase} (condition C3): for a 240-step strong-control subset (80 anchors / 80 stably-correct / 80 rating-$0/1$ fragile), an independent model (Gemini 2.5 Flash) paraphrases the target step preserving its exact meaning \emph{including errors}; 221/240 paraphrases passed automatic validity checks (7.9\% excluded) and each ran 4 continuations, alongside 4 fresh matched-placebo runs (C2). (iii)~\emph{Deployed PRM scoring}: three PRMs score all 600 steps---the trained checkpoint Qwen2.5-Math-PRM-7B (full-trajectory, token-level head) and two prompted LLM-judge PRMs (Gemini 2.5 Flash, phi-4). (iv)~\emph{External validation}: 300 ProcessBench steps \citep{zheng2025processbench} spanning GSM8K, MATH, OlympiadBench, and Omni-MATH trajectories from twelve source models (Section~\ref{sec:external}).
@@ -114,7 +114,7 @@ Harmful            & 234 & $+18.38$ & $\ci{+12.28}{+24.44}$ \\
 $-1\times$Harmful  & 178 & $+23.31$ & $\ci{+16.57}{+30.24}$ \\
 \bottomrule
 \end{tabular}
-\caption{Target-deletion effects on final-answer accuracy (600 steps, 2{,}400 paired runs, cluster bootstrap over steps). Gains concentrate in low-rated Harmful steps; all other rating and type margins cross zero.}
+\caption{Target-deletion effects on final-answer accuracy (600 steps, 2{,}400 paired runs, cluster bootstrap over steps; initial-pass semantic labels---the calibrated-pass anchor estimate is $+20.9$\,pp, Table~\ref{tab:labelrobust}). Gains concentrate in low-rated Harmful steps; all other rating and type margins cross zero.}
 \label{tab:main}
 \end{table}
 
@@ -127,7 +127,7 @@ Stratifying by control stability makes the state-dependence explicit (Figure~\re
 With four paired runs per step, 377/600 steps never change outcome, 99 are strongly beneficial (gain in $\ge 3$ runs), 57 strongly harmful, and the rest weak or mixed. Of the 178 low-rated Harmful steps, 51 (29\%) are strongly beneficial to delete---$2.5\times$ the rate in the rest of the cohort (11\%), but far from a guarantee.
 
 \paragraph{Cross-generator replication.}
-The pattern is not a Qwen3-8B artifact. Rerunning 300 steps with phi-4 (3 runs per condition) reproduces every qualitative conclusion: overall target effect $+12.4$\,pp (CI $\ci{+8.3}{+16.8}$), anchor-group target effect $+33.7$\,pp (CI $\ci{+25.7}{+42.0}$) with a pure semantic component of $+18.3$\,pp (CI $\ci{+10.7}{+26.0}$), and rating-$0$/rating-$1$ target effects indistinguishable from zero ($+1.7$ and $+2.0$\,pp). Effect \emph{magnitudes} are generator-dependent (phi-4's anchor effects are larger, consistent with weaker recovery from bad prefixes), and step-level effect signs agree for 65\% of the 80 steps with nonzero effects under both generators---well above chance but far from deterministic. Removability generalizes as a population-level phenomenon while remaining partly a property of the step--generator pair.
+The pattern is not a Qwen3-8B artifact. Rerunning 300 steps with phi-4 (3 runs per condition) reproduces every qualitative conclusion: overall target effect $+12.4$\,pp (CI $\ci{+8.3}{+16.8}$), anchor-group target effect $+33.7$\,pp (CI $\ci{+25.7}{+42.0}$) with a placebo-corrected component of $+18.3$\,pp (CI $\ci{+10.7}{+26.0}$), and rating-$0$/rating-$1$ target effects indistinguishable from zero ($+1.7$ and $+2.0$\,pp). Effect \emph{magnitudes} are generator-dependent (phi-4's anchor effects are larger, consistent with weaker recovery from bad prefixes), and step-level effect signs agree for 65\% of the 80 steps with nonzero effects under both generators---well above chance but far from deterministic. Removability generalizes as a population-level phenomenon while remaining partly a property of the step--generator pair.
 
 \begin{figure}[t]
   \centering
@@ -155,11 +155,11 @@ Harmful (201)        & $+18.41$ & $+3.57$ & $+14.84$ & $\ci{+8.83}{+20.61}$ \\
 $-1\times$Harmful (151) & $+23.84$ & $+9.99$ & $+13.85$ & $\ci{+6.95}{+20.64}$ \\
 \bottomrule
 \end{tabular}
-\caption{Placebo decomposition on the 511-step matched cohort (effects in pp). Deleting a \emph{matched innocuous step} already yields $+10.0$\,pp inside the low-rated Harmful group: 42\% of the raw deletion gain there is restart, not semantics.}
+\caption{Placebo decomposition on the 511-step matched cohort (effects in pp; initial-pass labels). Truncating at a \emph{matched non-target step} already yields $+10.0$\,pp inside the low-rated Harmful group: 42\% of the raw deletion gain there is restart, not step content.}
 \label{tab:placebo}
 \end{table}
 
-Does deletion help because the \emph{content} of the step was harmful, or because \emph{any} deletion lets the generator restart and resample? Table~\ref{tab:placebo} separates the two. Overall, placebo deletion is inert ($-0.57$\,pp), and the pure semantic effect ($+8.55$\,pp) essentially equals the raw effect. But inside the low-rated groups the placebo is \emph{not} inert: deleting a matched innocuous step from a trajectory that contains a low-rated Harmful step yields $+9.99$\,pp by itself. Intuitively, these trajectories are so fragile that any perturbation that forces re-planning has positive expected value. The target-specific component that survives subtraction---$+13.85$\,pp (CI $\ci{+6.95}{+20.64}$) for rating$\,-1\times$Harmful---is our headline evidence for \emph{negative anchors}: erroneous step content that actively pulls regenerated continuations toward failure, over and above the restart benefit.
+Does deletion help because the \emph{content} of the step was harmful, or because \emph{any} deletion lets the generator restart and resample? Table~\ref{tab:placebo} separates the two. Overall, placebo deletion is inert ($-0.57$\,pp), and the placebo-corrected effect ($+8.55$\,pp) essentially equals the raw effect. But inside the low-rated groups the placebo is \emph{not} inert: truncating at a matched non-target step of a trajectory that contains a low-rated Harmful step yields $+9.99$\,pp by itself. Intuitively, these trajectories are so fragile that any perturbation that forces re-planning has positive expected value. The target-specific component that survives subtraction---$+13.85$\,pp (CI $\ci{+6.95}{+20.64}$) for rating$\,-1\times$Harmful---is our headline evidence for \emph{negative anchors}: erroneous step content that actively pulls regenerated continuations toward failure, over and above the restart benefit.
 
 Two methodological corollaries. First, deletion studies without matched placebos conflate these components; in our data the conflation is worth up to 10\,pp precisely in the subgroups where deletion looks most attractive. Second, restart effects are heterogeneous (negative for rating $0/{+}1$ groups, strongly positive for fragile ones), so a single global ``restart correction'' would also be wrong; matching must be per-step.
 
@@ -182,7 +182,7 @@ C1$-$C3 (vs.\ paraphrase)   & $\mathbf{+19.2}$ & $-2.7$  & $+4.1$ \\
 \end{table}
 
 \paragraph{Paraphrase triangulation.}
-The placebo isolates \emph{that} the target matters; a semantic-preserving paraphrase isolates \emph{why} (Table~\ref{tab:fourcond}). In the anchor group, replacing the erroneous step with an independent-model rewording that preserves its (wrong) meaning leaves accuracy at control level ($+1.7$\,pp, CI $\ci{-6.2}{+9.9}$), while deleting it gains $+19.2$\,pp over the paraphrase (CI $\ci{+8.2}{+30.1}$): the harm travels with the \emph{semantics}, not the surface form---the definitive signature of a negative anchor. The fragile-neutral group shows the mirror image: a large raw gain ($+24.1$\,pp) that placebo deletion matches exactly (C1$-$C2 $= 0.0$\,pp), i.e.\ pure restart. And stably-correct steps are harmed even by faithful rewording ($-8.3$\,pp, CI $\ci{-14.7}{-3.0}$), showing that correct reasoning chains are sensitive to perturbations that preserve meaning---deletion is not the only risky edit. A blinded human fidelity audit backs the C3 premise: four annotators rated 140 sampled paraphrases (original and rewording side by side, groups hidden), judging 97.1\% faithful or minimally deviating; in the anchor group, zero of 46 audited paraphrases corrected the original error, so C3 does not silently repair the step it rewords.
+The placebo isolates \emph{that} the target matters; a semantic-preserving paraphrase isolates \emph{why} (Table~\ref{tab:fourcond}). In the anchor group, replacing the erroneous step with an independent-model rewording that preserves its (wrong) meaning leaves accuracy at control level ($+1.7$\,pp, CI $\ci{-6.2}{+9.9}$), while deleting it gains $+19.2$\,pp over the paraphrase (CI $\ci{+8.2}{+30.1}$): the harm travels with the \emph{semantics}, not the surface form---exactly the signature the negative-anchor account predicts. The fragile-neutral group shows the mirror image: a large raw gain ($+24.1$\,pp) that placebo deletion matches exactly (C1$-$C2 $= 0.0$\,pp), i.e.\ pure restart. And stably-correct steps are harmed even by faithful rewording ($-8.3$\,pp, CI $\ci{-14.7}{-3.0}$), showing that correct reasoning chains are sensitive to perturbations that preserve meaning---deletion is not the only risky edit. A blinded human fidelity audit backs the C3 premise: four annotators rated 140 sampled paraphrases (original and rewording side by side, groups hidden), judging 97.1\% faithful or minimally deviating; in the anchor group, zero of 46 audited paraphrases corrected the original error, so C3 does not silently repair the step it rewords. The 19 excluded paraphrases resemble the 221 retained on group shares, rating mix, and target length (Table~\ref{tab:paraexcl}), so the exclusion is unlikely to bias these contrasts.
 
 \paragraph{Qualitative families.}
 Eight fully human-verified cases (78 audited continuations) illustrate the mechanism space: 3 negative anchors (deletion removes a wrong commitment and continuations recover), 2 generic restarts (placebo helps as much as target deletion), 2 stably-correct steps destroyed by deletion, and 1 high-rated Redundant step whose deletion flips outcomes unpredictably. We release all cases with full continuations.
@@ -190,7 +190,7 @@ Eight fully human-verified cases (78 audited continuations) illustrate the mecha
 \begin{figure}[t]
   \centering
   \includegraphics[width=\columnwidth]{figures/figure3_placebo_decomposition.pdf}
-  \caption{Target, placebo, and pure-semantic effects with 95\% cluster-bootstrap CIs, matched 511-step cohort.}
+  \caption{Target, placebo, and placebo-corrected effects with 95\% cluster-bootstrap CIs, matched 511-step cohort.}
   \label{fig:placebo}
 \end{figure}
 
@@ -199,7 +199,7 @@ Eight fully human-verified cases (78 audited continuations) illustrate the mecha
 
 Does any of this survive outside PRM800K trajectories and outside human step ratings? We sample 300 ProcessBench steps \citep{zheng2025processbench}---152 human-annotated \emph{first-error} steps and 148 \emph{locally-correct} steps, balanced across GSM8K, MATH, OlympiadBench, and Omni-MATH (75 each) and drawn from trajectories written by twelve different source models---and run the identical protocol (3 runs per condition; 204/300 steps admit a length-matched placebo; gold answers matched from source datasets for 99.5\% of records).
 
-The core dissociation transfers. Deleting first-error steps yields $+24.8$\,pp (CI $\ci{+16.9}{+32.7}$), with a placebo-corrected semantic component of $+19.4$\,pp (CI $\ci{+10.2}{+28.3}$); deleting locally-correct steps yields $-2.0$\,pp (CI $\ci{-8.3}{+4.1}$)---erroneous steps in other models' reasoning are negative anchors too, and locally-correct steps are not usefully removable even though they are also not reliably \emph{dangerous} on average. The overall semantic effect ($+8.2$\,pp, CI $\ci{+2.1}{+14.2}$) is strikingly close to the PRM800K cohort's $+8.6$\,pp. One boundary emerges: the semantic component is significant on GSM8K ($+17.5$\,pp) and MATH ($+13.9$\,pp) but attenuates on OlympiadBench ($+6.8$\,pp, CI crosses zero) and vanishes on Omni-MATH ($-3.8$\,pp), where placebo deletion alone trends positive ($+9.4$\,pp): on problems near the generator's competence ceiling, rescues come from restarting rather than from removing specific bad content. Negative anchors are a phenomenon of \emph{recoverable} trajectories.
+The core dissociation transfers. Deleting first-error steps yields $+24.8$\,pp (CI $\ci{+16.9}{+32.7}$), with a placebo-corrected component of $+19.4$\,pp (CI $\ci{+10.2}{+28.3}$); deleting locally-correct steps yields $-2.0$\,pp (CI $\ci{-8.3}{+4.1}$)---erroneous steps in other models' reasoning are negative anchors too, and locally-correct steps are not usefully removable even though they are also not reliably \emph{dangerous} on average. The overall placebo-corrected effect ($+8.2$\,pp, CI $\ci{+2.1}{+14.2}$) is strikingly close to the PRM800K cohort's $+8.6$\,pp. One boundary emerges: the placebo-corrected component is significant on GSM8K ($+17.5$\,pp) and MATH ($+13.9$\,pp) but attenuates on OlympiadBench ($+6.8$\,pp, CI crosses zero) and vanishes on Omni-MATH ($-3.8$\,pp), where placebo deletion alone trends positive ($+9.4$\,pp): on problems near the generator's competence ceiling, rescues come from restarting rather than from removing specific bad content. Negative anchors are a phenomenon of \emph{recoverable} trajectories.
 
 \section{Do Correctness Signals Predict Removability?}
 \label{sec:signals}
@@ -260,7 +260,7 @@ Because ``PRM scores'' in deployment are continuous model outputs rather than da
 \section{From Scores to Policies: Risk--Coverage}
 \label{sec:policy}
 
-We convert the audit into a deployment question: if a system deletes the top-$k$ steps ranked by a signal, what net accuracy does it gain, and how many previously-correct runs does it destroy? We evaluate seven policies offline on the frozen cohort: random; threshold policies (rating $=-1$; Harmful-only; their intersection); the model-D and model-E predictors of Section~\ref{sec:signals} (ranked by out-of-fold $P(\text{benefit}) - P(\text{danger})$, with base-rate imputation so the static policy cannot exploit prediction-availability leakage); and an oracle ranked by observed effect. \emph{Harm rate} is correct-to-wrong transitions per deleted run.
+We convert the audit into a deployment question: if a system deletes the top-$k$ steps ranked by a signal, what net accuracy does it gain, and how many previously-correct runs does it destroy? We evaluate seven policies offline on the frozen cohort: random; correctness \emph{rankings} (rating-first; Harmful-first; intersection-first; ties broken by a fixed hash, and a ranking continues into lower-priority steps once its tier is exhausted, so coverage can exceed a tier's size); the model-D and model-E predictors of Section~\ref{sec:signals} (ranked by out-of-fold $P(\text{benefit}) - P(\text{danger})$, with base-rate imputation so the static policy cannot exploit prediction-availability leakage); and an oracle ranked by observed effect. \emph{Harm rate} is correct-to-wrong transitions per deleted run (an estimate of $p^{c}(1-p^{t})$; Section~\ref{sec:constructs}). Coverages are fractions of the rating-balanced cohort, not of natural traffic (see below).
 
 \begin{table}[t]
 \centering
@@ -281,17 +281,23 @@ Predictor (state, E)    & \textbf{210} & 250 & 280 \\
 Oracle upper bound      & 530 & 550 & 570 \\
 \bottomrule
 \end{tabular}
-\caption{Maximum deletable steps (of 600) under fixed harm budgets, where harm is correct-to-wrong transitions per deleted run. No correctness-threshold policy deletes \emph{anything} within a 1\% budget; a five-feature CV predictor deletes a third of the cohort. The oracle shows the gap is informational, not intrinsic.}
+\caption{Maximum deletable steps (of 600) under fixed harm budgets with \emph{in-sample} selection of $k$; rankings may exceed a tier's size (e.g.\ 210 $>$ the 200 rating$\,-1$ steps) by extending into the next tier. No correctness ranking deletes \emph{anything} within a 1\% budget; the 12-feature CV predictor deletes a third of the cohort. Honest calibrated selection is stricter still (Table~\ref{tab:calibsplit}). The oracle shows the gap is informational, not intrinsic.}
 \label{tab:policy}
 \end{table}
 
-Table~\ref{tab:policy} is the operational core of the paper. At its natural operating point (all 200 rating\,$=-1$ steps), the rating-threshold policy gains $+7.3$\,pp net accuracy but destroys correct runs at a 4.6\% rate---tolerable only under the loosest budget. Under a 1\% budget, \emph{every} rating/type threshold collapses to zero coverage, because the thresholds cannot separate fragile-but-rescuable trajectories from stable-correct ones. The learned predictors, using only cheap static features plus (for E) trajectory-state estimates, delete 200--210 steps at 1\% harm with $+11$\,pp net gain. The oracle deletes 530. The information needed for safe pruning exists in the outcome structure; PRM-style correctness scores simply do not carry it.
+Table~\ref{tab:policy} is the operational core of the paper. At its natural operating point (all 200 rating\,$=-1$ steps), the rating-threshold policy gains $+7.3$\,pp net accuracy but destroys correct runs at a 4.6\% rate---tolerable only under the loosest budget. Under a 1\% budget, \emph{every} rating/type ranking collapses to zero coverage, because correctness signals cannot separate fragile-but-rescuable trajectories from stable-correct ones. The learned predictors, using only cheap static features plus (for E) trajectory-state estimates, delete 200--210 steps at 1\% harm with $+11$\,pp net gain---under in-sample selection of $k$; the calibrated protocol below is the honest reading. The oracle deletes 530. The information needed for safe pruning exists in the outcome structure; PRM-style correctness scores simply do not carry it.
+
+\paragraph{Honest selection: calibration/test split.}
+Table~\ref{tab:policy} selects $k$ \emph{in-sample}, which flatters every policy. Splitting problems 50/50 into calibration and test halves and requiring the one-sided 95\% Wilson upper bound of calibration harm to clear the budget, no policy---including the predictors and the trained PRM score---certifies a single deletion at the 1\% budget; at 3\%, the state-aware predictor certifies 29\% coverage and realizes 1.2\% held-out harm ($+8.2$\,pp net), while rating-first and PRM-score rankings certify nothing at \emph{any} budget (Table~\ref{tab:calibsplit}). Honest selection shrinks the predictor's headroom but preserves the ordering: correctness signals certify zero everywhere.
+
+\paragraph{Balanced cohort vs.\ natural prevalence.}
+The cohort is case--control balanced (200 steps per rating); deployment traffic is not. Reweighting steps to the natural rating prevalence of PRM800K phase-2 test trajectories ($0.2\%$ rated $-1$, $7.4\%$ rated $0$, $92.4\%$ rated $+1$) moves the average deletion effect from $+7.2$\,pp to $-0.5$\,pp (CI $\ci{-5.1}{+4.0}$), with danger and benefit rates near parity ($9.8\%$ vs.\ $9.3\%$; Table~\ref{tab:natprev}): in natural traffic, indiscriminate deletion has no upside, anchor steps are rare, and the danger side does not shrink. Balanced-cohort numbers are diagnostic contrasts, not deployment estimates.
 
 \paragraph{Deployed-PRM thresholds fare no better.}
-Ranking deletions by the trained PRM's continuous score yields 20 deletable steps at the 1\% budget (200 at 5\%); the LLM-judge PRM yields zero at 1\% and 3\%, and a two-PRM ensemble that abstains on disagreement reaches only 100 steps even at 5\%. The failure of Table~\ref{tab:policy}'s top rows is a property of correctness signals as a class, not of the PRM800K rating in particular.
+Ranking deletions by the trained PRM's continuous score yields 20 deletable steps at the 1\% budget under in-sample selection (200 at 5\%)---and zero at every budget under the calibrated protocol above; the LLM-judge PRM yields zero at 1\% and 3\%, and a two-PRM ensemble that abstains on disagreement reaches only 100 steps even at 5\%. The failure of Table~\ref{tab:policy}'s top rows is a property of correctness signals as a class, not of the PRM800K rating in particular.
 
 \paragraph{Rollback: one probe run buys most of the safety.}
-Finally, we simulate the cheapest counterfactual validator: generate \emph{one} probe continuation after a candidate deletion, roll back unless the probe answers correctly, and evaluate on held-out runs. Applied to all 600 steps, this cuts the share of harmed steps from 12.2\% to 3.0\% while \emph{raising} the mean per-step gain from $+7.2$ to $+11.5$\,pp (on anchors: 8.1\% $\to$ 1.9\%), at a cost of one extra generation per candidate and a 63\% acceptance rate. Validation is not merely necessary (Sections~\ref{sec:signals}--\ref{sec:policy}); it is also cheap relative to the value it protects.
+Finally, we simulate the cheapest counterfactual validator: generate \emph{one} probe continuation after a candidate deletion, roll back unless the probe answers correctly, and evaluate on held-out runs. Applied to all 600 steps, this cuts the share of harmed steps from 12.2\% to 3.0\% while \emph{raising} the mean per-step gain from $+7.2$ to $+11.5$\,pp (on anchors: 8.1\% $\to$ 1.9\%), at a cost of one extra generation per candidate and a 63\% acceptance rate. Two caveats keep this honest. The probe is scored by the same gold-answer judge---an oracle verifier relative to deployment, where gold answers do not exist---so the simulation upper-bounds a one-probe validator and presupposes a verifier component (a self-consistency vote, a trained verifier, or unit tests). And the gain is not mere extra sampling: applying the same restart \emph{without} removing the target (the placebo) is inert overall ($-0.6$\,pp). Validation is not merely necessary (Sections~\ref{sec:signals}--\ref{sec:policy}); on these trajectories it is cheap relative to the value it protects.
 
 \section{Discussion}
 \label{sec:discussion}
@@ -303,7 +309,7 @@ Our results do not indict PRMs at their trained task: low ratings do flag wrong 
 The surviving target-specific effect in low-rated Harmful steps supports a mechanism in which erroneous content behaves as an attractor for regeneration: continuations conditioned on the anchor commit to its error, while continuations from the cleaned prefix explore correct paths. That placebo deletion alone recovers $+10$\,pp in the same trajectories shows fragility and anchoring coexist---both ``the trajectory was rescuable by any shake-up'' and ``this step specifically was holding it down'' are true, in roughly 40/60 proportion.
 
 \paragraph{Toward deployable pruning.}
-The oracle--policy gap ($530$ vs.\ $200$ steps at 1\% harm) quantifies the headroom for better removability signals---and Section~\ref{sec:signals} shows the obvious candidates do not close it: deployed PRM scores replicate the rating's failure, uncertainty signals are at chance, and the informative signals (mask drop, PRM disagreement, trajectory state) all cost extra computation or gold answers. The constructive path our results support is architectural rather than signal-side: use correctness scores to \emph{nominate} candidates, spend one probe generation to \emph{validate}, and roll back on failure---a loop that already recovers most of the oracle's safety at bounded cost.
+The oracle--policy gap ($530$ vs.\ $200$ steps at 1\% harm, in-sample) quantifies the headroom for better removability signals---and Section~\ref{sec:signals} shows the obvious candidates do not close it: deployed PRM scores replicate the rating's failure, uncertainty signals are at chance, and the informative signals (mask drop, PRM disagreement, trajectory state) all cost extra computation or gold answers. The constructive path our results support is architectural rather than signal-side: use correctness scores to \emph{nominate} candidates, spend one probe generation to \emph{validate}, and roll back on failure---a loop that already recovers most of the oracle's safety at bounded cost.
 
 \section{Conclusion}
 
@@ -312,11 +318,12 @@ Across 600 audited PRM800K steps, two generators, four external datasets, and ov
 \section*{Limitations}
 
 \textbf{Generator scope.} Primary results use Qwen3-8B; the replication adds phi-4 (300 steps, 3 runs). Both are mid-size open models run without extended thinking; effect magnitudes differ across the two (anchors: $+13.9$ vs.\ $+18.3$\,pp semantic), step-level sign agreement is only 65\%, and we make no claims about frontier or long-CoT reasoning models. The plan's nominal second generator (DeepSeek-R1-Distill) could not complete the protocol (Section~\ref{sec:protocol}); substituting phi-4 was a forced deviation, disclosed rather than hidden.
+\textbf{Case--control cohort.} Rating-balanced sampling (200 per rating) supports subgroup contrasts, not deployment averages: reweighted to the natural prevalence of PRM800K phase-2 test steps ($0.2\%$ rated $-1$), the mean deletion effect is $-0.5$\,pp and anchor steps are rare. Every coverage number is a fraction of the balanced cohort (Table~\ref{tab:natprev}).
 \textbf{PRM coverage.} The deployed-PRM audit covers one trained checkpoint (Qwen2.5-Math-PRM-7B) plus two \emph{prompted} LLM-judge PRMs, which approximate but do not equal trained generative PRMs \citep{khalifa2025process}; Math-Shepherd-style potential rewards \citep{wang2024mathshepherd} are not covered.
-\textbf{Semantic label reliability.} Step types come from AI-assisted annotation with human calibration; the two label passes disagree on 27.3\% of steps. A blinded pilot (120 steps, two independent human labels each, four annotators in two pairs) reached only 61.7\% raw agreement ($\kappa = 0.40$), concentrated on the essential/redundant boundary; where annotators agreed, their consensus tracked the frozen outcomes (93\% of consensus-Harmful steps carry rating $-1$; pure semantic effect $+22.9$\,pp). A third annotator adjudicated all 46 disagreements, yielding final labels for all 120 pilot steps with 82\% adjudication accuracy. Type-based subgroup boundaries are therefore approximate; the headline interaction survives under either label set.
-\textbf{Judge noise.} The 93.5\%-agreement human audit and $\le 0.13$\,pp substitution bound cover Qwen3-8B outputs; phi-4 and ProcessBench continuations are scored by the same audited judge pipeline but without a fresh per-generator human audit.
+\textbf{Semantic label reliability.} Step types come from AI-assisted annotation with human calibration; the two label passes disagree on 27.3\% of steps. A blinded pilot (120 steps, two independent human labels each, four annotators in two pairs) reached only 61.7\% raw agreement ($\kappa = 0.40$), concentrated on the essential/redundant boundary; where annotators agreed, their consensus tracked the frozen outcomes (93\% of consensus-Harmful steps carry rating $-1$; placebo-corrected effect $+22.9$\,pp). A third annotator adjudicated all 46 disagreements, yielding final labels for all 120 pilot steps with 82\% adjudication accuracy. Type-based subgroup boundaries are therefore approximate; the headline interaction survives under either label set.
+\textbf{Judge noise.} The 93.5\% agreement and $\le 0.13$\,pp substitution sensitivity are measured on 200 audited Qwen3-8B outputs and do not bound error on the unaudited remainder; phi-4 and ProcessBench continuations are scored by the same judge pipeline without a fresh per-generator human audit.
 \textbf{Placebo scope.} Matched placebos exist for 511/600 primary steps (position SMD $\le 0.298$); the external cohort's placebo matching uses character length ($\pm 20\%$) rather than tokenizer length, and 96/300 external steps admit no match.
-\textbf{Offline policy evaluation.} Risk--coverage and rollback numbers reuse frozen runs; an online system would face distribution shift from its own deletions. The rollback probe is drawn from the same run pool it is evaluated against, which can flatter acceptance quality slightly.
+\textbf{Offline policy evaluation.} Risk--coverage and rollback numbers reuse frozen runs; an online system would face distribution shift from its own deletions. The rollback probe is drawn from the same run pool it is evaluated against, which can flatter acceptance quality slightly. In-sample coverage selection flatters every policy; the calibration/test protocol of Section~\ref{sec:policy} is the honest reading. Rollback presupposes a verifier and spends one probe generation per candidate, which must be netted against pruning savings in any deployment accounting.
 \textbf{Paraphrase validity.} C3 paraphrases passed automatic meaning/length checks (7.9\% excluded), and a blinded 140-item human fidelity audit rated 97.1\% faithful or minimally deviating, with zero meaning changes among the 46 audited anchor-group paraphrases; two neutral-group paraphrases (4.3\% of that group's audited items) were judged meaning-changed. C3 conclusions rest on this audited premise.
 
 \section*{Ethics Statement}
@@ -341,16 +348,119 @@ Correct-class F1 & 0.931 \\
 Pair-transition agreement (60 pairs) & 91.7\% \\
 Max condition bias & 2.3\,pp \\
 $\Delta$ overall target effect after substitution & $-0.13$\,pp \\
-$\Delta$ pure semantic effect after substitution & $-0.05$\,pp \\
+$\Delta$ placebo-corrected effect after substitution & $-0.05$\,pp \\
 \bottomrule
 \end{tabular}
 \caption{Judge audit summary. Gates (agreement $\ge$ 90\%, bias $\le$ 5\,pp) pass; all headline numbers are insensitive to full substitution of adjudicated labels.}
 \label{tab:judge}
 \end{table}
 
+\section{Robustness and Disclosure Tables}
+\label{app:robust}
+
+\paragraph{Predictor features.} Model D uses 12 static features: indicators rating$=0$ and rating$={+}1$; indicators type$=$Redundant and type$=$Harmful (initial pass); their four interactions; position-bin indicators (middle, late); $\log(1+\text{target tokens})$; $\log(1+\text{prefix tokens})$. Model E adds the control-correct frequency (13 features). Both are L2-regularized logistic models trained with 5-fold cross-validation grouped by problem; every policy score is an out-of-fold prediction.
+
+\paragraph{Judge configuration.} The judge is Qwen3-8B served at temperature 0, prompted with the problem, the gold answer, and the generated final answer, and instructed to return a JSON verdict on mathematical equivalence; outputs with no extractable final answer are failed by rule. The audit sampled 200 outputs stratified by condition and verdict; two annotators labeled blind to condition, with disagreements adjudicated. Full prompts, seeds, and adjudication records ship with the release.
+
+\begin{table}[h]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}llrrr@{}}
+\toprule
+Estimate & Cluster & $n$ & Effect (pp) & 95\% CI \\
+\midrule
+Anchor $\Delta^{\mathrm{tgt}}$, initial      & step    & 178 & $+23.31$ & $\ci{+16.6}{+29.9}$ \\
+Anchor $\Delta^{\mathrm{tgt}}$, initial      & problem & 178 & $+23.31$ & $\ci{+16.2}{+30.5}$ \\
+Anchor $\Delta^{\mathrm{sem}}$, initial      & step    & 151 & $+13.85$ & $\ci{+7.0}{+20.8}$ \\
+Anchor $\Delta^{\mathrm{tgt}}$, calibrated   & step    & 160 & $+20.94$ & $\ci{+13.8}{+28.1}$ \\
+Anchor $\Delta^{\mathrm{tgt}}$, calibrated   & problem & 160 & $+20.94$ & $\ci{+13.5}{+28.4}$ \\
+Anchor $\Delta^{\mathrm{sem}}$, calibrated   & step    & 137 & $+14.84$ & $\ci{+7.5}{+22.1}$ \\
+Overall $\Delta^{\mathrm{tgt}}$              & step    & 600 & $+7.21$  & $\ci{+3.9}{+10.5}$ \\
+Overall $\Delta^{\mathrm{tgt}}$              & problem & 600 & $+7.21$  & $\ci{+3.7}{+10.7}$ \\
+\bottomrule
+\end{tabular}
+\caption{Label-set and clustering robustness (fresh 5{,}000-replicate bootstraps). The anchor effect survives the calibrated label pass and problem-level clustering.}
+\label{tab:labelrobust}
+\end{table}
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{@{}lrr@{}}
+\toprule
+Rating of placebo-cutoff step & Runs & Share \\
+\midrule
+$+1$    & 900 & 59.4\% \\
+$0$     & 167 & 11.0\% \\
+unrated & 447 & 29.5\% \\
+$-1$    & 0   & 0.0\% \\
+\bottomrule
+\end{tabular}
+\caption{PRM800K ratings of the 1{,}514 placebo cutoff steps: the placebo never truncates at a known-bad step.}
+\label{tab:placebocomp}
+\end{table}
+
+\begin{table}[h]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lrr@{}}
+\toprule
+ & Balanced cohort & Natural prevalence \\
+\midrule
+Overall $\Delta^{\mathrm{tgt}}$ (pp) & $+7.21$ $\ci{+3.9}{+10.7}$ & $-0.52$ $\ci{-5.1}{+4.0}$ \\
+Run danger rate    & 8.5\%  & 9.8\% \\
+Run benefit rate   & 15.7\% & 9.3\% \\
+Dangerous-step share  & 15.2\% & 17.5\% \\
+Beneficial-step share & 23.5\% & 17.6\% \\
+\bottomrule
+\end{tabular}
+\caption{Balanced-cohort vs.\ natural-prevalence estimates (weights $0.2\%/7.4\%/92.4\%$ for ratings $-1/0/{+}1$, from 16{,}481 rated phase-2 test steps).}
+\label{tab:natprev}
+\end{table}
+
+\begin{table}[h]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+Policy & Budget & Cal.\ cov. & Test harm & Net (pp) \\
+\midrule
+rating-first      & 1--5\% & 0\%     & ---     & $0.0$ \\
+trained PRM score & 1--5\% & 0\%     & ---     & $0.0$ \\
+Predictor D       & 1\%    & 0\%     & ---     & $0.0$ \\
+Predictor D       & 3\%    & 39.7\%  & 3.2\%   & $+10.7$ \\
+Predictor D       & 5\%    & 51.0\%  & 4.6\%   & $+10.4$ \\
+Predictor E       & 1\%    & 0\%     & ---     & $0.0$ \\
+Predictor E       & 3\%    & 28.8\%  & 1.2\%   & $+8.2$ \\
+Predictor E       & 5\%    & 35.1\%  & 3.8\%   & $+9.4$ \\
+\bottomrule
+\end{tabular}
+\caption{Calibration/test policy selection (problems split 50/50; coverage chosen on calibration under a one-sided 95\% Wilson harm bound, evaluated on held-out problems). Correctness-based policies certify zero deletions at every budget.}
+\label{tab:calibsplit}
+\end{table}
+
+\begin{table}[h]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lrrrrr@{}}
+\toprule
+ & $n$ & Anchor & Stable & Neutral & Rating $-1$ \\
+\midrule
+Retained  & 221 & 33.0\% & 33.9\% & 33.0\% & 34.8\% \\
+Excluded  & 19  & 36.8\% & 26.3\% & 36.8\% & 36.8\% \\
+\bottomrule
+\end{tabular}
+\caption{Composition of retained vs.\ automatically excluded C3 paraphrases (mean target length: 38.0 vs.\ 32.7 tokens).}
+\label{tab:paraexcl}
+\end{table}
+
 \section{Reproducibility}
 \label{app:repro}
 
-Primary numbers derive from two frozen master tables (600 steps; 6{,}314 runs) via a dependency-free Python pipeline with fixed seeds (cluster bootstrap seed 20260722, downstream 20260723); a single command regenerates every table, figure source, and the numeric manifest consumed by this paper. The extension cohorts add 6{,}965 runs (cross-generator 2{,}691; strong controls 1{,}862; ProcessBench 2{,}412), each with its own checkpointed generation, judging, and analysis script under the corresponding workstream directory. The release includes the intervention builder, matched-placebo selector, judge-audit tooling, policy risk--coverage and rollback code, the 120-step blinded annotation pilot, PRM-scoring adapters, the M5 signal-extraction script, and the StepRem benchmark split with its evaluation script.
+Primary numbers derive from two frozen master tables (600 steps; 6{,}314 runs) via a dependency-free Python pipeline with fixed seeds (cluster bootstrap seed 20260722, downstream 20260723); a single command regenerates every table, figure source, and the numeric manifest consumed by this paper. The extension cohorts add 6{,}965 runs (cross-generator 2{,}691; strong controls 1{,}862; ProcessBench 2{,}412), each with its own checkpointed generation, judging, and analysis script under the corresponding workstream directory. Robustness artifacts (label-set re-estimation, placebo-cutoff composition, natural-prevalence reweighting, and the calibration/test policy split) are regenerated by dedicated scripts in the same release. The release includes the intervention builder, matched-placebo selector, judge-audit tooling, policy risk--coverage and rollback code, the 120-step blinded annotation pilot, PRM-scoring adapters, the M5 signal-extraction script, and the StepRem benchmark split with its evaluation script.
 
 \end{document}
