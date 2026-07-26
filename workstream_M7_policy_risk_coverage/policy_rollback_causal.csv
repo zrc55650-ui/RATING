@@ -1,0 +1,6 @@
+﻿candidate_set,policy,candidates,accept_rate,net_per_candidate_pp,net_lcb_pp,harmed_share_obs,harmed_share_null_floor,harmed_share_excess
+rating_neg1,naive,200,1.0,21.50,16.01,0.070,0.134,0.000
+rating_neg1,rollback,200,0.530,22.33,17.44,0.020,0.098,0.000
+all_steps,naive,600,1.0,7.22,4.35,0.122,0.110,0.012
+all_steps,rollback,600,0.633,11.50,9.33,0.030,0.068,0.000
+all_steps,do_nothing_control_split,600,1.0,0.25,,0.047,0.037,0.010

@@ -45,6 +45,10 @@
 !/workstream_M8_statistics/**
 !/workstream_M10_longcot_replication/
 !/workstream_M10_longcot_replication/**
+!/workstream_M11_thinking_toggle/
+!/workstream_M11_thinking_toggle/**
+!/workstream_M12_placebo_did/
+!/workstream_M12_placebo_did/**
 
 # Never publish these, even inside allowed directories.
 .env

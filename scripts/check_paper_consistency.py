@@ -96,13 +96,78 @@ def main() -> None:
               for r in read_csv(ROOT / "workstream_M7_policy_risk_coverage" / "policy_actual_prm_harm_budget.csv")}
     check("trained PRM 20 steps @1% (in-sample)",
           budget.get(("prm_threshold:qwen25_math_prm_7b", 0.01)), 20)
-    calib = read_csv(ROOT / "workstream_M7_policy_risk_coverage" / "policy_calibration_test_split.csv")
-    zero_at_all = all(
-        as_float(r["calibration_coverage"]) == 0.0
-        for r in calib
-        if r["policy"] == "rating_first" or r["policy"].startswith("prm:")
-    )
-    check("calibrated: rating & all trained PRMs certify zero everywhere", zero_at_all, True)
+    # Causal certification (paper Section 7, Tables policy/nested)
+    ins = {(r["regime"], r["policy"], r["budget_pp"]): r for r in read_csv(
+        ROOT / "workstream_M7_policy_risk_coverage" / "policy_causal_insample.csv")}
+    check("balanced regime degenerate: random certifies all 600 @1pp",
+          as_int(ins[("balanced_cohort", "random", "1")]["max_steps_certified"]), 600)
+    check("natural: random certifies 0 @1pp",
+          as_int(ins[("natural_prevalence", "random", "1")]["max_steps_certified"]), 0)
+    approx("natural: rating-first traffic 2.4% @1pp",
+           as_float(ins[("natural_prevalence", "rating_first", "1")]["coverage_of_traffic"]), 0.0242, 0.0005)
+    approx("natural: rating-first net +9.8 @1pp",
+           as_float(ins[("natural_prevalence", "rating_first", "1")]["net_per_deletion_pp"]), 9.79, 0.01)
+    approx("natural: harmful-first traffic 3.8% @1pp",
+           as_float(ins[("natural_prevalence", "harmful_first", "1")]["coverage_of_traffic"]), 0.038, 0.0005)
+    approx("natural: qwen25 PRM traffic 0.02% @1pp",
+           as_float(ins[("natural_prevalence", "prm:qwen25_math_prm_7b", "1")]["coverage_of_traffic"]), 0.0002, 0.0001)
+    approx("natural: oracle traffic 96.4% @1pp",
+           as_float(ins[("natural_prevalence", "oracle", "1")]["coverage_of_traffic"]), 0.9643, 0.001)
+    nested = {(r["regime"], r["policy"], r["budget_pp"]): r for r in read_csv(
+        ROOT / "workstream_M7_policy_risk_coverage" / "policy_causal_nested_summary.csv")}
+    check("nested: random certifies in 9/20 splits @1pp",
+          as_int(nested[("natural_prevalence", "random", "1")]["splits_with_nonzero_coverage"]), 9)
+    approx("nested: qwen25 PRM realizes -6.3pp @1pp",
+           as_float(nested[("natural_prevalence", "prm:qwen25_math_prm_7b", "1")]["median_test_net_per_deletion_pp"]), -6.34, 0.01)
+    approx("nested: rating-first realizes +0.9pp @1pp",
+           as_float(nested[("natural_prevalence", "rating_first", "1")]["median_test_net_per_deletion_pp"]), 0.89, 0.01)
+    approx("nested: predictor E realizes +8.8pp @1pp",
+           as_float(nested[("natural_prevalence", "predictor_E", "1")]["median_test_net_per_deletion_pp"]), 8.75, 0.01)
+    roll = {(r["candidate_set"], r["policy"]): r for r in read_csv(
+        ROOT / "workstream_M7_policy_risk_coverage" / "policy_rollback_causal.csv")}
+    approx("rollback net +11.5 (LCB +9.3)",
+           as_float(roll[("all_steps", "rollback")]["net_per_candidate_pp"]), 11.50, 0.01)
+    approx("rollback harmed 3.0% vs floor 6.8%",
+           as_float(roll[("all_steps", "rollback")]["harmed_share_null_floor"]), 0.068, 0.001)
+    approx("do-nothing null 4.7% vs 3.7%",
+           as_float(roll[("all_steps", "do_nothing_control_split")]["harmed_share_obs"]), 0.047, 0.001)
+
+    # Placebo DiD (paper Section 5, Table placebo/didrobust)
+    did = {(r["group"], r["estimand"]): r for r in read_csv(
+        ROOT / "workstream_M12_placebo_did" / "c4_primary_did_summary.csv")}
+    approx("DiD: anchor own-placebo -1.60",
+           as_float(did[("anchor_rating-1xHarmful", "placebo_own_effect")]["estimate_pp"]), -1.60, 0.01)
+    approx("DiD: anchor semantic +25.44",
+           as_float(did[("anchor_rating-1xHarmful", "did_semantic_effect")]["estimate_pp"]), 25.44, 0.01)
+    approx("DiD: overall semantic +7.52",
+           as_float(did[("overall", "did_semantic_effect")]["estimate_pp"]), 7.52, 0.01)
+    m2did = {(r["group"], r["estimand"]): r for r in read_csv(
+        ROOT / "workstream_M12_placebo_did" / "c4_m2_did_summary.csv")}
+    approx("DiD: phi-4 anchor semantic +34.92",
+           as_float(m2did[("rating-1_anchor", "did_semantic_effect")]["estimate_pp"]), 34.92, 0.01)
+    m4own = {r["group"]: r for r in read_csv(
+        ROOT / "workstream_M12_placebo_did" / "c4_m4_c2_own_summary.csv")}
+    approx("DiD: M4 C2 own overall +0.76",
+           as_float(m4own["overall"]["c2_own_effect_pp"]), 0.76, 0.01)
+
+    # Sampling frame (paper Table frame)
+    frame = {(r["frame"], r["rating"]): as_int(r["count"]) for r in read_csv(
+        ROOT / "workstream_F_final_statistics" / "robustness" / "sampling_frame_audit.csv")
+        if r["rating"] != ""}
+    check("frame: chosen-path -1 count 31", frame[("phase2_test_chosen_path", "-1")], 31)
+    check("frame: chosen-path total 16481",
+          sum(v for (f, _), v in frame.items() if f == "phase2_test_chosen_path"), 16481)
+    check("frame: all-completions -1 count 6080", frame[("phase2_test_all_completions", "-1")], 6080)
+    check("frame: cohort -1 from alternatives 198",
+          frame[("cohort_target_provenance:alternative", "-1")], 198)
+
+    # Deterministic grader (paper Limitations)
+    grader = {r["metric"]: r["value"] for r in read_csv(
+        ROOT / "workstream_A_judge_audit" / "deterministic_grader_comparison.csv")}
+    approx("det grader agreement 93.0%", as_float(grader["agreement_with_llm_judge"]), 0.9297, 0.001)
+    check("det grader headline diff <= 0.9pp",
+          as_float(grader["target_effect_overall_abs_diff_pp"]) <= 0.9
+          and as_float(grader["target_effect_anchor_rating-1xHarmful_abs_diff_pp"]) <= 0.9, True)
     for stem, label in (
         ("prm_scores_math_shepherd_mistral_7b", "Math-Shepherd 600 ok"),
         ("prm_scores_llama31_8b_prm_deepseek", "RLHFlow 600 ok"),
@@ -121,11 +186,6 @@ def main() -> None:
            as_float(audit["actual_prm:llama31_8b_prm_deepseek"]["danger_auroc_highscore_warns"]), 0.5057, 0.001)
     approx("5-PRM disagreement benefit AUPRC 0.34",
            as_float(audit["actual_prm_disagreement_negated"]["benefit_auprc"]), 0.3441, 0.001)
-    e3 = next(r for r in calib if r["policy"] == "predictor_E" and as_float(r["budget"]) == 0.03)
-    approx("calibrated: predictor E coverage 28.8% @3%",
-           as_float(e3["calibration_coverage"]), 0.2881, 0.001)
-    approx("calibrated: predictor E test harm 1.2% @3%",
-           as_float(e3["test_harm_rate"]), 0.0116, 0.001)
 
     # Extension cohort sizes (paper appendix)
     m2 = sum(1 for _ in (ROOT / "workstream_M2_cross_generator" / "m2_generations.jsonl").open(encoding="utf-8"))

@@ -1,0 +1,401 @@
+﻿output_id,condition,judge_label,det_label,det_tier,candidate,truth
+prm-b4172ae8c86b6f76|run2|control,control,1,0,mismatch,$x = 9$,9
+prm-734c17ddd0cff62a|placebo3|step0,placebo_delete,1,0,mismatch,$\frac{16}{27}$ gallons,\frac{16}{27}
+prm-0a02ab06b394a416|run1|control,control,1,0,mismatch,\boxed{\frac{6}{5}},\frac65
+prm-0a02ab06b394a416|run2|control,control,1,0,mismatch,\boxed{\frac{6}{5}},\frac65
+prm-0a02ab06b394a416|run3|control,control,1,0,mismatch,\boxed{\frac{6}{5}},\frac65
+prm-0a02ab06b394a416|run3|deleted,target_delete,1,0,mismatch,\boxed{\frac{6}{5}},\frac65
+prm-859d5c93d5ea0f57|run1|deleted,target_delete,1,0,mismatch,\begin{pmatrix} \frac{16}{49} \\ \frac{48}{49} \\ \frac{24}{49} \end{pmatrix},\begin{pmatrix} 16/49 \\ 48/49 \\ 24/49 \end{pmatrix}
+prm-859d5c93d5ea0f57|run2|deleted,target_delete,1,0,mismatch,\begin{pmatrix} \frac{16}{49} \\ \frac{48}{49} \\ \frac{24}{49} \end{pmatrix},\begin{pmatrix} 16/49 \\ 48/49 \\ 24/49 \end{pmatrix}
+prm-859d5c93d5ea0f57|run3|deleted,target_delete,1,0,mismatch,\begin{pmatrix} \frac{16}{49} \\ \frac{48}{49} \\ \frac{24}{49} \end{pmatrix},\begin{pmatrix} 16/49 \\ 48/49 \\ 24/49 \end{pmatrix}
+prm-859d5c93d5ea0f57|run4|deleted,target_delete,1,0,mismatch,\begin{pmatrix} \frac{16}{49} \\ \frac{48}{49} \\ \frac{24}{49} \end{pmatrix},\begin{pmatrix} 16/49 \\ 48/49 \\ 24/49 \end{pmatrix}
+prm-859d5c93d5ea0f57|placebo1|step4,placebo_delete,1,0,mismatch,\begin{pmatrix} \frac{16}{49} \\ \frac{48}{49} \\ \frac{24}{49} \\,\begin{pmatrix} 16/49 \\ 48/49 \\ 24/49 \end{pmatrix}
+prm-0835351a60d3a191|run1|control,control,0,1,string_match,\boxed{\frac{8}{15}},\frac{8}{15}
+prm-0835351a60d3a191|placebo2|step7,placebo_delete,0,1,string_match,\boxed{\frac{8}{15}},\frac{8}{15}
+prm-6ecf2965f1e68c18|run1|control,control,1,0,mismatch,\frac{7!}{2! \cdot 2!} = 1260,1260
+prm-6ecf2965f1e68c18|run2|control,control,1,0,mismatch,\frac{7!}{2! \cdot 2!} = 1260,1260
+prm-6ecf2965f1e68c18|run3|control,control,1,0,mismatch,\frac{7!}{2! \cdot 2!} = 1260,1260
+prm-2d92ce0491f2f56a|run2|control,control,1,0,mismatch,The quotient is $x^5 - x^4 + x^3 - x^2 + x - 1$.,x^5 - x^4 + x^3 - x^2 + x - 1
+prm-666a954e3bca4a2f|run4|control,control,0,1,sympy_equal,\boxed{\frac{2240}{78125}},\frac{448}{15625}
+prm-14c0129055d497b2|run1|control,control,1,0,mismatch,cot x,\cot x
+prm-14c0129055d497b2|run2|control,control,1,0,mismatch,cot x,\cot x
+prm-14c0129055d497b2|run3|control,control,1,0,mismatch,cot x,\cot x
+prm-14c0129055d497b2|run4|control,control,1,0,mismatch,cot x,\cot x
+prm-9a884b78e7527ff9|run1|control,control,1,0,mismatch,2 * 5! * 5! * 1! = 2 * 120 * 120 * 1 = 28800,28800
+prm-9a884b78e7527ff9|run1|deleted,target_delete,1,0,mismatch,2 * 5! * 5! * 1! = 2 * 120 * 120 * 1 = 28800,28800
+prm-9a884b78e7527ff9|run2|control,control,1,0,mismatch,2 * 5! * 5! * 1! = 2 * 120 * 120 * 1 = 28800,28800
+prm-9a884b78e7527ff9|run2|deleted,target_delete,1,0,mismatch,2 * 5! * 5! * 1! = 2 * 120 * 120 * 1 = 28800,28800
+prm-9a884b78e7527ff9|run3|control,control,1,0,mismatch,2 * 5! * 5! * 1! = 2 * 120 * 120 * 1 = 28800,28800
+prm-9a884b78e7527ff9|run3|deleted,target_delete,1,0,mismatch,2 * 5! * 5! * 1! = 2 * 120 * 120 * 1 = 28800,28800
+prm-9a884b78e7527ff9|run4|control,control,1,0,mismatch,2 * 5! * 5! * 1! = 2 * 120 * 120 * 1 = 28800,28800
+prm-9a884b78e7527ff9|run4|deleted,target_delete,1,0,mismatch,2 * 5! * 5! * 1! = 2 * 120 * 120 * 1 = 28800,28800
+prm-9a884b78e7527ff9|placebo1|step4,placebo_delete,1,0,mismatch,2 * 5! * 5! * 1! = 2 * 120 * 120 * 1 = 28800,28800
+prm-9a884b78e7527ff9|placebo2|step2,placebo_delete,1,0,mismatch,2! × 5! × 5! = 2 × 120 × 120 = 28800,28800
+prm-236816577f8edaf6|run1|deleted,target_delete,1,0,mismatch,The original price of the shirt was $36.00.,\$36
+prm-60717bf0ef4716f2|run2|control,control,0,1,string_match,\boxed{\dfrac{1}{3}},\frac{1}{3}
+prm-60717bf0ef4716f2|run4|control,control,0,1,string_match,\boxed{\dfrac{1}{3}},\frac{1}{3}
+prm-60717bf0ef4716f2|placebo4|step8,placebo_delete,0,1,string_match,\boxed{\dfrac{1}{3}},\frac{1}{3}
+prm-d018213d57c7afde|run4|control,control,0,1,string_match,\boxed{\dfrac{13}{18}},\frac{13}{18}
+prm-55db6c6b79c6e553|placebo1|step5,placebo_delete,1,0,mismatch,$\binom{8}{4} \times \binom{6}{1} + \binom{8}{3} \times \binom{6}{2} + \binom{8},1940
+prm-70a8ec8eb124a0b7|run3|deleted,target_delete,1,0,mismatch,55^ circ,55^\circ
+prm-2595a51b9bc687a5|run1|control,control,1,0,mismatch,\begin{pmatrix} \frac{16}{49} \\ \frac{48}{49} \\ \frac{24}{49} \\ \end{pmatrix},\begin{pmatrix} 16/49 \\ 48/49 \\ 24/49 \end{pmatrix}
+prm-2595a51b9bc687a5|run1|deleted,target_delete,1,0,mismatch,\begin{pmatrix} \frac{16}{49} \\ \frac{48}{49} \\ \frac{24}{49} \\ \end{pmatrix},\begin{pmatrix} 16/49 \\ 48/49 \\ 24/49 \end{pmatrix}
+prm-2595a51b9bc687a5|run2|control,control,1,0,mismatch,\begin{pmatrix} \frac{16}{49} \\ \frac{48}{49} \\ \frac{24}{49} \\ \end{pmatrix},\begin{pmatrix} 16/49 \\ 48/49 \\ 24/49 \end{pmatrix}
+prm-2595a51b9bc687a5|run2|deleted,target_delete,1,0,mismatch,\begin{pmatrix} \frac{16}{49} \\ \frac{48}{49} \\ \frac{24}{49} \\ \end{pmatrix},\begin{pmatrix} 16/49 \\ 48/49 \\ 24/49 \end{pmatrix}
+prm-2595a51b9bc687a5|run3|control,control,1,0,mismatch,\begin{pmatrix} \frac{16}{49} \\ \frac{48}{49} \\ \frac{24}{49} \\ \end{pmatrix},\begin{pmatrix} 16/49 \\ 48/49 \\ 24/49 \end{pmatrix}
+prm-2595a51b9bc687a5|run3|deleted,target_delete,1,0,mismatch,\begin{pmatrix} \frac{16}{49} \\ \frac{48}{49} \\ \frac{24}{49} \\ \end{pmatrix},\begin{pmatrix} 16/49 \\ 48/49 \\ 24/49 \end{pmatrix}
+prm-2595a51b9bc687a5|run4|control,control,1,0,mismatch,\begin{pmatrix} \frac{16}{49} \\ \frac{48}{49} \\ \frac{24}{49} \\ \end{pmatrix},\begin{pmatrix} 16/49 \\ 48/49 \\ 24/49 \end{pmatrix}
+prm-2595a51b9bc687a5|run4|deleted,target_delete,1,0,mismatch,\begin{pmatrix} \frac{16}{49} \\ \frac{48}{49} \\ \frac{24}{49} \\ \end{pmatrix},\begin{pmatrix} 16/49 \\ 48/49 \\ 24/49 \end{pmatrix}
+prm-16428e60085cafa9|run1|control,control,1,0,mismatch,"[-2, 7]","x \in [-2,7]"
+prm-16428e60085cafa9|run1|deleted,target_delete,1,0,mismatch,"[-2, 7]","x \in [-2,7]"
+prm-16428e60085cafa9|run2|control,control,1,0,mismatch,"[-2, 7]","x \in [-2,7]"
+prm-16428e60085cafa9|run2|deleted,target_delete,1,0,mismatch,"[-2, 7]","x \in [-2,7]"
+prm-16428e60085cafa9|run3|control,control,1,0,mismatch,"[-2, 7]","x \in [-2,7]"
+prm-16428e60085cafa9|run3|deleted,target_delete,1,0,mismatch,"[-2, 7]","x \in [-2,7]"
+prm-16428e60085cafa9|run4|control,control,1,0,mismatch,"[-2, 7]","x \in [-2,7]"
+prm-16428e60085cafa9|run4|deleted,target_delete,1,0,mismatch,"[-2, 7]","x \in [-2,7]"
+prm-16428e60085cafa9|placebo3|step20,placebo_delete,1,0,mismatch,"[-2, 7]","x \in [-2,7]"
+prm-ac91d34d7871bcbc|run4|deleted,target_delete,1,0,mismatch,32483,"\$32,\!348"
+prm-b16889ee222c85e0|run4|control,control,1,0,mismatch,"$\frac{1,000,000 \text{ lire} \times 0.005 \text{ dollars}}{4 \text{ lire}} = 12",1250
+prm-b16889ee222c85e0|placebo1|step14,placebo_delete,0,1,string_match,\$1250,1250
+prm-a304fbad5368565d|run2|control,control,1,0,mismatch,-4u + 14,14
+prm-1368cc3f0e85c6c9|run1|control,control,1,0,mismatch,$\frac{16}{27}$ gallons,\frac{16}{27}
+prm-b35e05ba41e78a12|placebo2|step19,placebo_delete,1,0,mismatch,h + k + a + b = -3 + 2 + 12 + 5 = 16,16
+prm-f5ad90a250e816d4|run1|control,control,1,0,mismatch,1,6
+prm-f5ad90a250e816d4|run2|control,control,1,0,mismatch,1,6
+prm-fe7cc1b1ef70d69f|run1|deleted,target_delete,1,0,mismatch,$a + b = -3 + 2 = -1$,-1
+prm-fe7cc1b1ef70d69f|run4|deleted,target_delete,1,0,mismatch,$a + b = -3 + 2 = -1$,-1
+prm-bf052d7ceb54371a|run4|deleted,target_delete,1,0,mismatch,106^ c,106^\circ
+prm-bf052d7ceb54371a|placebo1|step2,placebo_delete,1,0,mismatch,106^\ extcirc,106^\circ
+prm-bf052d7ceb54371a|placebo4|step16,placebo_delete,1,0,mismatch,106^ olimits,106^\circ
+prm-85d7c7d738bdc28f|placebo2|step4,placebo_delete,1,0,mismatch,The number of different assortments of six cookies that can be selected is 28.,28
+prm-9f8de872e85deb1c|run1|control,control,1,0,mismatch,"(0, 9) \\cup (9, 36)","(0,9) \cup (9,36)"
+prm-9f8de872e85deb1c|run1|deleted,target_delete,1,0,mismatch,"(0, 9) ∪ (9, 36)","(0,9) \cup (9,36)"
+prm-9f8de872e85deb1c|run2|control,control,1,0,mismatch,"(0, 9) \\cup (9, 36)","(0,9) \cup (9,36)"
+prm-9f8de872e85deb1c|run2|deleted,target_delete,1,0,mismatch,"(0, 9) ∪ (9, 36)","(0,9) \cup (9,36)"
+prm-9f8de872e85deb1c|run3|control,control,1,0,mismatch,"(0, 9) \\cup (9, 36)","(0,9) \cup (9,36)"
+prm-9f8de872e85deb1c|run3|deleted,target_delete,1,0,mismatch,"(0, 9) ∪ (9, 36)","(0,9) \cup (9,36)"
+prm-9f8de872e85deb1c|run4|control,control,1,0,mismatch,"(0, 9) \\cup (9, 36)","(0,9) \cup (9,36)"
+prm-9f8de872e85deb1c|run4|deleted,target_delete,1,0,mismatch,"(0, 9) ∪ (9, 36)","(0,9) \cup (9,36)"
+prm-9f8de872e85deb1c|placebo1|step0,placebo_delete,1,0,mismatch,"$(0, 9) igcup (9, 36)$","(0,9) \cup (9,36)"
+prm-9f8de872e85deb1c|placebo2|step7,placebo_delete,1,0,mismatch,"$0 < x < 36$, $x eq 9$","(0,9) \cup (9,36)"
+prm-9f8de872e85deb1c|placebo4|step5,placebo_delete,1,0,mismatch,"$(0, 9) ext{ union } (9, 36)$","(0,9) \cup (9,36)"
+prm-b59d428fdeb2db81|run1|control,control,1,0,mismatch,east,\text{east}
+prm-b59d428fdeb2db81|run1|deleted,target_delete,1,0,mismatch,east,\text{east}
+prm-b59d428fdeb2db81|run2|control,control,1,0,mismatch,east,\text{east}
+prm-b59d428fdeb2db81|run2|deleted,target_delete,1,0,mismatch,east,\text{east}
+prm-b59d428fdeb2db81|run3|control,control,1,0,mismatch,east,\text{east}
+prm-b59d428fdeb2db81|run4|control,control,1,0,mismatch,east,\text{east}
+prm-b59d428fdeb2db81|run4|deleted,target_delete,1,0,mismatch,east,\text{east}
+prm-b59d428fdeb2db81|placebo1|step3,placebo_delete,1,0,mismatch,east,\text{east}
+prm-b59d428fdeb2db81|placebo2|step5,placebo_delete,1,0,mismatch,east,\text{east}
+prm-b59d428fdeb2db81|placebo3|step2,placebo_delete,1,0,mismatch,east,\text{east}
+prm-b59d428fdeb2db81|placebo4|step6,placebo_delete,1,0,mismatch,east,\text{east}
+prm-2e47da03eaad232d|run1|control,control,0,1,string_match,\boxed{\frac{33}{100}},\dfrac{33}{100}
+prm-e2765e9155dae75b|run1|deleted,target_delete,1,0,mismatch,5\star1 = 9(5) + 2(1) - (5)(1) + 5 = 45 + 2 - 5 + 5 = 47,47
+prm-e2765e9155dae75b|run3|deleted,target_delete,1,0,mismatch,5\star1 = 9(5) + 2(1) - (5)(1) + 5 = 45 + 2 - 5 + 5 = 47,47
+prm-24a570f07e4ce807|run2|deleted,target_delete,1,0,mismatch,$3 ext{sqrt}(13)$,3\sqrt{13}
+prm-b1b1d1fed6ca6e88|placebo4|step1,placebo_delete,1,0,mismatch,\sqrt{650},2\sqrt{113}
+prm-67c15cd755da8374|run2|control,control,1,0,mismatch,"The domain of the function is $(-\infty, 2) \cup (3, \infty)$","(-\infty, 2) \cup (3, \infty)"
+prm-b4ce181080c6935d|run1|deleted,target_delete,0,1,string_match,\boxed{\frac{1}{3}},\frac{1}{3}
+prm-b4ce181080c6935d|run2|control,control,0,1,string_match,\boxed{\frac{1}{3}},\frac{1}{3}
+prm-b4ce181080c6935d|run2|deleted,target_delete,0,1,string_match,\boxed{\frac{1}{3}},\frac{1}{3}
+prm-e5218a9b5d49ef04|run1|deleted,target_delete,1,0,mismatch,$x = 2$,2
+prm-e5218a9b5d49ef04|run3|deleted,target_delete,1,0,mismatch,$x = 2$,2
+prm-e5218a9b5d49ef04|run4|deleted,target_delete,1,0,mismatch,$x = 2$,2
+prm-4a41ea6ca0473740|run1|deleted,target_delete,1,0,mismatch,1,6
+prm-4a41ea6ca0473740|placebo2|step2,placebo_delete,1,0,mismatch,The largest $ x $-value at which the graphs intersect is $ oxed{6} $,6
+prm-6a5663499dcdfb6e|run1|control,control,0,1,string_match,\frac{17}{50},\dfrac{17}{50}
+prm-6a5663499dcdfb6e|run1|deleted,target_delete,1,0,mismatch,\frac{34}{100} = \frac{17}{50},\dfrac{17}{50}
+prm-6a5663499dcdfb6e|run2|deleted,target_delete,1,0,mismatch,\frac{34}{100} = \frac{17}{50},\dfrac{17}{50}
+prm-6a5663499dcdfb6e|run3|deleted,target_delete,1,0,mismatch,\frac{34}{100} = \frac{17}{50},\dfrac{17}{50}
+prm-6a5663499dcdfb6e|run4|deleted,target_delete,1,0,mismatch,\frac{34}{100} = \frac{17}{50},\dfrac{17}{50}
+prm-81dd96c2af2f5b96|run1|deleted,target_delete,1,0,mismatch,\begin{pmatrix} \frac{1}{5} \\ -\frac{18}{5} \end{pmatrix},\begin{pmatrix} 1/5 \\ -18/5 \end{pmatrix}
+prm-569d7cf9abe65f34|run1|deleted,target_delete,1,0,mismatch,5,x=5
+prm-569d7cf9abe65f34|run2|deleted,target_delete,1,0,mismatch,5,x=5
+prm-569d7cf9abe65f34|run3|deleted,target_delete,1,0,mismatch,5,x=5
+prm-569d7cf9abe65f34|run4|deleted,target_delete,1,0,mismatch,5,x=5
+prm-569d7cf9abe65f34|placebo1|step5,placebo_delete,1,0,mismatch,5,x=5
+prm-738ac1e91010e501|run1|deleted,target_delete,1,0,mismatch,x = 6,6
+prm-738ac1e91010e501|run4|deleted,target_delete,1,0,mismatch,x = 6,6
+prm-c5d0b2ae9f6de94a|run2|control,control,1,0,mismatch,Chris is currently 10 years old.,10
+prm-6fb0c8f8ee2ebabd|run4|control,control,0,1,string_match,11,11
+prm-3d9ad8daca3b8faa|run2|control,control,1,0,mismatch,$A + B + C + D = 2 + 2 + 3 + 6 = 13$,13
+prm-c7fdd3c01ea7968c|run3|control,control,0,1,string_match,10\%,10
+prm-c7fdd3c01ea7968c|run4|control,control,0,1,string_match,10\%,10
+prm-c7fdd3c01ea7968c|placebo4|step3,placebo_delete,0,1,string_match,10%,10
+prm-b30d7b8afa669a70|run1|deleted,target_delete,1,0,mismatch,"$(2, 12) igcup (12, 102)$","(2,12) \cup (12,102)"
+prm-b30d7b8afa669a70|run2|deleted,target_delete,1,0,mismatch,"$(2, 12) igcup (12, 102)$","(2,12) \cup (12,102)"
+prm-b30d7b8afa669a70|run3|deleted,target_delete,1,0,mismatch,"(2, 12) igcup (12, 102)","(2,12) \cup (12,102)"
+prm-b30d7b8afa669a70|run4|deleted,target_delete,1,0,mismatch,"$(2, 12) igcup (12, 102)$","(2,12) \cup (12,102)"
+prm-b30d7b8afa669a70|placebo3|step3,placebo_delete,1,0,mismatch,"(2, 12) \\cup (12, 102)","(2,12) \cup (12,102)"
+prm-caf345262620d432|placebo2|step4,placebo_delete,1,0,mismatch,$\frac{550}{4}$ simplifies to $137\frac{1}{2}$ miles.,137 \frac{1}{2}
+prm-7cf98f01d85acf4d|run1|control,control,1,0,mismatch,ellipse,\text{ellipse}
+prm-7cf98f01d85acf4d|run1|deleted,target_delete,1,0,mismatch,ellipse,\text{ellipse}
+prm-7cf98f01d85acf4d|run2|deleted,target_delete,1,0,mismatch,ellipse,\text{ellipse}
+prm-7cf98f01d85acf4d|run3|control,control,1,0,mismatch,ellipse,\text{ellipse}
+prm-7cf98f01d85acf4d|run3|deleted,target_delete,1,0,mismatch,ellipse,\text{ellipse}
+prm-7cf98f01d85acf4d|run4|deleted,target_delete,1,0,mismatch,ellipse,\text{ellipse}
+prm-7cf98f01d85acf4d|placebo1|step15,placebo_delete,1,0,mismatch,ellipse,\text{ellipse}
+prm-7cf98f01d85acf4d|placebo2|step5,placebo_delete,1,0,mismatch,ellipse,\text{ellipse}
+prm-7cf98f01d85acf4d|placebo3|step7,placebo_delete,1,0,mismatch,ellipse,\text{ellipse}
+prm-7cf98f01d85acf4d|placebo4|step3,placebo_delete,1,0,mismatch,ellipse,\text{ellipse}
+prm-d139e98806701b02|run1|control,control,1,0,mismatch,\frac{5}{9},\frac 59
+prm-d139e98806701b02|run1|deleted,target_delete,1,0,mismatch,\frac{5}{9},\frac 59
+prm-d139e98806701b02|run2|control,control,1,0,mismatch,\frac{5}{9},\frac 59
+prm-d139e98806701b02|run2|deleted,target_delete,1,0,mismatch,\frac{5}{9},\frac 59
+prm-d139e98806701b02|run3|control,control,1,0,mismatch,\frac{5}{9},\frac 59
+prm-d139e98806701b02|run3|deleted,target_delete,1,0,mismatch,\frac{5}{9},\frac 59
+prm-d139e98806701b02|run4|control,control,1,0,mismatch,\frac{5}{9},\frac 59
+prm-d139e98806701b02|run4|deleted,target_delete,1,0,mismatch,\frac{5}{9},\frac 59
+prm-d139e98806701b02|placebo1|step0,placebo_delete,1,0,mismatch,\frac{5}{9},\frac 59
+prm-02dc733a400c8a44|run1|deleted,target_delete,1,0,mismatch,$\frac{2 - \frac{1}{5}}{\frac{1}{5}} = \frac{\frac{10 - 1}{5}}{\frac{1}{5}} = \f,9
+prm-02dc733a400c8a44|run4|deleted,target_delete,1,0,mismatch,$\frac{2 - \frac{1}{5}}{\frac{1}{5}} = \frac{\frac{10 - 1}{5}}{\frac{1}{5}} = \f,9
+prm-d9a76b21965836c2|run1|control,control,1,0,mismatch,\begin{pmatrix} \frac{16}{49} \\ \frac{48}{49} \\ \frac{24}{49} \end{pmatrix},\begin{pmatrix} 16/49 \\ 48/49 \\ 24/49 \end{pmatrix}
+prm-d9a76b21965836c2|run2|control,control,1,0,mismatch,\begin{pmatrix} \frac{16}{49} \\ \frac{48}{49} \\ \frac{24}{49} \end{pmatrix},\begin{pmatrix} 16/49 \\ 48/49 \\ 24/49 \end{pmatrix}
+prm-d9a76b21965836c2|run3|control,control,1,0,mismatch,\begin{pmatrix} \frac{16}{49} \\ \frac{48}{49} \\ \frac{24}{49} \end{pmatrix},\begin{pmatrix} 16/49 \\ 48/49 \\ 24/49 \end{pmatrix}
+prm-d9a76b21965836c2|run4|control,control,1,0,mismatch,\begin{pmatrix} \frac{16}{49} \\ \frac{48}{49} \\ \frac{24}{49} \end{pmatrix},\begin{pmatrix} 16/49 \\ 48/49 \\ 24/49 \end{pmatrix}
+prm-47679397406393e0|run1|deleted,target_delete,1,0,mismatch,$4210_5$,4210_{5}
+prm-47679397406393e0|run2|control,control,1,0,mismatch,$4210_5$,4210_{5}
+prm-47679397406393e0|run2|deleted,target_delete,1,0,mismatch,$4210_5$,4210_{5}
+prm-47679397406393e0|run3|control,control,1,0,mismatch,$555_{10} = 4210_5$,4210_{5}
+prm-47679397406393e0|run3|deleted,target_delete,1,0,mismatch,$4210_5$,4210_{5}
+prm-47679397406393e0|run4|control,control,1,0,mismatch,$555_{10} = 4210_5$,4210_{5}
+prm-47679397406393e0|run4|deleted,target_delete,1,0,mismatch,$4210_5$,4210_{5}
+prm-47679397406393e0|placebo1|step11,placebo_delete,1,0,mismatch,4210_5,4210_{5}
+prm-47679397406393e0|placebo2|step5,placebo_delete,1,0,mismatch,$4210_5$,4210_{5}
+prm-47679397406393e0|placebo3|step7,placebo_delete,1,0,mismatch,4210_5,4210_{5}
+prm-47679397406393e0|placebo4|step9,placebo_delete,1,0,mismatch,4210_5,4210_{5}
+prm-14fb1048eb99d376|run2|control,control,1,0,mismatch,"6, -4, -24",6r^2-4r-24
+prm-14fb1048eb99d376|run3|control,control,1,0,mismatch,"6, -4, -24",6r^2-4r-24
+prm-14fb1048eb99d376|run4|control,control,1,0,mismatch,"6, -4, -24",6r^2-4r-24
+prm-66bc41cfa62d57e2|run4|control,control,1,0,mismatch,864,864 \mbox{ inches}^2
+prm-66bc41cfa62d57e2|placebo1|step4,placebo_delete,1,0,mismatch,864,864 \mbox{ inches}^2
+prm-2dfd8218ce19b305|placebo2|step14,placebo_delete,1,0,mismatch,"The domain of the function is $(-\infty, 2) \cup (3, \infty)$","(-\infty, 2) \cup (3, \infty)"
+prm-2dfd8218ce19b305|placebo3|step8,placebo_delete,1,0,mismatch,"The domain of the function is $(- ext{infty}, 2) ext{ union } (3, ext{infty})$","(-\infty, 2) \cup (3, \infty)"
+prm-77a86cb6e4dfd1aa|run1|control,control,1,0,mismatch,26 × 25 × 10 × 9 = 58500,"58,500"
+prm-77a86cb6e4dfd1aa|run2|control,control,1,0,mismatch,26 × 25 × 10 × 9 = 58500,"58,500"
+prm-77a86cb6e4dfd1aa|run2|deleted,target_delete,1,0,mismatch,26 × 25 × 10 × 9 = 58500,"58,500"
+prm-77a86cb6e4dfd1aa|run3|control,control,1,0,mismatch,26 × 25 × 10 × 9 = 58500,"58,500"
+prm-77a86cb6e4dfd1aa|run3|deleted,target_delete,1,0,mismatch,26 × 25 × 10 × 9 = 58500,"58,500"
+prm-77a86cb6e4dfd1aa|run4|control,control,1,0,mismatch,26 × 25 × 10 × 9 = 58500,"58,500"
+prm-77a86cb6e4dfd1aa|run4|deleted,target_delete,1,0,mismatch,26 × 25 × 10 × 9 = 58500,"58,500"
+prm-f77af5e177e450d9|run1|control,control,1,0,mismatch,"[-2, 7]","x \in [-2,7]"
+prm-f77af5e177e450d9|run1|deleted,target_delete,1,0,mismatch,"[-2, 7]","x \in [-2,7]"
+prm-f77af5e177e450d9|run2|control,control,1,0,mismatch,"[-2, 7]","x \in [-2,7]"
+prm-f77af5e177e450d9|run2|deleted,target_delete,1,0,mismatch,"[-2, 7]","x \in [-2,7]"
+prm-f77af5e177e450d9|run3|deleted,target_delete,1,0,mismatch,"[-2, 7]","x \in [-2,7]"
+prm-f77af5e177e450d9|run4|deleted,target_delete,1,0,mismatch,"[-2, 7]","x \in [-2,7]"
+prm-f77af5e177e450d9|placebo2|step5,placebo_delete,1,0,mismatch,"[-2, 7]","x \in [-2,7]"
+prm-e5b42c42ddfdfe89|run1|control,control,1,0,mismatch,"$ f(2015,2) = 1 $",1
+prm-e5b42c42ddfdfe89|run2|deleted,target_delete,1,0,mismatch,"$ f(2015, 2) = 1 $",1
+prm-e5b42c42ddfdfe89|run3|deleted,target_delete,1,0,mismatch,"$ f(2015, 2) = 1 $",1
+prm-24a4a38cf78a16b4|run2|deleted,target_delete,0,1,string_match,\boxed{-\dfrac{35}{9}},-\frac{35}{9}
+prm-fa87724dc0063e72|placebo1|step8,placebo_delete,1,0,mismatch,$x = 6$,6
+prm-f418b9680e5a9dc1|placebo3|step6,placebo_delete,1,0,mismatch,\sqrt{53} is already in simplest radical form and cannot be simplified further.,\sqrt{53}
+prm-23e4bf45fefddfca|run4|control,control,1,0,mismatch,125,1250
+prm-d53813f5acf46dc2|run1|control,control,1,0,mismatch,"[-2, 7]","x \in [-2,7]"
+prm-d53813f5acf46dc2|run1|deleted,target_delete,1,0,mismatch,"[-2, 7]","x \in [-2,7]"
+prm-d53813f5acf46dc2|run2|control,control,1,0,mismatch,"[-2, 7]","x \in [-2,7]"
+prm-d53813f5acf46dc2|run2|deleted,target_delete,1,0,mismatch,"[-2, 7]","x \in [-2,7]"
+prm-d53813f5acf46dc2|run3|control,control,1,0,mismatch,"[-2, 7]","x \in [-2,7]"
+prm-d53813f5acf46dc2|run3|deleted,target_delete,1,0,mismatch,"[-2, 7]","x \in [-2,7]"
+prm-d53813f5acf46dc2|run4|control,control,1,0,mismatch,"[-2, 7]","x \in [-2,7]"
+prm-d53813f5acf46dc2|run4|deleted,target_delete,1,0,mismatch,"[-2, 7]","x \in [-2,7]"
+prm-27543090e207be07|placebo1|step0,placebo_delete,1,0,mismatch,The binary number $10101001110_2$ is equal to $2516_8$.,2516_8
+prm-9b09489564767b9d|run1|deleted,target_delete,1,0,mismatch,$\boxed{\frac{\sqrt{2(34^2) + 2(34^2) - 32^2}}{2} = \frac{\sqrt{2(1156) + 2(1156,30
+prm-b3c55327f85d52bf|run1|deleted,target_delete,1,0,mismatch,"$(- ext{infty}, 2) ext{ union } (3, ext{infty})$","(-\infty, 2) \cup (3, \infty)"
+prm-b3c55327f85d52bf|run3|deleted,target_delete,1,0,mismatch,"$(- ext{infty}, 2) ext{ union } (3, ext{infty})$","(-\infty, 2) \cup (3, \infty)"
+prm-b3c55327f85d52bf|placebo1|step15,placebo_delete,1,0,mismatch,"$(- ext{∞}, 2) ext{ union } (3, ext{∞})$","(-\infty, 2) \cup (3, \infty)"
+prm-bd9c89c30ff0439e|placebo2|step4,placebo_delete,1,0,mismatch,"The domain of the function is $(-\infty, 2) \cup (3, \infty)$.","(-\infty, 2) \cup (3, \infty)"
+prm-bbdc2cbce9d5d71d|run2|deleted,target_delete,0,1,string_match,\boxed{\frac{8}{21}},\frac{8}{21}
+prm-bbdc2cbce9d5d71d|run3|control,control,0,1,string_match,\boxed{\frac{8}{21}},\frac{8}{21}
+prm-24d79d07da1abeb8|run1|deleted,target_delete,1,0,mismatch,$c = 33$,33
+prm-24d79d07da1abeb8|run2|deleted,target_delete,1,0,mismatch,$c = 33$,33
+prm-24d79d07da1abeb8|run3|deleted,target_delete,1,0,mismatch,$c = 33$,33
+prm-24d79d07da1abeb8|run4|deleted,target_delete,1,0,mismatch,$c = 33$,33
+prm-4c8c15a6cba67d79|placebo1|step0,placebo_delete,1,0,mismatch,even,\text{even}
+prm-242890b88c115e2c|run1|control,control,1,0,mismatch,\boxed{\textbf{(B)}},\text{(B)}
+prm-242890b88c115e2c|run1|deleted,target_delete,1,0,mismatch,\boxed{\textbf{(B)}},\text{(B)}
+prm-242890b88c115e2c|run2|control,control,1,0,mismatch,\boxed{\textbf{(B)}},\text{(B)}
+prm-242890b88c115e2c|run3|control,control,1,0,mismatch,\boxed{\textbf{(B)}},\text{(B)}
+prm-242890b88c115e2c|placebo1|step10,placebo_delete,1,0,mismatch,\boxed{\textbf{(B)}},\text{(B)}
+prm-2c5e0537236b9a03|run4|deleted,target_delete,1,0,mismatch,32,256
+prm-5be58b31f228d28e|placebo1|step8,placebo_delete,1,0,mismatch,49,63
+prm-a9006452bf5662ee|run1|control,control,1,0,mismatch,$x = 11$,11
+prm-a9006452bf5662ee|run2|control,control,1,0,mismatch,$x = 11$,11
+prm-a9006452bf5662ee|run3|control,control,1,0,mismatch,$x = 11$,11
+prm-a9006452bf5662ee|run3|deleted,target_delete,1,0,mismatch,$x = 11$,11
+prm-a9006452bf5662ee|placebo4|step6,placebo_delete,1,0,mismatch,$x = 11$,11
+prm-7a422bc7fddfdf54|run2|control,control,1,0,mismatch,14,40
+prm-2d6ec7aa85de8014|run1|deleted,target_delete,1,0,mismatch,\sqrt{f(16)} = \sqrt{2^{16}} = \sqrt{65536} = 256,256
+prm-2d6ec7aa85de8014|run2|deleted,target_delete,1,0,mismatch,\sqrt{f(16)} = \sqrt{2^{16}} = \sqrt{65536} = 256,256
+prm-2d6ec7aa85de8014|run3|deleted,target_delete,1,0,mismatch,\sqrt{f(16)} = \sqrt{2^{16}} = \sqrt{65536} = 256,256
+prm-2d6ec7aa85de8014|run4|deleted,target_delete,1,0,mismatch,\sqrt{f(16)} = \sqrt{2^{16}} = \sqrt{65536} = 256,256
+prm-e3b1b8595fa68428|placebo1|step10,placebo_delete,1,0,mismatch,$(b + 2)(a + 5)$,(a+5)(b+2)
+prm-e3b1b8595fa68428|placebo3|step11,placebo_delete,1,0,mismatch,(b+2)(a+5),(a+5)(b+2)
+prm-5bd12286ca047ec0|run3|deleted,target_delete,1,0,mismatch,-3 + 2 + 12 + 5 = 16,16
+prm-5bd12286ca047ec0|run4|deleted,target_delete,1,0,mismatch,h + k + a + b = -3 + 2 + 12 + 5 = 16,16
+prm-5bd12286ca047ec0|placebo1|step6,placebo_delete,1,0,mismatch,h + k + a + b = -3 + 2 + 12 + 5 = 16,16
+prm-5da3ed1afff5caaa|run1|control,control,1,0,mismatch,\frac{1}{9} - 4 = -\frac{35}{9},-\frac{35}{9}
+prm-5da3ed1afff5caaa|run2|control,control,1,0,mismatch,\frac{1}{9} - 4 = -\frac{35}{9},-\frac{35}{9}
+prm-91df52b1208ea81d|run1|control,control,1,0,mismatch,2 * 5! * 5! = 2 * 120 * 120 = 28800,28800
+prm-91df52b1208ea81d|run1|deleted,target_delete,1,0,mismatch,2 × 5! × 5! = 2 × 120 × 120 = 28800,28800
+prm-91df52b1208ea81d|run2|control,control,1,0,mismatch,2 * 5! * 5! = 2 * 120 * 120 = 28800,28800
+prm-91df52b1208ea81d|run2|deleted,target_delete,1,0,mismatch,2 × 5! × 5! = 2 × 120 × 120 = 28800,28800
+prm-91df52b1208ea81d|run3|control,control,1,0,mismatch,2 * 5! * 5! = 2 * 120 * 120 = 28800,28800
+prm-91df52b1208ea81d|run3|deleted,target_delete,1,0,mismatch,2 × 5! × 5! = 2 × 120 × 120 = 28800,28800
+prm-91df52b1208ea81d|run4|control,control,1,0,mismatch,2 * 5! * 5! = 2 * 120 * 120 = 28800,28800
+prm-91df52b1208ea81d|run4|deleted,target_delete,1,0,mismatch,2 × 5! × 5! = 2 × 120 × 120 = 28800,28800
+prm-91df52b1208ea81d|placebo1|step6,placebo_delete,1,0,mismatch,2 * 5! * 5! = 2 * 120 * 120 = 28800,28800
+prm-91df52b1208ea81d|placebo2|step4,placebo_delete,1,0,mismatch,2 * 5! * 5! = 2 * 120 * 120 = 28800,28800
+prm-951e8e518dae1077|run1|deleted,target_delete,1,0,mismatch,$ rac{13}{15}$,\frac{13}{15}
+prm-951e8e518dae1077|run2|deleted,target_delete,1,0,mismatch,$ rac{13}{15}$,\frac{13}{15}
+prm-951e8e518dae1077|run3|deleted,target_delete,1,0,mismatch,$ rac{13}{15}$,\frac{13}{15}
+prm-951e8e518dae1077|run4|deleted,target_delete,1,0,mismatch,$ rac{13}{15}$,\frac{13}{15}
+prm-951e8e518dae1077|placebo3|step6,placebo_delete,1,0,mismatch,$ rac{13}{15}$,\frac{13}{15}
+prm-7f470224e279c9a5|placebo1|step0,placebo_delete,1,0,mismatch,The minimum value is $16$,16
+prm-64b92977ff492b9b|placebo2|step1,placebo_delete,1,0,mismatch,"From the constant term equation $-2a = 6$, we get $a = -3$. Substituting $a = -3",-1
+prm-d4926e70a53c8c17|placebo3|step5,placebo_delete,1,0,mismatch,The simplified expression is $2+ ext{something}- ext{something}- ext{something}$,13
+prm-4d125d919f106dbe|placebo1|step9,placebo_delete,1,0,mismatch,$137 rac{1}{2}$,137 \frac{1}{2}
+prm-b46df73b9c7f1dd9|run1|deleted,target_delete,1,0,mismatch,\frac{3}{4},\frac 34
+prm-b46df73b9c7f1dd9|run2|deleted,target_delete,1,0,mismatch,\frac{3}{4},\frac 34
+prm-b46df73b9c7f1dd9|run3|deleted,target_delete,1,0,mismatch,\frac{3}{4},\frac 34
+prm-b46df73b9c7f1dd9|run4|deleted,target_delete,1,0,mismatch,\frac{3}{4},\frac 34
+prm-b46df73b9c7f1dd9|placebo1|step0,placebo_delete,1,0,mismatch,\frac{3}{4},\frac 34
+prm-9ceaed5b974155d1|run1|control,control,1,0,mismatch,ellipse,\text{ellipse}
+prm-9ceaed5b974155d1|run1|deleted,target_delete,1,0,mismatch,ellipse,\text{ellipse}
+prm-9ceaed5b974155d1|run2|control,control,1,0,mismatch,ellipse,\text{ellipse}
+prm-9ceaed5b974155d1|run2|deleted,target_delete,1,0,mismatch,ellipse,\text{ellipse}
+prm-9ceaed5b974155d1|run3|control,control,1,0,mismatch,ellipse,\text{ellipse}
+prm-9ceaed5b974155d1|run3|deleted,target_delete,1,0,mismatch,ellipse,\text{ellipse}
+prm-9ceaed5b974155d1|run4|control,control,1,0,mismatch,ellipse,\text{ellipse}
+prm-9ceaed5b974155d1|run4|deleted,target_delete,1,0,mismatch,ellipse,\text{ellipse}
+prm-158ef0683bb8bf70|placebo2|step6,placebo_delete,1,0,mismatch,oxed{11},11
+prm-e9f04531a844d980|run1|deleted,target_delete,1,0,mismatch,$4210_5$,4210_{5}
+prm-e9f04531a844d980|run2|deleted,target_delete,1,0,mismatch,$4210_5$,4210_{5}
+prm-e9f04531a844d980|run3|deleted,target_delete,1,0,mismatch,$4210_5$,4210_{5}
+prm-e9f04531a844d980|run4|deleted,target_delete,1,0,mismatch,$4210_5$,4210_{5}
+prm-e9f04531a844d980|placebo1|step1,placebo_delete,1,0,mismatch,$4210_5$,4210_{5}
+prm-9db27c5e8855d8c2|run1|deleted,target_delete,1,0,mismatch,The minimum value is $16$,16
+prm-9db27c5e8855d8c2|run3|deleted,target_delete,1,0,mismatch,The minimum value is $16$,16
+prm-9db27c5e8855d8c2|run4|deleted,target_delete,1,0,mismatch,The minimum value is $16$,16
+prm-de925ec448909016|run4|deleted,target_delete,1,0,mismatch,12^{ ext{th}} grade,12
+prm-de925ec448909016|placebo1|step5,placebo_delete,1,0,mismatch,12th grade,12
+prm-de925ec448909016|placebo2|step3,placebo_delete,1,0,mismatch,12th grade,12
+prm-c1d4d174440821f2|run3|control,control,1,0,mismatch,$AF^2 + BF^2 + CF^2 = rac{1}{3}(a^2 + b^2 + c^2) + rac{1}{3}(9R^2 - a^2 - b^2 - ,3R^2
+prm-c1d4d174440821f2|run4|control,control,1,0,mismatch,$AF^2 + BF^2 + CF^2 = rac{1}{3}(a^2 + b^2 + c^2) + rac{1}{3}(9R^2 - a^2 - b^2 - ,3R^2
+prm-70a2e3a4f8362a3d|placebo1|step2,placebo_delete,1,0,mismatch,$ P = \frac{2}{3} $,\frac{2}{3}
+prm-a7ee94dec2e0a9cc|placebo3|step0,placebo_delete,1,0,mismatch,\frac{\sqrt{13}}{\sqrt{169}} = \frac{\sqrt{13}}{13},\frac{5}{13}
+prm-62cd37cf091fe105|run1|control,control,1,0,mismatch,The number of trailing zeros in $42!$ is $\left\lfloor \frac{42}{5} \right\rfloo,9
+prm-62cd37cf091fe105|run3|control,control,1,0,mismatch,The number of trailing zeros in $42!$ is $\left\lfloor \frac{42}{5} \right\rfloo,9
+prm-62cd37cf091fe105|run4|control,control,1,0,mismatch,The number of trailing zeros in $42!$ is $\left\lfloor \frac{42}{5} \right\rfloo,9
+prm-5c51e282ba7208e7|placebo2|step2,placebo_delete,1,0,mismatch,x = 6,6
+prm-1e1ebbda6644be84|run2|control,control,0,1,string_match,58500,"58,500"
+prm-eadb47af80561526|run1|control,control,1,0,mismatch,Chris is currently 10 years old.,10
+prm-eadb47af80561526|run4|control,control,1,0,mismatch,Chris is currently 10 years old.,10
+prm-378914f040c48223|run2|deleted,target_delete,1,0,mismatch,$AF^2 + BF^2 + CF^2 = rac{1}{3}(a^2 + b^2 + c^2) + rac{1}{3}(9R^2 - a^2 - b^2 - ,3R^2
+prm-378914f040c48223|run3|deleted,target_delete,1,0,mismatch,$AF^2 + BF^2 + CF^2 = rac{1}{3}(a^2 + b^2 + c^2) + rac{1}{3}(9R^2 - a^2 - b^2 - ,3R^2
+prm-378914f040c48223|run4|deleted,target_delete,1,0,mismatch,$AF^2 + BF^2 + CF^2 = rac{1}{3}(a^2 + b^2 + c^2) + rac{1}{3}(9R^2 - a^2 - b^2 - ,3R^2
+prm-0d673acec3561559|run1|deleted,target_delete,1,0,mismatch,The 8th grade should have 10 representatives.,10
+prm-0d673acec3561559|run2|control,control,1,0,mismatch,The 8th grade should have 10 representatives.,10
+prm-0d673acec3561559|run4|deleted,target_delete,1,0,mismatch,The 8th grade should have 10 representatives.,10
+prm-c3e6885bc7f884e7|run1|control,control,1,0,mismatch,\boxed{\frac{4}{3}},\frac43
+prm-c3e6885bc7f884e7|run1|deleted,target_delete,1,0,mismatch,\boxed{\frac{4}{3}},\frac43
+prm-c3e6885bc7f884e7|run2|control,control,1,0,mismatch,\boxed{\frac{4}{3}},\frac43
+prm-c3e6885bc7f884e7|run2|deleted,target_delete,1,0,mismatch,\boxed{\frac{4}{3}},\frac43
+prm-c3e6885bc7f884e7|run3|control,control,1,0,mismatch,\boxed{\frac{4}{3}},\frac43
+prm-c3e6885bc7f884e7|run3|deleted,target_delete,1,0,mismatch,\boxed{\frac{4}{3}},\frac43
+prm-c3e6885bc7f884e7|run4|control,control,1,0,mismatch,\boxed{\frac{4}{3}},\frac43
+prm-c3e6885bc7f884e7|run4|deleted,target_delete,1,0,mismatch,\boxed{\frac{4}{3}},\frac43
+prm-e319831ecda4ad73|placebo1|step6,placebo_delete,1,0,mismatch,26 * 25 * 10 * 9 = 58500,"58,500"
+prm-e319831ecda4ad73|placebo2|step3,placebo_delete,1,0,mismatch,26 × 25 × 10 × 9 = 58500,"58,500"
+prm-e319831ecda4ad73|placebo3|step5,placebo_delete,1,0,mismatch,The total number of license plates is 26 * 25 * 10 * 9 = 58500.,"58,500"
+prm-5699f280aa96d018|run3|deleted,target_delete,0,1,string_match,-5,-5
+prm-015f040f29e2b298|run1|control,control,1,0,mismatch,\boxed{\frac{9}{19}},\frac9{19}
+prm-015f040f29e2b298|run2|control,control,1,0,mismatch,\boxed{\frac{9}{19}},\frac9{19}
+prm-015f040f29e2b298|run3|control,control,1,0,mismatch,\frac{9}{19},\frac9{19}
+prm-015f040f29e2b298|run4|control,control,1,0,mismatch,\boxed{\frac{9}{19}},\frac9{19}
+prm-015f040f29e2b298|placebo3|step1,placebo_delete,1,0,mismatch,\frac{9}{19},\frac9{19}
+prm-015f040f29e2b298|placebo4|step5,placebo_delete,1,0,mismatch,\frac{9}{19},\frac9{19}
+prm-36e206fe8afae4f8|run1|control,control,1,0,mismatch,\frac{5}{9},\frac 59
+prm-36e206fe8afae4f8|run1|deleted,target_delete,1,0,mismatch,\frac{5}{9},\frac 59
+prm-36e206fe8afae4f8|run2|control,control,1,0,mismatch,\frac{5}{9},\frac 59
+prm-36e206fe8afae4f8|run2|deleted,target_delete,1,0,mismatch,\frac{5}{9},\frac 59
+prm-36e206fe8afae4f8|run3|control,control,1,0,mismatch,\frac{5}{9},\frac 59
+prm-36e206fe8afae4f8|run3|deleted,target_delete,1,0,mismatch,\frac{5}{9},\frac 59
+prm-36e206fe8afae4f8|run4|control,control,1,0,mismatch,\frac{5}{9},\frac 59
+prm-36e206fe8afae4f8|run4|deleted,target_delete,1,0,mismatch,\frac{5}{9},\frac 59
+prm-36e206fe8afae4f8|placebo1|step5,placebo_delete,1,0,mismatch,\frac{5}{9},\frac 59
+prm-36e206fe8afae4f8|placebo2|step8,placebo_delete,1,0,mismatch,\frac{5}{9},\frac 59
+prm-36e206fe8afae4f8|placebo3|step2,placebo_delete,1,0,mismatch,\frac{5}{9},\frac 59
+prm-36e206fe8afae4f8|placebo4|step11,placebo_delete,1,0,mismatch,\frac{5}{9},\frac 59
+prm-64b8dd81d152bc1a|placebo1|step0,placebo_delete,1,0,mismatch,\frac{1}{2} \sqrt{(-8)^2 + 10^2 + 4^2} = \frac{1}{2} \sqrt{64 + 100 + 16} = \fra,3 \sqrt{5}
+prm-901a3aa77c6c4dc2|run2|deleted,target_delete,1,0,mismatch,2 + 2 + 3 + 6 = 13,13
+prm-901a3aa77c6c4dc2|run4|deleted,target_delete,1,0,mismatch,2 + 2 + 3 + 6 = 13,13
+prm-b51dfeb3b8305067|placebo3|step14,placebo_delete,1,0,mismatch,\begin{pmatrix} -\frac{1}{3} \\ \frac{2}{3} \\ \frac{5}{3} \end{pmatrix},\begin{pmatrix} -1/3 \\ 2/3 \\ 5/3 \end{pmatrix}
+prm-80def83e2346512b|run1|control,control,1,0,mismatch,$- rac{3}{8}$,-\frac{3}{8}
+prm-80def83e2346512b|run2|control,control,1,0,mismatch,$- rac{3}{8}$,-\frac{3}{8}
+prm-80def83e2346512b|run3|control,control,1,0,mismatch,$- rac{3}{8}$,-\frac{3}{8}
+prm-80def83e2346512b|run4|control,control,1,0,mismatch,$- rac{3}{8}$,-\frac{3}{8}
+prm-80def83e2346512b|placebo2|step8,placebo_delete,1,0,mismatch,$- rac{3}{8}$,-\frac{3}{8}
+prm-e164a92c13c4f1d6|run1|control,control,1,0,mismatch,\frac{4}{3},\frac43
+prm-e164a92c13c4f1d6|run1|deleted,target_delete,1,0,mismatch,\frac{4}{3},\frac43
+prm-e164a92c13c4f1d6|run2|control,control,1,0,mismatch,\frac{4}{3},\frac43
+prm-e164a92c13c4f1d6|run2|deleted,target_delete,1,0,mismatch,\frac{4}{3},\frac43
+prm-e164a92c13c4f1d6|run3|control,control,1,0,mismatch,\frac{4}{3},\frac43
+prm-e164a92c13c4f1d6|run3|deleted,target_delete,1,0,mismatch,\frac{4}{3},\frac43
+prm-e164a92c13c4f1d6|run4|control,control,1,0,mismatch,\frac{4}{3},\frac43
+prm-e164a92c13c4f1d6|run4|deleted,target_delete,1,0,mismatch,\frac{4}{3},\frac43
+prm-fea1ec494dc61cd4|run2|control,control,1,0,mismatch,"The roots are $x = 3$, $x = 5$, and $x = 7$.","3, 5, 7"
+prm-fea1ec494dc61cd4|run2|deleted,target_delete,1,0,mismatch,"The roots of the equation are $x = 3$, $x = 5$, and $x = 7$.","3, 5, 7"
+prm-fea1ec494dc61cd4|run3|control,control,1,0,mismatch,"The roots are $x = 3$, $x = 5$, and $x = 7$.","3, 5, 7"
+prm-fea1ec494dc61cd4|run3|deleted,target_delete,1,0,mismatch,"The roots of the equation are $x = 3$, $x = 5$, and $x = 7$.","3, 5, 7"
+prm-fea1ec494dc61cd4|run4|control,control,1,0,mismatch,"The roots are $x = 3$, $x = 5$, and $x = 7$.","3, 5, 7"
+prm-fea1ec494dc61cd4|placebo3|step6,placebo_delete,1,0,mismatch,"The roots are $x = 3$, $x = 5$, and $x = 7$.","3, 5, 7"
+prm-dfdb549c682c7822|run1|deleted,target_delete,1,0,mismatch,$x = 2$,2
+prm-dfdb549c682c7822|run2|deleted,target_delete,1,0,mismatch,$x = 2$,2
+prm-dfdb549c682c7822|run3|deleted,target_delete,1,0,mismatch,$x = 2$,2
+prm-dfdb549c682c7822|run4|deleted,target_delete,1,0,mismatch,$x = 2$,2
+prm-dfdb549c682c7822|placebo1|step0,placebo_delete,1,0,mismatch,$x = 2$,2
+prm-cd2eef413f1492b7|run2|deleted,target_delete,1,0,mismatch,The 2003rd term of the sequence is $ a_{2003} = 1 + (2003 - 1) imes 2 = 1 + 2002,4005
+prm-cd2eef413f1492b7|run4|deleted,target_delete,1,0,mismatch,The 2003rd term of the sequence is $ a_{2003} = 1 + (2003 - 1) imes 2 = 1 + 2002,4005
+prm-e57bd8bedd80b00d|run1|control,control,1,0,mismatch,E,\text{(E)}
+prm-e57bd8bedd80b00d|run3|control,control,1,0,mismatch,E,\text{(E)}
+prm-e57bd8bedd80b00d|run3|deleted,target_delete,1,0,mismatch,E,\text{(E)}
+prm-e57bd8bedd80b00d|run4|control,control,1,0,mismatch,E,\text{(E)}
+prm-e57bd8bedd80b00d|placebo1|step0,placebo_delete,1,0,mismatch,E,\text{(E)}
+prm-932de7bca0e7c93d|run1|control,control,1,0,mismatch,Chris is currently 10 years old.,10
+prm-932de7bca0e7c93d|run2|control,control,1,0,mismatch,Chris is currently 10 years old.,10
+prm-932de7bca0e7c93d|run2|deleted,target_delete,1,0,mismatch,Chris is currently 10 years old.,10
+prm-932de7bca0e7c93d|run3|control,control,1,0,mismatch,Chris is currently 10 years old.,10
+prm-932de7bca0e7c93d|run3|deleted,target_delete,1,0,mismatch,Chris is currently 10 years old.,10
+prm-932de7bca0e7c93d|run4|control,control,1,0,mismatch,Chris is currently 10 years old.,10
+prm-932de7bca0e7c93d|run4|deleted,target_delete,1,0,mismatch,Chris is currently 10 years old.,10
+prm-932de7bca0e7c93d|placebo4|step16,placebo_delete,1,0,mismatch,Chris is currently 10 years old.,10
+prm-39b8f0d9babefef6|run1|control,control,1,0,mismatch,"The number of ways is $ 3! imes S(6, 3) $, where $ S(6, 3) $ is the Stirling num",540
+prm-39b8f0d9babefef6|run2|control,control,1,0,mismatch,"The number of ways is $ 3! imes S(6, 3) $, where $ S(6, 3) $ is the Stirling num",540
+prm-23e70faea1873d2b|run1|deleted,target_delete,1,0,mismatch,2 \times 5! \times 5! = 2 \times 120 \times 120 = 28800,28800
+prm-23e70faea1873d2b|run2|deleted,target_delete,1,0,mismatch,2 \times 5! \times 5! = 2 \times 120 \times 120 = 28800,28800
+prm-23e70faea1873d2b|run3|deleted,target_delete,1,0,mismatch,2 \times 5! \times 5! = 2 \times 120 \times 120 = 28800,28800
+prm-23e70faea1873d2b|run4|deleted,target_delete,1,0,mismatch,2 \times 5! \times 5! = 2 \times 120 \times 120 = 28800,28800
+prm-d8dd25afa49d220a|run2|deleted,target_delete,1,0,mismatch,"\frac{159.75}{10} = 15.975 inches, which can be expressed as the fraction $\frac",\frac{639}{40}
+prm-d8dd25afa49d220a|run3|deleted,target_delete,1,0,mismatch,"\frac{159.75}{10} = 15.975 inches, which can be expressed as the fraction $\frac",\frac{639}{40}
+prm-d8dd25afa49d220a|run4|deleted,target_delete,1,0,mismatch,"\frac{159.75}{10} = 15.975 inches, which can be expressed as the fraction $\frac",\frac{639}{40}
+prm-30611e95e1fdab2f|run2|control,control,1,0,mismatch,$h + k + a + b = -3 + 2 + 12 + 5 = 16$,16
+prm-30611e95e1fdab2f|run3|control,control,1,0,mismatch,$h + k + a + b = -3 + 2 + 12 + 5 = 16$,16
+prm-30611e95e1fdab2f|run4|control,control,1,0,mismatch,$h + k + a + b = -3 + 2 + 12 + 5 = 16$,16
+prm-a1de62b9ef1cf246|run1|control,control,1,0,mismatch,36 seconds,36
+prm-a1de62b9ef1cf246|run2|control,control,1,0,mismatch,36 seconds,36
+prm-a1de62b9ef1cf246|run3|control,control,1,0,mismatch,36 seconds,36
+prm-a1de62b9ef1cf246|run4|control,control,1,0,mismatch,36 seconds,36
+prm-809326ad29e9fe7f|run1|control,control,1,0,mismatch,"(5, ∞)","(5,\infty)"
+prm-809326ad29e9fe7f|run1|deleted,target_delete,1,0,mismatch,"(5, ∞)","(5,\infty)"
+prm-809326ad29e9fe7f|run2|control,control,1,0,mismatch,"(5, ∞)","(5,\infty)"
+prm-809326ad29e9fe7f|run2|deleted,target_delete,1,0,mismatch,"(5, ∞)","(5,\infty)"
+prm-809326ad29e9fe7f|run3|control,control,1,0,mismatch,"(5, ∞)","(5,\infty)"
+prm-809326ad29e9fe7f|run3|deleted,target_delete,1,0,mismatch,"(5, ∞)","(5,\infty)"
+prm-809326ad29e9fe7f|run4|control,control,1,0,mismatch,"(5, ∞)","(5,\infty)"
+prm-809326ad29e9fe7f|run4|deleted,target_delete,1,0,mismatch,"(5, ∞)","(5,\infty)"
+prm-809326ad29e9fe7f|placebo1|step3,placebo_delete,1,0,mismatch,"(5, ∞)","(5,\infty)"
+prm-809326ad29e9fe7f|placebo2|step1,placebo_delete,1,0,mismatch,"(5, ∞)","(5,\infty)"

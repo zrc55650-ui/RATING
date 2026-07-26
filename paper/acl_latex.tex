@@ -16,7 +16,7 @@
 \newcommand{\pp}[1]{#1\,\mathrm{pp}}
 \newcommand{\ci}[2]{[#1, #2]}
 
-\title{PRM Scores Are Not Pruning Policies: \\ A Counterfactual Study of Reasoning-Step Removability}
+\title{Correctness Scores Do Not Identify Safe Reasoning-Step Rollbacks: \\ A Counterfactual Study of Step Removability}
 
 \author{Anonymous ACL submission}
 
@@ -24,7 +24,7 @@
 \maketitle
 
 \begin{abstract}
-Process reward models (PRMs) score the local correctness of reasoning steps; as chain-of-thought compression matures, correctness scores are natural candidates for deciding which steps of a generated trajectory can be pruned. We ask whether step-level correctness signals actually identify \emph{removable} steps. We introduce a counterfactual intervention protocol---control, deletion, position-and-length-matched \emph{placebo} deletion, and semantic-preserving \emph{paraphrase}---and apply it to 600 rating-balanced PRM800K steps (nearly 16{,}000 regenerated continuations), with replications on two further generators---one long-CoT---and on 300 ProcessBench steps from twelve source models. Deletion raises accuracy by $+7.2$ points on average on the rating-balanced cohort ($-0.5$\,pp when reweighted to the natural step distribution), but the gain concentrates almost entirely in steps that are both low-rated and semantically harmful ($+23.3$\,pp; phi-4: $+33.7$\,pp; external first-error steps: $+24.8$\,pp). Controls decompose the mechanism: placebo deletion accounts for two fifths of the anchor-group gain (generic restart), while paraphrasing the erroneous step---preserving its wrong meaning---performs like keeping it, so the residual $+14$--$19$\,pp is attributable to the step's \emph{content}: a negative anchor. Under a long-CoT generator this anchor component vanishes---extended thinking recovers from erroneous prefixes on its own. Crucially, no correctness signal identifies safe deletions: the dataset rating ranks deletion danger below chance (AUROC $0.42$), three trained PRM checkpoints and two prompted PRM judges do no better, step entropy is uninformative, and under an honest calibration/test protocol with a one-sided harm bound, rating-, type-, and PRM-score rankings certify \emph{zero} deletions at every budget we test---while a trajectory-state logistic predictor certifies 29\% coverage at a 3\% budget, and a single probe-and-rollback generation cuts harmed steps from 12\% to 3\%. PRM scores are evidence for \emph{ranking} pruning candidates, not licenses to delete; safe pruning needs counterfactual validation. We release the audited dataset, pipeline, and benchmark.
+Process reward models (PRMs) score the local correctness of reasoning steps; as chain-of-thought compression matures, correctness scores are natural candidates for deciding which steps of a generated trajectory can be pruned. We ask whether step-level correctness signals actually identify \emph{removable} steps. We introduce a counterfactual intervention protocol---control, deletion, position-and-length-matched \emph{placebo} deletion, and semantic-preserving \emph{paraphrase}---and apply it to 600 rating-balanced PRM800K steps (nearly 16{,}000 regenerated continuations), with replications on two further generators---one long-CoT---and on 300 ProcessBench steps from twelve source models. Deletion raises accuracy by $+7.2$ points on average on the rating-balanced cohort ($-0.5$\,pp when reweighted to the natural step distribution), but the gain concentrates almost entirely in steps that are both low-rated and semantically harmful ($+23.3$\,pp; phi-4: $+33.7$\,pp; external first-error steps: $+24.8$\,pp). Controls decompose the mechanism: once each placebo cutoff gets its \emph{own} control, matched innocuous deletions are inert in every group (difference-in-differences), paraphrasing the erroneous step---preserving its wrong meaning---performs like keeping it, and the anchor-group gain is target-specific through and through ($+25$\,pp): a negative anchor. Under a long-CoT generator this anchor component vanishes---extended thinking recovers from erroneous prefixes on its own. Crucially, no correctness signal identifies \emph{which} deletions are safe: the dataset rating ranks deletion danger below chance (AUROC $0.42$), three trained PRM checkpoints and two prompted PRM judges do no better, and step entropy is uninformative. Under deployment weighting with honest train/calibrate/test selection, certified coverage is split-unstable and certificates do not transfer---the strongest trained PRM certifies coverage that realizes $-6.3$\,pp per deletion on held-out problems---while the compression-relevant 92\% of natural traffic never certifies at tight budgets; a single probe-and-rollback generation removes all detectable excess harm (harmed-step share below its stochastic floor). Correctness scores are evidence for \emph{ranking} rollback candidates, not licenses to delete; safe pruning needs counterfactual validation. We release the audited dataset, pipeline, and benchmark.
 \end{abstract}
 
 \section{Introduction}
@@ -35,9 +35,9 @@ This assumption conflates several distinct properties of a reasoning step. A ste
 
 We study this gap directly. Starting from PRM800K \citep{lightman2024lets}, we sample 600 target steps balanced across human ratings ($-1/0/{+}1$), annotate each step's semantic contribution (Essential / Redundant / Harmful), and measure what actually happens when a fixed generator (Qwen3-8B; \citealp{qwen3_2025}) continues the trajectory with and without the step, four runs per condition, 2{,}400 paired outcomes. Because deleting \emph{any} step also forces the generator to re-plan---which can itself change outcomes---we additionally run a position-and-length-matched \emph{placebo} deletion for 511 of the 600 steps (1{,}514 runs), letting us decompose raw deletion effects into a target-specific component and a generic restart component. An LLM judge scores final answers; a 200-output human audit measures judge accuracy, and a full label-substitution analysis quantifies the observed effect of judge noise on every headline number ($\le 0.13$\,pp on the audited subset).
 
-Three findings emerge. \textbf{First, correctness and contribution are correlated but far from interchangeable} (Cram\'er's $V = 0.53$; 34.5\% of steps off the expected diagonal), and deletion outcomes track the \emph{interaction}: only steps that are both low-rated and Harmful yield large reliable gains ($+23.3$\,pp), while every other rating or type group is statistically indistinguishable from zero. The pattern replicates on a second no-thinking generator from a different pretraining pipeline (phi-4: anchor effect $+33.7$\,pp) and on external ProcessBench trajectories from twelve source models; under a long-CoT generator (R1-Distill-Qwen-14B) the anchor effect collapses to a placebo-indistinguishable $+1.7$\,pp---extended thinking neutralizes bad prefixes. \textbf{Second, deletion gains are not all semantic---but the anchor component is.} The matched placebo reveals a $+10.0$\,pp generic ``restart'' component inside the low-rated Harmful group, and a semantic-preserving paraphrase control pins down the remainder: rewording the erroneous step leaves accuracy at control level while deleting it gains $+19.2$\,pp over the paraphrase---erroneous \emph{content}, not surface form or token count, drags continuations toward failure (a \emph{negative anchor}). \textbf{Third, scores are not policies.} Under an honest calibration/test protocol that requires a one-sided 95\% harm bound to clear the budget, rankings by the PRM800K rating, the semantic type, or the continuous scores of three trained PRM checkpoints certify \emph{zero} deletions at every budget from 1\% to 5\%, while a trajectory-state logistic predictor certifies 29\% coverage at 3\% (realized held-out harm 1.2\%) and an in-sample oracle shows 530 of 600 steps could in principle be deleted safely. The information gap, not the intervention, is the bottleneck---and a single probe-and-rollback generation recovers most of the missing safety (harmed steps 12.2\% $\to$ 3.0\%).
+Three findings emerge. \textbf{First, correctness and contribution are correlated but far from interchangeable} (Cram\'er's $V = 0.53$; 34.5\% of steps off the expected diagonal), and deletion outcomes track the \emph{interaction}: only steps that are both low-rated and Harmful yield large reliable gains ($+23.3$\,pp), while every other rating or type group is statistically indistinguishable from zero. The pattern replicates on a second no-thinking generator from a different pretraining pipeline (phi-4: anchor effect $+33.7$\,pp) and on external ProcessBench trajectories from twelve source models; under a long-CoT generator (R1-Distill-Qwen-14B) the anchor effect collapses to a placebo-indistinguishable $+1.7$\,pp---extended thinking neutralizes bad prefixes. \textbf{Second, the anchor-group gain is semantic through and through.} A single-control placebo suggests a $+10.0$\,pp generic ``restart'' component, but that contrast is confounded: half the matched cutoffs fall before the target and silently remove it. Giving every placebo cutoff its \emph{own} control (1{,}514 new runs) shows matched innocuous deletions are inert in every group, and the anchor effect is fully target-specific ($+25.4$\,pp, difference-in-differences); the paraphrase control shows it travels with meaning---rewording the erroneous step performs like keeping it, while deleting it gains $+19.2$\,pp over the paraphrase (a \emph{negative anchor}). \textbf{Third, scores are not policies.} We budget the \emph{certified net accuracy change per deleted step} (a one-sided 95\% cluster bound), which repairs a subtle flaw in transition-rate ``harm'': independent regeneration makes a null deletion on a stochastic step look 25\% harmful. Under deployment weighting with nested train/calibrate/test selection over 20 splits, correctness-based certificates are unstable (even random certifies in 9/20 splits) and do not transfer---the strongest trained PRM certifies in every split yet realizes $-6.3$\,pp per deletion on test---while the rating-$+1$ mass that compression actually targets (92\% of natural traffic) never certifies at budgets below 5\,pp. Only a trajectory-state predictor certifies coverage with reliably positive realized effect ($+8.8$\,pp per deletion). The information gap, not the intervention, is the bottleneck---and a single probe-and-rollback generation removes all detectable excess harm (observed harmed share 3.0\% against a 6.8\% stochastic floor) while raising the net gain to $+11.5$\,pp per candidate.
 
-Our contributions: (i) a conceptual separation of step correctness, semantic contribution, and retrospective removability, with pre-registered estimands; (ii) a reusable counterfactual protocol---control / target deletion / matched placebo / semantic-preserving paraphrase---with an audited automatic evaluator; (iii) an empirical characterization of \emph{negative reasoning anchors}, replicated across two no-thinking generators and an external multi-model benchmark, and shown to vanish under a long-CoT generator; (iv) a signal audit spanning dataset ratings, deployed PRM scores, uncertainty, and counterfactual importance; and (v) a risk--coverage and rollback benchmark showing correctness rankings are unusable as deletion policies under tight harm budgets, while cheap counterfactual validation is not. We release all data, code, and audits.
+Our contributions: (i) a conceptual separation of step correctness, semantic contribution, and retrospective removability, with pre-specified estimands; (ii) a reusable counterfactual protocol---control / target deletion / matched placebo / semantic-preserving paraphrase---with an audited automatic evaluator; (iii) an empirical characterization of \emph{negative reasoning anchors}, replicated across two no-thinking generators and an external multi-model benchmark, and shown to vanish under a long-CoT generator; (iv) a signal audit spanning dataset ratings, deployed PRM scores, uncertainty, and counterfactual importance; and (v) a causal risk--coverage and rollback benchmark showing that correctness-based safety certificates do not transfer across problems, while cheap counterfactual validation removes all detectable excess harm. We release all data, code, and audits.
 
 \section{Related Work}
 
@@ -60,7 +60,7 @@ We distinguish four properties of a step $s_t$ in trajectory $h$:
 (4) \emph{retrospective removability}, the change in success probability from \emph{deleting} the step after the fact and regenerating.
 This paper measures (4) and its relation to (1) and (2).
 
-For step $i$, let $Y^{c}_{ij}, Y^{t}_{ij} \in \{0,1\}$ be final-answer correctness under \textbf{C}ontrol (step kept) and \textbf{T}arget deletion, with $K{=}4$ independent runs per condition; matched steps (511/600) additionally receive one to four \textbf{P}lacebo runs $Y^{p}_{ij}$ (1{,}514 in total), applying the same truncation operator at a different, length-matched step. Pre-registered estimands:
+For step $i$, let $Y^{c}_{ij}, Y^{t}_{ij} \in \{0,1\}$ be final-answer correctness under \textbf{C}ontrol (step kept) and \textbf{T}arget deletion, with $K{=}4$ independent runs per condition; matched steps (511/600) additionally receive one to four \textbf{P}lacebo runs $Y^{p}_{ij}$ (1{,}514 in total), applying the same truncation operator at a different, length-matched step $p$; every placebo run further receives an \emph{own control} $C_p$ (prefix kept through $p$; 1{,}514 runs), so the placebo can be read against its own cutoff rather than the target's, $\Delta^{\mathrm{sem,DiD}}_i = \Delta^{\mathrm{tgt}}_i - (\bar{Y}^{p}_i - \bar{Y}^{C_p}_i)$ (Section~\ref{sec:mechanism}). Pre-specified estimands (fixed in the released analysis plan before the extension cohorts ran; we did not use an external registry):
 \begin{align}
 \Delta^{\mathrm{tgt}}_i &= \bar{Y}^{t}_{i} - \bar{Y}^{c}_{i}, \qquad
 \Delta^{\mathrm{plc}}_i = \bar{Y}^{p}_{i} - \bar{Y}^{c}_{i}, \nonumber\\
@@ -139,32 +139,32 @@ The same 2{,}691 tasks under DeepSeek-R1-Distill-Qwen-14B---which thinks before 
   \label{fig:stability}
 \end{figure}
 
-\section{Mechanism: Anchors vs.\ Restarts}
+\section{Mechanism: Anchors, not Restarts}
 \label{sec:mechanism}
 
 \begin{table}[t]
 \centering
 \scriptsize
-\setlength{\tabcolsep}{2pt}
+\setlength{\tabcolsep}{1.8pt}
 \begin{tabular}{@{}lrrrc@{}}
 \toprule
-Group & $\Delta^{\mathrm{tgt}}$ & $\Delta^{\mathrm{plc}}$ & $\Delta^{\mathrm{sem}}$ & CI($\Delta^{\mathrm{sem}}$) \\
+Group & $\Delta^{\mathrm{tgt}}$ & $\Delta^{\mathrm{plc}}_{\mathrm{vs\,C}}$ & $\Delta^{\mathrm{plc}}_{\mathrm{own}}$ & $\Delta^{\mathrm{sem}}_{\mathrm{DiD}}$ (CI) \\
 \midrule
-Overall (511)        & $+7.97$  & $-0.57$ & $+8.55$ & $\ci{+4.83}{+12.17}$ \\
-rating $=-1$ (169)   & $+22.78$ & $+9.47$ & $+13.31$ & $\ci{+6.71}{+19.53}$ \\
-rating $=0$ (176)    & $+0.99$  & $-5.63$ & $+6.63$ & $\ci{+0.19}{+13.21}$ \\
-rating $=+1$ (166)   & $+0.30$  & $-5.42$ & $+5.72$ & $\ci{-0.05}{+11.40}$ \\
-Harmful (201)        & $+18.41$ & $+3.57$ & $+14.84$ & $\ci{+8.83}{+20.61}$ \\
-$-1\times$Harmful (151) & $+23.84$ & $+9.99$ & $+13.85$ & $\ci{+6.95}{+20.64}$ \\
+Overall (511)        & $+7.97$  & $-0.57$ & $+0.46$ & $+7.52$ $\ci{+2.8}{+12.4}$ \\
+rating $=-1$ (169)   & $+22.78$ & $+9.47$ & $-0.69$ & $+23.47$ $\ci{+14.4}{+32.5}$ \\
+rating $=0$ (176)    & $+0.99$  & $-5.63$ & $+2.84$ & $-1.85$ $\ci{-9.7}{+6.0}$ \\
+rating $=+1$ (166)   & $+0.30$  & $-5.42$ & $-0.90$ & $+1.20$ $\ci{-5.9}{+8.4}$ \\
+Harmful (201)        & $+18.41$ & $+3.57$ & $-1.74$ & $+20.15$ $\ci{+12.0}{+28.4}$ \\
+$-1\times$Harmful (151) & $+23.84$ & $+9.99$ & $-1.60$ & $+25.44$ $\ci{+16.1}{+34.9}$ \\
 \bottomrule
 \end{tabular}
-\caption{Placebo decomposition on the 511-step matched cohort (effects in pp; initial-pass labels). Truncating at a \emph{matched non-target step} already yields $+10.0$\,pp inside the low-rated Harmful group: 42\% of the raw deletion gain there is restart, not step content.}
+\caption{Placebo decomposition on the matched cohort (pp; initial-pass labels). $\Delta^{\mathrm{plc}}_{\mathrm{vs\,C}}$ compares the placebo cutoff against the \emph{target's} control (the frozen contrast); $\Delta^{\mathrm{plc}}_{\mathrm{own}}$ compares it against its \emph{own} control $C_p$ (prefix kept through $p$; 1{,}514 new runs), and $\Delta^{\mathrm{sem}}_{\mathrm{DiD}} = \Delta^{\mathrm{tgt}} - \Delta^{\mathrm{plc}}_{\mathrm{own}}$ is the difference-in-differences. Matched innocuous deletions are inert everywhere.}
 \label{tab:placebo}
 \end{table}
 
-Does deletion help because the \emph{content} of the step was harmful, or because \emph{any} deletion lets the generator restart and resample? Table~\ref{tab:placebo} separates the two. Overall, placebo deletion is inert ($-0.57$\,pp), and the placebo-corrected effect ($+8.55$\,pp) essentially equals the raw effect. But inside the low-rated groups the placebo is \emph{not} inert: truncating at a matched non-target step of a trajectory that contains a low-rated Harmful step yields $+9.99$\,pp by itself. Intuitively, these trajectories are so fragile that any perturbation that forces re-planning has positive expected value. The target-specific component that survives subtraction---$+13.85$\,pp (CI $\ci{+6.95}{+20.64}$) for rating$\,-1\times$Harmful---is our headline evidence for \emph{negative anchors}: erroneous step content that actively pulls regenerated continuations toward failure, over and above the restart benefit.
+Does deletion help because the \emph{content} of the step was harmful, or because \emph{any} deletion lets the generator restart and resample? Table~\ref{tab:placebo} answers with two placebo contrasts. Against the target's control, placebo truncation inside the low-rated groups looks strongly positive ($+9.99$\,pp)---the reading a single-control design would report as a ``restart benefit''. But this contrast confounds removing step $p$ with moving the cutoff: 51\% of matched cutoffs fall \emph{before} the target, so those placebo prefixes silently drop the erroneous step too. Splitting by side is diagnostic: cutoffs before the target yield $+21.1$\,pp against the shared control (they remove the anchor), cutoffs after it yield $-6.8$\,pp (they keep it). Giving each placebo cutoff its \emph{own} control---new $C_p$ runs that keep step $p$ and truncate after it---removes the confound: $\Delta^{\mathrm{plc}}_{\mathrm{own}}$ is null in every group ($-1.6$\,pp on anchors, $+0.5$ overall), and the difference-in-differences semantic effect \emph{rises} to $+25.4$\,pp (CI $\ci{+16.1}{+34.9}$) on anchors---essentially the entire raw effect. Deleting matched innocuous content does nothing; what matters is whether the \emph{anchor} leaves the prefix. (An identical-prompt subset bounds generation-batch drift between the frozen and new runs at $+3.1$\,pp, within noise; Table~\ref{tab:didrobust}.)
 
-Two methodological corollaries. First, deletion studies without matched placebos conflate these components; in our data the conflation is worth up to 10\,pp precisely in the subgroups where deletion looks most attractive. Second, restart effects are heterogeneous (negative for rating $0/{+}1$ groups, strongly positive for fragile ones), so a single global ``restart correction'' would also be wrong; matching must be per-step.
+Two methodological corollaries. First, placebo deletions need their own controls: matching position and length is not enough, because a moved cutoff changes what the generator sees---in our data the single-control contrast \emph{understated} the anchor's semantic component by $\sim$12\,pp and manufactured a spurious restart component. Second, the rating-$0/{+}1$ ``semantic'' effects of the single-control analysis ($+5.7$ to $+6.6$\,pp) vanish under the difference-in-differences ($-1.9$ to $+1.2$\,pp, n.s.): target-specific removability lives \emph{only} in the anchor group.
 
 \begin{table}[t]
 \centering
@@ -178,31 +178,25 @@ C1$-$C0 (raw deletion)      & $+20.3$ & $-11.9$ & $+24.1$ \\
 C1$-$C2 (vs.\ placebo)      & $\mathbf{+15.6}$ & $+16.8$ & $\mathbf{+0.0}$ \\
 C3$-$C0 (paraphrase)        & $\mathbf{+1.7}$  & $-8.3$  & $+20.9$ \\
 C1$-$C3 (vs.\ paraphrase)   & $\mathbf{+19.2}$ & $-2.7$  & $+4.1$ \\
+C2$-$$C_p$ (placebo, own ctrl.) & $-0.7$ & $-0.8$ & $+3.9$ \\
 \bottomrule
 \end{tabular}
-\caption{Four-condition strong controls (240 steps $\times$ 4 runs; 80 per group; paraphrase available for 221). Anchor group: paraphrase $\approx$ control while deletion beats both---the \emph{content} is the anchor. Fragile-neutral group: deletion $=$ placebo---pure restart. Stably-correct group: even meaning-preserving rewording hurts ($-8.3$\,pp).}
+\caption{Four-condition strong controls (240 steps $\times$ 4 runs; 80 per group; paraphrase available for 221). Anchor group: paraphrase $\approx$ control while deletion beats both---the \emph{content} is the anchor. Fragile-neutral group: deletion, placebo, and even paraphrase produce the same uplift over the fragility-conditioned control---nothing is target-specific, and the own-control row shows the operator itself is inert; the vs-C0 uplifts there reflect conditioning on fragile control runs (regression to the mean). Stably-correct group: even meaning-preserving rewording hurts ($-8.3$\,pp).}
 \label{tab:fourcond}
 \end{table}
 
 \paragraph{Paraphrase triangulation.}
-The placebo isolates \emph{that} the target matters; a semantic-preserving paraphrase isolates \emph{why} (Table~\ref{tab:fourcond}). In the anchor group, replacing the erroneous step with an independent-model rewording that preserves its (wrong) meaning leaves accuracy at control level ($+1.7$\,pp, CI $\ci{-6.2}{+9.9}$), while deleting it gains $+19.2$\,pp over the paraphrase (CI $\ci{+8.2}{+30.1}$): the harm travels with the \emph{semantics}, not the surface form---exactly the signature the negative-anchor account predicts. The fragile-neutral group shows the mirror image: a large raw gain ($+24.1$\,pp) that placebo deletion matches exactly (C1$-$C2 $= 0.0$\,pp), i.e.\ pure restart. And stably-correct steps are harmed even by faithful rewording ($-8.3$\,pp, CI $\ci{-14.7}{-3.0}$), showing that correct reasoning chains are sensitive to perturbations that preserve meaning---deletion is not the only risky edit. A blinded human fidelity audit backs the C3 premise: four annotators rated 140 sampled paraphrases (original and rewording side by side, groups hidden), judging 97.1\% faithful or minimally deviating; in the anchor group, zero of 46 audited paraphrases corrected the original error, so C3 does not silently repair the step it rewords. The 19 excluded paraphrases resemble the 221 retained on group shares, rating mix, and target length (Table~\ref{tab:paraexcl}), so the exclusion is unlikely to bias these contrasts.
+The placebo isolates \emph{that} the target matters; a semantic-preserving paraphrase isolates \emph{why} (Table~\ref{tab:fourcond}). In the anchor group, replacing the erroneous step with an independent-model rewording that preserves its (wrong) meaning leaves accuracy at control level ($+1.7$\,pp, CI $\ci{-6.2}{+9.9}$), while deleting it gains $+19.2$\,pp over the paraphrase (CI $\ci{+8.2}{+30.1}$): the harm travels with the \emph{semantics}, not the surface form---exactly the signature the negative-anchor account predicts. The fragile-neutral group shows the mirror image: a large raw gain ($+24.1$\,pp) that placebo deletion---and even paraphrase---matches (C1$-$C2 $= 0.0$\,pp), i.e.\ nothing target-specific; the own-control row attributes the shared uplift to conditioning on fragile control runs rather than to any benefit of the operator. And stably-correct steps are harmed even by faithful rewording ($-8.3$\,pp, CI $\ci{-14.7}{-3.0}$), showing that correct reasoning chains are sensitive to perturbations that preserve meaning---deletion is not the only risky edit. A blinded human fidelity audit backs the C3 premise: four annotators rated 140 sampled paraphrases (original and rewording side by side, groups hidden), judging 97.1\% faithful or minimally deviating; in the anchor group, zero of 46 audited paraphrases corrected the original error, so C3 does not silently repair the step it rewords. The 19 excluded paraphrases resemble the 221 retained on group shares, rating mix, and target length (Table~\ref{tab:paraexcl}), so the exclusion is unlikely to bias these contrasts.
 
 \paragraph{Qualitative families.}
 Eight fully human-verified cases (78 audited continuations) illustrate the mechanism space---negative anchors, generic restarts, stably-correct steps destroyed by deletion, and one unpredictable Redundant step; all ship with full continuations.
-
-\begin{figure}[t]
-  \centering
-  \includegraphics[width=\columnwidth]{figures/figure3_placebo_decomposition.pdf}
-  \caption{Target, placebo, and placebo-corrected effects with 95\% cluster-bootstrap CIs, matched 511-step cohort.}
-  \label{fig:placebo}
-\end{figure}
 
 \section{External Validation on ProcessBench}
 \label{sec:external}
 
 Does any of this survive outside PRM800K trajectories and outside human step ratings? We sample 300 ProcessBench steps \citep{zheng2025processbench}---152 human-annotated \emph{first-error} steps and 148 \emph{locally-correct} steps, balanced across GSM8K, MATH, OlympiadBench, and Omni-MATH (75 each) and drawn from trajectories written by twelve different source models---and run the identical protocol (3 runs per condition; 204/300 steps admit a length-matched placebo; gold answers matched from source datasets for 99.5\% of records).
 
-The core dissociation transfers. Deleting first-error steps yields $+24.8$\,pp (CI $\ci{+16.9}{+32.7}$), with a placebo-corrected component of $+19.4$\,pp (CI $\ci{+10.2}{+28.3}$); deleting locally-correct steps yields $-2.0$\,pp (CI $\ci{-8.3}{+4.1}$)---erroneous steps in other models' reasoning are negative anchors too, while locally-correct steps are not usefully removable. The overall placebo-corrected effect ($+8.2$\,pp, CI $\ci{+2.1}{+14.2}$) is strikingly close to the PRM800K cohort's $+8.6$\,pp. One boundary emerges: the placebo-corrected component is significant on GSM8K ($+17.5$\,pp) and MATH ($+13.9$\,pp) but attenuates on OlympiadBench ($+6.8$\,pp, CI crosses zero) and vanishes on Omni-MATH ($-3.8$\,pp), where placebo deletion alone trends positive ($+9.4$\,pp): on problems near the generator's competence ceiling, rescues come from restarting rather than from removing specific bad content. Negative anchors are a phenomenon of \emph{recoverable} trajectories.
+The core dissociation transfers. Deleting first-error steps yields $+24.8$\,pp (CI $\ci{+16.9}{+32.7}$); on the placebo-matched subset, the difference-in-differences semantic component is $+35.4$\,pp (CI $\ci{+22.8}{+48.9}$) with own-controlled placebos slightly \emph{negative} ($-8.4$\,pp)---erroneous steps in other models' reasoning are negative anchors too. Deleting locally-correct steps yields $-2.0$\,pp raw (CI $\ci{-8.3}{+4.1}$) and a $-7.1$\,pp (n.s.) semantic component: not usefully removable. One boundary emerges: the DiD semantic component is significant on GSM8K ($+37.3$\,pp) and MATH ($+21.1$\,pp) but attenuates on OlympiadBench ($+6.0$\,pp, CI crosses zero) and vanishes on Omni-MATH ($-0.6$\,pp)---and own-controlled placebos show no restart benefit there either ($+6.3$\,pp, n.s.): on problems near the generator's competence ceiling, nothing target-specific survives. Negative anchors are a phenomenon of \emph{recoverable} trajectories.
 
 \section{Do Correctness Signals Predict Removability?}
 \label{sec:signals}
@@ -265,49 +259,48 @@ Because ``PRM scores'' in deployment are continuous model outputs rather than da
 \section{From Scores to Policies: Risk--Coverage}
 \label{sec:policy}
 
-We convert the audit into a deployment question: if a system deletes the top-$k$ steps ranked by a signal, what net accuracy does it gain, and how many previously-correct runs does it destroy? We evaluate seven policies offline on the frozen cohort: random; correctness \emph{rankings} (rating-first; Harmful-first; intersection-first; ties broken by a fixed hash, and a ranking continues into lower-priority steps once its tier is exhausted, so coverage can exceed a tier's size); the model-D and model-E predictors of Section~\ref{sec:signals} (ranked by out-of-fold $P(\text{benefit}) - P(\text{danger})$, with base-rate imputation so the static policy cannot exploit prediction-availability leakage); and an oracle ranked by observed effect. \emph{Harm rate} is correct-to-wrong transitions per deleted run (an estimate of $p^{c}(1-p^{t})$; Section~\ref{sec:constructs}). Coverages are fractions of the rating-balanced cohort, not of natural traffic (see below).
+We convert the audit into a deployment question: if a system deletes the top-$k$ steps ranked by a signal, does it \emph{certifiably} not lose accuracy, and how many individual steps does it hurt? A tempting metric---the rate at which control-correct runs come back wrong after deletion---is not causal harm: outcomes are independent samples, so a null deletion on a step with $p^{c}{=}p^{t}{=}0.5$ would show $25\%$ ``harm'' from sampling disagreement alone. We therefore budget the \emph{certified net accuracy change per deleted step}: a policy is certified at budget $b$ if the one-sided 95\% lower confidence bound (problem-cluster bootstrap) of the mean $\Delta^{\mathrm{tgt}}$ over its selected steps stays above $-b$. Alongside, we report step-level \emph{tail risk}: the share of selected steps with observed $\hat\Delta_i<0$, next to the exact share expected under the null $p^{t}{=}p^{c}$ (a Binomial$(4,\hat p)$ computation per step), and the excess over that floor. Policies: random; correctness rankings (rating-first, Harmful-first, intersection-first); the three trained PRM scores; the model-D/E predictors of Section~\ref{sec:signals}; an in-sample oracle.
+
+On the \emph{balanced} cohort this certification is degenerate: the case--control mix is so error-rich that the mean deletion effect is $+7.2$\,pp (LCB $+4.4$), and every policy---including random---certifies deleting \emph{all 600 steps} at every budget. Certification only becomes meaningful in the deployment frame, weighting steps to the natural chosen-path prevalence (next paragraph): there, deleting all traffic has LCB $-4.4$\,pp and certifies nothing below a 5\,pp budget.
+
+\paragraph{Balanced cohort vs.\ natural prevalence.}
+The cohort is case--control balanced (200 steps per rating); deployment traffic is not. Our reference frame is the annotator-chosen trajectory path of the phase-2 test split---the steps a deployed sampler would actually carry---comprising 16{,}481 rated steps: 31 rated $-1$, 1{,}224 rated $0$, 15{,}226 rated $+1$ (Table~\ref{tab:frame}). Chosen paths are error-scarce because PRM800K annotators route around bad candidates; the rated-but-rejected alternatives form a far larger error pool (26{,}256 rated completions, 23.2\% rated $-1$), and our rating-$-1$ targets are drawn from that pool and spliced onto the chosen prefix (198/200; the other rating tiers are chosen-path steps). Reweighting to the chosen-path prevalence therefore assumes spliced alternatives behave like the rare naturally-carried $-1$ steps, and adjusts rating composition only (the cohort is position-balanced by design). Under these weights the average deletion effect moves from $+7.2$\,pp to $-0.5$\,pp (CI $\ci{-5.1}{+4.0}$), with danger and benefit near parity ($9.8\%$ vs.\ $9.3\%$; Table~\ref{tab:natprev}): in natural traffic, indiscriminate deletion has no upside while the danger does not shrink. Balanced-cohort numbers are diagnostic contrasts, not deployment estimates.
+
+\paragraph{What certifies in natural traffic.}
+Under natural weights with in-sample selection (Table~\ref{tab:policy}, appendix), correctness rankings certify only the error tiers at a 1\,pp budget: rating-first covers 2.4\% of traffic ($+9.8$\,pp per deletion), Harmful-first 3.8\% ($+17.0$), and the best trained PRM score 0.02\% ($+51$). These deletions are \emph{error correction}, not compression---the rating-$+1$ mass that a pruning system actually wants to remove (92\% of traffic) never certifies at any budget below 5\,pp. The learned predictors certify 66--68\% of traffic in-sample ($+4.2$ to $+4.5$ per deletion); the oracle certifies 96\%.
 
 \begin{table}[t]
 \centering
-\small
-\setlength{\tabcolsep}{4pt}
-\begin{tabular}{@{}lrrr@{}}
+\scriptsize
+\setlength{\tabcolsep}{3.2pt}
+\begin{tabular}{@{}lrrrr@{}}
 \toprule
- & \multicolumn{3}{c}{Harm budget} \\
-\cmidrule(lr){2-4}
-Policy & 1\% & 3\% & 5\% \\
+Policy & Certifies & Coverage & Net/del.\ (pp) & Tail excess \\
 \midrule
-Random                  & 0   & 0   & 0 \\
-rating $=-1$            & 0   & 50  & 210 \\
-Harmful-only            & 0   & 10  & 180 \\
-rating $=-1\times$Harmful & 0 & 10  & 240 \\
-Predictor (static, D)   & \textbf{200} & 240 & 380 \\
-Predictor (state, E)    & \textbf{210} & 250 & 280 \\
-Oracle upper bound      & 530 & 550 & 570 \\
+Random             & 9/20  & 0.00 & $-3.7$ & 0.043 \\
+rating-first       & 20/20 & 0.49 & $+0.9$ & 0.044 \\
+Harmful-first      & 12/20 & 0.20 & $-1.8$ & 0.064 \\
+PRM (Qwen2.5-Math) & 20/20 & 0.18 & $\mathbf{-6.3}$ & 0.089 \\
+PRM (Math-Shep.)   & 19/20 & 0.33 & $+6.4$ & 0.000 \\
+PRM (RLHFlow)      & 14/20 & 0.05 & $+3.3$ & 0.038 \\
+Predictor (D)      & 15/20 & 0.13 & $+20.8$ & 0.000 \\
+Predictor (E)      & 20/20 & 0.58 & $+8.8$ & 0.010 \\
 \bottomrule
 \end{tabular}
-\caption{Maximum deletable steps (of 600) under fixed harm budgets with \emph{in-sample} selection of $k$. No correctness ranking deletes \emph{anything} within a 1\% budget; the 12-feature CV predictor deletes a third of the cohort. Honest calibrated selection is stricter still (Table~\ref{tab:calibsplit}).}
-\label{tab:policy}
+\caption{Nested policy evaluation, natural prevalence, 1\,pp budget: predictors trained on the calibration half only, coverage chosen on calibration (cluster-robust LCB), evaluated once on test; medians over 20 outer 50/50 problem splits. ``Certifies'': splits with nonzero certified coverage; ``Coverage'': median certified fraction of ranked steps; ``Net/del.'': median realized test net effect per deletion; ``Tail excess'': median harmed-step share above the stochastic floor.}
+\label{tab:nested}
 \end{table}
 
-Table~\ref{tab:policy} is the operational core of the paper. At its natural operating point (all 200 rating\,$=-1$ steps), the rating-threshold policy gains $+7.3$\,pp net accuracy but destroys correct runs at a 4.6\% rate---tolerable only under the loosest budget. Under a 1\% budget, \emph{every} rating/type ranking collapses to zero coverage, because correctness signals cannot separate fragile-but-rescuable trajectories from stable-correct ones. The learned predictors, using only cheap static features plus (for E) trajectory-state estimates, delete 200--210 steps at 1\% harm with $+11$\,pp net gain---under in-sample selection of $k$; the calibrated protocol below is the honest reading. The oracle deletes 530: the information safe pruning needs exists, but correctness scores do not carry it.
-
-\paragraph{Honest selection: calibration/test split.}
-Table~\ref{tab:policy} selects $k$ \emph{in-sample}, which flatters every policy. Splitting problems 50/50 into calibration and test halves and requiring the one-sided 95\% Wilson upper bound of calibration harm to clear the budget, no policy---including the predictors and the trained PRM score---certifies a single deletion at the 1\% budget; at 3\%, the state-aware predictor certifies 29\% coverage and realizes 1.2\% held-out harm ($+8.2$\,pp net), while rating-first and PRM-score rankings certify nothing at \emph{any} budget (Table~\ref{tab:calibsplit}).
-
-\paragraph{Balanced cohort vs.\ natural prevalence.}
-The cohort is case--control balanced (200 steps per rating); deployment traffic is not. Reweighting steps to the natural rating prevalence of PRM800K phase-2 test trajectories ($0.2\%$ rated $-1$, $7.4\%$ rated $0$, $92.4\%$ rated $+1$) moves the average deletion effect from $+7.2$\,pp to $-0.5$\,pp (CI $\ci{-5.1}{+4.0}$), with danger and benefit near parity ($9.8\%$ vs.\ $9.3\%$; Table~\ref{tab:natprev}): in natural traffic, indiscriminate deletion has no upside while the danger does not shrink. Balanced-cohort numbers are diagnostic contrasts, not deployment estimates.
-
-\paragraph{Deployed-PRM thresholds fare no better.}
-Ranking deletions by the best trained PRM's continuous score yields 20 deletable steps at the 1\% budget under in-sample selection (200 at 5\%); Math-Shepherd and the RLHFlow checkpoint manage at most 80 and 20 in-sample even at 5\%; all three certify zero at every budget under the calibrated protocol above; the LLM-judge PRM yields zero at 1\% and 3\%, and a two-PRM ensemble that abstains on disagreement reaches only 100 steps even at 5\%. The failure of Table~\ref{tab:policy}'s top rows is a property of correctness signals as a class, not of the PRM800K rating in particular.
+\paragraph{Honest nested selection.}
+Certification must survive selection. Table~\ref{tab:nested} repeats the exercise with a full train/calibrate/test separation over 20 outer splits. Three failures emerge. \emph{Instability}: certified coverage swings from 0 to $0.9$ across splits for most policies---with $\sim$150 calibration problems, a 95\% bound is noisy enough that even \emph{random} certifies in 9 of 20 splits, realizing $-3.7$\,pp per deletion. \emph{Non-transfer}: the strongest trained PRM (danger AUROC $0.57$) certifies in every split yet realizes $\mathbf{-6.3}$\,pp per deletion on test, with the largest tail excess ($0.089$)---the certificate its calibration half grants does not describe its test half. \emph{Weak payoff}: rating-first transfers but realizes only $+0.9$\,pp per deletion at half-cohort coverage. Only the state-aware predictor E certifies in every split \emph{and} realizes a solidly positive net ($+8.8$\,pp, tail excess $0.010$). A certificate obtained on one sample of problems is not a license on the next---unless the signal actually carries removability information.
 
 \paragraph{Rollback: one probe run buys most of the safety.}
-Finally, we simulate the cheapest counterfactual validator: generate \emph{one} probe continuation after a candidate deletion, roll back unless the probe answers correctly, and evaluate on held-out runs. Applied to all 600 steps, this cuts the share of harmed steps from 12.2\% to 3.0\% while \emph{raising} the mean per-step gain from $+7.2$ to $+11.5$\,pp (on anchors: 8.1\% $\to$ 1.9\%), at a cost of one extra generation per candidate and a 63\% acceptance rate. Two caveats keep this honest: the probe is scored by the same gold-answer judge---an oracle relative to deployment, so the simulation upper-bounds a one-probe validator and presupposes one (e.g.\ a self-consistency vote)---and the gain is not mere extra sampling, since the same restart \emph{without} removing the target (the placebo) is inert overall ($-0.6$\,pp). Validation is not merely necessary (Sections~\ref{sec:signals}--\ref{sec:policy}); on these trajectories it is cheap relative to the value it protects.
+Finally, we simulate the cheapest counterfactual validator: generate \emph{one} probe continuation after a candidate deletion, roll back unless the probe answers correctly, and evaluate on held-out runs. Applied to all 600 steps, this raises the net gain per candidate from $+7.2$\,pp (LCB $+4.4$) to $+11.5$\,pp (LCB $+9.3$) and cuts the observed harmed-step share from 12.2\% (stochastic floor 11.0\%) to 3.0\%---\emph{below} its 6.8\% floor, i.e.\ no detectable excess harm survives---at a cost of one extra generation per candidate and a 63\% acceptance rate. A do-nothing control-split shows the floor is calibrated (4.7\% observed vs.\ 3.7\% expected). Two caveats keep this honest: the probe is scored by the same gold-answer judge---an oracle relative to deployment, so the simulation upper-bounds a one-probe validator and presupposes one (e.g.\ a self-consistency vote)---and the gain is not mere extra sampling, since the same restart \emph{without} removing the target (the placebo) is inert overall ($-0.6$\,pp). Validation is not merely necessary (Sections~\ref{sec:signals}--\ref{sec:policy}); on these trajectories it is cheap relative to the value it protects.
 
 \section{Discussion}
 \label{sec:discussion}
 
-Our results do not indict PRMs at their trained task: low ratings do flag wrong steps, and wrong steps are where deletion \emph{benefit} concentrates. The failure is direction-specific---scores carry almost no information about deletion \emph{danger}, which is governed by trajectory state and generator recoverability. Mechanistically, erroneous content behaves as an attractor for regeneration: continuations conditioned on the anchor commit to its error, while continuations from the cleaned prefix explore correct paths; that placebo deletion alone recovers $+10$\,pp in the same trajectories shows fragility and anchoring coexist, in roughly 40/60 proportion. The oracle--policy gap ($530$ vs.\ $200$ steps at 1\% harm, in-sample) quantifies the headroom for better removability signals; Section~\ref{sec:signals} shows the obvious candidates do not close it, and the informative ones (mask drop, PRM disagreement, trajectory state) cost extra computation or gold answers. The constructive path is architectural rather than signal-side: the nominate--probe--rollback loop of Section~\ref{sec:policy} already recovers most of the oracle's safety at bounded cost.
+Our results do not indict PRMs at their trained task: low ratings do flag wrong steps, and wrong steps are where deletion \emph{benefit} concentrates. The failure is direction-specific---scores carry almost no information about deletion \emph{danger}, which is governed by trajectory state and generator recoverability. Mechanistically, erroneous content behaves as an attractor for regeneration: continuations conditioned on the anchor commit to its error, while continuations from the cleaned prefix explore correct paths; own-controlled placebos show no restart benefit, so the anchor's content does essentially all the work. The oracle--policy gap ($530$ vs.\ $200$ steps at 1\% harm, in-sample) quantifies the headroom for better removability signals; Section~\ref{sec:signals} shows the obvious candidates do not close it, and the informative ones (mask drop, PRM disagreement, trajectory state) cost extra computation or gold answers. The constructive path is architectural rather than signal-side: the nominate--probe--rollback loop of Section~\ref{sec:policy} already recovers most of the oracle's safety at bounded cost.
 
 \section{Conclusion}
 
@@ -315,18 +308,18 @@ Across 600 audited PRM800K steps, three generators, four external datasets, and 
 
 \section*{Limitations}
 
-\textbf{Generator scope.} Primary results use Qwen3-8B; replications add phi-4 and DeepSeek-R1-Distill-Qwen-14B (300 steps, 3 runs each). The two no-thinking models agree qualitatively but not step-wise (anchors: $+13.9$ vs.\ $+18.3$\,pp semantic; sign agreement 65\%), and the long-CoT model neutralizes anchors ($+1.7$\,pp semantic, n.s.): anchor-driven gains should not be assumed beyond no-thinking mid-size models, and we make no claims about frontier models. The R1-Distill replication failed at freeze time via the API provider (Section~\ref{sec:protocol}) and was completed later on local hardware; phi-4 remains the frozen second generator.
+\textbf{Generator scope.} Primary results use Qwen3-8B; replications add phi-4 and DeepSeek-R1-Distill-Qwen-14B (300 steps, 3 runs each). The two no-thinking models agree qualitatively but not step-wise (anchor DiD semantics: $+25.4$ vs.\ $+34.9$\,pp; sign agreement 65\%), and the long-CoT model neutralizes anchors: anchor-driven gains should not be assumed beyond no-thinking mid-size models, and we make no claims about frontier models. The R1-Distill replication failed at freeze time via the API provider (Section~\ref{sec:protocol}) and was completed later on local hardware; phi-4 remains the frozen second generator.
 \textbf{Case--control cohort.} Rating-balanced sampling (200 per rating) supports subgroup contrasts, not deployment averages: reweighted to the natural prevalence of PRM800K phase-2 test steps ($0.2\%$ rated $-1$), the mean deletion effect is $-0.5$\,pp and anchor steps are rare. Every coverage number is a fraction of the balanced cohort (Table~\ref{tab:natprev}).
 \textbf{PRM coverage.} The deployed-PRM audit covers three trained checkpoints---Qwen2.5-Math-PRM-7B, the original Math-Shepherd PRM \citep{wang2024mathshepherd}, and an RLHFlow Llama3.1-8B PRM trained on DeepSeek rollouts---plus two \emph{prompted} LLM-judge PRMs; trained \emph{generative} PRMs \citep{khalifa2025process} remain uncovered.
 \textbf{Semantic label reliability.} Step types come from AI-assisted annotation with human calibration; the two label passes disagree on 27.3\% of steps. A blinded pilot (120 steps, two independent human labels each, four annotators in two pairs) reached only 61.7\% raw agreement ($\kappa = 0.40$), concentrated on the essential/redundant boundary; where annotators agreed, their consensus tracked the frozen outcomes (93\% of consensus-Harmful steps carry rating $-1$; placebo-corrected effect $+22.9$\,pp). A third annotator adjudicated all 46 disagreements, yielding final labels for all 120 pilot steps with 82\% adjudication accuracy. Type-based subgroup boundaries are therefore approximate; the headline interaction survives under either label set.
-\textbf{Judge noise.} The 93.5\% agreement and $\le 0.13$\,pp substitution sensitivity are measured on 200 audited Qwen3-8B outputs and do not bound error on the unaudited remainder; phi-4 and ProcessBench continuations are scored by the same judge pipeline without a fresh per-generator human audit.
+\textbf{Judge noise and self-evaluation.} The 93.5\% agreement and $\le 0.13$\,pp substitution sensitivity are measured on 200 audited Qwen3-8B outputs and do not bound error on the unaudited remainder; phi-4 and ProcessBench continuations are scored by the same judge pipeline without a fresh per-generator human audit. Because the judge and the primary generator share a checkpoint, we also regrade all 6{,}314 primary runs with a deterministic PRM800K-style normalization $+$ SymPy grader: it agrees with the LLM judge on 93.0\% of runs and reproduces the overall and anchor deletion effects within $0.9$\,pp, bounding self-evaluation bias.
 \textbf{Placebo scope.} Matched placebos exist for 511/600 primary steps (position SMD $\le 0.298$); the external cohort's placebo matching uses character length ($\pm 20\%$) rather than tokenizer length, and 96/300 external steps admit no match.
-\textbf{Offline policy evaluation.} Risk--coverage and rollback numbers reuse frozen runs; an online system would face distribution shift from its own deletions. The rollback probe is drawn from the same run pool it is evaluated against, which can flatter acceptance quality slightly. In-sample coverage selection flatters every policy; the calibration/test protocol of Section~\ref{sec:policy} is the honest reading. Rollback presupposes a verifier and spends one probe generation per candidate, which must be netted against pruning savings in any deployment accounting.
+\textbf{Offline policy evaluation.} Risk--coverage and rollback numbers reuse frozen runs; an online system would face distribution shift from its own deletions. The rollback probe is drawn from the same run pool it is evaluated against, which can flatter acceptance quality slightly. In-sample coverage selection flatters every policy; the nested train/calibrate/test protocol of Section~\ref{sec:policy} is the honest reading. With $K{=}4$ runs per condition, per-step harm attribution is noise-limited: the tail-risk excess over the exact stochastic floor is a conservative signal of truly harmed steps, not a per-step identification. Rollback presupposes a verifier and spends one probe generation per candidate, which must be netted against pruning savings in any deployment accounting.
 \textbf{Paraphrase validity.} C3 paraphrases passed automatic meaning/length checks (7.9\% excluded), and a blinded 140-item human fidelity audit rated 97.1\% faithful or minimally deviating, with zero meaning changes among the 46 audited anchor-group paraphrases; two neutral-group paraphrases (4.3\% of that group's audited items) were judged meaning-changed. C3 conclusions rest on this audited premise.
 
 \section*{Ethics Statement}
 
-The study uses the public PRM800K dataset (MIT-licensed problems from MATH) and open-weight models; no human subjects beyond author annotation were involved, and no personal data is processed. Deleting reasoning steps is an accuracy/efficiency intervention; our safety framing (harm budgets) is about answer correctness, not user harm. We release artifacts to support reproduction and auditing.
+The study uses the public PRM800K dataset (MIT-licensed problems from MATH) and open-weight models; no personal data is processed. Beyond the authors, four annotators and one adjudicator recruited by the authors labeled reasoning steps and paraphrase fidelity for public math problems (about one hour each); they were informed of the study's purpose, and the annotation sheets collected no personal information. Deleting reasoning steps is an accuracy/efficiency intervention; our safety framing (harm budgets) is about answer correctness, not user harm. We release artifacts to support reproduction and auditing.
 
 \bibliography{custom}
 
@@ -424,20 +417,61 @@ Beneficial-step share & 23.5\% & 17.6\% \\
 \setlength{\tabcolsep}{3pt}
 \begin{tabular}{@{}lrrrr@{}}
 \toprule
-Policy & Budget & Cal.\ cov. & Test harm & Net (pp) \\
+Frame & $n_{-1}$ & $n_{0}$ & $n_{+1}$ & Total \\
 \midrule
-rating-first      & 1--5\% & 0\%     & ---     & $0.0$ \\
-trained PRM scores ($\times 3$) & 1--5\% & 0\% & --- & $0.0$ \\
-Predictor D       & 1\%    & 0\%     & ---     & $0.0$ \\
-Predictor D       & 3\%    & 39.7\%  & 3.2\%   & $+10.7$ \\
-Predictor D       & 5\%    & 51.0\%  & 4.6\%   & $+10.4$ \\
-Predictor E       & 1\%    & 0\%     & ---     & $0.0$ \\
-Predictor E       & 3\%    & 28.8\%  & 1.2\%   & $+8.2$ \\
-Predictor E       & 5\%    & 35.1\%  & 3.8\%   & $+9.4$ \\
+Phase-2 test, chosen path      & 31    & 1{,}224 & 15{,}226 & 16{,}481 \\
+Phase-2 test, all completions  & 6{,}080 & 2{,}002 & 18{,}174 & 26{,}256 \\
+\midrule
+Cohort targets from chosen path  & 2   & 198 & 200 & 400 \\
+Cohort targets from alternatives & 198 & 2   & 0   & 200 \\
 \bottomrule
 \end{tabular}
-\caption{Calibration/test policy selection (problems split 50/50; coverage chosen on calibration under a one-sided 95\% Wilson harm bound, evaluated on held-out problems). Correctness-based policies certify zero deletions at every budget.}
-\label{tab:calibsplit}
+\caption{Sampling-frame audit (integer counts). The 600 cohort targets are unique steps over 303 problems; every cohort problem is in the phase-2 test split. Rating-$-1$ targets come almost entirely from rated-but-rejected alternative completions spliced onto the chosen prefix; reweighting (Table~\ref{tab:natprev}) uses the chosen-path frame.}
+\label{tab:frame}
+\end{table}
+
+\begin{table}[h]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2.6pt}
+\begin{tabular}{@{}lrr@{}}
+\toprule
+Cohort / check & $\Delta^{\mathrm{plc}}_{\mathrm{own}}$ (pp) & $\Delta^{\mathrm{sem}}_{\mathrm{DiD}}$ anchors (pp) \\
+\midrule
+Primary, anchors (151) & $-1.6$ $\ci{-6.5}{+3.2}$ & $+25.4$ $\ci{+16.1}{+34.9}$ \\
+phi-4, anchors (100)   & $-1.3$ $\ci{-6.6}{+3.8}$ & $+34.9$ $\ci{+25.8}{+44.7}$ \\
+M4 C2, all groups (240) & $+0.8$ $\ci{-2.7}{+4.4}$ & --- \\
+Anchor cutoffs before/after target & $-5.2$ / $+4.3$ & --- \\
+Batch drift (128 identical prompts) & \multicolumn{2}{r}{new $-$ old $= +3.1$\,pp (n.s.)} \\
+\bottomrule
+\end{tabular}
+\caption{Own-control placebo (DiD) robustness. Matched innocuous deletions are inert in every cohort and group; the drift row compares fresh $C_p$ runs against frozen runs with byte-identical prompts, bounding generation-batch drift well below the contrasts of interest.}
+\label{tab:didrobust}
+\end{table}
+
+\begin{table}[h]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2.6pt}
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+ & \multicolumn{2}{c}{Budget 1\,pp} & \multicolumn{2}{c}{Budget 3\,pp} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+Policy & Traffic & Net/del.\ (LCB) & Traffic & Net/del.\ (LCB) \\
+\midrule
+Random             & 0       & ---            & 0       & --- \\
+rating-first       & 2.4\%   & $+9.8$ ($+2.0$)  & 12.2\%  & $+1.4$ ($-1.9$) \\
+Harmful-first      & 3.8\%   & $+17.0$ ($+1.2$) & 3.8\%   & $+17.0$ ($+1.2$) \\
+PRM (Qwen2.5-Math) & 0.02\%  & $+51.3$ ($+35.5$) & 16.3\% & $+8.2$ ($-1.8$) \\
+PRM (Math-Shep.)   & 21.8\%  & $+9.6$ ($+3.0$)  & 31.3\%  & $+5.2$ ($-2.8$) \\
+PRM (RLHFlow)      & 40.4\%  & $+5.0$ ($-0.6$)  & 47.7\%  & $+3.1$ ($-2.4$) \\
+Predictor (D)      & 66.1\%  & $+4.2$ ($-0.8$)  & 88.9\%  & $+1.1$ ($-2.9$) \\
+Predictor (E)      & 68.5\%  & $+4.5$ ($-0.1$)  & 79.7\%  & $+1.5$ ($-2.7$) \\
+Oracle             & 96.4\%  & $+3.2$ ($-0.2$)  & 96.4\%  & $+3.2$ ($-0.2$) \\
+\bottomrule
+\end{tabular}
+\caption{In-sample causal certification under natural prevalence: largest traffic coverage whose one-sided 95\% cluster LCB of net effect per deletion clears the budget, with the realized net (LCB in parentheses). In-sample $k$-selection upper-bounds every policy; the nested evaluation (Table~\ref{tab:nested}) is the honest reading.}
+\label{tab:policy}
 \end{table}
 
 \begin{table}[h]

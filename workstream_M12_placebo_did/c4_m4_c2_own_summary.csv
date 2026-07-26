@@ -1,0 +1,5 @@
+﻿group,steps,c2_own_effect_pp,ci_lower_pp,ci_upper_pp
+negative_anchor,80,-0.73,-6.04,4.90
+overall,240,0.76,-2.71,4.38
+neutral_comparison,80,3.85,-2.81,10.83
+stable_correct,80,-0.83,-6.77,4.79

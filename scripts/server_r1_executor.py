@@ -21,7 +21,14 @@ import urllib.request
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
-URLS = [f"http://127.0.0.1:{port}/v1/chat/completions" for port in range(8113, 8121)]
+import os
+
+_PORTS = [
+    int(p)
+    for p in os.environ.get("R1_PORTS", ",".join(str(p) for p in range(8113, 8121))).split(",")
+    if p.strip()
+]
+URLS = [f"http://127.0.0.1:{port}/v1/chat/completions" for port in _PORTS]
 MODEL = "deepseek-ai/DeepSeek-R1-Distill-Qwen-14B"
 
 

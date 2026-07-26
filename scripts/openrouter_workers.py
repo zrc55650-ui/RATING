@@ -110,7 +110,9 @@ def extract_json_object(text: str) -> dict | None:
         text = re.sub(r"^```(?:json)?\s*", "", text)
         text = re.sub(r"\s*```$", "", text)
     try:
-        return json.loads(text)
+        parsed = json.loads(text)
+        if isinstance(parsed, dict):
+            return parsed
     except ValueError:
         pass
     depth = 0
@@ -124,9 +126,12 @@ def extract_json_object(text: str) -> dict | None:
             depth -= 1
             if depth == 0 and start is not None:
                 try:
-                    return json.loads(text[start : index + 1])
+                    parsed = json.loads(text[start : index + 1])
+                    if isinstance(parsed, dict):
+                        return parsed
                 except ValueError:
-                    start = None
+                    pass
+                start = None
     return None
 
 
@@ -281,8 +286,12 @@ def run_generation_tasks(
             **result,
             "generatedAt": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         }
+        line = json.dumps(record, ensure_ascii=False)
+        # Providers occasionally emit lone UTF-16 surrogates; strip rather
+        # than crash the whole batch.
+        line = line.encode("utf-8", "replace").decode("utf-8")
         with lock:
-            sink.write(json.dumps(record, ensure_ascii=False) + "\n")
+            sink.write(line + "\n")
             sink.flush()
             counter["n"] += 1
             if counter["n"] % 25 == 0:

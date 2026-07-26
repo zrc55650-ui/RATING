@@ -1,0 +1,10 @@
+﻿metric,value
+agreement_with_llm_judge,0.9297
+runs_graded,6314
+sympy_available,1
+target_effect_overall_llm_judge_pp,7.21
+target_effect_overall_det_grader_pp,6.33
+target_effect_overall_abs_diff_pp,0.88
+target_effect_anchor_rating-1xHarmful_llm_judge_pp,23.31
+target_effect_anchor_rating-1xHarmful_det_grader_pp,22.47
+target_effect_anchor_rating-1xHarmful_abs_diff_pp,0.84

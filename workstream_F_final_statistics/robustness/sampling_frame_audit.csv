@@ -1,0 +1,13 @@
+﻿frame,rating,count,share
+phase2_test_chosen_path,-1,31,0.0019
+phase2_test_chosen_path,0,1224,0.0743
+phase2_test_chosen_path,1,15226,0.9239
+phase2_test_all_completions,-1,6080,0.2316
+phase2_test_all_completions,0,2002,0.0762
+phase2_test_all_completions,1,18174,0.6922
+cohort_target_provenance:alternative,-1,198,0.3300
+cohort_target_provenance:alternative,0,2,0.0033
+cohort_target_provenance:chosen,-1,2,0.0033
+cohort_target_provenance:chosen,0,198,0.3300
+cohort_target_provenance:chosen,1,200,0.3333
+cohort_unique,,303,unique_problems
