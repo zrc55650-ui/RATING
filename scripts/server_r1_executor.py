@@ -21,8 +21,31 @@ import urllib.request
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
-URLS = [f"http://127.0.0.1:{port}/v1/chat/completions" for port in (8113, 8114, 8115, 8116)]
+URLS = [f"http://127.0.0.1:{port}/v1/chat/completions" for port in range(8113, 8121)]
 MODEL = "deepseek-ai/DeepSeek-R1-Distill-Qwen-14B"
+
+
+def repair_invalid_escapes(text: str) -> str:
+    # R1 writes raw LaTeX inside JSON strings (\pmod, \$, \frac ...), which
+    # are illegal JSON escapes. Keep \" and \\ (string structure), double
+    # every other backslash so LaTeX survives as literal text. Consuming
+    # matches pairwise keeps runs like "2 \\ 6" from going odd.
+    return re.sub(
+        r'\\(["\\])|\\',
+        lambda m: m.group(0) if m.group(1) else "\\\\",
+        text,
+    )
+
+
+def _loads(candidate: str):
+    try:
+        return json.loads(candidate)
+    except ValueError:
+        pass
+    try:
+        return json.loads(repair_invalid_escapes(candidate))
+    except ValueError:
+        return None
 
 
 def extract_json_object(text: str):
@@ -31,10 +54,9 @@ def extract_json_object(text: str):
     if text.startswith("```"):
         text = re.sub(r"^```(?:json)?\s*", "", text)
         text = re.sub(r"\s*```$", "", text)
-    try:
-        return json.loads(text)
-    except ValueError:
-        pass
+    parsed = _loads(text)
+    if parsed is not None:
+        return parsed
     depth = 0
     start = None
     for index, char in enumerate(text):
@@ -45,10 +67,23 @@ def extract_json_object(text: str):
         elif char == "}":
             depth -= 1
             if depth == 0 and start is not None:
-                try:
-                    return json.loads(text[start : index + 1])
-                except ValueError:
-                    start = None
+                parsed = _loads(text[start : index + 1])
+                if parsed is not None:
+                    return parsed
+                start = None
+    # Long-CoT models ramble before the JSON and may leave unmatched braces
+    # that defeat the depth scan; recover by decoding from the last openings,
+    # on both the raw text and the escape-repaired text.
+    decoder = json.JSONDecoder()
+    for body in (text, repair_invalid_escapes(text)):
+        opens = [i for i, c in enumerate(body) if c == "{"]
+        for i in reversed(opens[-40:]):
+            try:
+                candidate, _ = decoder.raw_decode(body[i:])
+            except ValueError:
+                continue
+            if isinstance(candidate, dict) and "status" in candidate:
+                return candidate
     return None
 
 

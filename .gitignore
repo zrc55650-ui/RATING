@@ -43,6 +43,8 @@
 !/workstream_M7_policy_risk_coverage/**
 !/workstream_M8_statistics/
 !/workstream_M8_statistics/**
+!/workstream_M10_longcot_replication/
+!/workstream_M10_longcot_replication/**
 
 # Never publish these, even inside allowed directories.
 .env

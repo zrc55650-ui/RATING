@@ -1,0 +1,6 @@
+{
+  "generator": "deepseek-ai/DeepSeek-R1-Distill-Qwen-14B",
+  "steps_analyzed": 300,
+  "sign_agreement_vs_qwen_nonzero": 0.6666666666666666,
+  "nonzero_pairs": 33
+}

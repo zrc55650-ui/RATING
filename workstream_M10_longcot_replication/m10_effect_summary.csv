@@ -1,0 +1,16 @@
+﻿group,estimand,steps,estimate_pp,ci_lower_pp,ci_upper_pp
+overall,target_effect,300,3.44,1.00,6.00
+overall,placebo_effect,297,1.46,-1.57,4.49
+overall,pure_semantic_effect,297,1.80,-1.23,4.60
+rating=-1_anchor,target_effect,100,7.00,2.67,11.67
+rating=-1_anchor,placebo_effect,100,5.33,-0.33,11.33
+rating=-1_anchor,pure_semantic_effect,100,1.67,-4.00,7.33
+rating=0,target_effect,100,0.33,-3.33,4.00
+rating=0,placebo_effect,100,0.67,-2.67,4.33
+rating=0,pure_semantic_effect,100,-0.33,-5.33,4.67
+rating=1,target_effect,100,3.00,-1.33,7.67
+rating=1,placebo_effect,97,-1.72,-7.22,3.78
+rating=1,pure_semantic_effect,97,4.12,-0.69,8.93
+stable_correct,target_effect,80,2.08,-1.25,5.83
+stable_correct,placebo_effect,80,0.42,-2.92,3.75
+stable_correct,pure_semantic_effect,80,1.67,-0.83,4.17
