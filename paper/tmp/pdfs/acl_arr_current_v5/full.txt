@@ -1,0 +1,958 @@
+      Correctness Scores Are Unreliable Safety Certificates for Reasoning-Step
+                                    Rollbacks:
+                   A Counterfactual Study of Step Removability
+
+                                             Anonymous ACL submission
+
+
+
+
+001                       Abstract                                1   Introduction                                         043
+
+
+                                                                  Process reward models assign scores to individ-          044
+                                                                  ual steps of a reasoning trajectory and have be-         045
+                                                                  come a standard tool for verifying and steering          046
+002    Process reward models (PRMs) score the lo-                 large language model (LLM) reasoning (Light-             047
+003    cal correctness of reasoning steps, and correct-           man et al., 2024; Uesato et al., 2022; Wang et al.,      048
+004    ness scores are natural candidates for deciding            2024). As long chains of thought grow expensive,         049
+005    which steps of a generated trajectory can be
+                                                                  systems have begun pruning generated reasoning           050
+006    pruned or rolled back. We test whether they
+007    can license such interventions. Our counter-               with attention-based redundancy scores (Choi et al.,     051
+
+008    factual protocol—control, deletion, position-              2025), step entropy (Li et al., 2025), and likelihood-   052
+009    and-length-matched placebo deletion with its               preserving token deletion (Singh and Hakkani-Tür,        053
+010    own matched control, and semantic-preserving               2026). Step-level correctness scores are the obvi-       054
+011    paraphrase—is applied to 600 rating-balanced               ous next candidate—PRMs are exactly the models           055
+012    PRM800K steps, with replications on two fur-               trained to say which steps are bad—but reusing           056
+013    ther generators, a within-checkpoint thinking-
+                                                                  them as deletion signals embeds a silent assump-         057
+014    mode toggle, and 300 ProcessBench steps
+015    (over 23,000 regenerated continuations in total).
+                                                                  tion: that a step’s correctness score tells us what      058
+
+016    Deletion gains concentrate almost entirely in              happens to downstream reasoning if the step is re-       059
+017    steps that are both low-rated and semantically             moved. Before that reuse hardens into practice, we       060
+018    harmful (+23.3 pp; difference-in-differences               test the assumption directly.                            061
+019    +25.4 pp): erroneous steps act as negative an-                This assumption conflates distinct properties of a    062
+020    chors for no-thinking generation. An apparent              step: it can be locally correct yet contribute nothing   063
+021    generic “restart” benefit under a shared control
+                                                                  later steps use; locally incorrect yet arrive after      064
+022    disappears once each placebo receives its own
+023    cutoff-matched control, and paraphrasing the               the trajectory is already doomed; or incorrect in        065
+
+024    erroneous step performs like keeping it. Tog-              a way that actively anchors the continuation to a        066
+025    gling the same generator into extended thinking            bad path, so removing it rescues the run. Whether        067
+026    makes the anchor vanish (+21.8 → −3.0 pp).                 deletion helps is a counterfactual property of the       068
+027    Turning scores into rollback policies, we cer-             step–generator pair, not a syntactic property of the     069
+028    tify the net accuracy change per deleted step              step in isolation.                                       070
+029    under a natural-prevalence reference weighting
+                                                                     We study this gap directly. Starting from             071
+030    with nested train/calibrate/test selection: certifi-
+031    cates are split-unstable, and their calibration is         PRM800K (Lightman et al., 2024), we sample               072
+
+032    checkpoint-dependent—one trained PRM certi-                600 target steps balanced across human ratings           073
+033    fies in every split yet meets its budget on only           (−1/0/+1), annotate each step’s semantic con-            074
+034    9 of 20 test splits (realizing −6.3 pp per dele-           tribution (Essential / Redundant / Harmful), and         075
+035    tion), while another transfers on most—so a                measure what actually happens when a fixed gen-          076
+036    correctness-based certificate cannot be trusted            erator (Qwen3-8B; Qwen Team, 2025) continues             077
+037    a priori. A single probe-and-rollback genera-
+                                                                  the trajectory with and without the step, four runs      078
+038    tion removes all detectable excess harm in a
+039    gold-verifier simulation. Correctness scores               per condition, 2,400 paired outcomes. Because            079
+
+040    nominate rollback candidates; they are unreli-             deleting any step also forces the generator to re-       080
+041    able safety certificates. We release the audited           plan—which can itself change outcomes—we addi-           081
+042    dataset, pipeline, and benchmark.                          tionally run a position-and-length-matched placebo       082
+
+
+                                                              1
+083   deletion for 511 of the 600 steps (1,514 runs), de-           deletion, budget met in 18/20). The information          135
+084   composing raw deletion effects into target-specific           gap, not the intervention, is the bottleneck—and         136
+085   and generic-restart components. An LLM judge                  in a gold-verifier simulation, a single probe-and-       137
+086   scores final answers, audited against 200 human               rollback generation removes all detectable excess        138
+087   adjudications (headline sensitivity ≤ 0.13 pp).               harm while raising the net gain to +11.5 pp per          139
+088       Three findings emerge. First, correctness and             candidate.                                               140
+089   contribution are correlated but far from inter-                  Our contributions: (i) a conceptual separation of     141
+090   changeable (Cramér’s V = 0.53; 34.5% of steps                 step correctness, semantic contribution, and ret-        142
+091   off the expected diagonal), and deletion gains con-           rospective removability, with pre-specified esti-        143
+092   centrate overwhelmingly in steps that are both                mands; (ii) a reusable counterfactual protocol—          144
+093   low-rated and Harmful (+23.3 pp): the rating-0,               control / target deletion / matched placebo /            145
+094   rating-+1, Essential, and Redundant groups are                semantic-preserving paraphrase—with an audited           146
+095   statistically indistinguishable from zero, and the            automatic evaluator; (iii) an empirical characteri-      147
+096   small off-diagonal cells are inconclusive. The                zation of negative reasoning anchors, replicated         148
+097   pattern replicates on a second no-thinking gener-             across two no-thinking generators and an external        149
+098   ator (phi-4: anchor effect +33.7 pp) and on ex-               multi-model benchmark, and shown to vanish when          150
+099   ternal ProcessBench trajectories (a twelve-model              the same generator thinks before answering; (iv)         151
+100   benchmark; six source models in our sample); tog-             a signal audit spanning dataset ratings, deployed        152
+101   gling the same Qwen3-8B checkpoint into think-                PRM scores, uncertainty, and counterfactual impor-       153
+102   ing mode collapses the anchor effect (+21.8 →                 tance; and (v) a causal risk–coverage and rollback       154
+103   −3.0 pp), as does a long-CoT distill—extended                 benchmark showing that the transfer of correctness-      155
+104   thinking itself neutralizes bad prefixes. Second,             based safety certificates across problems is unreli-     156
+105   the anchor-group gain is semantic through and                 able and checkpoint-dependent, while cheap coun-         157
+106   through. A single-control placebo suggests a                  terfactual validation removes all detectable excess      158
+107   +10.0 pp generic “restart” component, but that con-           harm. We release all data, code, and audits (Ap-         159
+108   trast is confounded: half the matched cutoffs fall            pendix C).                                               160
+109   before the target and silently remove it. Giving
+110   every placebo cutoff its own control (1,513 new               2   Related Work                                         161
+
+111   runs) shows matched innocuous deletions are inert
+                                                                    Process supervision and PRMs. Step-level                 162
+112   in every group of this cohort, and the anchor ef-
+                                                                    supervision improves credit assignment over              163
+113   fect is fully target-specific (+25.4 pp, difference-in-
+                                                                    outcome-only rewards (Uesato et al., 2022; Light-        164
+114   differences); the paraphrase control shows it travels
+                                                                    man et al., 2024; Cobbe et al., 2021). Math-             165
+115   with meaning: rewording the erroneous step per-
+                                                                    Shepherd derives step labels from rollout success        166
+116   forms like keeping it (a negative anchor). Third,
+                                                                    probabilities (Wang et al., 2024); Setlur et al.         167
+117   scores nominate but do not certify. We budget
+                                                                    (2025) argue for rewarding progress (prospective         168
+118   the certified net accuracy change per deleted step
+                                                                    advantage) rather than local correctness; generative     169
+119   (a one-sided 95% cluster bound), which repairs a
+                                                                    PRMs verify steps with explicit reasoning (Khalifa       170
+120   subtle flaw in transition-rate “harm”: independent
+                                                                    et al., 2025). Benchmarks probe what PRMs de-            171
+121   regeneration makes a null deletion on a stochastic
+                                                                    tect: ProcessBench locates first errors (Zheng et al.,   172
+122   step look 25% harmful. Under deployment weight-
+                                                                    2025), and PRMBench separates fine-grained er-           173
+123   ing with nested train/calibrate/test selection over
+                                                                    ror dimensions including redundancy (Song et al.,        174
+124   20 splits, correctness-based certificates are unsta-
+                                                                    2025). None measures what happens when a step            175
+125   ble (even random certifies in 9/20 splits, meeting
+                                                                    is removed—the counterfactual layer our protocol         176
+126   the budget in only 2), and transfer is checkpoint-
+                                                                    supplies.                                                177
+127   dependent: one trained PRM certifies in every split
+128   yet meets its 1 pp budget in only 9 of 20 on test             Reasoning compression and pruning. Token-                178
+129   (−6.3 pp per deletion realized); another transfers            and step-pruning methods compress chains of              179
+130   in 16 of 19—and correctness quality does not pre-             thought using attention-based redundancy (Choi           180
+131   dict which. The rating-+1 mass that compression               et al., 2025), step entropy (Li et al., 2025), or        181
+132   actually targets (92% of natural traffic) never cer-          likelihood-preserving greedy deletion (Singh and         182
+133   tifies at budgets below 5 pp; a trajectory-state pre-         Hakkani-Tür, 2026); none uses PRM correctness            183
+134   dictor is the most reliable certifier (+8.8 pp per            scores as its deletion signal, which is precisely the    184
+
+
+                                                                2
+185   reuse whose safety we quantify before it becomes              as legacy in Table 8, appendix), plus run-level dis-      233
+186   practice. These works optimize for preserving the             cordance events danger (Y c =1, Y t =0 on indepen-        234
+187   answer of an already-correct trajectory; we addi-             dent draws) and benefit (Y c =0, Y t =1). Runs are        235
+188   tionally quantify the repair regime and show the              independent fresh-session samples with no shared          236
+189   two regimes respond to different signals.                     randomness across conditions; pairing control run         237
+                                                                    j with deletion run j is a fixed bookkeeping con-         238
+190   Deletion as intervention. Ablation-style causal
+                                                                    vention whose expected discordance rate equals            239
+191   analyses of reasoning typically mask content at
+                                                                    pci (1−pti ) under any pairing, so danger/benefit rates   240
+192   the token level or measure answer-probability
+                                                                    estimate those products—independent-sample dis-           241
+193   shifts.    Our design instead runs full regen-
+                                                                    cordance, never within-seed counterfactual flips          242
+194   erated continuations—the deployment-relevant
+                                                                    (Section 9 builds the causal safety metric). Dis-         243
+195   intervention—and controls the regeneration with
+                                                                    cordance is reported either as a joint rate (share        244
+196   matched placebos that carry their own controls,
+                                                                    of all pairs) or conditioned on the control draw’s        245
+197   which proves essential: a shared-control placebo
+                                                                    outcome; we state which at each use. All confi-           246
+198   manufactures an apparent +10 pp “restart” compo-
+                                                                    dence intervals are 95% percentile intervals from         247
+199   nent that disappears, and understates the semantic
+                                                                    5,000-replicate cluster bootstraps over target steps;     248
+200   effect, once each cutoff is read against its own con-
+                                                                    re-clustering by problem leaves headline intervals        249
+201   trol (Section 6).
+                                                                    essentially unchanged (Table 8, appendix). Fixed          250
+
+202   3   Constructs and Estimands                                  seeds are released.                                       251
+
+
+203   We distinguish four properties of a step st in trajec-        4   Data and Intervention Protocol                        252
+204   tory h: (1) local correctness, the PRM800K rating
+                                                                    Step cohort. From PRM800K phase-2 test trajec-            253
+205   in {−1, 0, 1}; (2) semantic contribution, whether
+                                                                    tories (Lightman et al., 2024) over MATH problems         254
+206   the content of st is needed by (Essential), irrelevant
+                                                                    (Hendrycks et al., 2021) we sample 600 target steps,      255
+207   to (Redundant), or misleading for (Harmful) down-
+                                                                    200 per rating, balanced over early/middle/late po-       256
+208   stream reasoning; (3) prospective advantage, the
+                                                                    sitions (201/201/198). Semantic contribution was          257
+209   change in success probability from taking the step
+                                                                    annotated twice, with both passes completed before        258
+210   (Setlur et al., 2025); (4) retrospective removabil-
+                                                                    any deletion outcome existed: an initial AI-assisted      259
+211   ity, the change in success probability from deleting
+                                                                    pass (165 Essential / 201 Redundant / 234 Harm-           260
+212   the step after the fact and regenerating. This paper
+                                                                    ful) and a human-calibrated re-labeling pass (198         261
+213   measures (4) and its relation to (1) and (2).
+                                                                    / 199 / 203); the passes disagree on 164/600 steps        262
+214      For step i, let Yijc , Yijt ∈ {0, 1} be final-answer
+                                                                    (27.3%), an explicit reliability bound; a blinded         263
+215   correctness under Control (step kept) and Target
+                                                                    four-annotator pilot quantifies human agreement           264
+216   deletion, with K=4 independent runs per condi-
+                                                                    on the taxonomy (Appendix B). The frozen sta-             265
+217   tion, Ȳ denoting means over runs and pci , pti the
+                                                                    tistical pipeline behind Tables 1–2 uses the initial      266
+218   underlying success probabilities; matched steps
+                                                                    pass as its primary label set (−1×Harmful anchor:         267
+219   (511/600) additionally receive one to four Placebo
+                                                                    178 steps); the calibrated pass (anchor: 160 steps,       268
+220   runs Yijp (1,514 in total), applying the same trunca-
+                                                                    154 shared) drives the correctness-vs-contribution        269
+221   tion operator at a different, length-matched step p,
+                                                                    crosstab below, extension-cohort sampling, and a          270
+222   and every placebo cutoff receives an own control
+                                                                    robustness re-estimation of the anchor effects (Ta-       271
+223   Cp (prefix kept through p; 1,513 of 1,514 sched-
+                                                                    ble 8, appendix; the headline survives either pass).      272
+224   uled runs returned). Pre-specified estimands (fixed
+                                                                    Under the calibrated labels, rating and type are          273
+225   in the released analysis plan before the extension
+                                                                    associated (Cramér’s V = 0.528) with 65.5% of             274
+226   cohorts ran; we did not use an external registry):
+                                                                    steps on the expected diagonal—correlated, but            275
+
+227       ∆tgt      t     c
+             i = Ȳi − Ȳi ,        ∆plc    p     c
+                                     i = Ȳi − Ȳi ,
+                                                                    with a third of the cohort off-diagonal (Figure 1,        276
+                                                                    appendix).                                                277
+228       ∆sem
+           i   = ∆tgt
+                    i − ∆i ,
+                             plc
+                                                         (1)
+                                                                    Interventions. Both interventions are prefix trun-        278
+229   plus the own-control difference-in-differences                cations of the same trajectory: the Control               279
+                  tgt      p      Cp
+230   ∆sem
+        DiD,i = ∆i − (Ȳi − Ȳi ), adopted after the                prompt contains the problem plus steps 1:t, the           280
+231   shared-control confound in ∆plc was discovered                Target-deletion prompt contains steps 1:t−1—              281
+232   (Section 6; the pre-specified contrast is retained            operationally a rollback of the most recent visi-         282
+
+
+                                                                3
+283   ble step, not an interior splice—and Qwen3-8B                            Group         Steps ∆tgt (pp)             95% CI
+284   (temperature 0.7, top-p 0.8) regenerates the contin-                     Overall        600      +7.21    [+3.88, +10.58]
+285   uation, four fresh runs per condition. The Placebo                       rating = −1    200    +22.00 [+15.41, +28.42]
+286   condition applies the identical truncation at a differ-                  rating = 0     200     +0.25   [−5.41, +5.90]
+287   ent step p of the same trajectory (before or after t;                    rating = +1    200     −0.63   [−5.54, +4.21]
+288   51%/49% in practice) whose token length is within                        Essential      165     −1.21   [−7.24, +4.78]
+289   ±20% of the target’s, choosing the closest available                     Redundant      201     +1.12   [−3.87, +6.06]
+                                                                               Harmful        234    +18.38 [+12.28, +24.44]
+290   position; 511/600 steps admit such a match (1,514
+                                                                               −1×Harmful     178    +23.31 [+16.57, +30.24]
+291   placebo runs), and the 89 unmatched steps differ
+292   from matched ones only modestly (largest imbal-                      Table 1: Target-deletion effects on final-answer accuracy
+293   ance: position SMD 0.298). The placebo-cutoff                        (600 steps, 4,800 runs in 2,400 pairs, cluster bootstrap
+294   steps are benign: none carries rating −1 (Table 9,                   over steps; initial-pass semantic labels—the calibrated-
+295   appendix).                                                           pass anchor estimate is +20.9 pp, Table 8, appendix).
+
+296   Outcome evaluation and audit. An LLM judge
+297   (Qwen3-8B, temperature 0; prompts released)                          80 stably-correct / 80 fragile-neutral, rating 0/+1),       329
+298   marks final-answer correctness against ground                        an independent model (Gemini 2.5 Flash) para-               330
+299   truth. We audited 200 stratified outputs with hu-                    phrases the target step preserving its exact meaning        331
+300   man adjudication: agreement 93.5%, maximum                           including errors; 221/240 paraphrases passed auto-          332
+301   per-condition bias 2.3 pp—below the pre-set gates                    matic validity checks (7.9% excluded) and each ran          333
+302   (90%/5 pp; detail in Table 4, appendix). Substitut-                  4 continuations, alongside 4 fresh matched-placebo          334
+303   ing all 200 adjudicated labels into the frozen tables                runs. Condition codes: C0 = frozen control, C1 =            335
+304   moves the overall target effect by −0.13 pp and the                  frozen target deletion, C2 = fresh matched placebo,         336
+305   placebo-corrected effect by −0.05 pp—observed                        C3 = fresh paraphrase. (iii) Deployed PRM scoring:          337
+306   sensitivity on the audited subset, not a bound on                    five PRMs score all 600 steps—three trained check-          338
+307   the remainder; no conclusion moves under sub-                        points (Qwen2.5-Math-PRM-7B; Math-Shepherd;                 339
+308   stitution (Table 4). Because the judge shares a                      RLHFlow-Llama3.1-8B) and two prompted LLM-                  340
+309   checkpoint with the primary generator, a deter-                      judge PRMs (Gemini 2.5 Flash, phi-4). (iv) Ex-              341
+310   ministic PRM800K-style normalization+SymPy                           ternal validation: 300 ProcessBench steps (Zheng            342
+311   grader independently regrades all 6,314 primary                      et al., 2025) spanning GSM8K, MATH, Olympiad-               343
+312   runs: 93.0% agreement, headline effects within                       Bench, and Omni-MATH—a benchmark whose                      344
+313   0.9 pp (Appendix A).                                                 trajectories come from twelve source models; six            345
+                                                                           appear in our sample (Section 7).                           346
+314   Replication and mechanism cohorts. Four
+315   extensions reuse the identical prompt proto-                         5    Full-Cohort Deletion Results                           347
+316   col.    (i) Cross-generator: 300 steps (100
+                                                                           Deleting target steps helps on average (+7.21 pp,           348
+317   rating −1×Harmful anchors, 100 rating-0, 100
+                                                                           Table 1), but the average is misleading: the entire         349
+318   rating-+1; 103 stably-correct; positions balanced)
+                                                                           reliable gain sits in the rating = −1 column and            350
+319   rerun with phi-4 (14B), 3 runs per condition,
+                                                                           the Harmful row, peaking at +23.31 pp for their             351
+320   reusing the frozen matched-placebo indices; the
+                                                                           intersection (the off-diagonal cells are small-n and        352
+321   identical 2,691-task list is additionally rerun
+                                                                           inconclusive: the 22 rating-−1 non-Harmful steps            353
+322   with DeepSeek-R1-Distill-Qwen-14B (long-CoT,
+                                                                           show +11.4 pp, CI [−9.1, +31.8]; the 56 Harm-               354
+323   served locally; sampling and judge unchanged)
+                                                                           ful non-(−1) steps +2.7 pp). Correct steps (rating          355
+324   and—holding the checkpoint fixed—with Qwen3-
+                                                                           +1) and Essential steps show near-zero average              356
+325   8B’s own thinking mode enabled (same provider,
+                                                                           effects—yet not because deletion is safe there. Dan-        357
+326   prompts, sampling; 3,582 runs incl. 891 own-
+                                                                           ger discordance is substantial everywhere: among            358
+327   controls).1 (ii) Semantic-preserving paraphrase:
+                                                                           paired draws whose control sample is correct, the           359
+328   for a 240-step strong-control subset (80 anchors /
+                                                                           deletion sample is wrong 15.1% of the time (a con-          360
+         1
+           R1-Distill was unavailable via the API provider at freeze       ditional rate—the joint rate is 8.5%, Table 10, ap-         361
+      time; phi-4 matched the 7–14B no-thinking budget (all 2,691          pendix; neither is an individual causal flip, Sec-          362
+      continuations parsed). The local long-CoT rerun parsed
+      99.0%; its 28 unparseable continuations, balanced across con-        tion 3), and even within rating = −1 the condi-             363
+      ditions, score as incorrect.                                         tional rate is 14.9%. The near-zero group means             364
+
+
+                                                                       4
+365   arise from offsetting discordance in both directions,        Group             ∆tgt ∆plc   plc
+                                                                                           vs C ∆own          ∆sem
+                                                                                                               DiD (CI)
+
+366   not from inertness.                                          Overall (511)      +7.97 −0.57 +0.46 +7.52 [+2.8, +12.4]
+                                                                   rating = −1 (169) +22.78 +9.47 −0.69 +23.47 [+14.4, +32.5]
+                                                                   rating = 0 (176)   +0.99 −5.63 +2.84 −1.85 [−9.7, +6.0]
+367   Trajectory state dominates raw effects. Strat-               rating = +1 (166)  +0.30 −5.42 −0.90 +1.20 [−5.9, +8.4]
+                                                                   Harmful (201)     +18.41 +3.57 −1.74 +20.15 [+12.0, +28.4]
+368   ifying by control stability makes the state-                 −1×Harmful (151) +23.84 +9.99 −1.60 +25.44 [+16.1, +34.9]
+369   dependence explicit (Figure 2, appendix): steps
+370   whose four control runs are all wrong gain                  Table 2: Placebo decomposition (pp; initial-pass labels).
+371   +33.4 pp from deletion (nothing to lose), while             ∆plc
+                                                                    vs C : placebo vs. the target’s control (frozen contrast);
+372   steps whose control runs are all correct lose 12.1 pp       ∆plc                                                sem
+                                                                    own : vs. its own control Cp (1,513 new runs); ∆DiD =
+                                                                    tgt       plc
+                                                                  ∆ − ∆own . Matched innocuous deletions are inert in
+373   (CI [−15.5, −8.9]). These strata condition on the
+                                                                  every group of this cohort.
+374   same control draws that enter ∆tgt , so regres-
+375   sion to the mean pushes the extreme strata out-
+376   ward; we read them as descriptive bounds on state-          Thinking-mode contrast. The R1 replication                     414
+377   dependence, not causal subgroup effects—and a               changes model, scale, and training data at once;               415
+378   deployment policy never observes these counterfac-          to isolate the mode, we rerun the same tasks on the            416
+379   tual states, which is why raw deletion gains over-          same Qwen3-8B checkpoint with thinking enabled                 417
+380   state what a policy can capture (Section 9).                (identical provider, prompts, sampling; thinking ac-           418
+                                                                  tivates on every task, mean 2,514 reasoning tokens;            419
+381   Step-level stability. With four paired runs per             12.2% of runs yield no parseable answer and are                420
+382   step, 377/600 steps never change outcome; among             scored incorrect, balanced across conditions). On              421
+383   low-rated Harmful steps, 29% are strongly benefi-           the anchor cell, whose no-thinking control accuracy            422
+384   cial to delete (gain in ≥ 3 runs) vs. 11% elsewhere—        is 26.8% with a +21.8 pp deletion effect, thinking             423
+385   enrichment, not a guarantee.                                lifts control accuracy to 83.3% and the deletion               424
+                                                                  effect drops to −3.0 pp (CI [−8.0, +2.3]; DiD se-              425
+386   Cross-generator replication. The pattern is
+                                                                  mantic −3.5 pp, n.s.); only 77/300 steps shift out-            426
+387   not a Qwen3-8B artifact. Rerunning 300 steps
+                                                                  come at all, and step-level effect signs agree with            427
+388   with phi-4 (3 runs per condition) reproduces ev-
+                                                                  the no-thinking runs at a rate consistent with chance          428
+389   ery qualitative conclusion: overall target effect
+                                                                  (56%, n=32). The collapse of negative anchoring                429
+390   +12.4 pp, anchor-group target effect +33.7 pp
+                                                                  is attributable to extended thinking itself, not to the        430
+391   with own-controlled placebos inert (−1.3 pp)
+                                                                  R1 checkpoint.                                                 431
+392   and a DiD semantic component of +34.9 pp
+393   (CI [+25.8, +44.7]), and rating-0/rating-1 tar-             6    Mechanism: Anchors, not Restarts                          432
+394   get effects indistinguishable from zero (+1.7
+395   and +2.0 pp). Effect magnitudes are generator-              Does deletion help because the content of the step             433
+
+396   dependent, and step-level effect signs agree for            was harmful, or because any deletion lets the gen-             434
+
+397   65% of the 80 steps with nonzero effects under              erator restart and resample? Table 2 answers with              435
+
+398   both generators—well above chance but far from              two placebo contrasts. Against the target’s con-               436
+
+399   deterministic.                                              trol, placebo truncation inside the anchor group               437
+                                                                  looks strongly positive (+9.99 pp; rating −1 over-             438
+400   Long-CoT replication. The same 2,691 tasks                  all +9.47)—the reading a single-control design                 439
+401   under DeepSeek-R1-Distill-Qwen-14B—which                    would report as a “restart benefit”. But this con-             440
+402   thinks before answering—change the picture qual-            trast confounds removing step p with moving the                441
+403   itatively. Anchor-step control accuracy rises to            cutoff: 51% of matched cutoffs fall before the tar-            442
+404   77.7% (the model recovers from erroneous pre-               get, so those placebo prefixes silently drop the er-           443
+405   fixes unaided), the overall deletion effect shrinks         roneous step too. Splitting by side is diagnostic:             444
+406   to +3.4 pp, and the anchor-group effect of +7.0 pp          cutoffs before the target yield +21.1 pp against               445
+407   is not about the anchor at all: deleting a matched          the shared control (they remove the anchor), cut-              446
+408   innocuous step helps just as much (+8.0 pp against          offs after it yield −6.8 pp (they keep it). Giving             447
+409   its own control), and the DiD semantic component            each placebo cutoff its own control—new Cp runs                448
+410   is −1.0 pp (CI [−7.8, +6.3]). Only 82/300 steps             that keep step p and truncate after it—removes the             449
+411   shift outcome at all: negative anchoring—and with           confound: ∆plc own is null in every group (−1.6 pp             450
+412   it most of deletion’s value—vanishes here, leaving          on anchors, +0.5 pp overall), and the difference-              451
+413   only a small content-agnostic truncation benefit.           in-differences semantic effect rises to +25.4 pp               452
+
+
+                                                              5
+453   (CI [+16.1, +34.9]) on anchors—essentially the              MATH, OlympiadBench, and Omni-MATH (75                    503
+454   entire raw effect: what matters is whether the an-          each), drawn from a benchmark whose trajecto-             504
+455   chor leaves the prefix. (An identical-prompt subset         ries span twelve source models (six appear in             505
+456   bounds generation-batch drift at +3.1 pp, within            our sample)—and run the identical protocol (3             506
+457   noise; Table 12, appendix.)                                 runs per condition; 204/300 steps admit a length-         507
+458      Two methodological corollaries: placebo dele-            matched placebo; gold answers matched for 99.5%           508
+459   tions need their own controls—matching posi-                of records).                                              509
+460   tion and length is not enough (the single-control              The core dissociation transfers. Deleting first-       510
+461   contrast understated the anchor’s semantic com-             error steps yields +24.8 pp (CI [+16.9, +32.7]);          511
+462   ponent by ∼12 pp and manufactured a spurious                on the placebo-matched subset, the difference-in-         512
+463   restart component)—and the rating-0/+1 “seman-              differences semantic component is +35.4 pp (CI            513
+464   tic” effects of the single-control analysis (+5.7 to        [+22.8, +48.9])—though here, unlike every no-             514
+465   +6.6 pp) vanish under DiD (−1.9 to +1.2 pp, n.s.):          thinking PRM800K cohort, the own-controlled               515
+466   target-specific removability lives only in the anchor       placebo is itself significantly negative (−8.4 pp,        516
+467   group.                                                      CI [−15.9, −1.4]), so part of the DiD reflects a          517
+                                                                  truncation penalty and the raw +24.8 pp is the            518
+468   Paraphrase triangulation. The placebo isolates
+                                                                  placebo-free reading. Either way, erroneous steps         519
+469   that the target matters; a semantic-preserving para-
+                                                                  in other models’ reasoning are negative anchors           520
+470   phrase isolates why (Table 5, appendix). In the
+                                                                  too. Deleting locally-correct steps yields −2.0 pp        521
+471   anchor group, replacing the erroneous step with
+                                                                  raw (CI [−8.3, +4.1]) and a −7.1 pp (n.s.) se-            522
+472   an independent-model rewording that preserves its
+                                                                  mantic component: not usefully removable. One             523
+473   (wrong) meaning leaves accuracy at control level
+                                                                  boundary emerges: the DiD semantic compo-                 524
+474   (+1.7 pp, CI [−6.2, +9.9]), while deleting it gains
+                                                                  nent is significant on GSM8K (+37.3 pp) and               525
+475   +19.2 pp over the paraphrase (CI [+8.2, +30.1]):
+                                                                  MATH (+21.1 pp) but attenuates on Olympiad-               526
+476   the harm travels with the semantics, not the surface
+                                                                  Bench (+6.0 pp, CI crosses zero) and vanishes             527
+477   form. The fragile-neutral group shows the mirror
+                                                                  on Omni-MATH (−0.6 pp)—and own-controlled                 528
+478   image: a large raw gain (+24.1 pp) that placebo—
+                                                                  placebos show no restart benefit there either             529
+479   and even paraphrase—matches (C1−C2 = 0.0 pp):
+                                                                  (+6.3 pp, n.s.): on problems near the generator’s         530
+480   nothing target-specific, just conditioning on frag-
+                                                                  competence ceiling, nothing target-specific sur-          531
+481   ile control runs. The stably-correct group’s vs-C0
+                                                                  vives. Negative anchors are a phenomenon of re-           532
+482   contrasts inherit the same conditioning bias in the
+                                                                  coverable trajectories.                                   533
+483   opposite direction (the group is selected on its C0
+484   draws, so regression to the mean pushes C1−C0
+                                                                  8   Do Correctness Signals Predict                        534
+485   and C3−C0 negative); its unconditioned contrasts
+                                                                      Removability?                                         535
+486   show deletion ≈ paraphrase (C1−C3 = −2.7 pp,
+487   n.s.) and an inert operator (C2−Cp = −0.8 pp), so           If PRM-style signals suffice for pruning, they            536
+488   we do not read the −8.3 pp paraphrase row causally.         should predict the two discordance events a policy        537
+489   A blinded 140-item human fidelity audit backs the           cares about: danger (a correct control draw paired        538
+490   C3 premise (97.1% faithful or minimally deviat-             with a wrong deletion draw) and benefit (the re-          539
+491   ing; zero of 46 audited anchor-group paraphrases            verse), both conditioned on the control draw’s out-       540
+492   corrected the original error), and the 19 excluded          come. We evaluate step-level signals with problem-        541
+493   paraphrases resemble the 221 retained (Table 14,            grouped 5-fold cross-validation, L2-regularized lo-       542
+494   appendix).                                                  gistic models, and cluster-bootstrap CIs (Table 6,        543
+495      Eight fully human-verified cases (78 audited con-        appendix).                                                544
+496   tinuations) ship with the released artifacts.                   The asymmetry matters. Signals rank bene-             545
+                                                                  fit discordance moderately well: low rating and           546
+497   7   External Validation on ProcessBench
+                                                                  Harmful type genuinely enrich for rescuable runs.         547
+498   Does any of this survive outside PRM800K trajec-            But for danger discordance—the safety-relevant            548
+499   tories and outside human step ratings? We sam-              direction—the rating alone is anti-informative (AU-       549
+500   ple 300 ProcessBench steps (Zheng et al., 2025)—            ROC 0.422): among runs whose control draw is              550
+501   152 human-annotated first-error steps and 148               correct, low-rated steps are not safer to delete. Only    551
+502   locally-correct steps, balanced across GSM8K,               features that peek at trajectory state (control stabil-   552
+
+
+                                                              6
+553   ity; effectively extra compute) move danger predic-          three trained PRM scores; the model-D/E predic-          603
+554   tion appreciably. Cheap local correctness is cali-           tors of Section 8; an in-sample oracle.                  604
+555   brated for “was this step wrong?”, not for “will re-            On the balanced cohort this certification is de-      605
+556   moving it break the run?”. These AUROC/AUPRC                 generate: the case–control mix is so error-rich that     606
+557   numbers are exploratory discordance diagnostics;             the mean deletion effect is +7.2 pp (LCB +4.4),          607
+558   the safety conclusions rest on the held-out net ef-          and every policy—including random—certifies              608
+559   fects of Section 9.                                          deleting all 600 steps at every budget. Certifica-       609
+                                                                   tion only becomes meaningful in the deployment           610
+560   Deployed PRMs, uncertainty, and counter-                     frame, weighting steps to the natural chosen-path        611
+561   factual signals. Because “PRM scores” in de-                 prevalence (next paragraph): there, deleting all traf-   612
+562   ployment are continuous model outputs rather                 fic has LCB −4.4 pp and certifies nothing below a        613
+563   than dataset ratings, we scored the identi-                  5 pp budget.                                             614
+564   cal 600 steps with three trained PRM check-
+565   points (Qwen2.5-Math-PRM-7B, Math-Shepherd,                  Balanced cohort vs. natural prevalence. The              615
+566   RLHFlow-DeepSeek) and two prompted LLM-                      cohort is case–control balanced (200 steps per rat-      616
+567   judge PRMs, plus step entropy/NLL under teacher              ing); deployment traffic is not. Our reference frame     617
+568   forcing and a masked answer-probability drop                 is the annotator-chosen trajectory path of the phase-    618
+569   Imask = log p(y ⋆ | h) − log p(y ⋆ | h \ st ) (Ta-           2 test split—the steps a deployed sampler would          619
+570   ble 7, appendix). The best trained PRM tracks                actually carry—comprising 16,481 rated steps: 31         620
+571   the human rating almost exactly (danger AUROC                rated −1, 1,224 rated 0, 15,226 rated +1 (Table 11,      621
+572   0.57 vs. 0.56; step-level, favorable orientation—            appendix). Chosen paths are error-scarce (anno-          622
+573   the deployment orientation of the raw rating is              tators route around bad candidates); the rated-but-      623
+574   the below-chance 0.42 above), and the other two              rejected alternatives form a far larger error pool       624
+575   trained checkpoints sit at or below chance (0.47,            (26,256 rated completions, 23.2% rated −1), and          625
+576   0.51)—so the construct gap is not an artifact of             our rating-−1 targets are drawn from that pool and       626
+577   auditing labels instead of scores. Token-level               spliced onto the chosen prefix (198/200; all but two     627
+578   uncertainty carries no removability information              of the rating-0/+1 targets are chosen-path steps).       628
+579   at all. Two signals stand out modestly: cross-               Reweighting to the chosen-path prevalence there-         629
+580   PRM disagreement (benefit AUPRC 0.34), support-              fore assumes spliced alternatives behave like the        630
+581   ing uncertainty-based abstention, and the counter-           rare naturally-carried −1 steps, and adjusts rating      631
+582   factual mask drop—informative but gold-answer-               composition only (the cohort is position-balanced        632
+583   dependent, hence offline-only.                               by design; a joint rating×position reweighting           633
+                                                                   gives −0.3 pp, CI [−5.0, +4.5], indistinguishable        634
+584   9   From Scores to Policies: Risk–Coverage                   from rating-only). Under these weights the average       635
+                                                                   deletion effect moves from +7.2 pp to −0.5 pp (CI        636
+585   If a system deletes the top-k steps ranked by a
+                                                                   [−5.1, +4.0]), with danger and benefit discordance       637
+586   signal, does it certifiably not lose accuracy, and
+                                                                   near parity (9.8% vs. 9.3%; Table 10, appendix):         638
+587   how many steps does it hurt? A tempting metric—
+                                                                   in natural traffic, indiscriminate deletion has no       639
+588   the rate at which control-correct runs come back
+                                                                   upside while the danger does not shrink. Natural-        640
+589   wrong after deletion—is not causal harm: out-
+                                                                   weight numbers are a reference-frame sensitivity         641
+590   comes are independent samples, so a null dele-
+                                                                   analysis under this transport assumption; balanced-      642
+591   tion on a step with pc =pt =0.5 would show 25%
+                                                                   cohort numbers are diagnostic contrasts; neither is      643
+592   “harm” from sampling disagreement alone. We
+                                                                   a deployment estimate.                                   644
+593   therefore budget the certified net accuracy change
+594   per deleted step: a policy is certified at budget            What certifies in natural traffic. Under natu-           645
+595   b if the one-sided 95% lower confidence bound                ral weights with in-sample selection (Table 13,          646
+596   (problem-cluster bootstrap) of the mean ∆tgt over            appendix), correctness rankings certify only the         647
+597   its selected steps stays above −b. Alongside, we re-         error tiers at a 1 pp budget: rating-first covers        648
+598   port step-level tail risk: the share of selected steps       2.4% of traffic (+9.8 pp per deletion), Harmful-         649
+599   with observed ∆  ˆ i < 0, minus the exact share ex-          first 3.8% (+17.0 pp), and the best trained PRM          650
+600   pected under the null pt =pc (Binomial(4, p̂) per            score 0.02% (+51 pp). These deletions are error          651
+601   step). Policies: random; correctness rankings                correction, not compression—the rating-+1 mass           652
+602   (rating-first, Harmful-first, intersection-first); the       that a pruning system actually wants to remove           653
+
+
+                                                               7
+      Policy               Certifies   Met Coverage Net/del. (pp) Tail exc.       Rollback: one probe run buys most of the                 685
+      Random                  9/20   2/9        0.00        −3.7     0.043        safety. Finally, we simulate the cheapest coun-          686
+      rating-first           20/20 15/20        0.49        +0.9     0.044
+      intersection-first     20/20 15/20        0.49        +0.9     0.044        terfactual validator: generate one probe continu-        687
+      Harmful-first          12/20 6/12         0.20        −1.8     0.064
+      PRM (Qwen2.5-Math)     20/20 9/20         0.18       −6.3      0.089
+                                                                                  ation after a candidate deletion, roll back unless       688
+      PRM (Math-Shep.)       19/20 16/19        0.33        +6.4     0.000        the probe answers correctly, and evaluate on held-       689
+      PRM (RLHFlow)          14/20 8/14         0.05        +3.3     0.038
+      Predictor (D)          15/20 13/15        0.13       +20.8     0.000        out runs. Applied to all 600 steps, this raises the      690
+      Predictor (E)          20/20 18/20        0.58        +8.8     0.010
+                                                                                  net gain per candidate from +7.2 pp (LCB +4.4)           691
+
+      Table 3: Nested policy evaluation, natural prevalence,                      to +11.5 pp (LCB +9.3) and cuts the observed             692
+
+      1 pp budget, 20 outer 50/50 problem splits. Protocol:                       harmed-step share from 12.2% (stochastic floor           693
+      predictors trained on the calibration half only with in-                    11.0%) to 3.0%—below its 6.8% floor, i.e. no de-         694
+      ner problem-grouped 5-fold cross-fitting (calibration-                      tectable excess harm survives—at a cost of one           695
+      side scores out-of-fold); coverage chosen on calibration                    extra generation per candidate (63% acceptance).         696
+      (cluster-robust LCB); test scored exactly once. “Certi-                     A do-nothing control-split shows the floor is cal-       697
+      fies”: splits with nonzero certified coverage; “Met”: cer-                  ibrated (4.7% observed vs. 3.7% expected). Two           698
+      tifying splits whose realized test net effect stays within
+                                                                                  caveats keep this honest: the probe is scored by         699
+      budget—descriptive: a valid certificate near the bound-
+      ary can miss on a finite test half (random’s true net,                      the same gold-answer judge—an oracle relative to         700
+
+      −0.5 pp, is itself within budget); other columns: medi-                     deployment, so the simulation upper-bounds a one-        701
+      ans over splits. Bold: the non-transfer case discussed in                   probe validator and presupposes one—and the gain         702
+      the text.                                                                   is not mere extra sampling, since matched trunca-        703
+                                                                                  tions that keep the target are inert against their own   704
+                                                                                  controls (∆plc
+                                                                                               own +0.5 pp overall, Table 2).              705
+654   (92% of traffic) never certifies at any budget below
+655   5 pp. The learned predictors certify 66–68% of
+656   traffic in-sample (+4.2 to +4.5 per deletion); the                          10    Discussion and Conclusion                          706
+657   oracle certifies 96%.
+658   Honest nested selection. Certification must sur-                            Our results do not indict PRMs at their trained task:    707
+
+659   vive selection. Table 3 repeats the exercise with                           low ratings do flag wrong steps, and wrong steps         708
+
+660   nested train/calibrate/test selection (protocol in the                      are where deletion benefit concentrates. The failure     709
+
+661   caption). Three failures emerge. Instability: certi-                        is direction-specific—scores carry almost no infor-      710
+
+662   fied coverage swings from 0 to 0.9 across splits for                        mation about deletion danger, which is governed          711
+
+663   most policies—with ∼150 calibration problems,                               by trajectory state and generator recoverability. The    712
+
+664   a 95% bound is noisy enough that even random                                oracle–policy gap leaves headroom for better sig-        713
+
+665   certifies in 9 of 20 splits, meeting the budget in                          nals, but the obvious candidates do not close it         714
+
+666   only 2. Checkpoint-dependent transfer: the trained                          (Section 8), and the informative ones cost extra         715
+
+667   PRM with the best danger diagnostic (Qwen2.5-                               computation or gold answers. The constructive            716
+
+668   Math) certifies in every split yet meets the 1 pp bud-                      path is architectural: probe-and-rollback already        717
+
+669   get in only 9 of 20, realizing −6.3 pp per deletion                         recovers most of the oracle’s safety at bounded          718
+
+670   with the largest tail excess (0.089); Math-Shepherd,                        cost.                                                    719
+
+671   by contrast, transfers in 16 of its 19 certifying                              Across 600 audited PRM800K steps, four gen-           720
+672   splits (+6.4 pp). Two PRMs trained for the same                             erator configurations, and over 23,000 regenerated       721
+673   construct yield opposite safety behavior—a cer-                             continuations, step correctness and step removabil-      722
+674   tificate’s validity depends on the checkpoint, and                          ity dissociate: deletion gains concentrate in low-       723
+675   correctness quality does not predict which. Weak                            rated Harmful steps; the apparent restart compo-         724
+676   payoff : rating-first meets the budget in 15 of 20                          nent vanishes under own-control placebos, leav-          725
+677   splits but realizes only +0.9 pp per deletion at half-                      ing a gain that travels with the step’s erroneous        726
+678   cohort coverage. The state-aware predictor E is                             content; and correctness signals—dataset rating,         727
+679   the most reliable certifier (18/20 met, +8.8 pp, tail                       deployed PRM scores, uncertainty—nominate roll-          728
+680   excess 0.010). A certificate obtained on one sam-                           back candidates but are unreliable safety certifi-       729
+681   ple of problems is not a license on the next unless                         cates, checkpoint-dependent in calibration and un-       730
+682   the signal carries removability information—and                             predictable in transfer. Systems that delete reason-     731
+683   which checkpoints do was not predictable in ad-                             ing content should nominate with scores, validate        732
+684   vance here (three trained checkpoints tested).                              counterfactually, and budget harm explicitly.            733
+
+
+                                                                              8
+734   Limitations                                                  phi-4 and ProcessBench continuations are scored          785
+                                                                   by the same judge pipeline without a fresh per-          786
+735   Generator scope. Primary results use Qwen3-8B                generator human audit. The deterministic-grader          787
+736   without thinking; replications add phi-4, DeepSeek-          regrade (Section 4; Appendix A) bounds self-             788
+737   R1-Distill-Qwen-14B, and a within-checkpoint                 evaluation bias on the primary cohort only—the           789
+738   thinking-mode toggle (300 steps, 3 runs each).               extension cohorts have no deterministic regrade.         790
+739   The two no-thinking models agree qualitatively but              Placebo scope. Matched placebos exist for             791
+740   not step-wise (anchor DiD semantics: +25.4 vs.               511/600 primary steps (position SMD ≤ 0.298);            792
+741   +34.9 pp; sign agreement 65%); thinking mode on              the external cohort’s placebo matching uses char-        793
+742   the same checkpoint neutralizes anchors, and the             acter length (±20%) rather than tokenizer length,        794
+743   R1 distill replicates the collapse—so anchor-driven          and 96/300 external steps admit no match.                795
+744   gains should not be assumed beyond no-thinking
+                                                                      Offline policy evaluation. Risk–coverage and          796
+745   generation. All generators are mid-size open mod-
+                                                                   rollback numbers reuse frozen runs; an online sys-       797
+746   els on mathematical reasoning; we make no claims
+                                                                   tem would face distribution shift from its own           798
+747   about frontier models or other domains. The R1-
+                                                                   deletions. The rollback probe is drawn from the          799
+748   Distill replication could not be run at freeze time
+                                                                   same run pool it is evaluated against, which can         800
+749   (the model was unavailable via the API provider;
+                                                                   flatter acceptance quality slightly. In-sample cov-      801
+750   Section 4) and was completed later on local hard-
+                                                                   erage selection flatters every policy; the nested        802
+751   ware; phi-4 remains the frozen second generator.
+                                                                   train/calibrate/test protocol of Section 9 is the hon-   803
+752      Case–control cohort. Rating-balanced sam-                 est reading. Even there, the 20 outer splits share       804
+753   pling (200 per rating) supports subgroup contrasts,          problems (each appears in roughly half the test          805
+754   not deployment averages: reweighted to the natural           halves), so split counts are dependent, and predic-      806
+755   prevalence of PRM800K phase-2 test steps (0.2%               tor E’s “most reliable” status is itself selected on     807
+756   rated −1), the mean deletion effect is −0.5 pp and           these splits. With K=4 runs per condition, per-step      808
+757   anchor steps are rare. Coverage numbers are frac-            harm attribution is noise-limited: the tail-risk ex-     809
+758   tions of the ranked cohort steps under the stated            cess over the exact stochastic floor is a conservative   810
+759   weighting (“traffic” shares are natural-prevalence-          signal of truly harmed steps, not a per-step identifi-   811
+760   weighted), not deployment volumes.                           cation. Rollback presupposes a verifier and spends       812
+761      PRM coverage. The deployed-PRM audit                      one probe generation per candidate, which must be        813
+762   covers three trained checkpoints—Qwen2.5-Math-               netted against pruning savings in any deployment         814
+763   PRM-7B, the original Math-Shepherd PRM (Wang                 accounting.                                              815
+764   et al., 2024), and an RLHFlow Llama3.1-8B PRM                   Paraphrase validity. C3 paraphrases passed au-        816
+765   trained on DeepSeek rollouts—plus two prompted               tomatic meaning/length checks (7.9% excluded),           817
+766   LLM-judge PRMs; trained generative PRMs (Khal-               and a blinded 140-item human fidelity audit rated        818
+767   ifa et al., 2025) remain uncovered.                          97.1% faithful or minimally deviating, with zero         819
+768      Semantic label reliability. Step types come               meaning changes among the 46 audited anchor-             820
+769   from AI-assisted annotation with human calibra-              group paraphrases; two neutral-group paraphrases         821
+770   tion; the two label passes disagree on 27.3%                 (4.3% of that group’s audited items) were judged         822
+771   of steps, and the blinded annotation pilot (Ap-              meaning-changed. C3 conclusions rest on this au-         823
+772   pendix B) shows that trained humans agree only               dited premise.                                           824
+773   moderately on the semantic taxonomy, with dis-
+774   agreement concentrated on the essential/redundant            Ethical Considerations                                   825
+775   boundary. Type-based subgroup boundaries are
+776   therefore approximate; the pilot covers 120 of 600           The study uses the public PRM800K dataset (MIT-          826
+777   steps, and no adjudicated relabeling of the full co-         licensed problems from MATH) and open-weight             827
+778   hort exists. The headline interaction survives under         models; no personal data is processed. Beyond            828
+779   either label pass, but finer type-level claims inherit       the authors, four annotators and one adjudicator         829
+780   this label noise.                                            recruited by the authors labeled reasoning steps         830
+781      Judge noise and self-evaluation. The 93.5%                and paraphrase fidelity for public math problems         831
+782   agreement and ≤ 0.13 pp substitution sensitivity             (about one hour each); they were informed of the         832
+783   are measured on 200 audited Qwen3-8B outputs                 study’s purpose, and the annotation sheets collected     833
+784   and do not bound error on the unaudited remainder;           no personal information. Deleting reasoning steps        834
+
+
+                                                               9
+835   is an accuracy/efficiency intervention; our safety                   models. In Proceedings of the 63rd Annual Meet-         887
+836   framing (harm budgets) is about answer correct-                      ing of the Association for Computational Linguistics    888
+                                                                           (ACL).                                                  889
+837   ness, not user harm. We release artifacts to support
+838   reproduction and auditing.                                       Jonathan Uesato, Nate Kushman, Ramana Kumar, Fran-          890
+                                                                         cis Song, Noah Siegel, Lisa Wang, Antonia Creswell,       891
+                                                                         Geoffrey Irving, and Irina Higgins. 2022. Solving         892
+839   References                                                         math word problems with process- and outcome-             893
+                                                                         based feedback. arXiv preprint arXiv:2211.14275.          894
+840   Daewon Choi, Jimin Lee, Jihoon Tack, Woomin Song,
+841     Saket Dingliwal, Sai Muralidhar Jayanthi, Bhavana              Peiyi Wang, Lei Li, Zhihong Shao, Runxin Xu, Damai          895
+842     Ganesh, Jinwoo Shin, Aram Galstyan, and Sra-                     Dai, Yifei Li, Deli Chen, Yu Wu, and Zhifang Sui.         896
+843     van Babu Bodapati. 2025. Think clearly: Improv-                  2024. Math-shepherd: Verify and reinforce LLMs            897
+844     ing reasoning via redundant token pruning. arXiv                 step-by-step without human annotations. In Proceed-       898
+845     preprint arXiv:2507.08806.                                       ings of the 62nd Annual Meeting of the Association        899
+                                                                         for Computational Linguistics (ACL).                      900
+846   Karl Cobbe, Vineet Kosaraju, Mohammad Bavarian,
+847     Mark Chen, Heewoo Jun, Lukasz Kaiser, Matthias                 Chujie Zheng, Zhenru Zhang, Beichen Zhang, Runji            901
+848     Plappert, Jerry Tworek, Jacob Hilton, Reiichiro                  Lin, Keming Lu, Bowen Yu, Dayiheng Liu, Jingren           902
+849     Nakano, Christopher Hesse, and John Schulman.                    Zhou, and Junyang Lin. 2025. ProcessBench: Iden-          903
+850     2021. Training verifiers to solve math word prob-                tifying process errors in mathematical reasoning. In      904
+851     lems. arXiv preprint arXiv:2110.14168.                           Proceedings of the 63rd Annual Meeting of the Asso-       905
+                                                                         ciation for Computational Linguistics (ACL).              906
+852   Dan Hendrycks, Collin Burns, Saurav Kadavath, Akul
+853     Arora, Steven Basart, Eric Tang, Dawn Song, and                A     Judge Audit Detail                                    907
+854     Jacob Steinhardt. 2021. Measuring mathematical
+855     problem solving with the MATH dataset. In Proceed-
+856     ings of the Neural Information Processing Systems               Audited outputs                                      200
+857     Track on Datasets and Benchmarks.                               Binary agreement                                  93.5%
+                                                                        Correct-class F1                                   0.931
+                                                                        Pair-transition agreement (60 pairs)              91.7%
+858   Muhammad Khalifa, Rishabh Agarwal, Lajanugen Lo-                  Max condition bias                                2.3 pp
+859    geswaran, Jaekyeom Kim, Hao Peng, Moontae Lee,                   ∆ overall target effect after substitution      −0.13 pp
+860    Honglak Lee, and Lu Wang. 2025. Process reward                   ∆ placebo-corrected effect after substitution   −0.05 pp
+861    models that think. arXiv preprint arXiv:2504.16828.
+                                                                       Table 4: Judge audit summary. Gates (agreement ≥
+862   Zeju Li, Jianyuan Zhong, Ziyang Zheng, Xiangyu Wen,
+863     Zhijian Xu, Yingying Cheng, Fan Zhang, and Qiang               90%, bias ≤ 5 pp) pass; all headline numbers are insen-
+864     Xu. 2025. Making slow thinking faster: Compress-               sitive to full substitution of adjudicated labels.
+865     ing LLM chain-of-thought via step entropy. arXiv
+866     preprint arXiv:2508.03346.
+                                                                       Deterministic grader. Because the LLM judge                 908
+867   Hunter Lightman, Vineet Kosaraju, Yura Burda, Harri              and the primary generator share a checkpoint, we            909
+868     Edwards, Bowen Baker, Teddy Lee, Jan Leike, John               regrade all 6,314 primary runs with a determinis-           910
+869     Schulman, Ilya Sutskever, and Karl Cobbe. 2024.
+870     Let’s verify step by step. In The Twelfth International        tic grader: PRM800K-style answer normalization              911
+871     Conference on Learning Representations (ICLR).                 followed by a SymPy equivalence check. It agrees            912
+                                                                       with the LLM judge on 93.0% of runs, and sub-               913
+872   Qwen Team. 2025. Qwen3 technical report. arXiv                   stituting its verdicts reproduces the overall and an-       914
+873    preprint arXiv:2505.09388.
+                                                                       chor deletion effects within 0.9 pp, bounding self-         915
+874   Amrith Setlur, Chirag Nagpal, Adam Fisch, Xinyang                evaluation bias on the primary cohort; the full com-        916
+875    Geng, Jacob Eisenstein, Rishabh Agarwal, Alekh                  parison ships with the audit artifacts.                     917
+876    Agarwal, Jonathan Berant, and Aviral Kumar. 2025.
+877    Rewarding progress: Scaling automated process ver-              B     Robustness and Disclosure Tables                      918
+878    ifiers for LLM reasoning. In The Thirteenth Inter-
+879    national Conference on Learning Representations                 Annotation pilot. A blinded pilot re-annotated              919
+880    (ICLR).                                                         120 cohort steps: two independent human labels per          920
+
+881   Janvijay Singh and Dilek Hakkani-Tür. 2026. Do LLMs              step from four annotators in two pairs, 61.7% raw           921
+882      encode functional importance of reasoning tokens?             agreement (κ = 0.40), with disagreement concen-             922
+883      arXiv preprint arXiv:2601.03066.                              trated on the essential/redundant boundary. Where           923
+
+884   Mingyang Song, Zhaochen Su, Xiaoye Qu, Jiawei Zhou,
+                                                                       annotators agreed, their consensus tracked the              924
+
+885     and Yu Cheng. 2025. PRMBench: A fine-grained                   frozen outcomes: 93% of consensus-Harmful steps             925
+886     and challenging benchmark for process-level reward             carry rating −1, and the placebo-corrected deletion         926
+
+
+                                                                  10
+          Contrast (pp)                                             Anchor Stable-corr. Fragile-neutral                                         Model (features)                                               Danger AUPRC                          Benefit AUPRC
+          C1−C0 (raw deletion)       +20.3                                                     −11.9                              +24.1         Base rate                                                                                    0.151               0.360
+          C1−C2 (vs. placebo)        +15.6                                                     +16.8                              +0.0
+          C3−C0 (paraphrase)          +1.7                                                      −8.3                              +20.9         A: rating only                                                                            0.139                   0.432
+          C1−C3 (vs. paraphrase)     +19.2                                                      −2.7                               +4.1
+          C2−Cp (placebo, own ctrl.)  −0.7                                                      −0.8                               +3.9         B: type only                                                                              0.208                   0.407
+                                                                                                                                                C: rating + type                                                                          0.140                   0.380
+                                                                                                                                                D: static context                                                                         0.160                   0.412
+      Table 5: Four-condition strong controls (240 steps × 4                                                                                    E: + trajectory state                                                                    0.263                   0.478
+      runs; 80 per group; paraphrase available for 221). An-
+      chors (selected on labels, not outcomes): paraphrase                                                                                     Table 6: Out-of-fold prediction of run-level danger and
+      ≈ control while deletion beats both—the content is the                                                                                   benefit discordance, conditioned on the control draw:
+      anchor. Fragile-neutral and Stably-correct are selected                                                                                  danger = P(deletion draw wrong | control draw cor-
+      on their C0 draws, so their vs-C0 rows are biased by                                                                                     rect), base rate 15.1%; benefit base rate 36.0%. The
+      regression to the mean (upward and downward, respec-                                                                                     rating is below chance for danger (AUROC 0.42, CI
+      tively); the own-control row shows the operator itself is                                                                                [0.36, 0.49]); only trajectory-state features (model E, re-
+      inert. Bold marks contrasts discussed in the text.                                                                                       quiring extra runs) achieve a meaningful margin (danger
+                                                                                                                                               AUPRC +0.10 over D).
+927   effect on consensus-Harmful steps is +22.9 pp. An
+                                                                                                                                                 Deletion effect by Control correctness frequency
+928   independent adjudicator resolved all 46 disagree-                                                                                          Full cohort: 600 steps / 2,400 pairs. Mechanical outcome boundaries apply at 0/4 and 4/4.
+                                                                                                                                                            0/4 (n=224)
+
+
+929   ments, yielding final labels for all 120 pilot steps.
+                                                                                                                                                             1/4 (n=23)
+
+
+
+        PRM rating × human-calibrated contribution type
+        Cramer’s V=0.528; expected-diagonal share=65.5% (full cohort: N=600 steps)                                                                           2/4 (n=27)
+                                          Essential                          Redundant                            Harmful
+
+
+
+
+                 rating -1
+                                            25                                  15                                 160                                       3/4 (n=28)
+
+                                      4.2% of all steps                   2.5% of all steps                   26.7% of all steps
+
+
+                                                                                                                                                            4/4 (n=298)
+
+                  rating 0
+                                            55                                 115                                  30                                                     -20               -11               -1               +8            +17    +26   +36     +45
+                                      9.2% of all steps                   19.2% of all steps                  5.0% of all steps
+
+
+
+
+                  rating 1
+                                           118                                  69                                  13                         Figure 2: Deletion effect by control-run stability. Gains
+                                      19.7% of all steps                  11.5% of all steps                  2.2% of all steps
+                                                                                                                                               exist only where control already fails. Outcome-
+                                Outlined cells form the expected rating–contribution diagonal; 34.5% are off-diagonal.                         conditioned strata: conditioning on the control draws bi-
+                                                                                                                                               ases the extreme strata outward (regression to the mean),
+                                                                                                                                               so these are descriptive bounds, not causal subgroup ef-
+      Figure 1: PRM800K rating vs. human-calibrated seman-                                                                                     fects.
+      tic contribution for the 600-step cohort. The association
+      is strong (Cramér’s V = 0.528) but 34.5% of steps are
+      off-diagonal: local correctness does not determine con-                                                                                  dict; two annotators labeled blind to condition, with                                                                      947
+      tribution.                                                                                                                               disagreements adjudicated. Full prompts, seeds,                                                                            948
+                                                                                                                                               and adjudication records ship with the release.                                                                            949
+930   Predictor features. Model D uses 12 static fea-
+931   tures: indicators rating= 0 and rating= +1; indi-                                                                                        C           Reproducibility                                                                                                950
+932   cators type=Redundant and type=Harmful (initial
+                                                                                                                                               Primary numbers derive from two frozen master                                                                              951
+933   pass); their four interactions; position-bin indica-
+                                                                                                                                               tables (600 steps; 6,314 runs) via a dependency-                                                                           952
+934   tors (middle, late); log(1 + target tokens); log(1 +
+                                                                                                                                               free Python pipeline with fixed seeds (cluster boot-                                                                       953
+935   prefix tokens). Model E adds the control-correct
+                                                                                                                                               strap seed 20260722, downstream 20260723); a                                                                               954
+936   frequency (13 features). Both are L2-regularized
+                                                                                                                                               single command regenerates every table, figure                                                                             955
+937   logistic models trained with 5-fold cross-validation
+                                                                                                                                               source, and the numeric manifest consumed by                                                                               956
+938   grouped by problem; every policy score is an out-
+                                                                                                                                               this paper. The extension cohorts add 17,126 runs                                                                          957
+939   of-fold prediction.
+                                                                                                                                               (cross-generator 2,691; long-CoT replication 2,691;                                                                        958
+940   Judge configuration. The judge is Qwen3-8B                                                                                               thinking-mode toggle 3,582 including its 891 own-                                                                          959
+941   served at temperature 0, prompted with the prob-                                                                                         controls; strong controls 1,843 = 884 paraphrase                                                                           960
+942   lem, the gold answer, and the generated final an-                                                                                        C3 + 959 placebo C2, one of the 960 scheduled C2                                                                           961
+943   swer, and instructed to return a JSON verdict on                                                                                         generations having failed at the provider; Process-                                                                        962
+944   mathematical equivalence; outputs with no ex-                                                                                            Bench 2,412; placebo own-controls 3,907 across                                                                             963
+945   tractable final answer are failed by rule. The audit                                                                                     four cohorts), each with its own checkpointed gen-                                                                         964
+946   sampled 200 outputs stratified by condition and ver-                                                                                     eration, judging, and analysis script under the cor-                                                                       965
+
+
+                                                                                                                                          11
+                                                   Danger             Benefit
+        Signal (step-level)               AUROC AUPRC AUROC AUPRC                                     Rating of placebo-cutoff step            Runs         Share
+        Base rate                              —            0.15     —          0.24                  +1                                          900      59.4%
+        PRM800K rating                       0.56           0.17   0.61         0.34                  0                                           167      11.0%
+        Qwen2.5-Math-PRM-7B                  0.57           0.18   0.61         0.37
+        Math-Shepherd PRM (7B)               0.47           0.14   0.54         0.26
+                                                                                                      unrated                                     447      29.5%
+        RLHFlow PRM (8B)                     0.51           0.15   0.59         0.28                  −1                                            0       0.0%
+        LLM-judge PRM (Gemini)               0.53           0.16   0.51         0.25
+        LLM-judge PRM (phi-4)                0.49           0.14   0.48         0.23
+        PRM disagreement (5 models)          0.53           0.16   0.62         0.34          Table 9: PRM800K ratings of the 1,514 placebo cutoff
+        Step entropy                         0.46           0.15   0.48         0.24          steps: the placebo never truncates at a known-bad step.
+        Step NLL                             0.50           0.15   0.49         0.22
+        Masked answer-prob drop              0.56           0.19   0.57         0.30
+
+
+      Table 7: Step-level signals vs. deletion outcomes on                                                                      Balanced cohort        Natural prevalence
+      the identical 600-step cohort (step-level danger/benefit
+                                                                                                Overall ∆tgt (pp)     +7.21 [+3.9, +10.7] −0.52 [−5.1, +4.0]
+      = any control-correct/deletion-wrong, resp. control-                                      Run danger rate                      8.5%               9.8%
+      wrong/deletion-correct, discordance among the step’s                                      Run benefit rate                    15.7%               9.3%
+                                                                                                Dangerous-step share                15.2%              17.5%
+      pairs; each signal scored in its favorable orientation,                                   Beneficial-step share               23.5%              17.6%
+      so higher warns against / flags for deletion). The best
+      benefit AUPRCs reach 0.34–0.37 over a 0.24 base—a                                       Table 10: Balanced-cohort vs. natural-prevalence
+      real lift—while the best danger AUPRC (0.19) barely                                     estimates (weights 0.2%/7.4%/92.4% for ratings
+      exceeds its 0.15 base.                                                                  −1/0/+1, from 16,481 rated phase-2 test steps). Run
+                                                                                              danger/benefit rates are joint discordance rates over all
+      Estimate                           Cluster      n Effect (pp)             95% CI        pairs (Section 3); the conditional rates used for predic-
+                 tgt
+      Anchor ∆ , initial                 step        178     +23.31   [+16.6, +29.9]          tion (15.1%/36.0%) divide these by the control accuracy.
+      Anchor ∆tgt , initial              problem     178     +23.31   [+16.2, +30.5]          CIs are an independent bootstrap draw.
+      Anchor ∆sem (legacy), initial      step        151     +13.85    [+7.0, +20.8]
+      Anchor ∆tgt , calibrated           step        160     +20.94   [+13.8, +28.1]
+      Anchor ∆tgt , calibrated           problem     160     +20.94   [+13.5, +28.4]
+      Anchor ∆sem (legacy), calibrated   step        137     +14.84    [+7.5, +22.1]
+      Overall ∆tgt                       step        600      +7.21    [+3.9, +10.5]
+      Overall ∆tgt                       problem     600      +7.21    [+3.7, +10.7]
+                                                                                                    Frame                              n−1        n0    n+1     Total
+                                                                                                    Phase-2 test, chosen path             31 1,224 15,226 16,481
+                                                                                                    Phase-2 test, all completions      6,080 2,002 18,174 26,256
+      Table 8: Label-set and clustering robustness (indepen-
+      dent 5,000-replicate bootstrap draws, so intervals differ                                     Cohort targets from chosen path       2    198       200      400
+                                                                                                    Cohort targets from alternatives    198      2         0      200
+      from Table 1 in the last decimal; point estimates identi-
+      cal). The anchor effect survives the calibrated label pass                              Table 11: Sampling-frame audit (integer counts). The
+      and problem-level clustering. Rows marked legacy use                                    600 cohort targets are unique steps over 303 problems;
+      the shared-control placebo contrast of Eq. 1, superseded                                every cohort problem is in the phase-2 test split. Rating-
+      by the own-control difference-in-differences of Table 2                                 −1 targets come almost entirely from rated-but-rejected
+      (+25.4 pp); they are retained for comparability with the                                alternative completions spliced onto the chosen prefix;
+      frozen analysis plan.                                                                   reweighting (Table 10) uses the chosen-path frame.
+
+
+966   responding workstream directory. Robustness arti-
+967   facts (label-set re-estimation, placebo-cutoff com-                                     Cohort / check                            ∆plc
+                                                                                                                                         own (pp)           ∆sem
+                                                                                                                                                             DiD anch. (pp)
+
+                                                                                              Primary, anchors (151)              −1.6 [−6.5, +3.2] +25.4 [+16.1, +34.9]
+968   position, natural-prevalence reweighting, and the                                       phi-4, anchors (100)                −1.3 [−6.6, +3.8] +34.9 [+25.8, +44.7]
+969   calibration/test policy split) are regenerated by ded-                                  Strong-control C2, all groups (240) +0.8 [−2.7, +4.4]
+                                                                                              Anchor cutoffs before / after             −5.2 / +4.3
+                                                                                                                                                                         —
+                                                                                                                                                                         —
+970   icated scripts in the same release. The release in-                                     Batch drift (128 identical prompts)                new − old = +3.1 pp (n.s.)
+
+971   cludes the intervention builder, matched-placebo
+                                                                                              Table 12: Own-control placebo (DiD) robustness.
+972   selector, judge-audit tooling, policy risk–coverage
+                                                                                              Matched innocuous deletions are inert across the no-
+973   and rollback code, the 120-step blinded annotation                                      thinking PRM800K cohorts shown here; the long-CoT
+974   pilot, PRM-scoring adapters, the signal-extraction                                      generator instead shows a genuine content-agnostic trun-
+975   script, and the StepRem benchmark split with its                                        cation benefit (+8.0 pp, Section 5) and the external first-
+976   evaluation script.                                                                      error subset a truncation penalty (−8.4 pp, Section 7).
+                                                                                              The drift row compares fresh Cp runs against frozen
+                                                                                              runs with byte-identical prompts; all Cp runs are a later
+                                                                                              batch, so any positive drift lowers ∆plc
+                                                                                                                                   own and raises every
+                                                                                              DiD one-sidedly—a uniform +3.1 pp adjustment would
+                                                                                              move the overall DiD +7.5 → +4.4 and the anchor
+                                                                                              DiD +25.4 → +22.3, changing no conclusion.
+
+
+
+                                                                                         12
+                             Budget 1 pp                Budget 3 pp
+Policy               Traffic Net/del. (LCB), pp Traffic Net/del. (LCB), pp
+Random                   0                —         0                 —
+rating-first          2.4%       +9.8 (+2.0)    12.2%        +1.4 (−1.9)
+Harmful-first         3.8%      +17.0 (+1.2)     3.8%       +17.0 (+1.2)
+PRM (Qwen2.5-Math)   0.02%     +51.3 (+35.5)    16.3%        +8.2 (−1.8)
+PRM (Math-Shep.)     21.8%       +9.6 (+3.0)    31.3%        +5.2 (−2.8)
+PRM (RLHFlow)        40.4%       +5.0 (−0.6)    47.7%        +3.1 (−2.4)
+Predictor (D)        66.1%       +4.2 (−0.8)    88.9%        +1.1 (−2.9)
+Predictor (E)        68.5%       +4.5 (−0.1)    79.7%        +1.5 (−2.7)
+Oracle               96.4%       +3.2 (−0.2)    96.4%        +3.2 (−0.2)
+
+
+Table 13: In-sample causal certification under natural
+prevalence: largest traffic coverage whose one-sided
+95% cluster LCB of net effect per deletion clears the
+budget, with the realized net (LCB in parentheses).
+In-sample k-selection upper-bounds every policy; the
+nested evaluation (Table 3) is the honest reading.
+
+
+
+
+                     n Anchor Stable Neutral Rating −1
+         Retained 221    33.0% 33.9%       33.0%        34.8%
+         Excluded 19     36.8% 26.3%       36.8%        36.8%
+
+
+Table 14: Composition of retained vs. automatically
+excluded C3 paraphrases: share of each set in the three
+strong-control groups and in the rating-−1 tier (which
+overlaps the Anchor column); mean target length 38.0
+vs. 32.7 tokens.
+
+
+
+
+                                                                        13
+

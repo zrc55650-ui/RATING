@@ -138,6 +138,45 @@ def main() -> None:
                and as_float(r["test_net_per_deletion_pp"]) >= -1.0]
         check(f"nested budget-met {policy} {exp_met}/{exp_cert}",
               (len(certifying), len(met)), (exp_cert, exp_met))
+    # Round-4 review checks: discordance rates, off-diagonal cell, m6 details, intersection row
+    ctrl_runs: dict = {}
+    tgt_runs: dict = {}
+    for r in runs:
+        ok = r["judge_label"].strip() == "1"
+        if r["condition"] == "control":
+            ctrl_runs.setdefault(r["step_id"], {})[r["run_id"]] = ok
+        elif r["condition"] == "target_delete":
+            tgt_runs.setdefault(r["step_id"], {})[r["run_id"]] = ok
+    joint_d = n_pairs = n_cc = 0
+    for sid, by_run in ctrl_runs.items():
+        for rid, c in by_run.items():
+            if rid in tgt_runs.get(sid, {}):
+                n_pairs += 1
+                n_cc += c
+                joint_d += c and not tgt_runs[sid][rid]
+    approx("joint danger discordance 8.5%", joint_d / n_pairs, 0.085, 0.0005)
+    approx("conditional danger discordance 15.1%", joint_d / n_cc, 0.1508, 0.0005)
+    offdiag = [as_float(s["target_effect"]) for s in steps
+               if as_int(s["prm_rating"]) == -1 and s["step_type_initial"] != "harmful"]
+    check("rating -1 non-Harmful cell n=22", len(offdiag), 22)
+    approx("rating -1 non-Harmful cell +11.4pp", 100 * sum(offdiag) / len(offdiag), 11.36, 0.01)
+    m6own = {(r["group"], r["estimand"]): r for r in read_csv(
+        ROOT / "workstream_M12_placebo_did" / "c4_m6_did_summary.csv")}
+    approx("m6 first-error own placebo -8.4pp",
+           as_float(m6own[("first_error", "placebo_own_effect")]["estimate_pp"]), -8.41, 0.01)
+    approx("m6 first-error own placebo CI upper -1.4 (significant)",
+           as_float(m6own[("first_error", "placebo_own_effect")]["ci_upper_pp"]), -1.43, 0.05)
+    inter = [r for r in splits if r["policy"] == "intersection_first" and as_float(r["cal_coverage"]) > 0]
+    inter_met = [r for r in inter if r["test_net_per_deletion_pp"]
+                 and as_float(r["test_net_per_deletion_pp"]) >= -1.0]
+    check("nested budget-met intersection_first 15/20", (len(inter), len(inter_met)), (20, 15))
+    m6_manifest = read_csv(ROOT / "workstream_M6_processbench" / "m6_sampling_manifest.csv")
+    check("m6 sample spans six source models",
+          len({r["source_generator"] for r in m6_manifest}), 6)
+    check("primary C_p returned 1513", sum(
+        1 for line in (ROOT / "workstream_M12_placebo_did" / "c4_primary_generations.jsonl"
+                       ).open(encoding="utf-8") if line.strip()), 1513)
+
     # Joint rating x position reweighting (paper Section 7 parenthetical)
     joint = {r["weighting"]: r for r in read_csv(
         ROOT / "workstream_F_final_statistics" / "robustness" /
