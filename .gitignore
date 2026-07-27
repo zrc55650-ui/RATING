@@ -63,3 +63,5 @@ __pycache__/
 /paper/acl_latex.blg
 /paper/acl_latex.bbl
 /paper/missfont.log
+/paper/tmp/
+/paper/acl_layout.txt
