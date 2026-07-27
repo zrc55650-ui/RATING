@@ -218,8 +218,80 @@ def main() -> None:
     m10meta = json.loads((m10_dir / "m10_longcot_summary.json").read_text(encoding="utf-8"))
     approx("M10 sign agreement 67%", m10meta["sign_agreement_vs_qwen_nonzero"], 0.6667, 0.001)
     check("M10 nonzero pairs 33", m10meta["nonzero_pairs"], 33)
-    # Appendix run count: cross-generator + long-CoT + strong controls + ProcessBench
-    check("extension run total 9656", m2 + len(m10_rows) + 1862 + 2412, 9656)
+    m10did = {(r["group"], r["estimand"]): r for r in read_csv(
+        ROOT / "workstream_M12_placebo_did" / "c4_m10_did_summary.csv")}
+    approx("M10 DiD: anchor own-placebo +8.00",
+           as_float(m10did[("rating-1_anchor", "placebo_own_effect")]["estimate_pp"]), 8.00, 0.01)
+    approx("M10 DiD: anchor semantic -1.00",
+           as_float(m10did[("rating-1_anchor", "did_semantic_effect")]["estimate_pp"]), -1.00, 0.01)
+    m6did = {(r["group"], r["estimand"]): r for r in read_csv(
+        ROOT / "workstream_M12_placebo_did" / "c4_m6_did_summary.csv")}
+    approx("M6 DiD: first-error semantic +35.40",
+           as_float(m6did[("first_error", "did_semantic_effect")]["estimate_pp"]), 35.40, 0.01)
+    approx("M6 DiD: locally-correct semantic -7.07",
+           as_float(m6did[("locally_correct_all", "did_semantic_effect")]["estimate_pp"]), -7.07, 0.01)
+    approx("M6 DiD: omnimath semantic -0.63",
+           as_float(m6did[("omnimath", "did_semantic_effect")]["estimate_pp"]), -0.63, 0.01)
+    # M11 thinking-mode toggle (paper: thinking-mode contrast paragraph, abstract, intro, limitation)
+    m11_dir = ROOT / "workstream_M11_thinking_toggle"
+    m11_rows = [json.loads(line) for line in (m11_dir / "m11_generations.jsonl").open(encoding="utf-8") if line.strip()]
+    check("M11 generations 3582", len(m11_rows), 3582)
+    check("M11 unique taskIds", len({r["taskId"] for r in m11_rows}), 3582)
+    m11sum = {(r["group"], r["estimand"]): r for r in read_csv(m11_dir / "m11_effect_summary.csv")}
+    approx("M11 anchor target -3.0pp",
+           as_float(m11sum[("rating=-1_anchor", "target_effect")]["estimate_pp"]), -3.00, 0.01)
+    approx("M11 anchor target CI lower -8.0",
+           as_float(m11sum[("rating=-1_anchor", "target_effect")]["ci_lower_pp"]), -8.01, 0.05)
+    approx("M11 anchor target CI upper +2.3",
+           as_float(m11sum[("rating=-1_anchor", "target_effect")]["ci_upper_pp"]), 2.33, 0.05)
+    approx("M11 anchor DiD semantic -3.5pp",
+           as_float(m11sum[("rating=-1_anchor", "did_semantic_effect")]["estimate_pp"]), -3.50, 0.01)
+    m11_effects = {r["step_id"]: r for r in read_csv(m11_dir / "m11_step_effects.csv")}
+    m11_anchor = [r for r in m11_effects.values() if r["cell"] == "rating-1_anchor"]
+    approx("M11 anchor control rate 83.3%",
+           sum(as_float(r["control_rate"]) for r in m11_anchor) / len(m11_anchor), 0.8333, 0.001)
+    check("M11 nonzero-effect steps 77/300",
+          sum(1 for r in m11_effects.values() if as_float(r["target_effect"]) != 0), 77)
+    m11meta = json.loads((m11_dir / "m11_summary.json").read_text(encoding="utf-8"))
+    approx("M11 mean reasoning tokens 2514", m11meta["mean_reasoning_tokens"], 2514, 1.0)
+    no_answer = [r for r in m11_rows if not r.get("finalAnswer")]
+    approx("M11 no-answer rate 12.2%", len(no_answer) / len(m11_rows), 0.122, 0.001)
+    na_by_cond = Counter(r["condition"] for r in no_answer)
+    na_rates = [na_by_cond["control"] / 900, na_by_cond["target_delete"] / 900,
+                na_by_cond["placebo_delete"] / 891, na_by_cond["placebo_control"] / 891]
+    approx("M11 no-answer balance min 10.8%", min(na_rates), 0.1078, 0.001)
+    approx("M11 no-answer balance max 13.4%", max(na_rates), 0.1336, 0.001)
+    check("M11 thinking activation 100%", m11meta["share_with_reasoning"], 1.0)
+    approx("M11 sign agreement 56%", m11meta["sign_agreement_vs_nothink_nonzero"], 0.5625, 0.001)
+    check("M11 nonzero pairs 32", m11meta["nonzero_pairs"], 32)
+    # No-thinking baseline on the identical 300-step subcohort (paper: 26.8% control, +21.8pp)
+    prim_effects = {r["sampleId"]: r for r in read_csv(
+        ROOT / "data" / "qwen3-8b_placebo_effects_5000_step_effects.csv")}
+    nothink_anchor = [prim_effects[s] for s, r in m11_effects.items()
+                      if r["cell"] == "rating-1_anchor" and s in prim_effects]
+    check("M11 no-think anchor baseline matched 100 steps", len(nothink_anchor), 100)
+    approx("M11 no-think anchor control 26.8%",
+           sum(as_float(r["controlAvgCorrect"]) for r in nothink_anchor) / len(nothink_anchor),
+           0.2675, 0.001)
+    approx("M11 no-think anchor target +21.8pp",
+           sum(as_float(r["targetEffect"]) for r in nothink_anchor) / len(nothink_anchor),
+           0.2175, 0.001)
+
+    # Appendix run count (paper: "extension cohorts add 17,126 runs"):
+    # cross-generator 2,691 + long-CoT 2,691 + thinking toggle 3,582 + strong
+    # controls 1,843 + ProcessBench 2,412 + placebo own-controls 3,907
+    m4 = sum(1 for _ in (ROOT / "workstream_M4_strong_controls" / "m4_generations.jsonl").open(encoding="utf-8"))
+    check("M4 strong-control generations 1843", m4, 1843)
+    m12_dir = ROOT / "workstream_M12_placebo_did"
+    own_controls = sum(
+        sum(1 for line in path.open(encoding="utf-8") if line.strip())
+        for path in [m12_dir / "c4_primary_generations.jsonl",
+                     m12_dir / "c4_m2_generations.jsonl",
+                     m12_dir / "c4_m6_generations.jsonl",
+                     m10_dir / "m10cp_generations.jsonl"])
+    check("placebo own-controls 3907 across four cohorts", own_controls, 3907)
+    check("extension run total 17126",
+          m2 + len(m10_rows) + len(m11_rows) + m4 + 2412 + own_controls, 17126)
 
     print()
     if FAILURES:

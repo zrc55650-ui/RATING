@@ -1,0 +1,8 @@
+{
+  "generator": "qwen/qwen3-8b (thinking enabled)",
+  "steps_analyzed": 300,
+  "mean_reasoning_tokens": 2513.7398101619206,
+  "share_with_reasoning": 1.0,
+  "sign_agreement_vs_nothink_nonzero": 0.5625,
+  "nonzero_pairs": 32
+}

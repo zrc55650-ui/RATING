@@ -56,6 +56,16 @@ ceiling artifact (22 pp of headroom remained in the anchor group). Only
 under both R1 and Qwen3-8B, signs agree for 66.7%
 (`m10_longcot_summary.json`).
 
+## Placebo own-control update (M12 DiD)
+
+With C_p own controls (891 runs, `m10cp_generations.jsonl`; 13 unparseable),
+the R1 anchor-group deletion effect is fully content-agnostic: deleting a
+matched innocuous step helps as much as deleting the anchor (own-control
+placebo +8.00 [+3.08, +13.08] vs. target +7.00), and the DiD semantic
+component is **-1.00 [-7.83, +6.25]** (overall: -0.93 [-4.88, +3.06]).
+Compare no-thinking generators: primary +25.4, phi-4 +34.9. See
+`workstream_M12_placebo_did/c4_m10_did_summary.csv`.
+
 ## Interpretation
 
 The negative-anchor mechanism largely disappears under a long-CoT

@@ -48,6 +48,22 @@ neutral_comparison +3.85, overall +0.76 — all n.s.
 (`c4_m4_c2_own_summary.csv`); the fragile-neutral group's raw uplifts are
 regression-to-the-mean from fragility conditioning, not restart benefits.
 
+## Anchor DiD semantic effect across all five generator configurations
+
+| Cohort | Generator (mode) | Anchor DiD semantic (pp) |
+|---|---|---|
+| Primary | Qwen3-8B (/no_think) | **+25.44 [+16.06, +34.88]** |
+| M2 | phi-4 (no thinking) | **+34.92 [+25.83, +44.67]** |
+| M6 ProcessBench | Qwen3-8B (/no_think), first-error steps | **+35.40 [+22.78, +48.89]** |
+| M10 | R1-Distill-Qwen-14B (long-CoT) | -1.00 [-7.83, +6.25] |
+| M11 | Qwen3-8B (thinking) | -3.50 [-11.50, +4.33] |
+
+The anchor's semantic effect is large and consistent for every no-thinking
+configuration and null for both thinking configurations — including the
+same Qwen3-8B checkpoint with only the thinking mode toggled (M11), which
+pins the collapse on extended thinking itself (see
+`workstream_M11_thinking_toggle/m11_report.md`).
+
 ## Drift check
 
 C_p runs are a fresh generation batch. 128 C_p runs have byte-identical
