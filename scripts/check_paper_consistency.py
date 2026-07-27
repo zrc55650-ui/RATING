@@ -123,6 +123,29 @@ def main() -> None:
            as_float(nested[("natural_prevalence", "rating_first", "1")]["median_test_net_per_deletion_pp"]), 0.89, 0.01)
     approx("nested: predictor E realizes +8.8pp @1pp",
            as_float(nested[("natural_prevalence", "predictor_E", "1")]["median_test_net_per_deletion_pp"]), 8.75, 0.01)
+    # Budget-met counts (paper tab:nested "Met" column, round-3 review):
+    # certifying splits whose realized test net effect stays within the 1pp budget
+    splits = [r for r in read_csv(
+        ROOT / "workstream_M7_policy_risk_coverage" / "policy_causal_nested_splits.csv")
+        if r["regime"] == "natural_prevalence" and r["budget_pp"] == "1"]
+    met_expected = {"random": (9, 2), "rating_first": (20, 15), "harmful_first": (12, 6),
+                    "prm:qwen25_math_prm_7b": (20, 9), "prm:math_shepherd_mistral_7b": (19, 16),
+                    "prm:llama31_8b_prm_deepseek": (14, 8), "predictor_D": (15, 13),
+                    "predictor_E": (20, 18)}
+    for policy, (exp_cert, exp_met) in met_expected.items():
+        certifying = [r for r in splits if r["policy"] == policy and as_float(r["cal_coverage"]) > 0]
+        met = [r for r in certifying if r["test_net_per_deletion_pp"]
+               and as_float(r["test_net_per_deletion_pp"]) >= -1.0]
+        check(f"nested budget-met {policy} {exp_met}/{exp_cert}",
+              (len(certifying), len(met)), (exp_cert, exp_met))
+    # Joint rating x position reweighting (paper Section 7 parenthetical)
+    joint = {r["weighting"]: r for r in read_csv(
+        ROOT / "workstream_F_final_statistics" / "robustness" /
+        "natural_prevalence_joint_position.csv")}
+    approx("joint reweight rating-only -0.5pp",
+           as_float(joint["rating_only"]["mean_target_effect_pp"]), -0.52, 0.01)
+    approx("joint reweight rating x position -0.3pp",
+           as_float(joint["rating_x_position"]["mean_target_effect_pp"]), -0.32, 0.01)
     roll = {(r["candidate_set"], r["policy"]): r for r in read_csv(
         ROOT / "workstream_M7_policy_risk_coverage" / "policy_rollback_causal.csv")}
     approx("rollback net +11.5 (LCB +9.3)",
@@ -280,8 +303,13 @@ def main() -> None:
     # Appendix run count (paper: "extension cohorts add 17,126 runs"):
     # cross-generator 2,691 + long-CoT 2,691 + thinking toggle 3,582 + strong
     # controls 1,843 + ProcessBench 2,412 + placebo own-controls 3,907
-    m4 = sum(1 for _ in (ROOT / "workstream_M4_strong_controls" / "m4_generations.jsonl").open(encoding="utf-8"))
+    m4_rows = [json.loads(line) for line in
+               (ROOT / "workstream_M4_strong_controls" / "m4_generations.jsonl").open(encoding="utf-8")]
+    m4 = len(m4_rows)
     check("M4 strong-control generations 1843", m4, 1843)
+    m4_cond = Counter(r["condition"] for r in m4_rows)
+    check("M4 breakdown 884 C3 + 959 C2 (one C2 failed)",
+          (m4_cond["c3_paraphrase"], m4_cond["c2_placebo"]), (884, 959))
     m12_dir = ROOT / "workstream_M12_placebo_did"
     own_controls = sum(
         sum(1 for line in path.open(encoding="utf-8") if line.strip())

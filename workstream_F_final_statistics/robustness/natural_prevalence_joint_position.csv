@@ -1,0 +1,12 @@
+﻿weighting,mean_target_effect_pp,ci_lower_pp,ci_upper_pp
+rating_only,-0.52,-5.25,4.17
+rating_x_position,-0.32,-4.98,4.45
+natural_joint_share:-1:early,15,0.0009,
+natural_joint_share:-1:late,14,0.0008,
+natural_joint_share:-1:middle,2,0.0001,
+natural_joint_share:0:early,456,0.0277,
+natural_joint_share:0:late,401,0.0243,
+natural_joint_share:0:middle,367,0.0223,
+natural_joint_share:1:early,5780,0.3507,
+natural_joint_share:1:late,4566,0.2770,
+natural_joint_share:1:middle,4880,0.2961,
