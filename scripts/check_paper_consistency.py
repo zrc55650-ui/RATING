@@ -121,8 +121,16 @@ def main() -> None:
            as_float(nested[("natural_prevalence", "prm:qwen25_math_prm_7b", "1")]["median_test_net_per_deletion_pp"]), -6.34, 0.01)
     approx("nested: rating-first realizes +0.9pp @1pp",
            as_float(nested[("natural_prevalence", "rating_first", "1")]["median_test_net_per_deletion_pp"]), 0.89, 0.01)
-    approx("nested: predictor E realizes +8.8pp @1pp",
+    approx("nested: predictor E realizes +8.8pp @1pp (outcome-informed upper bound)",
            as_float(nested[("natural_prevalence", "predictor_E", "1")]["median_test_net_per_deletion_pp"]), 8.75, 0.01)
+    approx("nested: predictor D (deployable) realizes +20.8pp @1pp",
+           as_float(nested[("natural_prevalence", "predictor_D", "1")]["median_test_net_per_deletion_pp"]), 20.83, 0.01)
+    approx("nested: predictor D coverage 0.131 @1pp (error tier only)",
+           as_float(nested[("natural_prevalence", "predictor_D", "1")]["median_cal_coverage"]), 0.131, 0.001)
+    approx("nested: Math-Shepherd coverage 0.331 @1pp",
+           as_float(nested[("natural_prevalence", "prm:math_shepherd_mistral_7b", "1")]["median_cal_coverage"]), 0.331, 0.001)
+    approx("nested: Math-Shepherd realizes +6.4pp @1pp",
+           as_float(nested[("natural_prevalence", "prm:math_shepherd_mistral_7b", "1")]["median_test_net_per_deletion_pp"]), 6.41, 0.01)
     # Budget-met counts (paper tab:nested "Met" column, round-3 review):
     # certifying splits whose realized test net effect stays within the 1pp budget
     splits = [r for r in read_csv(
@@ -169,7 +177,24 @@ def main() -> None:
     inter = [r for r in splits if r["policy"] == "intersection_first" and as_float(r["cal_coverage"]) > 0]
     inter_met = [r for r in inter if r["test_net_per_deletion_pp"]
                  and as_float(r["test_net_per_deletion_pp"]) >= -1.0]
-    check("nested budget-met intersection_first 15/20", (len(inter), len(inter_met)), (20, 15))
+    check("nested intersection_first certifies/met 20/15 (data behind prose)",
+          (len(inter), len(inter_met)), (20, 15))
+    # Paper (Sec. policy) claims intersection-first gives IDENTICAL MEDIAN statistics to
+    # rating-first: they differ on 4/20 splits (those whose certified coverage falls below
+    # the rating-1 tier) but the medians coincide, so no separate table row is warranted.
+    rf_sum = nested[("natural_prevalence", "rating_first", "1")]
+    it_sum = nested[("natural_prevalence", "intersection_first", "1")]
+    check("intersection_first median coverage == rating_first",
+          it_sum["median_cal_coverage"], rf_sum["median_cal_coverage"])
+    check("intersection_first median test net == rating_first",
+          it_sum["median_test_net_per_deletion_pp"], rf_sum["median_test_net_per_deletion_pp"])
+    def _by_split(policy):
+        return {r["split"]: (r["cal_coverage"], r.get("test_net_per_deletion_pp", ""),
+                             r.get("test_harmed_share_excess", ""))
+                for r in splits if r["policy"] == policy}
+    rf_bs, it_bs = _by_split("rating_first"), _by_split("intersection_first")
+    n_diff = sum(1 for s in rf_bs if rf_bs[s] != it_bs.get(s))
+    check("intersection_first differs from rating_first on 4/20 splits", n_diff, 4)
     m6_manifest = read_csv(ROOT / "workstream_M6_processbench" / "m6_sampling_manifest.csv")
     check("m6 sample spans six source models",
           len({r["source_generator"] for r in m6_manifest}), 6)
