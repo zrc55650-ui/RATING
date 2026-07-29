@@ -15,7 +15,7 @@
 
 \newcommand{\ci}[2]{[#1, #2]}
 
-\title{Correctness Scores Alone Are Unreliable Safety Certificates for Reasoning-Step Rollbacks: \\ A Counterfactual Study of Step Removability}
+\title{Correctness Scores Alone Are Unreliable Safety Certificates}
 
 \author{Anonymous ACL submission}
 
@@ -58,7 +58,7 @@ The conceptual chain is \emph{PRM rating} $\longrightarrow$ (correlated but non-
 Step-level supervision improves credit assignment over outcome-only rewards \citep{uesato2022solving,lightman2024lets,cobbe2021training}. Math-Shepherd derives step labels from rollout success probabilities \citep{wang2024mathshepherd}; \citet{setlur2025rewarding} argue for rewarding \emph{progress} (prospective advantage) rather than local correctness; generative PRMs verify steps with explicit reasoning \citep{khalifa2025process}. Benchmarks probe what PRMs detect: ProcessBench locates first errors \citep{zheng2025processbench}, and PRMBench separates fine-grained error dimensions including redundancy \citep{song2025prmbench}. None measures what happens when a step is \emph{removed}---the counterfactual layer our protocol supplies.
 
 \paragraph{Reasoning interventions and rollback safety.}
-Token- and step-pruning methods study efficiency-oriented alterations to chains of thought using attention-based redundancy \citep{choi2025think}, step entropy \citep{li2025compressing}, or likelihood-preserving greedy deletion \citep{singh2026llms}. We do not evaluate compression efficiency or claim that reasoning cannot be compressed. Instead, we test the narrower safety question raised when PRM correctness is reused as a rollback trigger: does local correctness predict the downstream effect of removing a step? These works primarily preserve the answer of an already-correct trajectory; we additionally quantify the \emph{repair} regime and the safety of the intervention itself.
+Token- and step-pruning methods study efficiency-oriented alterations to chains of thought using attention-based redundancy \citep{choi2025think}, step entropy \citep{li2025compressing}, or likelihood-preserving greedy deletion \citep{singh2026llms}. We do not evaluate compression efficiency or claim that reasoning cannot be compressed. Instead, we test the narrower safety question raised when PRM correctness is reused as a rollback trigger: does local correctness certify the downstream safety of removing a step? These works primarily preserve the answer of an already-correct trajectory; we additionally quantify the \emph{repair} regime and the safety of the intervention itself.
 
 \paragraph{Deletion as intervention.}
 Ablation-style causal analyses of reasoning typically mask content at the token level or measure answer-probability shifts. Our design instead runs full \emph{regenerated} continuations---the deployment-relevant intervention---and controls the regeneration with matched placebos that carry their \emph{own} controls, which proves essential: a shared-control placebo manufactures an apparent $+10$\,pp ``restart'' component that disappears, and understates the semantic effect, once each cutoff is read against its own control (Section~\ref{sec:mechanism}).
@@ -272,7 +272,7 @@ Does any of this survive outside PRM800K trajectories and outside human step rat
 
 The core dissociation transfers. Deleting first-error steps yields $+24.8$\,pp (CI $\ci{+16.9}{+32.7}$); on the placebo-matched subset, the difference-in-differences semantic component is $+35.4$\,pp (CI $\ci{+22.8}{+48.9}$)---though here, unlike every no-thinking PRM800K cohort, the own-controlled placebo is itself significantly \emph{negative} ($-8.4$\,pp, CI $\ci{-15.9}{-1.4}$), so part of the DiD reflects a truncation penalty and the raw $+24.8$\,pp is the placebo-free reading. Either way, erroneous steps in other models' reasoning are negative anchors too. Deleting locally-correct steps yields $-2.0$\,pp raw (CI $\ci{-8.3}{+4.1}$) and a $-7.1$\,pp (n.s.) semantic component: not usefully removable. One boundary emerges: the DiD semantic component is significant on GSM8K ($+37.3$\,pp) and MATH ($+21.1$\,pp) but attenuates on OlympiadBench ($+6.0$\,pp, CI crosses zero) and vanishes on Omni-MATH ($-0.6$\,pp)---and own-controlled placebos show no restart benefit there either ($+6.3$\,pp, n.s.): on problems near the generator's competence ceiling, nothing target-specific survives. Negative anchors are a phenomenon of \emph{recoverable} trajectories.
 
-\section{Do Correctness Signals Predict Removability?}
+\section{Do Correctness Signals Certify Rollback Safety?}
 \label{sec:signals}
 
 If PRM-style signals suffice to trigger safe rollback, they should predict the two discordance events a policy cares about: \emph{danger} (a correct control draw paired with a wrong deletion draw) and \emph{benefit} (the reverse), both conditioned on the control draw's outcome. We evaluate step-level signals with problem-grouped 5-fold cross-validation, L2-regularized logistic models, and cluster-bootstrap CIs (Table~\ref{tab:predictive}, appendix).
