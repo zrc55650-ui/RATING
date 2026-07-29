@@ -190,6 +190,30 @@ $-1\times$Harmful  & 178 & $+23.31$ & $\ci{+16.57}{+30.24}$ \\
 \label{tab:main}
 \end{table}
 
+\paragraph{Semantic-label ablation.}
+To ask what the semantic annotation adds beyond a PRM threshold, we first ignore semantic labels and select all rating-$-1$ steps, then compare that set with its Harmful subset. The rating-only set has a $+22.0$\,pp deletion effect; adding the Harmful label concentrates the set to 178 steps with $+23.3$\,pp, while the 22 rating-$-1$ non-Harmful steps show $+11.4$\,pp (Table~\ref{tab:labelablation}). The within-rating contrast is positive ($+12.0$\,pp) but imprecise because only 22 steps are non-Harmful. Thus semantic labels add subgroup resolution beyond rating alone, while the headline is not created by removing rating information.
+
+\begin{table}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+Selection / contrast & $n$ & $\Delta^{\mathrm{tgt}}$ (pp) & 95\% CI (pp) \\
+\midrule
+Rating $-1$ only & 200 & $+22.0$ & $[+15.5,+28.5]$ \\
+Rating $-1\times$Harmful & 178 & $+23.3$ & $[+16.6,+30.1]$ \\
+Rating $-1\times$non-Harmful & 22 & $+11.4$ & $[-8.0,+31.8]$ \\
+Harmful $-$ non-Harmful within rating $-1$ & $178$ vs. $22$ & $+12.0$ & $[-9.2,+33.0]$ \\
+\bottomrule
+\end{tabular}
+\caption{Semantic-label ablation using the primary AI-assisted labels. The rating-only row ignores semantic type; the next two rows partition the same 200 rating-$-1$ steps. CIs are 5{,}000-replicate step-level cluster bootstraps (seed 20260802). The small non-Harmful subgroup makes the within-rating contrast a resolution check rather than a high-powered standalone test.}
+\label{tab:labelablation}
+\end{table}
+
+\paragraph{Length-adjusted robustness.}
+Because longer steps may be more disruptive to delete, we fit a problem-clustered OLS model over all 600 steps with rating indicators, initial semantic-type indicators, position indicators, and $\log(1+$ target tokens$)$. The Harmful coefficient is $+7.1$\,pp (95\% CI $[-4.1,+18.4]$) and the log-length coefficient is only $+1.2$\,pp per log unit (95\% CI $[-4.9,+7.5]$); neither explains the anchor pattern after adjustment. Full coefficients are in Table~\ref{tab:lengthreg} (appendix).
+
 Deleting target steps helps on average ($+7.21$\,pp, Table~\ref{tab:main}), but the average is misleading: the entire reliable gain sits in the rating\,$=-1$ column and the Harmful row, peaking at $+23.31$\,pp for their intersection (the off-diagonal cells are small-$n$ and inconclusive: the 22 rating-$-1$ non-Harmful steps show $+11.4$\,pp, CI $\ci{-9.1}{+31.8}$; the 56 Harmful non-$(-1)$ steps $+2.7$\,pp). Correct steps (rating $+1$) and Essential steps show near-zero \emph{average} effects---yet not because deletion is safe there. Danger discordance is substantial everywhere: among paired draws whose control sample is correct, the deletion sample is wrong 15.1\% of the time (a conditional rate---the joint rate is 8.5\%, Table~\ref{tab:natprev}, appendix; neither is an individual causal flip, Section~\ref{sec:constructs}), and even within rating\,$=-1$ the conditional rate is 14.9\%. The near-zero group means arise from offsetting discordance in both directions, not from inertness.
 
 \paragraph{Trajectory state dominates raw effects.}
@@ -402,6 +426,27 @@ Middle--Late  & Interaction difference & & $-8.7$ $\ci{-26.9}{+10.1}$ \\
 \end{tabular}
 \caption{Anchor-by-position robustness using the primary initial labels. Anchor = rating $-1\times$Harmful; Other = all remaining steps. Effects are target deletion minus control, with 95\% percentile cluster-bootstrap intervals over steps (5{,}000 replicates, seed 20260801). Interaction differences compare the Anchor--Other contrast between the named positions; every interval includes zero. Position bins are the pre-existing balanced early/middle/late bins, not redefined for this analysis.}
 \label{tab:anchorposition}
+\end{table}
+
+\begin{table}[h]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2.8pt}
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+Predictor & Coefficient (pp) & 95\% CI (pp) & Reference \\
+\midrule
+Rating $-1$ & $+17.9$ & $[+5.3,+30.9]$ & vs. rating $+1$ \\
+Rating $0$ & $-0.8$ & $[-8.7,+7.5]$ & vs. rating $+1$ \\
+Redundant & $+3.8$ & $[-5.1,+12.7]$ & vs. Essential \\
+Harmful & $+7.1$ & $[-4.1,+18.4]$ & vs. Essential \\
+Middle & $+3.9$ & $[-4.5,+12.2]$ & vs. Early \\
+Late & $+2.2$ & $[-5.6,+10.3]$ & vs. Early \\
+$\log(1+$ target tokens$)$ & $+1.2$ & $[-4.9,+7.5]$ & per log unit \\
+\bottomrule
+\end{tabular}
+\caption{Length-adjusted deletion-effect regression over the 600-step primary cohort. The outcome is $100\Delta^{\mathrm{tgt}}_i$; predictors are rating indicators, initial AI-assisted semantic-type indicators, position indicators, and log target-token count. Estimates are OLS coefficients with 5{,}000 problem-cluster bootstrap replicates (303 problem clusters, seed 20260802). The length coefficient is small and its interval includes zero; the Harmful coefficient is also not distinguishable from zero after adjustment.}
+\label{tab:lengthreg}
 \end{table}
 
 \begin{figure}[h]

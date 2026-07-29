@@ -92,6 +92,28 @@ def main() -> None:
         row = anchor_position[("anchor_position_difference", position, "anchor_effect_difference")]
         approx(f"anchor-position interaction {position}", as_float(row["contrast_pp"]), expected_effect, 0.01)
 
+    # Semantic-label ablation and length-adjusted regression (paper Tables labelablation/lengthreg)
+    label_ablation = {r["metric"]: r for r in read_csv(
+        ROOT / "data" / "semantic_label_ablation.csv")}
+    check("label ablation rating -1 n=200",
+          as_int(label_ablation["rating_neg1"]["n"]), 200)
+    approx("label ablation rating -1 effect +22.0pp",
+           as_float(label_ablation["rating_neg1"]["effect_pp"]), 22.0, 0.01)
+    check("label ablation rating -1 Harmful n=178",
+          as_int(label_ablation["rating_neg1_harmful"]["n"]), 178)
+    approx("label ablation within-rating contrast +11.95pp",
+           as_float(label_ablation["rating_neg1_harmful_minus_nonharmful"]["effect_pp"]), 11.95, 0.01)
+    regression = {r["term"]: r for r in read_csv(
+        ROOT / "data" / "semantic_length_regression.csv")}
+    approx("length regression Harmful coefficient +7.08pp",
+           as_float(regression["semantic_harmful"]["estimate_pp"]), 7.08, 0.01)
+    approx("length regression log tokens coefficient +1.22pp",
+           as_float(regression["log_target_tokens"]["estimate_pp"]), 1.22, 0.01)
+    check("length regression n=600",
+          as_int(regression["log_target_tokens"]["n_steps"]), 600)
+    check("length regression clusters=303",
+          as_int(regression["log_target_tokens"]["n_problem_clusters"]), 303)
+
     # Headline effects (paper Tables 1-2)
     approx("overall target effect +7.21pp",
            100 * sum(as_float(s["target_effect"]) for s in steps) / 600, 7.21, 0.01)

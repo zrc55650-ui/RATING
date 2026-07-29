@@ -1,0 +1,5 @@
+metric,description,n,effect_pp,ci_low_pp,ci_high_pp,seed,bootstraps
+rating_neg1,Rating = -1 only,200,22.000000,15.500000,28.500000,20260802,5000
+rating_neg1_harmful,Rating = -1 x Harmful,178,23.314607,16.573034,30.056180,20260802,5000
+rating_neg1_nonharmful,Rating = -1 x non-Harmful,22,11.363636,-7.954545,31.818182,20260802,5000
+rating_neg1_harmful_minus_nonharmful,Within-rating semantic contrast,178 vs 22,11.950970,-9.180605,32.969867,20260802,5000

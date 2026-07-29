@@ -1,0 +1,9 @@
+term,description,estimate_pp,ci_low_pp,ci_high_pp,n_steps,n_problem_clusters,seed,bootstraps
+intercept,Intercept,-8.877976,-32.559688,13.599420,600,303,20260802,5000
+rating_neg1,Rating = -1 vs +1,17.854126,5.254758,30.942299,600,303,20260802,5000
+rating_zero,Rating = 0 vs +1,-0.750160,-8.679761,7.527860,600,303,20260802,5000
+semantic_redundant,Redundant vs Essential,3.810187,-5.057275,12.734054,600,303,20260802,5000
+semantic_harmful,Harmful vs Essential,7.077702,-4.141307,18.402983,600,303,20260802,5000
+position_middle,Middle vs Early,3.895445,-4.533764,12.225423,600,303,20260802,5000
+position_late,Late vs Early,2.218851,-5.573498,10.339368,600,303,20260802,5000
+log_target_tokens,log(1 + target tokens),1.223933,-4.862180,7.472189,600,303,20260802,5000
