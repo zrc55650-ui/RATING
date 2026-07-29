@@ -661,26 +661,41 @@ Excluded  & 19  & 36.8\% & 26.3\% & 36.8\% & 36.8\% \\
 \setlength{\tabcolsep}{4pt}
 \begin{tabular}{@{}p{0.22\textwidth}rp{0.56\textwidth}r@{}}
 \toprule
-Dataset / cohort & Steps & Conditions & Generation runs \\
+Experiment component & Steps & Conditions & Generation runs \\
 \midrule
-Primary PRM800K (Qwen3-8B, no-think)
-  & 600 & $C_0,C_1$: 4 each; $C_p$: 1 on 511 matched steps
-  & 6{,}314 \\
-Cross-generator (phi-4)
-  & 300 & $C_0,C_1,C_p$: 3 each; 9 ineligible placebo slots skipped
+Primary deletion (Qwen3-8B, no-think)
+  & 600 & $C_0,C_1$: 4 each
+  & 4{,}800 \\
+Primary matched placebo deletion ($C_2$)
+  & 511 & 1--4 matched placebo runs per step
+  & 1{,}514 \\
+Cross-generator deletion (phi-4)
+  & 300 & $C_0,C_1$: 3 each
+  & 1{,}800 \\
+Cross-generator matched placebo ($C_2$; phi-4)
+  & 297 & 3 matched placebo runs per step
+  & 891 \\
+Long-CoT deletion (R1-Distill)
+  & 300 & $C_0,C_1$: 3 each
+  & 1{,}800 \\
+Long-CoT matched placebo ($C_2$; R1-Distill)
+  & 297 & 3 matched placebo runs per step
+  & 891 \\
+Thinking-mode toggle core (Qwen3-8B)
+  & 300 & M2 task set; archived thinking-mode slots
   & 2{,}691 \\
-Long-CoT replication (R1-Distill)
-  & 300 & $C_0,C_1,C_p$: 3 each; 9 ineligible placebo slots skipped
-  & 2{,}691 \\
-Within-checkpoint thinking toggle (Qwen3-8B)
-  & 300 & M2 task set plus 891 own-control $C_p$ runs
-  & 3{,}582 \\
+Thinking-mode own controls ($C_p$)
+  & 297 & 3 own-control runs per matched cutoff
+  & 891 \\
 Strong controls (placebo and paraphrase)
   & 240 & New $C_2$: 959; new $C_3$: 884 completed runs
   & 1{,}843 \\
-ProcessBench first-error cohort
-  & 300 & $C_0,C_1,C_p$: 3 each; 204 placebo matches
-  & 2{,}412 \\
+ProcessBench deletion
+  & 300 & $C_0,C_1$: 3 each
+  & 1{,}800 \\
+ProcessBench matched placebo ($C_2$)
+  & 204 & 3 matched placebo runs per step
+  & 612 \\
 \midrule
 M12 own-control $C_p$ (primary)
   & 511 & One own control per matched placebo cutoff
@@ -698,7 +713,7 @@ M12 own-control $C_p$ (ProcessBench)
 \textbf{Total (no double counting)} & --- & --- & \textbf{23{,}440} \\
 \bottomrule
 \end{tabular}
-\caption{Generation budget accounting. ``Generation runs'' counts the archived generation slots used by the frozen analyses; M12 rows are additional own-control runs, while reused control/target runs are counted only in their original cohort. The primary total is $4{,}800$ control/target runs plus $1{,}514$ matched-placebo runs (one placebo slot was not returned in the own-control update); the strong-control row reports the $959+884$ completed new runs after provider/paraphrase attrition.}
+\caption{Experiment accounting with no double counting. ``Generation runs'' counts archived generation slots used by the frozen analyses. $C_2$ denotes matched placebo deletion; $C_p$ denotes its additional own control and is listed separately. Reused control/target runs are counted only in their original component. The primary cohort is $4{,}800$ deletion runs plus $1{,}514$ matched-placebo runs; phi-4 and R1 each have $1{,}800$ deletion runs plus $891$ matched-placebo runs; the thinking toggle has $2{,}691$ core slots plus $891$ own controls; and ProcessBench has $1{,}800$ deletion runs plus $612$ matched-placebo runs. The strong-control row reports the $959+884$ completed new runs after provider/paraphrase attrition.}
 \label{tab:generationbudget}
 \end{table*}
 
