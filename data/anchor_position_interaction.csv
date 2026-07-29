@@ -1,0 +1,13 @@
+row_type,position,group,n,effect_pp,ci_low_pp,ci_high_pp,contrast_pp,contrast_ci_low_pp,contrast_ci_high_pp,seed,bootstraps
+cell,early,anchor,56,16.071429,4.910714,28.125000,,,,20260801,5000
+cell,early,other,145,0.689655,-6.379310,7.931034,,,,20260801,5000
+interaction,early,anchor_minus_other,201,,,,15.381773,2.231681,28.436268,20260801,5000
+cell,middle,anchor,63,24.603175,13.888889,35.317460,,,,20260801,5000
+cell,middle,other,138,2.536232,-4.347826,9.782609,,,,20260801,5000
+interaction,middle,anchor_minus_other,201,,,,22.066943,9.126553,35.283385,20260801,5000
+cell,late,anchor,59,28.813559,16.525424,41.525424,,,,20260801,5000
+cell,late,other,139,-1.978417,-7.014388,2.877698,,,,20260801,5000
+interaction,late,anchor_minus_other,198,,,,30.791977,17.975476,44.019632,20260801,5000
+anchor_position_difference,early_minus_middle,anchor_effect_difference,119,,,,-6.685170,-25.325111,11.516730,20260801,5000
+anchor_position_difference,early_minus_late,anchor_effect_difference,115,,,,-15.410204,-33.577908,3.769200,20260801,5000
+anchor_position_difference,middle_minus_late,anchor_effect_difference,122,,,,-8.725034,-26.879482,10.099922,20260801,5000

@@ -75,6 +75,23 @@ def main() -> None:
     check("random-label permutations 5000",
           as_int(random_label["primary_anchor_mean_effect_pp"]["permutations"]), 5000)
 
+    # Anchor-by-position interaction (paper Table anchorposition)
+    anchor_position = {(r["row_type"], r["position"], r["group"]): r for r in read_csv(
+        ROOT / "data" / "anchor_position_interaction.csv")}
+    for position, expected_n, expected_effect in (
+        ("early", 56, 16.07), ("middle", 63, 24.60), ("late", 59, 28.81)
+    ):
+        row = anchor_position[("cell", position, "anchor")]
+        check(f"anchor position {position} n", as_int(row["n"]), expected_n)
+        approx(f"anchor position {position} effect", as_float(row["effect_pp"]), expected_effect, 0.01)
+    for position, expected_effect in (
+        ("early_minus_middle", -6.69),
+        ("early_minus_late", -15.41),
+        ("middle_minus_late", -8.73),
+    ):
+        row = anchor_position[("anchor_position_difference", position, "anchor_effect_difference")]
+        approx(f"anchor-position interaction {position}", as_float(row["contrast_pp"]), expected_effect, 0.01)
+
     # Headline effects (paper Tables 1-2)
     approx("overall target effect +7.21pp",
            100 * sum(as_float(s["target_effect"]) for s in steps) / 600, 7.21, 0.01)

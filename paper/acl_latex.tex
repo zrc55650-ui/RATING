@@ -124,6 +124,9 @@ Late   & 198 & $+7.2$ & $[+1.8,\ +12.6]$ \\
 \label{tab:position}
 \end{table}
 
+\paragraph{Anchor-by-position interaction.}
+To rule out that negative anchors are an artifact of their location in the chain, we reuse the same early/middle/late bins and split each bin into the primary $-1\times$Harmful anchor and all other steps. Anchor effects are positive in every bin (early $+16.1$\,pp, middle $+24.6$\,pp, late $+28.8$\,pp), while the pairwise bootstrap CIs for the Anchor--Other contrast differences all include zero (Table~\ref{tab:anchorposition}). The negative-anchor effect is therefore not confined to a particular chain position.
+
 \paragraph{Random-label negative control.}
 To test whether the Harmful result is merely a label-frequency artifact, we permuted each semantic-label vector 5{,}000 times while preserving its observed margins, leaving ratings and all frozen outcomes fixed. The raw rating-$-1\times$Harmful effect remains positive under this null because the rating-$-1$ effect is deliberately retained; the sharper diagnostic is the within-rating contrast between randomized Harmful and non-Harmful steps (Table~\ref{tab:randomlabel}). This contrast is centered at zero under the permutation null. The observed label--rating intersection is also much more concentrated than random labels (26.7\% versus a 9.5--13.0\% null interval for the calibrated policy candidates). The candidate-effect interval overlaps the null because rating-$-1$ itself carries much of the raw effect, so this ablation supports semantic-label enrichment and guards against frequency-only interpretations; it is not a claim that the label alone identifies safe rollbacks.
 
@@ -371,6 +374,30 @@ C2$-$$C_p$ (placebo, own ctrl.) & $-0.7$ & $-0.8$ & $+3.9$ \\
 \end{table}
 
 \paragraph{Annotation pilot details.} The blinded pilot re-annotated 120 cohort steps: two independent human labels per step from four annotators in two pairs, 61.7\% raw agreement ($\kappa = 0.40$), with disagreement concentrated on the essential/redundant boundary. The main-text Table~\ref{tab:humanpilot} reports the exact-consensus sensitivity analysis; 93\% of consensus-Harmful steps carry rating $-1$. An independent adjudicator resolved all 46 disagreements, yielding final labels for all 120 pilot steps, but those adjudications were not used to relabel the full 600-step cohort.
+
+\begin{table}[h]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}llrr@{}}
+\toprule
+Position & Group & $n$ & $\Delta^{\mathrm{tgt}}$ (pp) \\
+\midrule
+Early  & Anchor & 56  & $+16.1$ $\ci{+4.9}{+28.1}$ \\
+Early  & Other  & 145 & $+0.7$ $\ci{-6.4}{+7.9}$ \\
+Middle & Anchor & 63  & $+24.6$ $\ci{+13.9}{+35.3}$ \\
+Middle & Other  & 138 & $+2.5$ $\ci{-4.3}{+9.8}$ \\
+Late   & Anchor & 59  & $+28.8$ $\ci{+16.5}{+41.5}$ \\
+Late   & Other  & 139 & $-2.0$ $\ci{-7.0}{+2.9}$ \\
+\midrule
+Early--Middle & Interaction difference & & $-6.7$ $\ci{-25.3}{+11.5}$ \\
+Early--Late   & Interaction difference & & $-15.4$ $\ci{-33.6}{+3.8}$ \\
+Middle--Late  & Interaction difference & & $-8.7$ $\ci{-26.9}{+10.1}$ \\
+\bottomrule
+\end{tabular}
+\caption{Anchor-by-position robustness using the primary initial labels. Anchor = rating $-1\times$Harmful; Other = all remaining steps. Effects are target deletion minus control, with 95\% percentile cluster-bootstrap intervals over steps (5{,}000 replicates, seed 20260801). Interaction differences compare the Anchor--Other contrast between the named positions; every interval includes zero. Position bins are the pre-existing balanced early/middle/late bins, not redefined for this analysis.}
+\label{tab:anchorposition}
+\end{table}
 
 \begin{figure}[h]
   \centering
