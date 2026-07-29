@@ -6,14 +6,14 @@
 ## 核心结论(全部数字以 `workstream_F_final_statistics/numbers_for_paper.json` 为准)
 
 - **主研究(Qwen3-8B,600 步 / 2,400 对)**:删除 rating=-1 步骤整体 Δ +7.21pp [3.88, 10.58];
-  placebo 分解后纯语义效应 +8.55pp;rating=-1 × human "Harmful" 锚点组 +23.31pp(语义 +13.85pp)。
-- **跨 generator 复制(M2, phi-4)**:anchor 组语义效应 +18.3pp [10.7, 26.0],方向普适、幅度依赖 generator。
+  full-cohort rating=-1 × human "Harmful" 锚点组 target +23.31pp [16.57, 30.24]；matched cohort 的 own-control DiD semantic +25.44pp [16.06, 34.88]。旧 shared-control pure semantic +8.55pp/+13.85pp 仅作为 legacy 对照。
+- **跨 generator 复制(M2, phi-4)**:anchor 组 own-control DiD 语义效应 +34.9pp [25.8, 44.7]；旧 shared-control pure semantic +18.3pp 仅作为 legacy 对照保留。
 - **强控制四条件(M4)**:保义改写 ≈ 保留(+1.7pp),删除 > 改写 +19.2pp → 错误语义本身就是 anchor。
-- **外部验证(M6, ProcessBench)**:first-error 步骤语义效应 +19.4pp [10.2, 28.3],12 个源模型轨迹上复现。
+- **外部验证(M6, ProcessBench)**:first-error 步骤 own-control DiD 语义效应 +35.4pp [22.8, 48.9]；raw target effect 为 +24.8pp，旧 shared-control pure semantic +19.4pp 仅作为 legacy 对照。
 - **实际 PRM 审计(M1/M5/M7)**:真 PRM(Qwen2.5-Math-PRM-7B)对删除危险的 AUROC 仅 0.57;
   entropy/NLL 纯随机;1% 伤害预算下真 PRM 阈值策略只能删 20/600 步;
   1 次 rollback 探针把受伤步骤从 12.2% 降到 3.0%。
-- **Judge 审计(A)**:200 条盲审 + 分歧复核后 judge–human 一致率 93.5%,预设 Gate PASS。
+- **Judge 审计(A)**:200 条盲审后 judge–human 一致率 93.0%（186/200），hard-stop Gate PASS；整体审查等级为 `PASS_WITH_SENSITIVITY`，pair-transition agreement 为 90.0%。
 
 ## 目录结构
 

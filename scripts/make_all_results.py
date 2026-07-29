@@ -831,11 +831,14 @@ def build_numbers() -> tuple[dict, list[dict]]:
 def write_final_tables(numbers: dict) -> None:
     main_rows = select_rows(numbers["full_cohort_cluster_bootstrap"], MAIN_GROUPS)
     placebo_rows = select_rows(numbers["placebo_decomposition"], FIGURE3_GROUPS)
+    m12_rows = read_csv(ROOT / "workstream_M12_placebo_did" / "c4_primary_did_summary.csv")
+    m12 = {(row["group"], row["estimand"]): row for row in m12_rows}
     audit = numbers["judge_audit"]
     if audit["gate"] == "PASS":
         gate_note = (
-            "> **Submission gate: PASS.** The Judge Audit cleared its "
-            "pre-specified agreement and condition-bias thresholds."
+            "> **Submission gate: PASS_WITH_SENSITIVITY.** The Judge Audit "
+            "hard-stop gate passed, but agreement remains below the stricter "
+            "95% retain-without-remediation threshold."
         )
     else:
         gate_note = (
@@ -867,12 +870,13 @@ def write_final_tables(numbers: dict) -> None:
         )
     lines += [
         "",
-        "## Table 2. Placebo-matched effect decomposition",
+        "## Table 2. Legacy placebo-matched effect decomposition",
         "",
         "Denominator: 511 matched target steps / 1,514 placebo runs. "
-        "All effects are percentage points; pure semantic = Target − Placebo.",
+        "These are legacy shared-control contrasts; the latest own-control "
+        "DiD results are reported in Workstream M12 and the manuscript.",
         "",
-        "| Group | Steps | Placebo runs | Target effect (pp) | Placebo effect (pp) | Pure semantic effect (pp, 95% CI) |",
+        "| Group | Steps | Placebo runs | Target effect (pp) | Legacy placebo effect (pp) | Legacy pure semantic effect (pp, 95% CI) |",
         "|---|---:|---:|---:|---:|---:|",
     ]
     for row in placebo_rows:
@@ -884,6 +888,21 @@ def write_final_tables(numbers: dict) -> None:
             f"([{as_float(row['Pure_Semantic_CI_Lower'])*100:+.2f}, "
             f"{as_float(row['Pure_Semantic_CI_Upper'])*100:+.2f}]) |"
         )
+    overall_did = m12[("overall", "did_semantic_effect")]
+    anchor_did = m12[("anchor_rating-1xHarmful", "did_semantic_effect")]
+    overall_own = m12[("overall", "placebo_own_effect")]
+    anchor_own = m12[("anchor_rating-1xHarmful", "placebo_own_effect")]
+    lines += [
+        "",
+        "## Table 2b. Latest own-control DiD decomposition",
+        "",
+        "Each placebo cutoff receives its own control. These are the latest mechanism estimates.",
+        "",
+        "| Cohort | Own-control placebo (pp) | DiD semantic effect (pp, 95% CI) |",
+        "|---|---:|---:|",
+        f"| Overall | {as_float(overall_own['estimate_pp']):+.2f} | {as_float(overall_did['estimate_pp']):+.2f} ([{as_float(overall_did['ci_lower_pp']):+.2f}, {as_float(overall_did['ci_upper_pp']):+.2f}]) |",
+        f"| rating=-1 × Harmful anchor | {as_float(anchor_own['estimate_pp']):+.2f} | {as_float(anchor_did['estimate_pp']):+.2f} ([{as_float(anchor_did['ci_lower_pp']):+.2f}, {as_float(anchor_did['ci_upper_pp']):+.2f}]) |",
+    ]
     lines += [
         "",
         "## Table 3. Judge Audit",
@@ -1042,6 +1061,10 @@ def write_results_report(numbers: dict) -> None:
         for row in numbers["placebo_decomposition"]
         if row["Group"] == "rating=-1 x step_type=Harmful"
     )
+    m12_rows = read_csv(ROOT / "workstream_M12_placebo_did" / "c4_primary_did_summary.csv")
+    m12 = {(row["group"], row["estimand"]): row for row in m12_rows}
+    anchor_did = m12[("anchor_rating-1xHarmful", "did_semantic_effect")]
+    overall_did = m12[("overall", "did_semantic_effect")]
     audit = numbers["judge_audit"]
     lines = [
         "# Workstream F Execution Report",
@@ -1063,11 +1086,16 @@ def write_results_report(numbers: dict) -> None:
         f"**{as_float(overall['Accuracy_Change'])*100:+.2f} pp** "
         f"[{as_float(overall['Accuracy_CI_Lower'])*100:+.2f}, "
         f"{as_float(overall['Accuracy_CI_Upper'])*100:+.2f}].",
-        f"- Placebo-matched cohort (511 steps / 1,514 placebo runs): "
+        f"- Legacy shared-control placebo-matched contrast (511 steps / 1,514 placebo runs): "
         f"`rating=-1 × Harmful` pure semantic effect "
         f"**{as_float(key['Pure_Semantic_Effect'])*100:+.2f} pp** "
         f"[{as_float(key['Pure_Semantic_CI_Lower'])*100:+.2f}, "
         f"{as_float(key['Pure_Semantic_CI_Upper'])*100:+.2f}].",
+        f"- Latest own-control DiD: anchor semantic effect "
+        f"**{as_float(anchor_did['estimate_pp']):+.2f} pp** "
+        f"[{as_float(anchor_did['ci_lower_pp']):+.2f}, {as_float(anchor_did['ci_upper_pp']):+.2f}], "
+        f"overall **{as_float(overall_did['estimate_pp']):+.2f} pp** "
+        f"[{as_float(overall_did['ci_lower_pp']):+.2f}, {as_float(overall_did['ci_upper_pp']):+.2f}].",
         f"- Annotation association: Cramer’s V "
         f"**{numbers['annotation_association']['cramers_v']:.3f}**; "
         f"off-diagonal share "
@@ -1075,7 +1103,8 @@ def write_results_report(numbers: dict) -> None:
         "",
         "## Completed supporting work",
         "",
-        f"- Judge Audit: completed on {audit['n_outputs']} outputs; gate **{audit['gate']}**.",
+        f"- Judge Audit: completed on {audit['n_outputs']} outputs; hard-stop gate **{audit['gate']}**, "
+        f"review tier **{audit['review_tier']}**.",
         f"- Qualitative cases: {numbers['qualitative_cases']['verified_cases']}/8 verified "
         f"from {numbers['qualitative_cases']['audited_outputs']} human-reviewed outputs.",
         "- Main tables, appendix tables, four main figures, figure-source CSVs, and "

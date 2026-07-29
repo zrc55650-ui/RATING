@@ -1,12 +1,11 @@
 # Judge Audit disagreement re-review
 
-- Records independently re-reviewed: **28/28**
-- Exact human labels changed: **5/28**
-- Binary correctness labels changed: **4/28**
-- Reviewed disagreements that now agree with the automated judge: **4/28**
-- Original 200-row adjudication preserved as `judge_audit_adjudication_completed_pre_disagreement_review.csv`
-- Updated 200-row adjudication written to `judge_audit_adjudicated.csv`
+- Records in the comparison table: **28**
+- Exact human labels changed in the comparison table: **5/28**
+- Binary correctness labels changed in the comparison table: **5/28**
+- Reviewed disagreements that agree with the automated judge after review: **16/28**
+- The latest 200-row human re-adjudication is the authoritative source for the overall audit result.
+- The comparison table is retained as a review audit trail and is not used to overwrite the latest 200-row labels.
 
-This report records the blind re-review result; it does not itself determine the
-Judge Audit gate. Run `analyze_judge_audit.py` to recompute the gate from all 200
-records.
+The overall Judge Audit result must be recomputed with `analyze_judge_audit.py` from
+`judge_audit_sampling_manifest.csv` and `judge_audit_adjudicated.csv`.

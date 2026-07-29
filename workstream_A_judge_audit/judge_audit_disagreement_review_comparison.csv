@@ -1,29 +1,29 @@
-ï»¿audit_id,condition,judge_label,initial_human_label,review_human_label,exact_label_changed,binary_correctness_changed,judge_human_agree_after_review,initial_human_reason,review_human_reason
-JA017,control,1,No valid final answer,Correct,true,true,true,åªç»™è¿‡ç¨‹,æ²¡ç»™å‡ºç»“è®ºä½†å·²ç»ç®—å‡ºæ¥äº†
-JA020,control,1,No valid final answer,No valid final answer,false,false,false,æˆªæ–­,åªåˆ—äº†å¼å­æ²¡æœ‰æœ€ç»ˆè®¢å•
-JA026,control,1,No valid final answer,No valid final answer,false,false,false,è¾“å‡ºæˆªæ–­,åªç»™å‡ºäº†å¼å­æ²¡æœ‰æœ€ç»ˆç»“æœ
-JA028,control,0,Correct,Correct,false,false,false,å¯¹,æœ€ç»ˆç­”æ¡ˆæ­£ç¡®
-JA050,control,1,No valid final answer,No valid final answer,false,false,false,æ— æœ€ç»ˆç»“æœ,æ²¡æœ‰ç®—å‡ºæœ€ç»ˆç»“æœ
-JA053,control,0,Correct,No valid final answer,true,true,true,å¯¹,åªè¯´äº†æ€ä¹ˆæ ·ç»™ç»“æœï¼Œæ²¡æœ‰æœ€åç»“æœ
-JA059,target_delete,1,No valid final answer,Correct,true,true,true,æ— æœ€ç»ˆç»“æœ,ç­”æ¡ˆæ­£ç¡®
-JA070,control,1,No valid final answer,No valid final answer,false,false,false,è¾“å‡ºæˆªæ–­,æ²¡ç»™å‡ºç»“æœ
-JA071,control,1,No valid final answer,No valid final answer,false,false,false,æ— ç»“æœ,æ²¡æœ‰æœ€ç»ˆç»“æœ
-JA084,target_delete,1,Incorrect,No valid final answer,true,false,false,é”™,æ²¡æœ‰æœ€ç»ˆç»“æœ
-JA088,control,1,No valid final answer,No valid final answer,false,false,false,æ— ç»“æœ,æ²¡æœ‰æœ€ç»ˆç»“æœ
-JA110,control,0,Correct,Correct,false,false,false,æ— ç©·å·æ˜¾ç¤ºä¸å‡ºæ¥å•Š,ç­”æ¡ˆæ­£ç¡®
-JA111,target_delete,1,No valid final answer,No valid final answer,false,false,false,æ— ç»“æœ,æ²¡ç»™å‡ºæœ€ç»ˆç»“æœ
-JA130,target_delete,0,Correct,Correct,false,false,false,ä¸å‚è€ƒç­”æ¡ˆä¸€è‡´,è™½ç„¶å¾ˆå•°å—¦ï¼Œä½†å‡ºæ¥çš„æ„æ€åº”è¯¥æ˜¯æ­£ç¡®ç­”æ¡ˆ
-JA138,control,1,No valid final answer,No valid final answer,false,false,false,æ— ç»“æœ,åªè¯´äº†æ–¹æ³•ï¼Œæ²¡ç»™å‡ºæœ€ç»ˆç»“æœï¼Œè¿˜éœ€è¦åŠ å·¥
-JA140,control,1,No valid final answer,No valid final answer,false,false,false,æ— ç»“æœ,æ²¡ç»™å‡ºæœ€ç»ˆç»“æœ
-JA143,target_delete,1,No valid final answer,No valid final answer,false,false,false,æ— ç»“æœ,æ²¡ç»™å‡ºæœ€ç»ˆç»“æœ
-JA146,control,0,Correct,Correct,false,false,false,å¯¹,ç­”æ¡ˆæ­£ç¡®
-JA160,target_delete,1,No valid final answer,No valid final answer,false,false,false,è¿™é¢˜åº”è¯¥å‡ºç°è‡³å°‘ç¬¬ä¸‰æ¬¡äº†ã€‚ã€‚ã€‚,æ²¡æœ‰ç»™å‡ºæœ€ç»ˆç»“æœ
-JA161,target_delete,0,Correct,Correct,false,false,false,æ²¡ç»™æœ€åç»“æœä½†å¼å­æ˜¯å¯¹çš„ ç®—ä»–å¯¹å§,éœ€è¦è®¡ç®—ï¼Œä½†ç»“æœæ­£ç¡®
-JA166,control,0,Correct,Correct,false,false,false,å¯¹,ç»“æœæ­£ç¡®
-JA173,target_delete,0,Correct,Correct,false,false,false,å¯¹,ç­”æ¡ˆæ­£ç¡®
-JA174,control,0,Correct,Correct,false,false,false,ä¸å‚è€ƒç­”æ¡ˆä¸€è‡´,å¤§æ¦‚å¯ä»¥æ¨å‡ºç­”æ¡ˆæ˜¯å¯¹çš„
-JA175,target_delete,1,No valid final answer,No valid final answer,false,false,false,æ— ç»“æœ,æ²¡ç»™å‡ºæœ€åç­”æ¡ˆ
-JA185,target_delete,1,No valid final answer,No valid final answer,false,false,false,æ— ç»“æœ,æ²¡ç»™å‡ºæœ€åç­”æ¡ˆ
-JA188,control,1,No valid final answer,No valid final answer,false,false,false,æ²¡ç»™æœ€ç»ˆç»“æœ,æœ€åæ²¡æœ‰æœ€ç»ˆç­”æ¡ˆ
-JA196,control,0,Correct,Correct,false,false,false,å¯¹,éœ€è¦åŠ å·¥ä½†ç­”æ¡ˆæ­£ç¡®
-JA199,placebo_delete,1,No valid final answer,Correct,true,true,true,æ— ç»“æœ,è™½ç„¶ç½—å—¦ä½†åº”è¯¥ç­”æ¡ˆæ­£ç¡®
+audit_id,condition,judge_label,initial_human_label,review_human_label,exact_label_changed,binary_correctness_changed,judge_human_agree_after_review,initial_human_reason,review_human_reason
+JA017,control,1,No valid final answer,Correct,TRUE,TRUE,TRUE,Ö»¸ø¹ı³Ì,Ã»¸ø³ö½áÂÛµ«ÒÑ¾­Ëã³öÀ´ÁË
+JA020,control,1,Correct,Correct,FALSE,FALSE,TRUE,½Ø¶Ï,×îÖÕ´ğ°¸ÕıÈ·
+JA026,control,1,No valid final answer,No valid final answer,FALSE,FALSE,FALSE,Êä³ö½Ø¶Ï,Ö»¸ø³öÁËÊ½×ÓÃ»ÓĞ×îÖÕ½á¹û
+JA028,control,0,No valid final answer,No valid final answer,FALSE,FALSE,TRUE,ÎŞ½á¹û,Ã»ÓĞ×îÖÕ½á¹û
+JA050,control,1,No valid final answer,Correct,TRUE,TRUE,TRUE,ÎŞ×îÖÕ½á¹û,´ğ°¸ÕıÈ·
+JA053,control,0,Correct,No valid final answer,TRUE,TRUE,TRUE,¶Ô,Ö»ËµÁËÔõÃ´Ñù¸ø½á¹û£¬Ã»ÓĞ×îºó½á¹û
+JA059,target_delete,1,No valid final answer,Correct,TRUE,TRUE,TRUE,ÎŞ×îÖÕ½á¹û,´ğ°¸ÕıÈ·
+JA070,control,1,Correct,Correct,FALSE,FALSE,TRUE,½á¹ûÕıÈ·,´ğ°¸ÕıÈ·
+JA071,control,1,No valid final answer,No valid final answer,FALSE,FALSE,FALSE,ÎŞ½á¹û,Ã»ÓĞ×îÖÕ½á¹û
+JA084,target_delete,1,Correct,Correct,FALSE,FALSE,TRUE,´ğ°¸ÕıÈ·,´ğ°¸ÕıÈ·
+JA088,control,1,No valid final answer,No valid final answer,FALSE,FALSE,FALSE,ÎŞ½á¹û,Ã»ÓĞ×îÖÕ½á¹û
+JA110,control,0,Correct,Correct,FALSE,FALSE,FALSE,ÎŞÇîºÅÏÔÊ¾²»³öÀ´°¡,´ğ°¸ÕıÈ·
+JA111,target_delete,1,Correct,Correct,FALSE,FALSE,TRUE,´ğ°¸ÕıÈ·,´ğ°¸ÕıÈ·
+JA130,target_delete,0,Correct,Correct,FALSE,FALSE,FALSE,Óë²Î¿¼´ğ°¸Ò»ÖÂ,ËäÈ»ºÜ†ªàÂ£¬µ«³öÀ´µÄÒâË¼Ó¦¸ÃÊÇÕıÈ·´ğ°¸
+JA138,control,1,Correct,Correct,FALSE,FALSE,TRUE,´ğ°¸ÕıÈ·,´ğ°¸ÕıÈ·
+JA140,control,1,No valid final answer,No valid final answer,FALSE,FALSE,FALSE,ÎŞ½á¹û,Ã»¸ø³ö×îÖÕ½á¹û
+JA143,target_delete,1,Correct,Correct,FALSE,FALSE,TRUE,´ğ°¸ÕıÈ·,´ğ°¸ÕıÈ·
+JA146,control,0,Correct,Correct,FALSE,FALSE,FALSE,¶Ô,´ğ°¸ÕıÈ·
+JA160,target_delete,1,Correct,Correct,FALSE,FALSE,TRUE,´ğ°¸ÕıÈ·,´ğ°¸ÕıÈ·
+JA161,target_delete,0,Correct,Correct,FALSE,FALSE,FALSE,Ã»¸ø×îºó½á¹ûµ«Ê½×ÓÊÇ¶ÔµÄ ËãËû¶Ô°É,ĞèÒª¼ÆËã£¬µ«½á¹ûÕıÈ·
+JA166,control,0,Correct,Correct,FALSE,FALSE,FALSE,¶Ô,½á¹ûÕıÈ·
+JA173,target_delete,0,No valid final answer,No valid final answer,FALSE,FALSE,TRUE,ÎŞ½á¹û,ÎŞ½á¹û
+JA174,control,0,Correct,Correct,FALSE,FALSE,FALSE,Óë²Î¿¼´ğ°¸Ò»ÖÂ,´ó¸Å¿ÉÒÔÍÆ³ö´ğ°¸ÊÇ¶ÔµÄ
+JA175,target_delete,1,Correct,Correct,FALSE,FALSE,TRUE,´ğ°¸ÕıÈ·,´ğ°¸ÕıÈ·
+JA185,target_delete,1,No valid final answer,No valid final answer,FALSE,FALSE,FALSE,ÎŞ½á¹û,Ã»¸ø³ö×îºó´ğ°¸
+JA188,control,1,Correct,Correct,FALSE,FALSE,TRUE,´ğ°¸ÕıÈ·,´ğ°¸ÕıÈ·
+JA196,control,0,Correct,Correct,FALSE,FALSE,FALSE,¶Ô,ĞèÒª¼Ó¹¤µ«´ğ°¸ÕıÈ·
+JA199,placebo_delete,1,No valid final answer,Correct,TRUE,TRUE,TRUE,ÎŞ½á¹û,ËäÈ»ÂŞàÂµ«Ó¦¸Ã´ğ°¸ÕıÈ·

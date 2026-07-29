@@ -13,7 +13,7 @@
 
 ### M2 跨 generator 复制 ✅(计划 §6.7「强成功」档)
 - phi-4,300 步 × 3 条件 × 3 runs,2,691 条 100% 解析;
-- overall target +12.4pp [8.3,16.8];anchor 组 semantic **+18.3pp [10.7,26.0]**(同向、CI 不跨 0);
+- overall target +12.4pp [8.3,16.8];anchor 组 own-control DiD semantic **+34.9pp [25.8,44.7]**；旧 shared-control pure semantic +18.3pp 仅作 legacy 对照;
 - rating 0/1 ≈ 0 复现;符号一致率 65%;anchor×generator 交互 +15.1pp [3.6,26.8]
   → 方向普适、幅度依赖 generator。
 - ⚠️ 选型变更:DeepSeek-R1-Distill 系在 OpenRouter 不可用/烧穿预算,改用 phi-4(论文脚注披露)。
@@ -26,7 +26,7 @@
 
 ### M6 ProcessBench 外部验证 ✅
 - 300 步(150+150,四子集平衡,12 个源模型),gold 99.5% 源数据集匹配;
-- first-error semantic **+19.4pp [10.2,28.3]**;locally-correct ≈0;overall semantic +8.2 ≈ 主研究 +8.6;
+- first-error raw target **+24.8pp [16.9,32.7]**，own-control DiD semantic **+35.4pp [22.8,48.9]**；旧 shared-control pure semantic +19.4pp 仅作 legacy 对照;
 - 难度梯度:GSM8K/MATH 语义效应显著,OlympiadBench 衰减,Omni-MATH restart 主导;
 - ⚠️ 修复过一个采样 bug(label≥2 记录双重采样致 46 步 taskId 冲突):
   已去重清洗 + 补生成 708 条,污染文件留档 `*.contaminated.bak`;M2/M4 排查为 0 重复。

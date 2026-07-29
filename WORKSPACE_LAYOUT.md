@@ -37,7 +37,7 @@ remove step/
 │   └── legacy_powershell/           #   original Windows workers (historical record;
 │                                    #   internal paths reflect the pre-reorg root layout)
 │
-├── workstream_A_judge_audit/        # A: judge audit (93.5%, PASS)
+├── workstream_A_judge_audit/        # A: judge audit (93.0%, PASS)
 ├── predictive_analysis/             # B: 5-fold CV prediction + risk-coverage
 ├── step_stability_analysis/         # C: stability across 4 runs
 ├── placebo_eligibility_analysis/    # D: placebo-eligibility selection audit

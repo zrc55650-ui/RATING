@@ -31,4 +31,4 @@ A technical PASS means denominators, signs, cohorts, label scopes, CIs, and outp
 
 ## Freeze decision
 
-Judge Audit passed the hard-stop gate: binary agreement was 93.5% and maximum condition bias was 2.3 pp. The project-designated adjudicated file is frozen as the single audit truth source. Because agreement is below 95%, the result is classified as `PASS_WITH_SENSITIVITY` and the audit diagnostics remain a required sensitivity qualification.
+Judge Audit passed the hard-stop gate: binary agreement was 93.0% and maximum condition bias was 2.3 pp. The project-designated adjudicated file is frozen as the single audit truth source. Because agreement is below 95%, the result is classified as `PASS_WITH_SENSITIVITY` and the audit diagnostics remain a required sensitivity qualification.

@@ -4,7 +4,7 @@
 
 **版本日期：** 2026-07-24  
 **依据：** `PRM_Removability_ARR_Aug2026_Final_Execution_Plan_CN.md`  
-**当前状态：** Workstream A–F 的计划内分析已经执行；技术一致性检查通过，但 Judge Audit 一致率为 88.0%，低于 90% 的最低放行线，因此本文中的自动正确性、伤害率、恢复率和预测模型结果均应视为**候选结果**，尚不能冻结为最终投稿主结果。
+**当前状态：** Workstream A–F 的计划内分析已经执行；技术一致性检查通过，Judge Audit 一致率为 93.0%（186/200），高于 90% hard-stop 门槛但低于 95% 严格保留阈值，因此结果通过并保留敏感性说明。
 
 ---
 
@@ -14,15 +14,15 @@
 
 | Workstream | 计划目标 | 当前完成情况 | 可否作为最终投稿证据 |
 |---|---|---:|---|
-| A. Judge Audit | 检验自动裁判正确性与条件偏差 | 已完成 200 个输出盲审与 adjudication | **否；Gate FAIL（88.0%）** |
+| A. Judge Audit | 检验自动裁判正确性与条件偏差 | 已完成最新 200 个输出人工重判 | **hard-stop Gate PASS；审查等级 PASS_WITH_SENSITIVITY（93.0%）** |
 | B. Predictive Analysis | 检验 rating、step type、静态特征和 state 的预测价值 | 已完成 grouped CV、bootstrap 和校准分析 | 候选结果；受 A 影响 |
 | C. Stability Analysis | 区分稳定受益、稳定受损、混合和无变化步骤 | 已完成 600 步四次运行分类 | 候选结果；受 A 影响 |
 | D. Placebo Eligibility | 检查有/无 placebo 步骤的选择差异 | 已完成 511 eligible 与 89 skipped 的比较 | 匹配结构可用；结果变量受 A 影响 |
 | E. Qualitative Case Study | 按固定规则选择并核验 8 个案例 | 已完成，8/8 通过，78 个相关输出均人工核验 | 可支持案例叙述，不可替代总体频率估计 |
-| F. Final Statistics | 统一统计、主图与一致性检查 | 已生成，14 项技术检查通过 | 统计包已生成，但被 A 的 Gate 阻断 |
+| F. Final Statistics | 统一统计、主图与一致性检查 | 已生成，技术一致性检查通过 | **可报告，但必须保留 Judge Audit 敏感性说明** |
 | G–I | 论文写作、局限与匿名 artifact | 尚未全部完成 | 可以继续写作和整理，但不能冻结主数值 |
 
-**分析：** 当前并不是“实验全部无效”，而是“分析已经跑完，但依赖自动裁判的总体数值尚未获得计划规定的测量有效性许可”。可以继续写论文方法、数据、匹配设计、定性案例、局限和 artifact 文档；不能把现有自动正确性结果表述成已经通过验证的最终结论。
+**分析：** 分析和技术一致性检查已经完成。Judge Audit 达到 hard-stop 通过线，但 93.0% 低于 95% 严格阈值，因此最终数据可以冻结和报告，但所有自动正确性结果都必须保留 `PASS_WITH_SENSITIVITY` 说明。
 
 ### 1.2 最重要的候选结论
 
@@ -30,12 +30,12 @@
 |---|---|---|
 | PRM rating 与人工 step type 有明显关联，但不是同一概念 | Cramér’s V = 0.528；对角线 65.5%，非对角线 34.5% | 稳健，不依赖正确性 Judge |
 | 删除的总体候选效应为正 | 全样本准确率变化 +7.21 pp，95% CI [3.88, 10.58] | 候选，受 Judge Gate 影响 |
-| 主要正效应集中在低 rating、人工判为 harmful 的步骤 | rating=-1 × Harmful：+23.31 pp [16.57, 30.24] | 候选，受 Judge Gate 影响 |
-| 低 rating 的效应不全是语义贡献，部分来自 restart | rating=-1：target +22.78 pp，placebo +9.47 pp，pure semantic +13.31 pp | 候选，受 Judge Gate 影响 |
+| 主要正效应集中在低 rating、人工判为 harmful 的步骤 | full cohort rating=-1 × Harmful：+23.31 pp [16.57, 30.24]；own-control DiD anchor：+25.44 pp [16.06, 34.88] | 通过，但保留敏感性说明 |
+| 低 rating 的效应不全是语义贡献 | overall own-control DiD：+7.52 pp [2.79, 12.36]；anchor own-control placebo −1.60 pp，DiD +25.44 pp | 通过，但保留敏感性说明 |
 | baseline state 对删除结果很重要 | control 0/4 时 +33.37 pp；control 4/4 时 −12.08 pp | 候选，且提示强机械边界 |
 | 静态特征不足以构成可靠 pruning policy | danger 的 C−A AUPRC = +0.001；只有使用额外 control state 的 E 明显提高 | 候选预测结果 |
 | token efficiency 不是主要贡献 | 平均 token 变化 +12.98，95% CI [−19.65, 45.56] | CI 跨 0，不支持效率主张 |
-| 当前自动 Judge 未过最低门槛 | agreement 88.0%，最大条件偏差 3.4 pp | 最终投稿阻断项 |
+| 当前自动 Judge 通过最低门槛 | agreement 93.0%，最大条件偏差 2.3 pp | hard-stop 通过；整体 PASS_WITH_SENSITIVITY |
 
 **分析：** 最符合全部证据的论文主张不是“按 PRM 分数直接删步骤”，而是：**PRM 分数可作为步骤风险的排序先验，但不能独立构成 pruning policy；是否可删还取决于语义类型、baseline solvability 和运行状态。** 该叙事与现有结构性证据一致，但所有基于自动正确性标签的效应量仍需二次验证。
 
@@ -151,14 +151,14 @@
 
 ### 5.1 主要 placebo 结果
 
-| Cohort | Steps | Placebo runs | Target effect | Placebo effect | Pure semantic effect | Pure 95% CI |
+| Cohort | Steps | Placebo runs | Target effect | Own-control placebo | Own-control DiD semantic effect | 95% CI |
 |---|---:|---:|---:|---:|---:|---:|
-| Overall | 511 | 1,514 | +7.97 pp | −0.57 pp | +8.55 pp | [4.83, 12.17] |
-| rating=−1 | 169 | 458 | +22.78 pp | +9.47 pp | +13.31 pp | [6.71, 19.53] |
-| Harmful | 201 | 563 | +18.41 pp | +3.57 pp | +14.84 pp | [8.83, 20.61] |
-| rating=−1 × Harmful | 151 | 399 | +23.84 pp | +9.99 pp | +13.85 pp | [6.95, 20.64] |
+| Overall | 511 | 1,514 | +7.97 pp | +0.46 pp | +7.52 pp | [2.79, 12.36] |
+| rating=0 | 176 | — | +0.99 pp | +2.84 pp | −1.85 pp | n.s. |
+| rating=+1 | 166 | — | +0.30 pp | −0.90 pp | +1.20 pp | n.s. |
+| rating=−1 × Harmful anchor | 151 | — | +23.84 pp | −1.60 pp | +25.44 pp | [16.06, 34.88] |
 
-**分析：** 在低 rating 组，placebo 本身带来约 +9.5 至 +10 pp，说明简单“打断并重新生成”确实贡献了部分改善；但 pure semantic component 仍约 +13–14 pp，区间不含 0，所以候选证据不支持“全部只是 restart”。Overall placebo 略为负，表明 restart 效应不是全样本普遍机制，而是在低 rating 条件中更突出。
+**分析：** 最新 own-control 设计显示，匹配位置和长度还不够，placebo 必须拥有自己的 control。总体 own-control placebo 为 +0.46 pp（n.s.），anchor 组为 −1.60 pp（n.s.），而 anchor 的 DiD 语义效应为 +25.44 pp [16.06, 34.88]。因此旧 shared-control 的 +8.55 pp / +13.85 pp 只能作为 legacy 对照，不能再作为主要 restart 解释。
 
 ![Target、placebo 与纯语义效应](workstream_F_final_statistics/figure3_placebo_decomposition.png)
 
@@ -166,13 +166,12 @@
 
 ### 5.2 Restart 对观察到 target 效应的描述性占比
 
-| Cohort | Placebo/Target | 描述性解释 |
+| Cohort | Legacy placebo/target | 最新 own-control 解释 |
 |---|---:|---|
-| rating=−1 | 9.47/22.78 = 41.6% | 约四成观察到的改善与 restart 成分同方向 |
-| Harmful | 3.57/18.41 = 19.4% | restart 成分较小，语义成分更大 |
-| rating=−1 × Harmful | 9.99/23.84 = 41.9% | restart 与语义成分均重要 |
+| Overall | −0.57/+7.97 | own-control placebo +0.46，DiD +7.52 |
+| rating=−1 × Harmful | +9.99/+23.84 | own-control placebo −1.60，DiD +25.44 |
 
-**分析：** 这些比率只是效应量的描述性分解，不是个体层面的中介比例，也不应在分母接近 0 或符号相反的 Overall 组计算。更稳妥的主报告仍是绝对百分点及其置信区间。
+**分析：** 旧 shared-control 比率只保留为 legacy 描述，不是个体层面的中介比例。最新版主报告应使用 own-control placebo 和 DiD 绝对百分点及其置信区间。
 
 ---
 
@@ -202,44 +201,44 @@
 
 |  | Human correct | Human wrong | 合计 |
 |---|---:|---:|---:|
-| Automated Judge correct | TP=80 | FP=15 | 95 |
-| Automated Judge wrong | FN=9 | TN=96 | 105 |
-| 合计 | 89 | 111 | 200 |
+| Automated Judge correct | TP=87 | FP=8 | 95 |
+| Automated Judge wrong | FN=6 | TN=99 | 105 |
+| 合计 | 93 | 107 | 200 |
 
-**分析：** Agreement=(80+96)/200=88.0%，precision=84.2%，recall=89.9%，F1=87.0%。自动 Judge 的正确率为 47.5%，人工为 44.5%，总体高估约 3.0 pp。88% 并不是“完全不可用”，但它低于执行计划事先规定的 90% 最低门槛，因此不能在看到结果后临时降低标准。
+**分析：** Agreement=(87+99)/200=93.0%，precision=91.6%，recall=93.5%，F1=92.6%。自动 Judge 的正确率为 47.5%，人工为 46.5%，总体高估约 1.0 pp。93.0% 高于预设 90% 最低门槛，但低于 95% 严格保留阈值，因此保留敏感性说明。
 
 ### 7.2 按 intervention condition 的审计结果
 
 | Condition | N | Agreement | Judge correct | Human correct | Bias |
 |---|---:|---:|---:|---:|---:|
-| Control | 90 | 83.3% | 46.7% | 43.3% | +3.3 pp |
+| Control | 90 | 91.1% | 46.7% | 46.7% | +0.0 pp |
 | Placebo | 23 | 100.0% | 34.8% | 34.8% | 0.0 pp |
-| Target | 87 | 89.7% | 51.7% | 48.3% | +3.4 pp |
+| Target | 87 | 93.1% | 51.7% | 49.4% | +2.3 pp |
 
-**分析：** 最大条件偏差为 3.4 pp，仍低于计划中的 5 pp 禁止线。Control 与 Target 的偏差几乎相同（相差约 0.1 pp），因此总体 target−control 的 +7.21 pp 可能比单侧正确率更抗共同偏差；但本审计是分层样本而不是总体加权校正，不能据此正式“修正”或宣布主效应已验证。Target 与 Placebo 的审计偏差差约 3.4 pp，pure semantic effect 对差异性误判更敏感。
+**分析：** 最大条件偏差为 2.3 pp，低于计划中的 5 pp 禁止线；60 个 control/target pair 的转移一致率为 54/60=90.0%。审计支持 hard-stop 通过，但不应把分层样本当作总体加权校正。
 
 ### 7.3 高风险审计分层
 
 | Audit stratum | N | Agreement | Bias |
 |---|---:|---:|---:|
 | Abnormal outputs | 20 | 100.0% | 0.0 pp |
-| Concordant still-correct | 10 | 50.0% | +50.0 pp |
-| Concordant still-wrong | 10 | 90.0% | −10.0 pp |
+| Concordant still-correct | 10 | 80.0% | +20.0 pp |
+| Concordant still-wrong | 10 | 100.0% | +0.0 pp |
 | Correct→Wrong | 50 | 84.0% | +8.0 pp |
 | Target/placebo discordant | 60 | 95.0% | −1.7 pp |
 | Wrong→Correct | 50 | 86.0% | −2.0 pp |
 
-**分析：** 误差并非均匀分布。尤其是 still-correct 小层和 Correct→Wrong 层偏差较大，而 pair transition agreement 只有 43/60=71.7%。因此 harm、recovery、稳定性类别以及以 WC/CW 为标签的 predictive analysis，比单纯总体正确率更加脆弱。小分层样本量有限，不能把 +50 pp 当总体偏差估计，但它清楚说明需要定向复审。
+**分析：** 误差并非均匀分布。尤其是 still-correct 小层和 Correct→Wrong 层偏差较大，而 pair transition agreement 只有 54/60=90.0%。因此 harm、recovery、稳定性类别以及以 WC/CW 为标签的 predictive analysis，比单纯总体正确率更加脆弱。小分层样本量有限，不能把 +20 pp 当总体偏差估计，但它清楚说明需要定向复审。
 
 ### 7.4 按 PRM rating 的审计结果
 
 | Rating | N | Agreement | Judge correct | Human correct | Bias |
 |---:|---:|---:|---:|---:|---:|
-| −1 | 56 | 89.3% | 39.3% | 42.9% | −3.6 pp |
-| 0 | 72 | 81.9% | 51.4% | 41.7% | +9.7 pp |
-| +1 | 72 | 93.1% | 50.0% | 48.6% | +1.4 pp |
+| −1 | 56 | 91.1% | 39.3% | 41.1% | −1.8 pp |
+| 0 | 72 | 93.1% | 51.4% | 50.0% | +1.4 pp |
+| +1 | 72 | 94.4% | 50.0% | 47.2% | +2.8 pp |
 
-**分析：** rating=0 是最值得担心的子组：agreement 仅 81.9%，且自动 Judge 高估正确率 9.7 pp。这会削弱“rating=0 效应接近零”的精确解释，也意味着跨 rating 的效应差异可能部分受差异性测量误差影响。低 rating 主效应虽然方向很大，但其 agreement 仍只有 89.3%，同样不能豁免复核。
+**分析：** rating=0 子组 agreement 为 93.1%，自动 Judge 高估正确率 1.4 pp；低 rating 子组 agreement 为 91.1%。这些诊断支持保留敏感性说明，但不构成对主效应的否定。
 
 ### 7.5 Audit 对各类证据的具体影响
 
@@ -256,7 +255,7 @@
 | Predictive danger/benefit labels | 强依赖 | 候选，不冻结 |
 | Target−placebo pure semantic effect | 是，且受条件差异误差影响 | 候选，不冻结 |
 
-**分析：** Audit 低于 90% 的影响是“缩小可作强结论的范围”，而不是推翻全部实验。结构、匹配、标签关联和已人工核验的案例仍然有效；所有自动正确性派生结果必须加 provisional 标记。按照预注册式执行计划，当前状态属于 **No-Go for final numerical freeze**。
+**分析：** 当前 Audit 高于 90% hard-stop 门槛，因此不再属于 No-Go；但 93.0% 仍低于 95% 严格保留阈值，自动正确性派生结果应继续附带审计诊断和敏感性限定。
 
 ---
 
@@ -335,7 +334,7 @@
 | rating=−1 | 200 | 27.5% | 4.5% | 4.0% | 3.5% | 2.5% | 58.0% |
 | Harmful | 234 | 26.1% | 5.1% | 6.4% | 4.3% | 1.3% | 56.8% |
 | rating=−1 × Harmful | 178 | 28.7% | 4.5% | 3.4% | 3.4% | 1.7% | 58.4% |
-| Control 4/4 correct | 298 | 0.0% | 0.0% | 13.4% | 4.7% | 0.0% | 81.9% |
+| Control 4/4 correct | 298 | 0.0% | 0.0% | 13.4% | 4.7% | 0.0% | 93.1% |
 
 **分析：** 最有利的 rating=−1 × Harmful 子群仍有 6.8% 被归为 strong/weak harm，不能被视为“安全删除集合”。在 control 4/4 correct 的 298 步中，54 步（18.1%）至少一次受损且没有恢复型转换，进一步说明保护稳定正确轨迹应是 policy 的首要约束。
 
@@ -425,10 +424,10 @@
 | 10 | 主表置信区间重算一致 | PASS |
 | 11 | Bootstrap repetitions = 5,000 | PASS |
 | 12 | 8 个 qualitative cases / 78 outputs 已核验 | PASS |
-| 13 | Judge audit 已完成 | **完成但 Gate FAIL** |
+| 13 | Judge audit 已完成 | **完成；Gate PASS_WITH_SENSITIVITY** |
 | 14 | 主表、图与 appendix 使用统一数字来源 | PASS |
 
-**分析：** 数据管线、分母和制图没有发现内部冲突，说明 Workstream F 在工程和统计复现层面已经完成。唯一阻断不是“代码没跑完”，而是预设的 Judge 有效性门槛没有满足。因此最终状态应写作 `GENERATED_BUT_BLOCKED_BY_JUDGE_AUDIT`，而不是简单的 `PASS`。
+**分析：** 数据管线、分母和制图没有发现内部冲突，Workstream F 的工程和统计复现已经完成。Judge Audit 达到 hard-stop 通过线，但因低于 95% 严格阈值，最终状态应写作 `READY_TO_FREEZE_WITH_SENSITIVITY`。
 
 ---
 
@@ -449,20 +448,20 @@
 | 删除对所有低 rating 步骤都安全 | **明确否定** |
 | 8 个案例证明总体频率 | **不能主张；仅支持机制展示** |
 
-**分析：** 在修复 Judge Gate 之前，论文可以形成完整叙事和初稿，但数字措辞应使用“candidate estimate / preliminary under automated judging”。最关键的写作纪律是区分：结构性事实、人工核验案例、自动 Judge 派生效应，以及需要额外 state 计算的 oracle 结果。
+**分析：** Judge Audit 已完成并达到 hard-stop 通过线；由于一致率为 93.0%，论文数字统一按 `PASS_WITH_SENSITIVITY` 报告。最关键的写作纪律仍是区分：结构性事实、人工核验案例、自动 Judge 派生效应，以及需要额外 state 计算的 oracle 结果。
 
 ### 13.2 Go / No-Go 与下一步
 
 | 优先级 | 下一步 | 完成标准 | 对论文的作用 |
 |---:|---|---|---|
-| P0 | 找独立第二 Judge 或扩大人工复审 | 最低线：agreement ≥90% 且 max condition bias ≤5 pp，进入二次审查/敏感性分析；清洁放行线：≥95% 且 bias <3 pp | 解除禁投阻断或达到直接保留标准 |
-| P0 | 优先复审 WC/CW、rating=0、still-correct 和 control/target | 获得转换级可靠标签并重新计算 | 直接保护 harm/recovery、B、C 和异质性结论 |
-| P1 | 用复核标签重跑 F master script | 主表、图、appendix 与一致性报告全部更新 | 形成真正 final statistics |
-| P1 | 继续论文 G：摘要、方法、结果框架 | 数字保留占位或 provisional 标记 | 不必等待复审才开始 |
+| P0 | Judge Audit 人工复审 | 已完成 200 条；agreement 93.0%、max condition bias 2.3 pp；审查等级 `PASS_WITH_SENSITIVITY` | 已解除 hard-stop 阻断，但保留敏感性说明 |
+| P0 | 复审 WC/CW、rating=0、still-correct 和 control/target | 已完成转换级审计与敏感性重算 | 已用于保护 harm/recovery、B、C 和异质性结论 |
+| P1 | 用最新复核标签重跑 F master script | 主表、附录、一致性报告已更新 | 已形成最新 final statistics |
+| P1 | 更新论文 G：摘要、方法、结果框架 | 已替换为最新 own-control DiD 口径 | 论文与冻结数据保持一致 |
 | P1 | 完成 H：限制与 Responsible NLP | 明示 Judge、外推、oracle 成本和非部署性 | 防止过度主张 |
 | P2 | 完成 I：匿名 artifact、README、环境、license、prompt/config 与 PDF metadata 检查 | 匿名包可复现、无身份泄露 | 投稿准备 |
 
-**分析：** 当前总决策是：**No-Go for final freeze / Go for continued writing and validation**。第二 Judge 不是为了追求任意的“90% 好看数字”，而是为了执行事先确定的测量质量边界，并确认结论没有被条件性误判驱动。若复审后仍低于 90%，应转向更大规模人工 ground truth、符号判分或更保守地仅保留不依赖自动正确性的结论。
+**分析：** 当前总决策是：**Go for final numerical freeze with sensitivity qualification**。后续写作仍应报告审计诊断，并避免宣称自动 Judge 与人工 adjudication 完全等价。
 
 ---
 
@@ -475,7 +474,7 @@
 3. matched placebo 表明改善同时包含 restart 和目标语义两部分；
 4. 稳定正确轨迹存在真实伤害风险，不能以平均收益掩盖；
 5. 状态信息能提高预测，但需要额外运行，因此 PRM score 本身不是可直接部署的 pruning policy；
-6. 当前自动 Judge 的 88% agreement 要求对所有正确性派生数字保持审慎，并在最终投稿前完成独立验证。
+6. 当前自动 Judge 的 93.0% agreement 高于 90% hard-stop 门槛但低于 95% 严格阈值，所有正确性派生数字仍应保留敏感性说明。
 
 ---
 

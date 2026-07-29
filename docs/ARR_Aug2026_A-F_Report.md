@@ -9,9 +9,9 @@
 
 在 600 个 target steps、2,400 个 Control–Target 配对结果上，删除目标步骤带来 **+7.21 个百分点**的总体正确率变化（95% CI：+3.88 至 +10.58 pp）。主要收益集中在分析标签为 `rating=-1` 和 `Harmful` 的步骤；`rating=0`、`rating=1` 及 `Essential` 子组的区间跨过零。
 
-Placebo-matched 分析覆盖 511 个步骤和 1,514 个 placebo runs。总体 target effect 为 **+7.97 pp**，placebo effect 为 **−0.57 pp**，因此纯语义效应为 **+8.55 pp**（95% CI：+4.83 至 +12.17 pp）。该结论只能外推到 511-step matched cohort，不能填补 89 个跳过步骤的未观测 placebo 结果。
+Placebo-matched 分析覆盖 511 个步骤和 1,514 个 placebo runs。旧 shared-control 口径下总体 target effect 为 **+7.97 pp**，placebo effect 为 **−0.57 pp**，legacy pure semantic effect 为 **+8.55 pp**。最新版 own-control DiD 的总体语义效应为 **+7.52 pp**（95% CI：+2.79 至 +12.36 pp），anchor 组为 **+25.44 pp**（95% CI：+16.06 至 +34.88 pp）。该结论只能外推到 511-step matched cohort，不能填补 89 个跳过步骤的未观测 placebo 结果。
 
-Judge Audit 的二分类一致率为 **93.5%（187/200）**，最大条件偏差为 **2.3 pp**，因此预设 hard-stop gate 通过；但未达到“不加敏感性说明即可保留”的 95% 一致率阈值，最终审查等级是 **`PASS_WITH_SENSITIVITY`**。这意味着结果可冻结和报告，但不能声称自动评估器与人工评估完全等价。
+Judge Audit 的二分类一致率为 **93.0%（186/200）**，最大条件偏差为 **2.3 pp**，因此预设 hard-stop gate 通过；但未达到“不加敏感性说明即可保留”的 95% 一致率阈值，最终审查等级是 **`PASS_WITH_SENSITIVITY`**。这意味着结果可冻结和报告，但不能声称自动评估器与人工评估完全等价。
 
 ## 2. 数据、队列与定义
 
@@ -31,15 +31,15 @@ Judge Audit 的二分类一致率为 **93.5%（187/200）**，最大条件偏差
 
 | 输出 | Agreement | Precision | Recall | F1 | TP | TN | FP | FN | 最大条件偏差 | 配对转移一致率 | Gate |
 |---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
-| 200 | 93.5% | 92.6% | 93.6% | 93.1% | 88 | 99 | 7 | 6 | 2.3 pp | 91.7% | **PASS** |
+| 200 | 93.0% | 91.6% | 93.5% | 92.6% | 87 | 99 | 8 | 6 | 2.3 pp | 90.0% | **PASS** |
 
-200 个审计输出中有 187 个与人工 adjudication 一致。最大条件级偏差（automated correct rate 减 human correct rate）为 2.3 pp，低于 5 pp hard-stop 上限，因此 gate 通过；但 93.5% 低于 95% 的严格保留阈值，必须在主结果旁保留审计诊断与敏感性限定。
+200 个审计输出中有 186 个与人工 adjudication 一致。最大条件级偏差（automated correct rate 减 human correct rate）为 2.3 pp，低于 5 pp hard-stop 上限，因此 gate 通过；但 93.0% 低于 95% 的严格保留阈值，必须在主结果旁保留审计诊断与敏感性限定。
 
 ### A.1 条件诊断
 
 | 条件 | N | Agreement | Judge correct | Human correct | Bias (pp) |
 |---|---:|---:|---:|---:|---:|
-| control | 90 | 92.2% | 46.7% | 47.8% | −1.1 |
+| control | 90 | 91.1% | 46.7% | 46.7% | +0.0 |
 | placebo_delete | 23 | 100.0% | 34.8% | 34.8% | +0.0 |
 | target_delete | 87 | 93.1% | 51.7% | 49.4% | +2.3 |
 
@@ -49,14 +49,14 @@ Judge Audit 的二分类一致率为 **93.5%（187/200）**，最大条件偏差
 
 | 范围 | 估计量 | Original | Substituted | Change (pp) |
 |---|---|---:|---:|---:|
-| full run table | control_correct_rate | 56.38% | 56.42% | +0.04 |
+| full run table | control_correct_rate | 56.38% | 56.38% | +0.00 |
 | full run table | target_delete_correct_rate | 63.58% | 63.50% | −0.08 |
 | full run table | placebo_delete_correct_rate | 55.55% | 55.55% | +0.00 |
-| full cohort | target − control | +7.21 | +7.08 | −0.12 |
-| placebo-matched | target effect | +7.97 | +7.93 | −0.05 |
-| placebo-matched | pure semantic effect | +8.55 | +8.50 | −0.05 |
+| full cohort | target − control | +7.21 | +7.12 | −0.08 |
+| placebo-matched | target effect | +7.97 | +7.97 | +0.00 |
+| placebo-matched | legacy shared-control pure semantic effect | +8.55 | +8.50 | −0.05 |
 
-把 200 个已审计输出的自动标签替换成人工标签后，full-cohort 主效应只变化 −0.12 pp，placebo-matched pure semantic effect 只变化 −0.05 pp。该结果支持数值稳定性，但仍是局部扰动检查，不是总体偏差校正。
+200 个已审计输出的自动标签替换成人工标签后，full-cohort 主效应变化 −0.08 pp，placebo-matched pure semantic effect 变化 −0.05 pp；这是局部敏感性检查，不是总体偏差校正。
 
 ## 4. Workstream B：Predictive Analysis
 
@@ -160,14 +160,14 @@ Eligible cohort 的 raw target effect 比 skipped cohort 高 5.17 pp，但区间
 
 ### F.2 Placebo-matched decomposition
 
-| Group | Steps | Placebo runs | Target effect (pp) | Placebo effect (pp) | Pure semantic effect (pp, 95% CI) |
+| Group | Steps | Placebo runs | Target effect (pp) | Own-control placebo (pp) | Own-control DiD semantic effect (pp, 95% CI) |
 |---|---:|---:|---:|---:|---:|
-| Overall | 511 | 1514 | +7.97 | −0.57 | **+8.55 ([+4.83, +12.17])** |
-| rating=-1 | 169 | 458 | +22.78 | +9.47 | **+13.31 ([+6.71, +19.53])** |
-| step_type=Harmful | 201 | 563 | +18.41 | +3.57 | **+14.84 ([+8.83, +20.61])** |
-| rating=-1 × Harmful | 151 | 399 | +23.84 | +9.99 | **+13.85 ([+6.95, +20.64])** |
+| Overall | 511 | 1514 | +7.97 | +0.46 own-control | **+7.52 ([+2.79, +12.36])** |
+| rating=0 | 176 | — | +0.99 | +2.84 own-control | **−1.85 (n.s.)** |
+| rating=+1 | 166 | — | +0.30 | −0.90 own-control | **+1.20 (n.s.)** |
+| rating=-1 × Harmful anchor | 151 | — | +23.84 | −1.60 own-control | **+25.44 ([+16.06, +34.88])** |
 
-在可匹配的 511 steps 内，target deletion 的提升大于 placebo deletion，整体纯语义效应为 +8.55 pp。`rating=-1 × Harmful` 的纯语义效应为 +13.85 pp，但该表仍受 D 节选择性限制，不能替代 full-cohort 主效应。
+在可匹配的 511 steps 内，最新版 own-control DiD 给出的总体语义效应为 +7.52 pp，rating=-1 × Harmful anchor 的语义效应为 +25.44 pp。旧 shared-control 的 +8.55 pp 和 +13.85 pp 仅作为 legacy 对照，不再作为主要机制结论；该表仍受 D 节选择性限制，不能替代 full-cohort 主效应。
 
 ### F.3 技术一致性与冻结结论
 
@@ -207,4 +207,3 @@ Eligible cohort 的 raw target effect 比 skipped cohort 高 5.17 pp，但区间
 - `qualitative_cases.md`、`qualitative_cases_verified.csv`：Workstream E 已验证案例及逐输出标签。
 - `workstream_F_consistency_audit.md`：Workstream F 技术一致性审计。
 - `numbers_for_paper.json`：冻结后的单一数值源与 provenance 元数据。
-

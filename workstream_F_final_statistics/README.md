@@ -6,15 +6,14 @@ single master script `../make_all_results.py`.
 ## Status
 
 - Technical consistency checks: **PASS**
-- Judge Audit gate: **FAIL**
-- Judge–human binary agreement: **88.0% (176/200)**
-- Maximum absolute condition bias: **3.4 percentage points**
+- Judge Audit gate: **PASS**
+- Judge–human binary agreement: **93.0% (186/200)**
+- Maximum absolute condition bias: **2.3 percentage points**
 - Paper-level status: **generated, but not frozen**
 
-The statistical outputs are reproducible candidate estimates. They must not be
-described as audit-cleared until the Judge Audit is remediated with an
-independent judge, symbolic evaluator, or expanded human review of
-conclusion-critical subsets.
+The statistical outputs pass the preregistered Judge Audit hard-stop gate.
+Because agreement remains below the stricter 95% threshold, outcome-dependent
+claims should retain the audit diagnostics and sensitivity qualification.
 
 ## Contents
 

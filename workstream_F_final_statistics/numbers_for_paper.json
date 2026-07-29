@@ -1845,27 +1845,27 @@
     "completed": true,
     "n_outputs": 200,
     "confusion_matrix": {
-      "tp": 88,
+      "tp": 87,
       "tn": 99,
-      "fp": 7,
+      "fp": 8,
       "fn": 6
     },
-    "binary_agreement": 0.935,
-    "correct_class_precision": 0.926316,
-    "correct_class_recall": 0.93617,
-    "correct_class_f1": 0.931217,
+    "binary_agreement": 0.93,
+    "correct_class_precision": 0.915789,
+    "correct_class_recall": 0.935484,
+    "correct_class_f1": 0.925532,
     "cohens_kappa": null,
     "cohens_kappa_note": "Not applicable to inter-human reliability because the completed sheet contains one human adjudicator rather than double annotation.",
-    "false_positive_rate_among_human_wrong": 0.066038,
-    "false_negative_rate_among_human_correct": 0.06383,
+    "false_positive_rate_among_human_wrong": 0.074766,
+    "false_negative_rate_among_human_correct": 0.064516,
     "condition_diagnostics": [
       {
         "condition": "control",
         "n": 90,
-        "agreement": 0.9222222222222223,
+        "agreement": 0.9111111111111111,
         "judge_correct_rate": 0.4666666666666667,
-        "human_correct_rate": 0.4777777777777778,
-        "bias_pp": -1.1111111111111127
+        "human_correct_rate": 0.4666666666666667,
+        "bias_pp": 0.0
       },
       {
         "condition": "placebo_delete",
@@ -1886,7 +1886,7 @@
     ],
     "max_absolute_condition_bias_pp": 2.298851,
     "pair_transition_pairs": 60,
-    "pair_transition_agreement": 0.916667,
+    "pair_transition_agreement": 0.9,
     "hard_stop_rule": "PASS iff agreement >= 90% and max absolute condition bias <= 5 pp",
     "gate": "PASS",
     "review_tier": "PASS_WITH_SENSITIVITY",
@@ -1899,8 +1899,8 @@
         "estimand": "control_correct_rate",
         "n": "2400",
         "original_estimate": "0.563750000",
-        "adjudicated_substitution_estimate": "0.564166667",
-        "change_pp": "+0.041667",
+        "adjudicated_substitution_estimate": "0.563750000",
+        "change_pp": "+0.000000",
         "interpretation": "Direct replacement of audited outputs only."
       },
       {
@@ -1926,8 +1926,8 @@
         "estimand": "target_minus_control",
         "n": "2400",
         "original_estimate": "0.072083333",
-        "adjudicated_substitution_estimate": "0.070833333",
-        "change_pp": "-0.125000",
+        "adjudicated_substitution_estimate": "0.071250000",
+        "change_pp": "-0.083333",
         "interpretation": "Paired design aggregate after replacing the 200 audited outputs."
       },
       {
@@ -1935,8 +1935,8 @@
         "estimand": "target_effect",
         "n": "511",
         "original_estimate": "0.079745597",
-        "adjudicated_substitution_estimate": "0.079256360",
-        "change_pp": "-0.048924",
+        "adjudicated_substitution_estimate": "0.079745597",
+        "change_pp": "+0.000000",
         "interpretation": "Equal-weighted step-level effect; audited outputs replaced only."
       },
       {
@@ -1944,8 +1944,8 @@
         "estimand": "placebo_effect",
         "n": "511",
         "original_estimate": "-0.005707763",
-        "adjudicated_substitution_estimate": "-0.005707763",
-        "change_pp": "+0.000000",
+        "adjudicated_substitution_estimate": "-0.005218526",
+        "change_pp": "+0.048924",
         "interpretation": "Equal-weighted step-level effect; audited outputs replaced only."
       },
       {

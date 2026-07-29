@@ -15,16 +15,15 @@ This folder contains the required Judge Audit deliverables:
 - `judge_audit_disagreement_review_report.md`
 - `judge_audit_adjudication_completed_pre_disagreement_review.csv`
 
-After blind re-review of all 28 original disagreements, the adjudicated binary
-agreement was 88.0% (176/200), so the preregistered
-hard-stop gate did not pass. See `judge_audit_report.md` for the confusion
-matrix, condition diagnostics, and required follow-up.
+The latest 200-row human re-adjudication is the current audit truth. Its binary
+agreement with the automated judge is 93.0% (186/200), so the preregistered
+hard-stop gate passes. Because this remains below the stricter 95% threshold,
+report the audit diagnostics as a sensitivity qualification. See
+`judge_audit_report.md` for the confusion matrix and condition diagnostics.
 
-The 28-record blind re-review can be reconstructed and reapplied from the
-repository root:
+The current audit report can be recomputed from the latest 200-row labels at
+the repository root:
 
 ```powershell
-uv run --no-sync python ./build_judge_audit_disagreement_review.py
-uv run --no-sync python ./apply_judge_audit_disagreement_review.py
 uv run --no-sync python ./analyze_judge_audit.py
 ```

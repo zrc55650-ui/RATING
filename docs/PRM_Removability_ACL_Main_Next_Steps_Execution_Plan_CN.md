@@ -96,8 +96,8 @@ rating \(=0\)、rating \(=1\)、Essential 和 Redundant 的区间均跨 0。
 
 Judge Audit：
 
-- Agreement：93.5%；
-- Pair-transition agreement：91.7%；
+- Agreement：93.0%（186/200）；
+- Pair-transition agreement：90.0%；
 - 最大 condition bias：2.3 pp；
 - 200 个 audited labels 替换成人工 adjudication 后，overall effect 仅变化 \(-0.12\) pp，pure semantic effect 仅变化 \(-0.05\) pp。
 

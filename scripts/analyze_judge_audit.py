@@ -376,6 +376,12 @@ def main() -> None:
                 f"| {row['case_id']} | {row['stratum']} | "
                 f"{row['automated']} | {row['human']} |"
             )
+    qualitative_gate_note = (
+        "The overall gate passed, but the result remains subject to the stricter "
+        "95% sensitivity qualification."
+        if gate_pass
+        else "The overall gate failed, so the result remains blocked pending remediation."
+    )
     lines += [
         "",
         "## Direct label-substitution sensitivity",
@@ -400,11 +406,12 @@ def main() -> None:
         "## Consequence for qualitative cases",
         "",
         "Only 4 of the 78 outputs belonging to the provisional eight qualitative "
-        "cases occurred in the 200-output audit. Because the overall gate failed, "
+        "cases occurred in the 200-output audit. "
+        f"{qualitative_gate_note} "
         "Workstream E subsequently obtained direct human labels for all 78 case "
         "outputs. The final 8/8 cases passed their fixed family-specific rules. "
         "This separate verification supports the qualitative case narratives, "
-        "but it does not clear the aggregate automated-outcome gate.",
+        "but it does not by itself clear the aggregate automated-outcome sensitivity qualification.",
         "",
     ]
     REPORT.write_text("\n".join(lines), encoding="utf-8")

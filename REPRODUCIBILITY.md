@@ -7,9 +7,12 @@
 - Bootstrap replicates: `5000`
 - Main cohort: `600` target steps / `2,400` Control–Target pairs / `1,514` placebo runs
 - Placebo-matched cohort: `511` target steps
-- Extension cohorts: cross-generator `2,691` runs (M2), strong controls `1,862` (M4),
-  ProcessBench `2,412` (M6)
-- Judge Audit (post-adjudication): 93.5% agreement, gate PASS
+- Extension cohorts: cross-generator `2,691` runs (M2), strong controls `1,843` (M4),
+  ProcessBench `2,412` (M6), long-CoT `2,691` (M10), thinking-toggle `3,582` (M11)
+- Placebo own-controls: `3,907` runs across four cohorts (M12)
+- Total extension runs: `17,126`
+- Judge Audit (latest 200-row re-adjudication): 93.0% agreement (186/200), hard-stop gate PASS;
+  review tier `PASS_WITH_SENSITIVITY`
 
 Last verified end-to-end on macOS (Darwin 24.6) with system `python3`; the original
 A–F generation ran on Windows PowerShell 5.1 (workers archived under

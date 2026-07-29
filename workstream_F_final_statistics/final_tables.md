@@ -1,6 +1,6 @@
 # Workstream F Final Tables
 
-> **Submission gate: PASS.** The Judge Audit cleared its pre-specified agreement and condition-bias thresholds.
+> **Submission gate: PASS_WITH_SENSITIVITY.** The Judge Audit hard-stop gate passed, but agreement remains below the stricter 95% retain-without-remediation threshold.
 
 ## Table 1. Full-cohort target deletion effects
 
@@ -17,21 +17,30 @@ Denominator: 600 target steps / 2,400 paired Control–Target outcomes. Step-typ
 | step_type=Harmful | 234 | 936 | +18.38 | [+12.28, +24.44] | 17.01% | 38.66% |
 | rating=-1 x step_type=Harmful | 178 | 712 | +23.31 | [+16.57, +30.24] | 13.79% | 38.11% |
 
-## Table 2. Placebo-matched effect decomposition
+## Table 2. Legacy placebo-matched effect decomposition
 
-Denominator: 511 matched target steps / 1,514 placebo runs. All effects are percentage points; pure semantic = Target − Placebo.
+Denominator: 511 matched target steps / 1,514 placebo runs. These are legacy shared-control contrasts; the latest own-control DiD results are reported in Workstream M12 and the manuscript.
 
-| Group | Steps | Placebo runs | Target effect (pp) | Placebo effect (pp) | Pure semantic effect (pp, 95% CI) |
+| Group | Steps | Placebo runs | Target effect (pp) | Legacy placebo effect (pp) | Legacy pure semantic effect (pp, 95% CI) |
 |---|---:|---:|---:|---:|---:|
 | Overall | 511 | 1514 | +7.97 | -0.57 | +8.55 ([+4.83, +12.17]) |
 | rating=-1 | 169 | 458 | +22.78 | +9.47 | +13.31 ([+6.71, +19.53]) |
 | step_type=Harmful | 201 | 563 | +18.41 | +3.57 | +14.84 ([+8.83, +20.61]) |
 | rating=-1 x step_type=Harmful | 151 | 399 | +23.84 | +9.99 | +13.85 ([+6.95, +20.64]) |
 
+## Table 2b. Latest own-control DiD decomposition
+
+Each placebo cutoff receives its own control. These are the latest mechanism estimates.
+
+| Cohort | Own-control placebo (pp) | DiD semantic effect (pp, 95% CI) |
+|---|---:|---:|
+| Overall | +0.46 | +7.52 ([+2.79, +12.36]) |
+| rating=-1 × Harmful anchor | -1.60 | +25.44 ([+16.06, +34.88]) |
+
 ## Table 3. Judge Audit
 
 | Outputs | Agreement | Precision | Recall | F1 | TP | TN | FP | FN | Max condition bias | Pair-transition agreement | Gate |
 |---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
-| 200 | 93.5% | 92.6% | 93.6% | 93.1% | 88 | 99 | 7 | 6 | 2.3 pp | 91.7% | **PASS** |
+| 200 | 93.0% | 91.6% | 93.5% | 92.6% | 87 | 99 | 8 | 6 | 2.3 pp | 90.0% | **PASS** |
 
 The preregistered hard-stop gate passed. Because agreement remains below the stricter 95% retain-without-remediation threshold, Tables 1–2 should be accompanied by the audit diagnostics and described as passing with sensitivity qualification.

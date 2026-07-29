@@ -27,11 +27,11 @@ non-empty.
 
 ## Workstream A — final audit result
 
-- Outputs: 200; binary agreement: 187/200 = **93.5%**.
-- Confusion matrix: TP 88, TN 99, FP 7, FN 6.
-- Correct-class precision: **92.6%**; recall: **93.6%**; F1: **93.1%**.
+- Outputs: 200; binary agreement: 186/200 = **93.0%**.
+- Confusion matrix: TP 87, TN 99, FP 8, FN 6.
+- Correct-class precision: **91.6%**; recall: **93.5%**; F1: **92.6%**.
 - Maximum absolute condition bias: **2.3 pp**.
-- Pair-transition agreement: **91.7%**.
+- Pair-transition agreement: **90.0%**.
 - Hard-stop gate: **PASS**.
 - Review tier: **PASS_WITH_SENSITIVITY**, because agreement is below the
   stricter 95% retain-without-remediation threshold.
@@ -41,9 +41,9 @@ non-empty.
 This check replaces only the 200 audited labels and leaves the other 6,114 run
 labels unchanged. It is a local perturbation, not a population correction.
 
-- Full-cohort Target − Control: **+7.21 pp → +7.08 pp** (−0.13 pp).
-- Matched-cohort target effect: **+7.97 pp → +7.93 pp** (−0.05 pp).
-- Matched-cohort placebo effect: **−0.57 pp → −0.57 pp**.
+- Full-cohort Target − Control: **+7.21 pp → +7.12 pp** (−0.08 pp).
+- Matched-cohort target effect: **+7.97 pp → +7.97 pp** (+0.00 pp).
+- Matched-cohort placebo effect: **−0.57 pp → −0.52 pp** (+0.05 pp).
 - Matched-cohort pure semantic effect: **+8.55 pp → +8.50 pp** (−0.05 pp).
 
 The known audited errors do not materially change the headline aggregate
