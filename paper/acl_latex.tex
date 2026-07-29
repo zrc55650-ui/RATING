@@ -190,6 +190,13 @@ $-1\times$Harmful  & 178 & $+23.31$ & $\ci{+16.57}{+30.24}$ \\
 \label{tab:main}
 \end{table}
 
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\columnwidth]{figures/figure5_prm_rating_vs_deletion_effect.pdf}
+  \caption{PRM rating versus target-deletion effect on the 600-step primary cohort. Each point is one step; colors show the frozen AI-assisted semantic label. Large positive effects concentrate in rating-$-1$ Harmful steps, whereas rating-$0/{+}1$ groups cluster near zero. Larger markers show within-cell means with 95\% step-bootstrap intervals.}
+  \label{fig:ratingeffect}
+\end{figure}
+
 \paragraph{Semantic-label ablation.}
 To ask what the semantic annotation adds beyond a PRM threshold, we first ignore semantic labels and select all rating-$-1$ steps, then compare that set with its Harmful subset. The rating-only set has a $+22.0$\,pp deletion effect; adding the Harmful label concentrates the set to 178 steps with $+23.3$\,pp, while the 22 rating-$-1$ non-Harmful steps show $+11.4$\,pp (Table~\ref{tab:labelablation}). The within-rating contrast is positive ($+12.0$\,pp) but imprecise because only 22 steps are non-Harmful. Thus semantic labels add subgroup resolution beyond rating alone, while the headline is not created by removing rating information.
 

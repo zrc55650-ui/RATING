@@ -6,6 +6,8 @@ from __future__ import annotations
 import re
 import shutil
 import subprocess
+import argparse
+import sys
 from pathlib import Path
 
 from analysis_common import ROOT
@@ -16,6 +18,7 @@ FIGURES = [
     "figure2_rating_step_type_heatmap.svg",
     "figure3_placebo_decomposition.svg",
     "figure4_control_stability.svg",
+    "figure5_prm_rating_vs_deletion_effect.svg",
     "step_stability_heatmap.svg",
     "placebo_eligibility_loveplot.svg",
     "risk_coverage_danger.svg",
@@ -37,6 +40,22 @@ EDGE_CANDIDATES = [
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--only",
+        action="append",
+        help="Export only the named figure; may be supplied more than once.",
+    )
+    parser.add_argument(
+        "--pdf-only",
+        action="store_true",
+        help="Skip PNG screenshots; useful on headless systems without browser Crashpad access.",
+    )
+    args = parser.parse_args()
+    selected_figures = [
+        figure_name for figure_name in FIGURES
+        if not args.only or figure_name in args.only
+    ]
     edge = next((candidate for candidate in EDGE_CANDIDATES if candidate.exists()), None)
     if edge is None:
         raise FileNotFoundError("Microsoft Edge was not found")
@@ -44,8 +63,10 @@ def main() -> None:
     temp_name.mkdir(exist_ok=True)
     if True:
         temp = Path(temp_name)
-        profile = temp / "edge-profile"
-        for figure_name in FIGURES:
+        profile = temp / "edge-profile-figure5"
+        crash_dumps = temp / "crash-dumps"
+        crash_dumps.mkdir(exist_ok=True)
+        for figure_name in selected_figures:
             svg_dirs = {
                 "judge_audit_confusion_matrix.svg": ROOT / "workstream_A_judge_audit",
                 "step_stability_heatmap.svg": ROOT / "step_stability_analysis",
@@ -78,8 +99,14 @@ def main() -> None:
                     str(edge),
                     "--headless=new",
                     "--disable-gpu",
+                    "--disable-breakpad",
+                    "--disable-crash-reporter",
+                    "--disable-features=Crashpad",
+                    "--no-sandbox",
+                    "--no-first-run",
                     "--no-pdf-header-footer",
                     f"--user-data-dir={profile}",
+                    f"--crash-dumps-dir={crash_dumps}",
                     f"--print-to-pdf={output}",
                     wrapper.as_uri(),
                 ],
@@ -91,21 +118,45 @@ def main() -> None:
                 timeout=60,
             )
             if completed.returncode or not output.exists() or output.stat().st_size == 0:
-                raise RuntimeError(
-                    f"Failed to export {figure_name}: "
-                    f"{completed.stderr or completed.stdout}"
+                fallback = subprocess.run(
+                    [
+                        sys.executable,
+                        str(ROOT / "scripts" / "svg_to_pdf.py"),
+                        str(svg_path),
+                        str(output),
+                    ],
+                    check=False,
+                    capture_output=True,
+                    text=True,
+                    encoding="utf-8",
+                    errors="replace",
+                    timeout=60,
                 )
+                if fallback.returncode or not output.exists() or output.stat().st_size == 0:
+                    raise RuntimeError(
+                        f"Failed to export {figure_name}: "
+                        f"{completed.stderr or completed.stdout}\n"
+                        f"SVG-to-PDF fallback: {fallback.stderr or fallback.stdout}"
+                    )
             print(f"Exported {output.name}")
+            if args.pdf_only:
+                continue
             png_output = svg_path.with_suffix(".png")
             completed = subprocess.run(
                 [
                     str(edge),
                     "--headless=new",
                     "--disable-gpu",
+                    "--disable-breakpad",
+                    "--disable-crash-reporter",
+                    "--disable-features=Crashpad",
+                    "--no-sandbox",
+                    "--no-first-run",
                     "--hide-scrollbars",
                     "--force-device-scale-factor=1",
                     f"--window-size={width},{height}",
                     f"--user-data-dir={profile}",
+                    f"--crash-dumps-dir={crash_dumps}",
                     f"--screenshot={png_output}",
                     wrapper.as_uri(),
                 ],

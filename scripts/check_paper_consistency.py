@@ -42,6 +42,16 @@ def main() -> None:
     check("600 steps", len(steps), 600)
     check("ratings 200/200/200",
           sorted(Counter(s["prm_rating"] for s in steps).values()), [200, 200, 200])
+    figure_rows = read_csv(ROOT / "data" / "prm_rating_vs_deletion_effect.csv")
+    check("rating/deletion figure has 600 points",
+          sum(row["row_type"] == "point" for row in figure_rows), 600)
+    check("rating/deletion figure has 9 summaries",
+          sum(row["row_type"] == "summary" for row in figure_rows), 9)
+    check("rating/deletion figure PDF exists",
+          (ROOT / "paper" / "figures" / "figure5_prm_rating_vs_deletion_effect.pdf").exists(), True)
+    paper_tex = (ROOT / "paper" / "acl_latex.tex").read_text(encoding="utf-8")
+    check("rating/deletion figure is in main LaTeX",
+          "figures/figure5_prm_rating_vs_deletion_effect.pdf" in paper_tex, True)
     check("run counts", Counter(r["condition"] for r in runs),
           Counter({"control": 2400, "target_delete": 2400, "placebo_delete": 1514}))
 
