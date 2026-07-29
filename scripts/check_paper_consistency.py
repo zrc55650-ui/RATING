@@ -63,6 +63,18 @@ def main() -> None:
     check("label disagreement 164",
           sum(1 for s in steps if s["step_type_initial"] != s["step_type_human_calibrated"]), 164)
 
+    # Random semantic-label negative control (paper Table randomlabel)
+    random_label = {r["metric"]: r for r in read_csv(
+        ROOT / "data" / "random_semantic_label_ablation.csv")}
+    approx("random-label primary raw anchor +23.31pp",
+           as_float(random_label["primary_anchor_mean_effect_pp"]["observed"]), 23.31, 0.01)
+    approx("random-label within-rating contrast +11.95pp",
+           as_float(random_label["primary_within_rating_harmful_contrast_pp"]["observed"]), 11.95, 0.01)
+    approx("random-label calibrated coverage 26.67%",
+           as_float(random_label["calibrated_policy_candidate_coverage_pct"]["observed"]), 26.67, 0.01)
+    check("random-label permutations 5000",
+          as_int(random_label["primary_anchor_mean_effect_pp"]["permutations"]), 5000)
+
     # Headline effects (paper Tables 1-2)
     approx("overall target effect +7.21pp",
            100 * sum(as_float(s["target_effect"]) for s in steps) / 600, 7.21, 0.01)

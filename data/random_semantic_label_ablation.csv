@@ -1,0 +1,7 @@
+metric,description,observed,null_mean,null_p025,null_p50,null_p975,permutations,seed
+primary_anchor_mean_effect_pp,Raw mean effect for rating=-1 and harmful; observed n=178,23.314607,21.977013,14.000000,21.951220,30.263932,5000,20260729
+primary_within_rating_harmful_contrast_pp,Mean effect for rating=-1 and harmful minus rating=-1 and non-harmful,11.950970,-0.039795,-12.934363,-0.082679,13.483446,5000,20260729
+primary_anchor_n,Count of rating=-1 and harmful steps under the primary label margins,178.000000,78.035000,67.000000,78.000000,89.000000,5000,20260729
+calibrated_policy_candidate_coverage_pct,Candidate coverage for rating=-1 and harmful; observed n=160,26.666667,11.275300,9.500000,11.333333,13.000000,5000,20260729
+calibrated_policy_candidate_effect_pp,Mean target effect among rating=-1 and harmful policy candidates,20.937500,21.932425,13.043478,21.917808,31.071429,5000,20260729
+calibrated_policy_candidate_n,Count of rating=-1 and harmful policy candidates under calibrated margins,160.000000,67.651800,57.000000,68.000000,78.000000,5000,20260729

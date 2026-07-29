@@ -124,6 +124,27 @@ Late   & 198 & $+7.2$ & $[+1.8,\ +12.6]$ \\
 \label{tab:position}
 \end{table}
 
+\paragraph{Random-label negative control.}
+To test whether the Harmful result is merely a label-frequency artifact, we permuted each semantic-label vector 5{,}000 times while preserving its observed margins, leaving ratings and all frozen outcomes fixed. The raw rating-$-1\times$Harmful effect remains positive under this null because the rating-$-1$ effect is deliberately retained; the sharper diagnostic is the within-rating contrast between randomized Harmful and non-Harmful steps (Table~\ref{tab:randomlabel}). This contrast is centered at zero under the permutation null. The observed label--rating intersection is also much more concentrated than random labels (26.7\% versus a 9.5--13.0\% null interval for the calibrated policy candidates). The candidate-effect interval overlaps the null because rating-$-1$ itself carries much of the raw effect, so this ablation supports semantic-label enrichment and guards against frequency-only interpretations; it is not a claim that the label alone identifies safe rollbacks.
+
+\begin{table}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3.0pt}
+\begin{tabular}{@{}lrr@{}}
+\toprule
+Statistic & Observed & Random-label 95\% interval \\
+\midrule
+Raw $-1\times$Harmful effect (pp) & $+23.3$ & $[+14.0,\ +30.3]$ \\
+Within-$-1$ Harmful contrast (pp) & $+12.0$ & $[-12.9,\ +13.5]$ \\
+Calibrated candidate coverage & $26.7\%$ & $[9.5\%,\ 13.0\%]$ \\
+Calibrated candidate effect (pp) & $+20.9$ & $[+13.0,\ +31.1]$ \\
+\bottomrule
+\end{tabular}
+\caption{Random semantic-label negative control. Each permutation preserves the initial margins (165/201/234) or calibrated margins (198/199/203), as appropriate, and uses the same 600 frozen outcomes. The within-rating contrast is the mean effect for rating-$-1$ Harmful steps minus rating-$-1$ non-Harmful steps; candidate coverage is the share selected by rating-$-1\times$Harmful. Intervals are the 2.5th--97.5th percentiles over 5{,}000 permutations (seed 20260729).}
+\label{tab:randomlabel}
+\end{table}
+
 \paragraph{Interventions.}
 Both interventions are prefix truncations of the same trajectory: the Control prompt contains the problem plus steps $1{:}t$, the Target-deletion prompt contains steps $1{:}t{-}1$---operationally a \emph{rollback} of the most recent visible step, not an interior splice---and Qwen3-8B (temperature $0.7$, top-$p$ $0.8$) regenerates the continuation, four fresh runs per condition. The Placebo condition applies the identical truncation at a different step $p$ of the same trajectory (before or after $t$; 51\%/49\% in practice) whose token length is within $\pm 20\%$ of the target's, choosing the closest available position; 511/600 steps admit such a match (1{,}514 placebo runs), and the 89 unmatched steps differ from matched ones only modestly (largest imbalance: position SMD $0.298$). The placebo-cutoff steps are benign: none carries rating $-1$ (Table~\ref{tab:placebocomp}, appendix).
 
