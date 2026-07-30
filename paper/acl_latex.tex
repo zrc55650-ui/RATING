@@ -89,25 +89,7 @@ plus the own-control difference-in-differences $\Delta^{\mathrm{sem}}_{\mathrm{D
 From PRM800K phase-2 test trajectories \citep{lightman2024lets} over MATH problems \citep{hendrycks2021measuring} we sample 600 target steps, 200 per rating, balanced over early/middle/late positions ($201/201/198$). \textbf{Unless otherwise stated, all main results use the frozen AI-assisted semantic labels; human-calibrated labels are only used for explicitly identified robustness or diagnostic validation.} Semantic contribution was annotated twice, with both passes completed before any deletion outcome existed: an initial AI-assisted pass (165 Essential / 201 Redundant / 234 Harmful) and a human-calibrated re-labeling pass (198 / 199 / 203); the passes disagree on 164/600 steps (27.3\%), an explicit reliability bound; a blinded four-annotator pilot provides a human-only robustness check (Table~\ref{tab:humanpilot}; full agreement details in Appendix~\ref{app:robust}). The frozen statistical pipeline behind Tables~\ref{tab:main}--\ref{tab:placebo} uses the \emph{initial} pass as its primary label set ($-1\times$Harmful anchor: 178 steps); the calibrated pass (anchor: 160 steps, 154 shared) is confined to the correctness-vs-contribution diagnostic, extension-cohort sampling metadata, and explicitly labeled robustness re-estimations (Table~\ref{tab:labelrobust}, appendix; the headline survives either pass). Under the calibrated labels, rating and type are associated (Cram\'er's $V = 0.528$) with 65.5\% of steps on the expected diagonal---correlated, but with a third of the cohort off-diagonal (Figure~\ref{fig:heatmap}, appendix).
 
 \paragraph{Human-only label robustness.}
-The pilot was blinded to PRM ratings, prior labels, and deletion outcomes. Two independent annotators labeled each of 120 steps; pooled agreement was 61.7\% ($\kappa=0.40$), so this is a sensitivity analysis rather than a replacement annotation of the full cohort. Among the 74 exact-consensus items, the 15 consensus-Harmful steps show a $+25.0$\,pp target-deletion effect and a $+22.9$\,pp legacy placebo-corrected effect; the corresponding effects are small for consensus-Essential steps ($+4.2$\,/\,$+2.6$\,pp) and reverse for consensus-Redundant steps ($-22.1$\,/\,$-5.8$\,pp). Thus the Harmful-anchor pattern is reproduced by labels assigned without access to outcomes, while the small and only moderately reliable pilot does not justify treating the semantic taxonomy as ground truth.
-
-\begin{table}[t]
-\centering
-\scriptsize
-\setlength{\tabcolsep}{3.2pt}
-\begin{tabular}{@{}lrrrr@{}}
-\toprule
-Human consensus & $n$ & Rating $-1$ & Target--Control & Target--Placebo \\
-label & & share & effect (pp) & effect (pp) \\
-\midrule
-Essential  & 42 & 21.4\% & $+4.2$  & $+2.6$ \\
-Redundant  & 17 & 11.8\% & $-22.1$ & $-5.8$ \\
-Harmful    & 15 & 93.3\% & $+25.0$ & $+22.9$ \\
-\bottomrule
-\end{tabular}
-\caption{Human-only semantic-label sensitivity analysis. The 120-step blinded pilot yielded 74 exact-consensus items (46 disagreements omitted from this table); effects are averages over the frozen run-level outcomes for those consensus items. Target--Placebo is the legacy shared-control contrast, retained here to match the pilot artifact; the main analysis uses own-control DiD. The Harmful row reproduces the direction and magnitude of the anchor result, but its $n=15$ and the pilot's $\kappa=0.40$ make it robustness evidence, not a full-cohort human ground truth.}
-\label{tab:humanpilot}
-\end{table}
+The pilot was blinded to PRM ratings, prior labels, and deletion outcomes. Two independent annotators labeled each of 120 steps; pooled agreement was 61.7\% ($\kappa=0.40$), so this is a sensitivity analysis rather than a replacement annotation of the full cohort. Among the 74 exact-consensus items, the 15 consensus-Harmful steps show a $+25.0$\,pp target-deletion effect and a $+22.9$\,pp legacy placebo-corrected effect; the corresponding effects are small for consensus-Essential steps ($+4.2$\,/\,$+2.6$\,pp) and reverse for consensus-Redundant steps ($-22.1$\,/\,$-5.8$\,pp). Thus the Harmful-anchor pattern is reproduced by labels assigned without access to outcomes. We report the human-consensus/deletion-gain relationship in the main results (Table~\ref{tab:humanpilot}); the small and only moderately reliable pilot does not justify treating the semantic taxonomy as ground truth.
 
 \paragraph{Position robustness.}
 The primary cohort was balanced across early, middle, and late target positions, allowing a direct check that the aggregate effect is not an early-step artifact. The frozen step-cluster bootstrap gives positive point estimates in all three bins, with overlapping intervals (Table~\ref{tab:position}).
@@ -198,23 +180,23 @@ $-1\times$Harmful  & 178 & $+23.31$ & $\ci{+16.57}{+30.24}$ \\
 \end{figure}
 
 \paragraph{Semantic-label ablation.}
-To ask what the semantic annotation adds beyond a PRM threshold, we first ignore semantic labels and select all rating-$-1$ steps, then compare that set with its Harmful subset. The rating-only set has a $+22.0$\,pp deletion effect; adding the Harmful label concentrates the set to 178 steps with $+23.3$\,pp, while the 22 rating-$-1$ non-Harmful steps show $+11.4$\,pp (Table~\ref{tab:labelablation}). The within-rating contrast is positive ($+12.0$\,pp) but imprecise because only 22 steps are non-Harmful. Thus semantic labels add subgroup resolution beyond rating alone, while the headline is not created by removing rating information.
+To ask what semantic information adds beyond a PRM threshold, we condition on the 200 steps already assigned rating $-1$. The PRM-only candidate pool has a $+22.0$\,pp deletion effect; adding the Harmful label narrows this pool to 178 steps (89\% coverage) with $+23.3$\,pp, while the 22 rating-$-1$ non-Harmful steps show $+11.4$\,pp (Table~\ref{tab:labelablation}). The Harmful--non-Harmful mean contrast is $+12.0$\,pp, but the incremental gain over the full PRM-$-1$ pool is only $+1.3$\,pp because Harmful steps already comprise 89\% of the pool. The empirical positive-effect share rises only from 32.5\% (65/200) to 33.7\% (60/178), while the non-Harmful subset is 22.7\% (5/22). Thus this experiment does not show that Harmful is stronger than the PRM; it shows that semantic information provides modest within-rating enrichment for ranking which already-identified errors are more promising to delete. Because each step has only four independent runs, the positive-effect share is a descriptive enrichment measure, not a noise-free causal precision estimate.
 
 \begin{table}[t]
 \centering
 \scriptsize
-\setlength{\tabcolsep}{3pt}
-\begin{tabular}{@{}lrrr@{}}
+\setlength{\tabcolsep}{2.4pt}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}lrrrr@{}}
 \toprule
-Selection / contrast & $n$ & $\Delta^{\mathrm{tgt}}$ (pp) & 95\% CI (pp) \\
+Candidate set within rating $-1$ & $n$ & Coverage & $\Delta^{\mathrm{tgt}}$ (pp) & Positive-effect share \\
 \midrule
-Rating $-1$ only & 200 & $+22.0$ & $[+15.5,+28.5]$ \\
-Rating $-1\times$Harmful & 178 & $+23.3$ & $[+16.6,+30.1]$ \\
-Rating $-1\times$non-Harmful & 22 & $+11.4$ & $[-8.0,+31.8]$ \\
-Harmful $-$ non-Harmful within rating $-1$ & $178$ vs. $22$ & $+12.0$ & $[-9.2,+33.0]$ \\
+PRM-only: all rating $-1$ & 200 & 100\% & $+22.0$ $\ci{+15.4}{+28.4}$ & 32.5\% (65/200) \\
+PRM + Harmful & 178 & 89\% & $+23.3$ $\ci{+16.6}{+30.2}$ & 33.7\% (60/178) \\
+PRM + non-Harmful & 22 & 11\% & $+11.4$ $\ci{-9.1}{+31.8}$ & 22.7\% (5/22) \\
 \bottomrule
-\end{tabular}
-\caption{Semantic-label ablation using the primary AI-assisted labels. The rating-only row ignores semantic type; the next two rows partition the same 200 rating-$-1$ steps. CIs are 5{,}000-replicate step-level cluster bootstraps (seed 20260802). The small non-Harmful subgroup makes the within-rating contrast a resolution check rather than a high-powered standalone test.}
+\end{tabular}}%
+\caption{Two-stage selection within the PRM error pool. All rows use the same 200 rating-$-1$ steps and the frozen primary AI-assisted semantic labels. Coverage is relative to that pool. Positive-effect share is the fraction of steps with observed $\Delta^{\mathrm{tgt}}_i>0$ across four independent runs; it is a descriptive enrichment measure, not a causal precision estimate. CIs are 5{,}000-replicate step-level cluster bootstraps (seed 20260802). Harmful steps have a larger mean effect than non-Harmful steps, but the incremental gain over the PRM-only pool is modest because Harmful steps comprise 89\% of that pool.}
 \label{tab:labelablation}
 \end{table}
 
@@ -222,6 +204,26 @@ Harmful $-$ non-Harmful within rating $-1$ & $178$ vs. $22$ & $+12.0$ & $[-9.2,+
 Because longer steps may be more disruptive to delete, we fit a problem-clustered OLS model over all 600 steps with rating indicators, initial semantic-type indicators, position indicators, and $\log(1+$ target tokens$)$. The Harmful coefficient is $+7.1$\,pp (95\% CI $[-4.1,+18.4]$) and the log-length coefficient is only $+1.2$\,pp per log unit (95\% CI $[-4.9,+7.5]$); neither explains the anchor pattern after adjustment. Full coefficients are in Table~\ref{tab:lengthreg} (appendix).
 
 Deleting target steps helps on average ($+7.21$\,pp, Table~\ref{tab:main}), but the average is misleading: the entire reliable gain sits in the rating\,$=-1$ column and the Harmful row, peaking at $+23.31$\,pp for their intersection (the off-diagonal cells are small-$n$ and inconclusive: the 22 rating-$-1$ non-Harmful steps show $+11.4$\,pp, CI $\ci{-9.1}{+31.8}$; the 56 Harmful non-$(-1)$ steps $+2.7$\,pp). Correct steps (rating $+1$) and Essential steps show near-zero \emph{average} effects---yet not because deletion is safe there. Danger discordance is substantial everywhere: among paired draws whose control sample is correct, the deletion sample is wrong 15.1\% of the time (a conditional rate---the joint rate is 8.5\%, Table~\ref{tab:natprev}, appendix; neither is an individual causal flip, Section~\ref{sec:constructs}), and even within rating\,$=-1$ the conditional rate is 14.9\%. The near-zero group means arise from offsetting discordance in both directions, not from inertness.
+
+\paragraph{Human consensus and deletion gain.}
+The outcome-blinded human pilot provides a direct semantic validity check on the intervention pattern. Among exact-consensus labels, consensus-Harmful steps show the largest deletion gain ($+25.0$\,pp), consensus-Essential steps are close to zero ($+4.2$\,pp), and consensus-Redundant steps show a negative average effect ($-22.1$\,pp). The ordering is consistent with the proposed semantic interpretation, but it is a sensitivity result rather than a population-level correlation: only 74 of the 120 pilot items reached exact consensus, including 15 consensus-Harmful steps.
+
+\begin{table}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+Human consensus label & $n$ & Rating $-1$ share & Deletion gain (pp) \\
+\midrule
+Essential  & 42 & 21.4\% & $+4.2$ \\
+Redundant  & 17 & 11.8\% & $-22.1$ \\
+Harmful    & 15 & 93.3\% & $+25.0$ \\
+\bottomrule
+\end{tabular}
+\caption{Human consensus versus target-deletion gain. The 120-step blinded pilot yielded 74 exact-consensus items; effects are averages over the frozen run-level outcomes for those consensus items. The corresponding legacy shared-control placebo-corrected effects are $+2.6$\,pp (Essential), $-5.8$\,pp (Redundant), and $+22.9$\,pp (Harmful). Because the pilot has only 15 consensus-Harmful items and pooled agreement $\kappa=0.40$, this is human-only robustness evidence, not a full-cohort human ground truth.}
+\label{tab:humanpilot}
+\end{table}
 
 \paragraph{Trajectory state dominates raw effects.}
 Stratifying by control stability makes the state-dependence explicit (Figure~\ref{fig:stability}, appendix): steps whose four control runs are all wrong gain $+33.4$\,pp from deletion (nothing to lose), while steps whose control runs are all correct \emph{lose} $12.1$\,pp (CI $\ci{-15.5}{-8.9}$). These strata condition on the same control draws that enter $\Delta^{\mathrm{tgt}}$, so regression to the mean pushes the extreme strata outward; we read them as descriptive bounds on state-dependence, not causal subgroup effects---and a deployment policy never observes these counterfactual states, which is why raw deletion gains overstate what a policy can capture (Section~\ref{sec:policy}).
